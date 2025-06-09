@@ -75,8 +75,22 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Prioridad**               | Alta                                 |
 | **Mejoras**                 | Incorporar verificación automática de duplicidad <br> Integrar validaciones con área de RRHH |
 | **Otras secciones**         |                                      |
-| **Seccion**                 | Proceso de incorporación             |
+| **Seccion**                 | Gestión de empleados             |
 |                             | 1. Validación de datos básicos <br> 2. Aprobación por responsable administrativo |
+
+| **ID**                      | CDU11                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Actualizar información del empleado  |
+| **Actores**                 | Administración                      |
+| **Propósito**               | Mantener actualizada la información del personal dentro de la organización. |
+| **Resumen**                 | Este caso de uso se activa cuando hay necesidad de modificar datos de un empleado por cambios personales, errores previos o ajustes contractuales. Finaliza cuando los datos actualizados están verificados y aceptados en el expediente del empleado. |
+| **Curso Normal de eventos** | 1. Administración detecta o recibe solicitud de cambio. <br> 2. Verifica si el cambio es válido y autorizado. <br> 3. Accede al expediente del empleado. <br> 4. Realiza los ajustes necesarios. <br> 5. Confirma y documenta el cambio. |
+| **Cursos alternos**         | 1. Si el dato a modificar requiere aprobación de RRHH, se deriva para revisión. <br> 2. Si el dato es sensible, se solicita validación adicional. |
+| **Prioridad**               | Media                                |
+| **Mejoras**                 | Agregar control de cambios y motivo de edición |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Gestión de empleados   |
+|                             | 1. Cambios validados por supervisor <br> 2. Documentación de fecha y responsable |
 
 
 ## 3. Drivers arquitectónicos
