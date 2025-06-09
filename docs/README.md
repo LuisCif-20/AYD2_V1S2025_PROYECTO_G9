@@ -6,31 +6,28 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ### Stakeholders
 * Gerente general: Recibe reportes clave, toma desiciones estrategicas para el negocio. 
-* Area de ventas: Registran ventas dentro del sistema, consultan comisiones y gestiona clientes.
-* Area de inventario: Ingresan y actualizan el stock de productos dentro de bodega.
-* Area de finanzas: Se encarga de controlar los pagos (completos o abonados) de las ventas y realizacion de pagos a vendedores.
-* Area administrativa: Gestion de vendedores y comisiones.
-* Area de logistica: Se encarga de la gestion de importaciones, validaciones del DUCA y documentacion.
+* Ventas: Registran ventas dentro del sistema, consultan comisiones y gestiona clientes.
+* Bodega: Registran ingresos y egresos de bodega, gestionan inventario y productos.
+* Finanzas: Se encarga de controlar los pagos (completos o abonados) de las ventas realizadas.
+* Administracion: Gestion de vendedores, empleados y comisiones.
 
 ### Diagrama CDU de alto nivel
-![CDU_alto_nivel](./assets/CDU-ALTO-NIVEL.png)
+![CDU_alto_nivel](./assets/cdu/CDU-ALTO-NIVEL.png)
 
 ### Primera descomposición
-![CDU_primera_descomposicion](./assets/CDU-primera_descomposicion.png)
+![CDU_primera_descomposicion](./assets/cdu/CDU-PRIMERA-DESCOMPOSICION.png)
 
 ## 2. Casos de uso expandidos
 ### Diagramas
-![CDU_expandido-control_clientes](./assets/cdu_expandidos/CDU_expandido-control_clientes.png)
+![CDU_expandido-gestion_clientes](./assets/cdu/CDU-GESTION-CLIENTES.png)
 
-![CDU_expandido-control_empleados](./assets/cdu_expandidos/CDU_expandido-control_empleados.png)
+![CDU_expandido-gestion_empleados](./assets/cdu/CDU-GESTION-EMPLEADOS.png)
 
-![CDU_expandido-control_ventas](./assets/cdu_expandidos/CDU_expandido-control_ventas.png)
+![CDU_expandido-gestion_ventas](./assets/cdu/CDU-GESTION-VENTAS.png)
 
-![CDU_expandido-control_productos](./assets/cdu_expandidos/CDU_expandido-control_productos.png)
+![CDU_expandido-gestion_bodega](./assets/cdu/CDU-GESTION-BODEGA.png)
 
-![CDU_expandido-control_inventario](./assets/cdu_expandidos/CDU_expandido-control_inventario.png)
-
-![CDU_expandido-control_pagos](./assets/cdu_expandidos/CDU_expandido-control_pagos.png)
+![CDU_expandido-control_pagos](./assets/cdu/CDU-CONTROL-PAGOS.png)
 
 ### Descripciones
 
@@ -60,9 +57,9 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 * **RF12 Aplicar descuento**: El sistema debe permitir aplicar descuentos en las ventas según condiciones definidas.
 
-* **RF13 Registrar salida de inventario**: El sistema debe permitir registrar la salida de productos por ventas u otros motivos.
+* **RF13 Registrar salida de bodega**: El sistema debe permitir registrar la salida de productos por ventas u otros motivos.
 
-* **RF14 Registrar ingreso a inventario**: El sistema debe permitir registrar el ingreso de productos al inventario.
+* **RF14 Registrar ingreso a bodega**: El sistema debe permitir registrar el ingreso de productos al inventario.
 
 * **RF15 Modificar inventario**: El sistema debe permitir realizar ajustes manuales al inventario registrado.
 
@@ -75,3 +72,4 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 * **RF19 Buscar empleado**: El sistema debe permitir buscar empleados por diferentes criterios.
 
 ### Requerimientos no funcionales
+
