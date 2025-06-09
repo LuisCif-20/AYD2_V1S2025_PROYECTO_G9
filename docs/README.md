@@ -29,6 +29,25 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ![CDU_expandido-control_pagos](./assets/cdu/CDU-CONTROL-PAGOS.png)
 
+### Listado
+- **CDU01**: Registrar cliente  
+- **CDU02**: Actualizar información del cliente  
+- **CDU03**: Dar de baja a cliente  
+- **CDU04**: Efectuar venta  
+- **CDU05**: Aplicar descuento  
+- **CDU06**: Modificar cantidades en inventario  
+- **CDU07**: Anular venta  
+- **CDU08**: Encontrar venta  
+- **CDU09**: Realizar pago  
+- **CDU10**: Registrar empleado  
+- **CDU11**: Actualizar información del empleado  
+- **CDU12**: Dar de baja a empleado  
+- **CDU13**: Registrar producto  
+- **CDU14**: Actualizar información del producto  
+- **CDU15**: Dar de baja a producto  
+- **CDU16**: Registrar ingreso a bodega  
+- **CDU17**: Registrar salida de bodega  
+
 ### Descripciones
 | **ID**                      | CU01                    |
 |-----------------------------|-------------------------|
