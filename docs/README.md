@@ -33,78 +33,68 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ## 3. Drivers arquitectonicos
 ### Requerimientos funcionales críticos
-* **RF01 Registrar cliente**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
 
-* **RF02 Editar cliente**: El sistema debe permitir modificar los datos de un cliente existente.
+#### Gestión de Clientes
+* **RF01**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
+* **RF02**: El sistema debe permitir modificar los datos de un cliente existente.
+* **RF03**: El sistema debe permitir eliminar un cliente registrado.
+* **RF04**: El sistema debe permitir buscar clientes por distintos criterios.
 
-* **RF03 Eliminar cliente**: El sistema debe permitir eliminar un cliente registrado.
+#### Gestión de Bodega
+* **RF05**: El sistema debe permitir registrar un nuevo producto en el inventario.
+* **RF06**: El sistema debe permitir modificar los detalles de un producto existente.
+* **RF07**: El sistema debe permitir eliminar productos del inventario.
+* **RF08**: El sistema debe permitir buscar productos por diferentes criterios.
+* **RF09**: El sistema debe permitir registrar una nueva venta con los datos del cliente y productos vendidos.
+* **RF10**: El sistema debe permitir registrar la salida de productos por ventas u otros motivos.
+* **RF11**: El sistema debe permitir registrar el ingreso de productos al inventario.
+* **RF12**: El sistema debe permitir realizar ajustes manuales al inventario registrado.
 
-* **RF04 Buscar cliente**: El sistema debe permitir buscar clientes por distintos criterios.
+#### Gestión de Ventas
+* **RF13**: El sistema debe permitir anular ventas realizadas anteriormente.
+* **RF14**: El sistema debe permitir buscar ventas realizadas por diferentes parámetros.
+* **RF15**: El sistema debe permitir aplicar descuentos en las ventas según condiciones definidas.
 
-* **RF05 Registrar producto**: El sistema debe permitir registrar un nuevo producto en el inventario.
+#### Gestión de Empleados
+* **RF16**: El sistema debe permitir registrar nuevos empleados con sus datos.
+* **RF17**: El sistema debe permitir modificar los datos de un empleado existente.
+* **RF18**: El sistema debe permitir eliminar empleados registrados.
+* **RF19**: El sistema debe permitir buscar empleados por diferentes criterios.
 
-* **RF06 Modificar producto**: El sistema debe permitir modificar los detalles de un producto existente.
+### Requisitos No Funcionales (RNF)
 
-* **RF07 Eliminar producto**: El sistema debe permitir eliminar productos del inventario.
-
-* **RF08 Buscar producto**: El sistema debe permitir buscar productos por diferentes criterios.
-
-* **RF09 Registrar venta**: El sistema debe permitir registrar una nueva venta con los datos del cliente y productos vendidos.
-
-* **RF10 Anular venta**: El sistema debe permitir anular ventas realizadas anteriormente.
-
-* **RF11 Buscar venta**: El sistema debe permitir buscar ventas realizadas por diferentes parámetros.
-
-* **RF12 Aplicar descuento**: El sistema debe permitir aplicar descuentos en las ventas según condiciones definidas.
-
-* **RF13 Registrar salida de bodega**: El sistema debe permitir registrar la salida de productos por ventas u otros motivos.
-
-* **RF14 Registrar ingreso a bodega**: El sistema debe permitir registrar el ingreso de productos al inventario.
-
-* **RF15 Modificar inventario**: El sistema debe permitir realizar ajustes manuales al inventario registrado.
-
-* **RF16 Registrar empleado**: El sistema debe permitir registrar nuevos empleados con sus datos.
-
-* **RF17 Editar empleado**: El sistema debe permitir modificar los datos de un empleado existente.
-
-* **RF18 Eliminar empleado**: El sistema debe permitir eliminar empleados registrados.
-
-* **RF19 Buscar empleado**: El sistema debe permitir buscar empleados por diferentes criterios.
-
-## Requisitos No Funcionales (RNF)
-
-### Seguridad
+#### Seguridad
 - **RNF1**: El sistema requiere autenticación para acceder a funcionalidades de administración como la gestión de clientes, productos, ventas e inventario.
 - **RNF2**: Las contraseñas de los usuarios se almacenarán cifradas utilizando el algoritmo AES.
 - **RNF3**: Las sesiones de usuario tendrán una duración máxima de 24 horas, después de lo cual se cerrarán automáticamente.
 - **RNF4**: Solo los usuarios autenticados y autorizados podrán registrar ventas, cobros, salidas de bodega o realizar pagos.
 
-### Eficiencia
+#### Eficiencia
 - **RNF5**: Las operaciones críticas como registro de ventas, pagos y búsquedas de envíos deberán completarse en menos de 3 segundos.
 - **RNF6**: El sistema debe soportar al menos 10,000 transacciones simultáneas sin degradar el rendimiento, especialmente en los módulos de inventario y ventas.
 
-### Usabilidad
+#### Usabilidad
 - **RNF7**: La interfaz adaptarse correctamente a dispositivos de escritorios.
 - **RNF8**: Las opciones del menú deben estar claramente categorizadas y organizadas según los roles de usuario (gerente, supervisor, vendedor).
 - **RNF9**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
 
-### Disponibilidad
+#### Disponibilidad
 - **RNF10**: El sistema deberá garantizar una disponibilidad del 99.99% anual.
 - **RNF11**: La implementación de nuevas funcionalidades no debe requerir la interrupción del servicio activo para los usuarios.
 
-### Escalabilidad
+#### Escalabilidad
 - **RNF12**: La arquitectura del sistema debe ser modular y permitir la integración de nuevos módulos sin afectar el rendimiento existente.
 - **RNF13**: Debe ser posible escalar vertical u horizontalmente la infraestructura en la nube para soportar el crecimiento del negocio.
 
-### Mantenibilidad
+#### Mantenibilidad
 - **RNF14**: El código fuente deberá documentarse adecuadamente, siguiendo estándares de nomenclatura y comentarios estructurados.
 - **RNF15**: El sistema debe permitir actualizaciones sin afectar la integridad de los datos ni requerir reinstalación total del software.
 
-### Portabilidad
+#### Portabilidad
 - **RNF16**: El sistema debe poder ejecutarse en distintos navegadores web modernos (Chrome, Firefox, Edge).
 - **RNF17**: La solución debe estar preparada para ser desplegada tanto en ambientes Linux.
 
-### Trazabilidad
+#### Trazabilidad
 - **RNF18**: Cada requerimiento funcional debe estar relacionado con uno o más casos de uso (CDU) y ser rastreable en una matriz de trazabilidad.
 - **RNF19**: Cada modificación en el sistema debe quedar registrada con fecha, autor y motivo en un historial de cambios accesible al equipo.
 
