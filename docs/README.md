@@ -71,5 +71,40 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 * **RF19 Buscar empleado**: El sistema debe permitir buscar empleados por diferentes criterios.
 
-### Requerimientos no funcionales
+## Requisitos No Funcionales (RNF)
+
+### Seguridad
+- **RNF1**: El sistema requiere autenticación para acceder a funcionalidades de administración como la gestión de clientes, productos, ventas e inventario.
+- **RNF2**: Las contraseñas de los usuarios se almacenarán cifradas utilizando el algoritmo AES.
+- **RNF3**: Las sesiones de usuario tendrán una duración máxima de 24 horas, después de lo cual se cerrarán automáticamente.
+- **RNF4**: Solo los usuarios autenticados y autorizados podrán registrar ventas, cobros, salidas de bodega o realizar pagos.
+
+### Eficiencia
+- **RNF5**: Las operaciones críticas como registro de ventas, pagos y búsquedas de envíos deberán completarse en menos de 3 segundos.
+- **RNF6**: El sistema debe soportar al menos 10,000 transacciones simultáneas sin degradar el rendimiento, especialmente en los módulos de inventario y ventas.
+
+### Usabilidad
+- **RNF7**: La interfaz adaptarse correctamente a dispositivos de escritorios.
+- **RNF8**: Las opciones del menú deben estar claramente categorizadas y organizadas según los roles de usuario (gerente, supervisor, vendedor).
+- **RNF9**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
+
+### Disponibilidad
+- **RNF10**: El sistema deberá garantizar una disponibilidad del 99.99% anual.
+- **RNF11**: La implementación de nuevas funcionalidades no debe requerir la interrupción del servicio activo para los usuarios.
+
+### Escalabilidad
+- **RNF12**: La arquitectura del sistema debe ser modular y permitir la integración de nuevos módulos sin afectar el rendimiento existente.
+- **RNF13**: Debe ser posible escalar vertical u horizontalmente la infraestructura en la nube para soportar el crecimiento del negocio.
+
+### Mantenibilidad
+- **RNF14**: El código fuente deberá documentarse adecuadamente, siguiendo estándares de nomenclatura y comentarios estructurados.
+- **RNF15**: El sistema debe permitir actualizaciones sin afectar la integridad de los datos ni requerir reinstalación total del software.
+
+### Portabilidad
+- **RNF16**: El sistema debe poder ejecutarse en distintos navegadores web modernos (Chrome, Firefox, Edge).
+- **RNF17**: La solución debe estar preparada para ser desplegada tanto en ambientes Linux.
+
+### Trazabilidad
+- **RNF18**: Cada requerimiento funcional debe estar relacionado con uno o más casos de uso (CDU) y ser rastreable en una matriz de trazabilidad.
+- **RNF19**: Cada modificación en el sistema debe quedar registrada con fecha, autor y motivo en un historial de cambios accesible al equipo.
 
