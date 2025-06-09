@@ -31,8 +31,8 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ### Descripciones
 
-## 3. Drivers arquitectonicos
-### Requerimientos funcionales críticos
+## 3. Drivers arquitectónicos
+### Requerimientos funcionales críticos (RF)
 
 #### Gestión de Clientes
 * **RF01**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
@@ -64,19 +64,19 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 ### Requisitos No Funcionales (RNF)
 
 #### Seguridad
-- **RNF1**: El sistema requiere autenticación para acceder a funcionalidades de administración como la gestión de clientes, productos, ventas e inventario.
-- **RNF2**: Las contraseñas de los usuarios se almacenarán cifradas utilizando el algoritmo AES.
-- **RNF3**: Las sesiones de usuario tendrán una duración máxima de 24 horas, después de lo cual se cerrarán automáticamente.
-- **RNF4**: Solo los usuarios autenticados y autorizados podrán registrar ventas, cobros, salidas de bodega o realizar pagos.
+- **RNF01**: El sistema requiere autenticación para acceder a funcionalidades de administración como la gestión de clientes, productos, ventas e inventario.
+- **RNF02**: Las contraseñas de los usuarios se almacenarán cifradas utilizando el algoritmo AES.
+- **RNF03**: Las sesiones de usuario tendrán una duración máxima de 24 horas, después de lo cual se cerrarán automáticamente.
+- **RNF04**: Solo los usuarios autenticados y autorizados podrán registrar ventas, cobros, salidas de bodega o realizar pagos.
 
 #### Eficiencia
-- **RNF5**: Las operaciones críticas como registro de ventas, pagos y búsquedas de envíos deberán completarse en menos de 3 segundos.
-- **RNF6**: El sistema debe soportar al menos 10,000 transacciones simultáneas sin degradar el rendimiento, especialmente en los módulos de inventario y ventas.
+- **RNF05**: Las operaciones críticas como registro de ventas, pagos y búsquedas de envíos deberán completarse en menos de 3 segundos.
+- **RNF06**: El sistema debe soportar al menos 10,000 transacciones simultáneas sin degradar el rendimiento, especialmente en los módulos de inventario y ventas.
 
 #### Usabilidad
-- **RNF7**: La interfaz adaptarse correctamente a dispositivos de escritorios.
-- **RNF8**: Las opciones del menú deben estar claramente categorizadas y organizadas según los roles de usuario (gerente, supervisor, vendedor).
-- **RNF9**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
+- **RNF07**: La interfaz adaptarse correctamente a dispositivos de escritorios.
+- **RNF08**: Las opciones del menú deben estar claramente categorizadas y organizadas según los roles de usuario (gerente, supervisor, vendedor).
+- **RNF09**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
 
 #### Disponibilidad
 - **RNF10**: El sistema deberá garantizar una disponibilidad del 99.99% anual.
