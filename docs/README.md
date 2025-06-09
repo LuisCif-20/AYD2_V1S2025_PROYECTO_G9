@@ -62,6 +62,23 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                         |
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
+
+
+| **ID**                      | CDU10                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Registrar empleado                   |
+| **Actores**                 | Administración                      |
+| **Propósito**               | Iniciar formalmente la incorporación de un nuevo empleado a la organización. |
+| **Resumen**                 | Este caso de uso inicia cuando se requiere registrar un nuevo empleado. Involucra recopilar sus datos personales y laborales para su integración en la empresa. El caso finaliza cuando el empleado queda formalmente registrado para desempeñar sus funciones. |
+| **Curso Normal de eventos** | 1. Administración identifica la necesidad de registrar un nuevo empleado. <br> 2. Recolecta los datos básicos: nombres, apellidos, dirección, teléfono y comisión (si aplica). <br> 3. Verifica que la información esté completa y correcta. <br> 4. Valida que no exista duplicidad. <br> 5. Formaliza el ingreso del empleado en la organización. |
+| **Cursos alternos**         | 1. Si la información es incompleta, se solicita corrección. <br> 2. Si ya existe un registro similar, se detiene el proceso y se revisa con recursos humanos. |
+| **Prioridad**               | Alta                                 |
+| **Mejoras**                 | Incorporar verificación automática de duplicidad <br> Integrar validaciones con área de RRHH |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Proceso de incorporación             |
+|                             | 1. Validación de datos básicos <br> 2. Aprobación por responsable administrativo |
+
+
 ## 3. Drivers arquitectónicos
 ### Requerimientos funcionales críticos (RF)
 
