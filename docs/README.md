@@ -30,7 +30,19 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 ![CDU_expandido-control_pagos](./assets/cdu/CDU-CONTROL-PAGOS.png)
 
 ### Descripciones
-
+| **ID**                      | CU01                    |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Caso de uso             |
+| **Actores**                 | Actor 1                 |
+| **Propósito**               | Proposito               |
+| **Resumen**                 | Resumen del caso de uso |
+| **Curso Normal de eventos** | 1. Paso <br> 2. Paso 2 <br> 3. Paso 3 |
+| **Cursos alternos**         | 1. Flujo alterno <br> 2. Flujo alterno 2           |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 | Listado de mejoras      |
+| **Otras secciones**         |                         |
+| **Seccion**                 | Titulo de la seccion    |
+|                             | 1. paso <br> 2. Paso    |
 ## 3. Drivers arquitectónicos
 ### Requerimientos funcionales críticos (RF)
 
