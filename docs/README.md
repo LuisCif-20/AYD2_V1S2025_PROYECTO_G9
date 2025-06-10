@@ -219,7 +219,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | Stakeholder\Requerimientos       | RF01 | RF02 | RF03 | RF04 | RF05 | RF06 | RF07 | RF08 | RF09 | RF10 | RF11 | RF12 | RF13 | RF14 | RF15 | RF16 | RF17 | RF18 | RF19 |
 |-------------------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|
 | Gerente General   |  X   |  X   |  X   |      |      |      |      |      |  X   |      |      |  X   |  X   |  X   |  X   |      |      |      |      |
-| Ventas            |  X   |  X   |  X   |  X   |      |      |      |  X   |  X   |  X   |      |      |  X   |  X   |  X   |      |      |      |      |
+| Ventas            |  X   |  X   |      |  X   |      |      |      |  X   |  X   |  X   |      |      |  X   |  X   |  X   |      |      |      |      |
 | Bodega            |      |      |      |      |  X   |  X   |  X   |  X   |  X   |  X   |  X   |  X   |  X   |      |      |      |      |      |      |
 | Finanzas          |      |      |      |      |      |      |      |      |  X   |      |      |      |  X   |  X   |  X   |      |      |      |      |
 | Administración    |      |   X  |  X   |  X   |      |      |      |      |      |      |      |      |      |      |      |  X   |  X   |  X   |  X   |
