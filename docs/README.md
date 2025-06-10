@@ -62,8 +62,73 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                         |
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
+<<<<<<< HEAD
 ## 3. Drivers Arquitectónicos
 ### Requerimientos Funcionales Críticos (RF)
+=======
+
+
+| **ID**                      | CDU10                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Registrar empleado                   |
+| **Actores**                 | Administración                      |
+| **Propósito**               | Iniciar formalmente la incorporación de un nuevo empleado a la organización. |
+| **Resumen**                 | Este caso de uso inicia cuando se requiere registrar un nuevo empleado. Involucra recopilar sus datos personales y laborales para su integración en la empresa. El caso finaliza cuando el empleado queda formalmente registrado para desempeñar sus funciones. |
+| **Curso Normal de eventos** | 1. Administración identifica la necesidad de registrar un nuevo empleado. <br> 2. Recolecta los datos básicos: nombres, apellidos, dirección, teléfono y comisión (si aplica). <br> 3. Verifica que la información esté completa y correcta. <br> 4. Valida que no exista duplicidad. <br> 5. Formaliza el ingreso del empleado en la organización. |
+| **Cursos alternos**         | 1. Si la información es incompleta, se solicita corrección. <br> 2. Si ya existe un registro similar, se detiene el proceso y se revisa con recursos humanos. |
+| **Prioridad**               | Alta                                 |
+| **Mejoras**                 | Incorporar verificación automática de duplicidad <br> Integrar validaciones con área de RRHH |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Gestión de empleados             |
+|                             | 1. Validación de datos básicos <br> 2. Aprobación por responsable administrativo |
+
+| **ID**                      | CDU11                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Actualizar información del empleado  |
+| **Actores**                 | Administración                      |
+| **Propósito**               | Mantener actualizada la información del personal dentro de la organización. |
+| **Resumen**                 | Este caso de uso se activa cuando hay necesidad de modificar datos de un empleado por cambios personales, errores previos o ajustes contractuales. Finaliza cuando los datos actualizados están verificados y aceptados en el expediente del empleado. |
+| **Curso Normal de eventos** | 1. Administración detecta o recibe solicitud de cambio. <br> 2. Verifica si el cambio es válido y autorizado. <br> 3. Accede al expediente del empleado. <br> 4. Realiza los ajustes necesarios. <br> 5. Confirma y documenta el cambio. |
+| **Cursos alternos**         | 1. Si el dato a modificar requiere aprobación de RRHH, se deriva para revisión. <br> 2. Si el dato es sensible, se solicita validación adicional. |
+| **Prioridad**               | Media                                |
+| **Mejoras**                 | Agregar control de cambios y motivo de edición |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Gestión de empleados   |
+|                             | 1. Cambios validados por supervisor <br> 2. Documentación de fecha y responsable |
+
+
+| **ID**                      | CDU16                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Registrar ingreso a bodega  |
+| **Actores**                 | Encargado de bodega                      |
+| **Propósito**               | Asegurar que los productos importados sean registrados al momento de ingresar fisicamente a la bodega. |
+| **Resumen**                 | Este caso de uso inicia cuando se recibe una carga de productos importados en las instalaciones de IMPORCOMGUA. El encargado de bodega realiza la verificación física del cargamento con base en la documentación de importación y procede a registrar el ingreso. Finaliza cuando los productos han sido contabilizados y ubicados correctamente dentro del almacén. |
+| **Curso Normal de eventos** | 1. El Encargado de Bodega recibe el cargamento y la documentación de importación. <br> 2. Se realiza la inspección física de los productos recibidos. <br> 3. Se verifica la coincidencia entre la carga física y los documentos. <br> 4. Registra el ingreso en el libro de control. <br> 5. Modifica las cantidades en inventario según lo recibido. <br> 6. Almacena los productos en las ubicaciones asignadas dentro de la bodega. |
+| **Cursos alternos**         | 1. Si existen diferencias entre la carga y la documentación, se notifica al área de Administracion para revisión. <br> 2. Si la mercancía presenta daños, se documenta y se genera un reporte para el área de compras o administracion. |
+| **Prioridad**               | Alta                                |
+| **Mejoras**                 | Implementar código de barras para agilizar el registro y reducir errores manuales. |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Gestión de inventarios   |
+|                             | 1. Registro validado por encargado de bodega. <br> 2. Notificación automática al departamento de ventas sobre disponibilidad. |
+
+| **ID**                      | CDU17                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Registrar salida de bodega  |
+| **Actores**                 | Encargado de bodega                      |
+| **Propósito**               | Garantizar que la salida de productos desde la bodega esté debidamente registrada, verificada y controlada, manteniendo actualizado el inventario. |
+| **Resumen**                 | Este caso de uso inicia cuando se autoriza la salida de productos desde la bodega, ya sea por entrega a clientes o traslado interno. El Encargado de Bodega verifica la solicitud, prepara los productos, actualiza el inventario y documenta la salida. Finaliza cuando los productos han salido físicamente y su registro ha sido completado. |
+| **Curso Normal de eventos** | 1. El Encargado de Bodega recibe la solicitud de salida de productos. <br> 2. Verifica que la solicitud esté autorizada y que los productos estén disponibles. <br> 3. Se prepara los productos para entrega o traslado. <br> 4. Se registra la salida en el libro de control. <br> 5. Modifica las cantidades en inventario para reflejar la salida. <br> 6. Entrega la mercancía al destinatario autorizado, con firma de recepción. |
+| **Cursos alternos**         | 1. Si los productos solicitados no están disponibles, se notifica a administracion o ventas. <br> 2. Si la solicitud no está autorizada, se rechaza y se informa al solicitante. |
+| **Prioridad**               | Alta                                |
+| **Mejoras**                 | Implementar sistema de alertas para productos con baja rotación y control de fechas de vencimiento. |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Gestión de inventarios   |
+|                             | 1. Guía de remisión, factura, registro de venta. <br> 2. Notificación al departamento de ventas sobre niveles de inventario críticos. |
+
+
+## 3. Drivers arquitectónicos
+### Requerimientos funcionales críticos (RF)
+>>>>>>> c46dd0fda6664527e4a8da5ffc9660daee2791e3
 
 #### Gestión de Clientes
 * **RF01**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
