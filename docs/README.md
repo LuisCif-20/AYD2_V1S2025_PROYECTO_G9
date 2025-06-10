@@ -62,9 +62,18 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                         |
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
-## 3. Drivers Arquitectónicos
-### Requerimientos Funcionales Críticos (RF)
 
+| **ID**                      | CDU08                    |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Encontrar venta             |
+| **Actores**                 | Vendedor, Encargado de Bodega, Cajero |
+| **Propósito**               | Localizar información de una venta para validación, seguimiento o atención al cliente. |
+| **Resumen**                 | El caso de uso se inicia cuando el vendedor, cajero o encargado de bodega necesita consultar los datos de una venta. El proceso permite localizar la venta con base en distintos criterios de búsqueda. El caso de uso finaliza cuando se le notifica al actor el resultado de la busqueda. |
+| **Curso Normal de eventos** | 1. El vendedor, cajero o encargado de bodega detecta la necesidad de consultar una venta, ya sea para validar una entrega, resolver una duda del cliente o realizar una gestión operativa. <br> 2. El actor solicita acceso al registro de ventas disponibles en la empresa. <br> 3. El actor busca la venta utilizando como referencia el número de envío proporcionado por el cliente y/o el nombre del cliente. <br> 4. El responsable del registro de ventas verifica la existencia de la venta en los archivos de respaldo. <br> 5. Se extrae la venta. <br> 6. Se le notifica al actor el resultado de la busqueda.|
+| **Cursos alternos**         | 4a. Si el número de envío o el nombre del cliente no coinciden con ningún registro, el responsable informa al actor que no se encontró la venta solicitada.|           |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 | 1. Designar responsables por área para atender búsquedas urgentes de ventas. <br> 2. Registrar intentos de búsqueda fallidos para mejorar la calidad de los datos.|
+| **Otras secciones**         | No aplica                         |
 
 | **ID**                      | CDU10                                |
 |-----------------------------|--------------------------------------|
