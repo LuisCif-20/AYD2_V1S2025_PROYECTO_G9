@@ -63,6 +63,19 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
 
+| **ID**                      | CDU07                    |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Anular Venta             |
+| **Actores**                 | Vendedor                 |
+| **Propósito**               | Permitir al vendedor anular una venta para corregir errores o atender solicitudes de clientes antes de su entrega o facturación definitiva.               |
+| **Resumen**                 | El caso de uso inicia cuando el vendedor detecta la necesidad de anular una venta registrada. Para ello, primero localiza la venta. Una vez encontrada, el vendedor valida la condición para la anulación y procede a registrar la anulación. El caso finaliza cuando la venta queda anulada y se actualizan los registros correspondientes. |
+| **Curso Normal de eventos** | 1. El vendedor identifica la necesidad de anular una venta. <br> 2. El vendedor busca la venta por número de envío o nombre del cliente. <br> 3. Se localiza la venta y se verifica que cumple los criterios para ser anulada (no entregada, sin pagos aplicados). <br> 4. El vendedor solicita la anulación de la venta. <br> 5. Se registra la anulación <br> 6. Se le notifica al vendedor que la venta fue anulada. |
+| **Cursos alternos**         | 3a. Si la venta no existe, se notifica al vendedor y se solicita revisar los datos. <br> 3b. Si la venta no cumple los criterios para anulación, se informa al vendedor y se cancela el proceso. |
+| **Prioridad**               | Media-Alta                    |
+| **Mejoras**                 | 1. Registrar el motivo de anulación. <br> 2. Notificar a finanzas y logística sobre la anulación.      |
+| **Otras secciones**         |  No aplica   |
+
+
 | **ID**                      | CDU08                    |
 |-----------------------------|-------------------------|
 | **Nombre**                  | Encontrar venta             |
