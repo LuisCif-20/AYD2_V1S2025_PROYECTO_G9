@@ -11,13 +11,13 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 * Finanzas: Se encarga de controlar los pagos (completos o abonados) de las ventas realizadas.
 * Administracion: Gestion de vendedores, empleados y comisiones.
 
-### Diagrama CDU de alto nivel
+### Diagrama CDU de Alto Nivel
 ![CDU_alto_nivel](./assets/cdu/CDU-ALTO-NIVEL.png)
 
-### Primera descomposición
+### Primera Descomposición
 ![CDU_primera_descomposicion](./assets/cdu/CDU-PRIMERA-DESCOMPOSICION.png)
 
-## 2. Casos de uso expandidos
+## 2. Casos de Uso Expandidos
 ### Diagramas
 ![CDU_expandido-gestion_clientes](./assets/cdu/CDU-GESTION-CLIENTES.png)
 
@@ -62,8 +62,8 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                         |
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
-## 3. Drivers arquitectónicos
-### Requerimientos funcionales críticos (RF)
+## 3. Drivers Arquitectónicos
+### Requerimientos Funcionales Críticos (RF)
 
 #### Gestión de Clientes
 * **RF01**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
@@ -129,3 +129,44 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 - **RNF18**: Cada requerimiento funcional debe estar relacionado con uno o más casos de uso (CDU) y ser rastreable en una matriz de trazabilidad.
 - **RNF19**: Cada modificación en el sistema debe quedar registrada con fecha, autor y motivo en un historial de cambios accesible al equipo.
 
+## 4. Matrices de trazabilidad
+### Stakeholders vs Requerimientos
+| Stakeholder\Requerimientos       | RF01 | RF02 | RF03 | RF04 | RF05 | RF06 | RF07 | RF08 | RF09 | RF10 | RF11 | RF12 | RF13 | RF14 | RF15 | RF16 | RF17 | RF18 | RF19 |
+|-------------------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|
+| Gerente General   |  X   |  X   |  X   |      |      |      |      |      |  X   |      |      |  X   |  X   |  X   |  X   |      |      |      |      |
+| Ventas            |  X   |  X   |  X   |  X   |      |      |      |  X   |  X   |  X   |      |      |  X   |  X   |  X   |      |      |      |      |
+| Bodega            |      |      |      |      |  X   |  X   |  X   |  X   |  X   |  X   |  X   |  X   |  X   |      |      |      |      |      |      |
+| Finanzas          |      |      |      |      |      |      |      |      |  X   |      |      |      |  X   |  X   |  X   |      |      |      |      |
+| Administración    |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |  X   |  X   |  X   |  X   |
+
+### Stakeholders vs CDU
+| Stakeholder\CDU       | CDU01 | CDU02 | CDU03 | CDU04 | CDU05 | CDU06 | CDU07 | CDU08 | CDU09 | CDU10 | CDU11 | CDU12 | CDU13 | CDU14 | CDU15 | CDU16 | CDU17 |
+|-------------------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| Gerente General   |   X   |   X   |   X   |   X   |   X   |   X   |   X   |   X   |   X   |       |       |       |       |       |       |       |       |
+| Ventas            |   X   |   X   |   X   |   X   |   X   |       |   X   |   X   |       |       |       |       |       |       |       |       |   X   |
+| Bodega            |       |       |       |   X   |       |   X   |   X   |       |       |       |       |       |   X   |   X   |   X   |   X   |   X   |
+| Finanzas          |       |       |       |   X   |   X   |       |   X   |   X   |   X   |       |       |       |       |       |       |       |       |
+| Administración    |       |       |       |       |       |       |       |       |       |   X   |   X   |   X   |       |       |       |       |       |
+
+### Requerimientos vs CDU
+| Requerimiento\CDU | CDU01 | CDU02 | CDU03 | CDU04 | CDU05 | CDU06 | CDU07 | CDU08 | CDU09 | CDU10 | CDU11 | CDU12 | CDU13 | CDU14 | CDU15 | CDU16 | CDU17 |
+|---------------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| RF01 - Registrar cliente             |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |
+| RF02 - Modificar cliente             |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |
+| RF03 - Eliminar cliente              |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |
+| RF04 - Buscar cliente                |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |
+| RF05 - Registrar producto            |       |       |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |
+| RF06 - Modificar producto            |       |       |       |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |
+| RF07 - Eliminar producto             |       |       |       |       |       |       |       |       |       |       |       |       |       |       |   X   |       |       |
+| RF08 - Buscar producto               |       |       |       |       |       |       |       |       |       |       |       |       |   X   |   X   |       |       |       |
+| RF09 - Registrar venta               |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |
+| RF10 - Registrar salida productos    |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |   X   |
+| RF11 - Registrar ingreso productos   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |   X   |       |
+| RF12 - Ajustes manuales inventario   |       |       |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |
+| RF13 - Anular venta                  |       |       |       |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |
+| RF14 - Buscar ventas                 |       |       |       |       |       |       |       |   X   |       |       |       |       |       |       |       |       |       |
+| RF15 - Aplicar descuentos            |       |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |
+| RF16 - Registrar empleados           |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |       |       |       |
+| RF17 - Modificar empleados           |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |       |       |
+| RF18 - Eliminar empleados            |       |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |       |
+| RF19 - Buscar empleados              |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |       |       |
