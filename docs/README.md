@@ -105,7 +105,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Prioridad**               | Alta                                 |
 | **Mejoras**                 | Implementar bitácora de bajas <br> Automatizar alertas de pendientes asociados |
 | **Otras secciones**         |                                      |
-| **Seccion**                 | Proceso de egreso                    |
+| **Seccion**                 | Gestión de empleados                    |
 |                             | 1. Validación de egreso administrativo <br> 2. Registro del motivo y fecha |
 
 
