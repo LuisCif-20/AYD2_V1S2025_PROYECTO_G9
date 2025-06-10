@@ -147,8 +147,8 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |                             | 1. Guía de remisión, factura, registro de venta. <br> 2. Notificación al departamento de ventas sobre niveles de inventario críticos. |
 
 
-## 3. Drivers arquitectónicos
-### Requerimientos funcionales críticos (RF)
+## 3. Drivers Arquitectónicos
+### Requerimientos Funcionales Críticos (RF)
 
 #### Gestión de Clientes
 * **RF01**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
@@ -214,7 +214,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 - **RNF18**: Cada requerimiento funcional debe estar relacionado con uno o más casos de uso (CDU) y ser rastreable en una matriz de trazabilidad.
 - **RNF19**: Cada modificación en el sistema debe quedar registrada con fecha, autor y motivo en un historial de cambios accesible al equipo.
 
-## 4. Matrices de trazabilidad
+## 4. Matrices de Trazabilidad
 ### Stakeholders vs Requerimientos
 | Stakeholder\Requerimientos       | RF01 | RF02 | RF03 | RF04 | RF05 | RF06 | RF07 | RF08 | RF09 | RF10 | RF11 | RF12 | RF13 | RF14 | RF15 | RF16 | RF17 | RF18 | RF19 |
 |-------------------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|
@@ -222,7 +222,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | Ventas            |  X   |  X   |  X   |  X   |      |      |      |  X   |  X   |  X   |      |      |  X   |  X   |  X   |      |      |      |      |
 | Bodega            |      |      |      |      |  X   |  X   |  X   |  X   |  X   |  X   |  X   |  X   |  X   |      |      |      |      |      |      |
 | Finanzas          |      |      |      |      |      |      |      |      |  X   |      |      |      |  X   |  X   |  X   |      |      |      |      |
-| Administración    |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |  X   |  X   |  X   |  X   |
+| Administración    |      |   X  |  X   |  X   |      |      |      |      |      |      |      |      |      |      |      |  X   |  X   |  X   |  X   |
 
 ### Stakeholders vs CDU
 | Stakeholder\CDU       | CDU01 | CDU02 | CDU03 | CDU04 | CDU05 | CDU06 | CDU07 | CDU08 | CDU09 | CDU10 | CDU11 | CDU12 | CDU13 | CDU14 | CDU15 | CDU16 | CDU17 |
