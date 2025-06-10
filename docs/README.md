@@ -105,7 +105,21 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Mejoras**                 | Implementar código de barras para agilizar el registro y reducir errores manuales. |
 | **Otras secciones**         |                                      |
 | **Seccion**                 | Gestión de inventarios   |
-|                             | 1. Registro validado por encargado de bodega <br> 2. Notificación automática al departamento de ventas sobre disponibilidad |
+|                             | 1. Registro validado por encargado de bodega. <br> 2. Notificación automática al departamento de ventas sobre disponibilidad. |
+
+| **ID**                      | CDU17                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Registrar salida de bodega  |
+| **Actores**                 | Encargado de bodega                      |
+| **Propósito**               | Garantizar que la salida de productos desde la bodega esté debidamente registrada, verificada y controlada, manteniendo actualizado el inventario. |
+| **Resumen**                 | Este caso de uso inicia cuando se autoriza la salida de productos desde la bodega, ya sea por entrega a clientes o traslado interno. El Encargado de Bodega verifica la solicitud, prepara los productos, actualiza el inventario y documenta la salida. Finaliza cuando los productos han salido físicamente y su registro ha sido completado. |
+| **Curso Normal de eventos** | 1. El Encargado de Bodega recibe la solicitud de salida de productos. <br> 2. Verifica que la solicitud esté autorizada y que los productos estén disponibles. <br> 3. Se prepara los productos para entrega o traslado. <br> 4. Se registra la salida en el libro de control. <br> 5. Modifica las cantidades en inventario para reflejar la salida. <br> 6. Entrega la mercancía al destinatario autorizado, con firma de recepción. |
+| **Cursos alternos**         | 1. Si los productos solicitados no están disponibles, se notifica a administracion o ventas. <br> 2. Si la solicitud no está autorizada, se rechaza y se informa al solicitante. |
+| **Prioridad**               | Alta                                |
+| **Mejoras**                 | Implementar sistema de alertas para productos con baja rotación y control de fechas de vencimiento. |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Gestión de inventarios   |
+|                             | 1. Guía de remisión, factura, registro de venta. <br> 2. Notificación al departamento de ventas sobre niveles de inventario críticos. |
 
 
 ## 3. Drivers arquitectónicos
