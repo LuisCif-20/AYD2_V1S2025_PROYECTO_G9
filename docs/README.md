@@ -62,10 +62,8 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                         |
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
-<<<<<<< HEAD
 ## 3. Drivers Arquitectónicos
 ### Requerimientos Funcionales Críticos (RF)
-=======
 
 
 | **ID**                      | CDU10                                |
@@ -95,6 +93,20 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                                      |
 | **Seccion**                 | Gestión de empleados   |
 |                             | 1. Cambios validados por supervisor <br> 2. Documentación de fecha y responsable |
+
+| **ID**                      | CDU12                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Dar de baja a empleado               |
+| **Actores**                 | Administración                      |
+| **Propósito**               | Formalizar el retiro de un empleado de la organización. |
+| **Resumen**                 | Este caso de uso inicia cuando un empleado deja de trabajar en la empresa, ya sea por renuncia, despido o retiro programado. Se realiza una baja formal en la organización, asegurando que el historial se mantenga pero su actividad operativa se detenga. |
+| **Curso Normal de eventos** | 1. Administración recibe la notificación de retiro. <br> 2. Revisa que el empleado no tenga pendientes activos. <br> 3. Confirma la salida. <br> 4. Registra la baja y su justificación. <br> 5. El empleado queda fuera del sistema operativo, pero su información permanece en el archivo histórico. |
+| **Cursos alternos**         | 1. Si aún hay procesos abiertos asociados al empleado, se solicita resolverlos antes de dar la baja. |
+| **Prioridad**               | Alta                                 |
+| **Mejoras**                 | Implementar bitácora de bajas <br> Automatizar alertas de pendientes asociados |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Proceso de egreso                    |
+|                             | 1. Validación de egreso administrativo <br> 2. Registro del motivo y fecha |
 
 
 | **ID**                      | CDU16                                |
@@ -128,7 +140,6 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ## 3. Drivers arquitectónicos
 ### Requerimientos funcionales críticos (RF)
->>>>>>> c46dd0fda6664527e4a8da5ffc9660daee2791e3
 
 #### Gestión de Clientes
 * **RF01**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
