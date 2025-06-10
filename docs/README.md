@@ -63,6 +63,20 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
 
+| **ID**                      | CU04                    |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Efectuar venta             |
+| **Actores**                 | Vendedor                 |
+| **Propósito**               | Proposito               |
+| **Resumen**                 | El caso de uso se inicia cuando el vendedor concreta una negociación con el cliente y procede a registrar la venta. Se verifica la disponibilidad del producto, se determinan las condiciones de pago y se confirma el acuerdo. El proceso finaliza con el registro de la venta. |
+| **Curso Normal de eventos** | 1. El vendedor recibe una lista de los productos que desea adquirir el cliente <br> 2. El vendedor verifica la disponibilidad del inventario o existencia del producto con el bodeguero. <br> 3. El vendedor acuerda con el cliente el precio, condiciones de pago y forma de entrega. <br> 4. Se formaliza la venta, dejando constancia del metodo de pago y los datos del cliente. <br> 5. Se informa al cliente el detalle final de la venta y condiciones acordadas.|
+| **Cursos alternos**         | 	2a. Si el producto no está disponible, se informa al cliente y se ofrecen alternativas. <br> 3a. Si no se llega a un acuerdo comercial, la venta se suspende.           |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 |  1. Incorporar catálogo actualizado de productos para mejorar la precisión en las ofertas.      |
+| **Otras secciones**         |                         |
+| **Seccion**                 | Venta con oferta    |
+|                             | 1. El vendedor consulta si existen ofertas vigentes para los productos seleccionados. <br> 2. Aplica el descuento correspondiente al precio de venta.   |
+
 | **ID**                      | CDU07                    |
 |-----------------------------|-------------------------|
 | **Nombre**                  | Anular Venta             |
