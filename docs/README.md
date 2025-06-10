@@ -93,6 +93,21 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |                             | 1. Cambios validados por supervisor <br> 2. Documentación de fecha y responsable |
 
 
+| **ID**                      | CDU16                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Registrar ingreso a bodega  |
+| **Actores**                 | Encargado de bodega                      |
+| **Propósito**               | Asegurar que los productos importados sean registrados al momento de ingresar fisicamente a la bodega. |
+| **Resumen**                 | Este caso de uso inicia cuando se recibe una carga de productos importados en las instalaciones de IMPORCOMGUA. El encargado de bodega realiza la verificación física del cargamento con base en la documentación de importación y procede a registrar el ingreso. Finaliza cuando los productos han sido contabilizados y ubicados correctamente dentro del almacén. |
+| **Curso Normal de eventos** | 1. El Encargado de Bodega recibe el cargamento y la documentación de importación. <br> 2. Se realiza la inspección física de los productos recibidos. <br> 3. Se verifica la coincidencia entre la carga física y los documentos. <br> 4. Registra el ingreso en el libro de control. <br> 5. Modifica las cantidades en inventario según lo recibido. <br> 6. Almacena los productos en las ubicaciones asignadas dentro de la bodega. |
+| **Cursos alternos**         | 1. Si existen diferencias entre la carga y la documentación, se notifica al área de Administracion para revisión. <br> 2. Si la mercancía presenta daños, se documenta y se genera un reporte para el área de compras o administracion. |
+| **Prioridad**               | Alta                                |
+| **Mejoras**                 | Implementar código de barras para agilizar el registro y reducir errores manuales. |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Gestión de inventarios   |
+|                             | 1. Registro validado por encargado de bodega <br> 2. Notificación automática al departamento de ventas sobre disponibilidad |
+
+
 ## 3. Drivers arquitectónicos
 ### Requerimientos funcionales críticos (RF)
 
