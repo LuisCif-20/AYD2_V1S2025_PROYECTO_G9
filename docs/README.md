@@ -63,7 +63,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
 
-| **ID**                      | CU04                    |
+| **ID**                      | CDU04                   |
 |-----------------------------|-------------------------|
 | **Nombre**                  | Efectuar venta             |
 | **Actores**                 | Vendedor                 |
