@@ -177,9 +177,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Cursos alternos**         | 1. Si el producto no existe, el sistema informa al usuario. </br> 2. Si se intenta modificar el código del producto a uno que ya está en uso, el sistema lo impide. |
 | **Prioridad**               | Alta                    |
 | **Mejoras**                 | Corrige posibles errores y mantiene alineados los datos con la realidad operativa. |
-| **Otras secciones**         |                         |
-| **Seccion**                 |  |
-|                             |     |
+| **Otras secciones**         | No aplica |
 
 
 | **ID**                      | CDU15                   |
@@ -189,8 +187,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Propósito**               | Inhabilitar productos que ya no están disponibles o han salido del catálogo comercial. |
 | **Resumen**                 | El empleado de bodega puede marcar un producto como inactivo para evitar que se siga utilizando en nuevos registros de ventas o ingresos de inventario, sin eliminar su historial del sistema. |
 | **Curso Normal de eventos** | 1. El empleado busca el producto que desea dar de baja. </br> 2. Revisa la información y confirma que el producto no se utiliza activamente. </br> 3. Marca el producto como "Inactivo" o "Dado de baja". </br> 4. El sistema actualiza el estado y restringe su uso en operaciones futuras. |
-| **Cursos alternos**         | 1. Si el producto tiene inventario actual disponible, el sistema podría advertir antes de permitir su baja. </br> 2. Si el producto está asociado a una venta en proceso, el sistema impide la baja hasta que finalice.
- |
+| **Cursos alternos**         | 1. Si el producto tiene inventario actual disponible, el sistema podría advertir antes de permitir su baja. </br> 2. Si el producto está asociado a una venta en proceso, el sistema impide la baja hasta que finalice. |
 | **Prioridad**               | Media                    |
 | **Mejoras**                 | Evita errores al utilizar productos obsoletos y mejora la organización del catálogo.      |
 | **Otras secciones**         | No aplica                        |
