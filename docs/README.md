@@ -29,24 +29,31 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ![CDU_expandido-control_pagos](./assets/cdu/CDU-CONTROL-PAGOS.png)
 
+![CDU_expandido-generacion_reportes](./assets/cdu/CDU-GENERACION-REPORTES.png)
+
 ### Listado
-- **CDU01**: Registrar cliente  
-- **CDU02**: Actualizar información del cliente  
-- **CDU03**: Dar de baja a cliente  
-- **CDU04**: Efectuar venta  
-- **CDU05**: Aplicar descuento  
-- **CDU06**: Modificar cantidades en inventario  
-- **CDU07**: Anular venta  
-- **CDU08**: Encontrar venta  
-- **CDU09**: Realizar pago  
-- **CDU10**: Registrar empleado  
-- **CDU11**: Actualizar información del empleado  
-- **CDU12**: Dar de baja a empleado  
-- **CDU13**: Registrar producto  
-- **CDU14**: Actualizar información del producto  
-- **CDU15**: Dar de baja a producto  
-- **CDU16**: Registrar ingreso a bodega  
-- **CDU17**: Registrar salida de bodega  
+- **CDU01 - Registrar Cliente**
+- **CDU02 - Actualizar Información del Cliente** 
+- **CDU03 - Dar de Baja a Cliente**
+- **CDU04 - Efectuar Venta**
+- **CDU05 - Aplicar Descuento**
+- **CDU06 - Modificar Cantidades en Inventario**
+- **CDU07 - Anular Venta**
+- **CDU08 - Encontrar Venta**
+- **CDU09 - Realizar Pago**
+- **CDU10 - Registrar Empleado**
+- **CDU11 - Actualizar Información del Empleado**
+- **CDU12 - Dar de Baja a Empleado** 
+- **CDU13 - Registrar Producto**  
+- **CDU14 - Actualizar Información del Producto**
+- **CDU15 - Dar de Baja a Producto**
+- **CDU16 - Registrar Ingreso a Bodega**
+- **CDU17 - Registrar Salida de Bodega**
+- **CDU18 - Generar Reporte de Clientes**
+- **CDU19 - Generar Reporte de Ventas**
+- **CDU20 - Generar Reporte de Empleados**
+- **CDU21 - Generar Reporte de Bodega**
+- **CDU22 - Generar Reporte de Pagos**
 
 ### Descripciones
 | **ID**                      | CU01                    |
@@ -63,6 +70,44 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
 
+| **ID**                      | CDU04                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Efectuar venta             |
+| **Actores**                 | Vendedor                 |
+| **Propósito**               | Proposito               |
+| **Resumen**                 | El caso de uso se inicia cuando el vendedor concreta una negociación con el cliente y procede a registrar la venta. Se verifica la disponibilidad del producto, se determinan las condiciones de pago y se confirma el acuerdo. El proceso finaliza con el registro de la venta. |
+| **Curso Normal de eventos** | 1. El vendedor recibe una lista de los productos que desea adquirir el cliente <br> 2. El vendedor verifica la disponibilidad del inventario o existencia del producto con el bodeguero. <br> 3. El vendedor acuerda con el cliente el precio, condiciones de pago y forma de entrega. <br> 4. Se formaliza la venta, dejando constancia del metodo de pago y los datos del cliente. <br> 5. Se informa al cliente el detalle final de la venta y condiciones acordadas.|
+| **Cursos alternos**         | 	2a. Si el producto no está disponible, se informa al cliente y se ofrecen alternativas. <br> 3a. Si no se llega a un acuerdo comercial, la venta se suspende.           |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 |  1. Incorporar catálogo actualizado de productos para mejorar la precisión en las ofertas.      |
+| **Otras secciones**         |                         |
+| **Seccion**                 | Venta con oferta    |
+|                             | 1. El vendedor consulta si existen ofertas vigentes para los productos seleccionados. <br> 2. Aplica el descuento correspondiente al precio de venta.   |
+
+| **ID**                      | CDU07                    |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Anular Venta             |
+| **Actores**                 | Vendedor                 |
+| **Propósito**               | Permitir al vendedor anular una venta para corregir errores o atender solicitudes de clientes antes de su entrega o facturación definitiva.               |
+| **Resumen**                 | El caso de uso inicia cuando el vendedor detecta la necesidad de anular una venta registrada. Para ello, primero localiza la venta. Una vez encontrada, el vendedor valida la condición para la anulación y procede a registrar la anulación. El caso finaliza cuando la venta queda anulada y se actualizan los registros correspondientes. |
+| **Curso Normal de eventos** | 1. El vendedor identifica la necesidad de anular una venta. <br> 2. El vendedor busca la venta por número de envío o nombre del cliente. <br> 3. Se localiza la venta y se verifica que cumple los criterios para ser anulada (no entregada, sin pagos aplicados). <br> 4. El vendedor solicita la anulación de la venta. <br> 5. Se registra la anulación <br> 6. Se le notifica al vendedor que la venta fue anulada. |
+| **Cursos alternos**         | 3a. Si la venta no existe, se notifica al vendedor y se solicita revisar los datos. <br> 3b. Si la venta no cumple los criterios para anulación, se informa al vendedor y se cancela el proceso. |
+| **Prioridad**               | Media-Alta                    |
+| **Mejoras**                 | 1. Registrar el motivo de anulación. <br> 2. Notificar a finanzas y logística sobre la anulación.      |
+| **Otras secciones**         |  No aplica   |
+
+
+| **ID**                      | CDU08                    |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Encontrar venta             |
+| **Actores**                 | Vendedor, Encargado de Bodega, Cajero |
+| **Propósito**               | Localizar información de una venta para validación, seguimiento o atención al cliente. |
+| **Resumen**                 | El caso de uso se inicia cuando el vendedor, cajero o encargado de bodega necesita consultar los datos de una venta. El proceso permite localizar la venta con base en distintos criterios de búsqueda. El caso de uso finaliza cuando se le notifica al actor el resultado de la busqueda. |
+| **Curso Normal de eventos** | 1. El vendedor, cajero o encargado de bodega detecta la necesidad de consultar una venta, ya sea para validar una entrega, resolver una duda del cliente o realizar una gestión operativa. <br> 2. El actor solicita acceso al registro de ventas disponibles en la empresa. <br> 3. El actor busca la venta utilizando como referencia el número de envío proporcionado por el cliente y/o el nombre del cliente. <br> 4. El responsable del registro de ventas verifica la existencia de la venta en los archivos de respaldo. <br> 5. Se extrae la venta. <br> 6. Se le notifica al actor el resultado de la busqueda.|
+| **Cursos alternos**         | 4a. Si el número de envío o el nombre del cliente no coinciden con ningún registro, el responsable informa al actor que no se encontró la venta solicitada.|           |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 | 1. Designar responsables por área para atender búsquedas urgentes de ventas. <br> 2. Registrar intentos de búsqueda fallidos para mejorar la calidad de los datos.|
+| **Otras secciones**         | No aplica                         |
 
 | **ID**                      | CDU10                                |
 |-----------------------------|--------------------------------------|
@@ -91,6 +136,20 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                                      |
 | **Seccion**                 | Gestión de empleados   |
 |                             | 1. Cambios validados por supervisor <br> 2. Documentación de fecha y responsable |
+
+| **ID**                      | CDU12                                |
+|-----------------------------|--------------------------------------|
+| **Nombre**                  | Dar de baja a empleado               |
+| **Actores**                 | Administración                      |
+| **Propósito**               | Formalizar el retiro de un empleado de la organización. |
+| **Resumen**                 | Este caso de uso inicia cuando un empleado deja de trabajar en la empresa, ya sea por renuncia, despido o retiro programado. Se realiza una baja formal en la organización, asegurando que el historial se mantenga pero su actividad operativa se detenga. |
+| **Curso Normal de eventos** | 1. Administración recibe la notificación de retiro. <br> 2. Revisa que el empleado no tenga pendientes activos. <br> 3. Confirma la salida. <br> 4. Registra la baja y su justificación. <br> 5. El empleado queda fuera del sistema operativo, pero su información permanece en el archivo histórico. |
+| **Cursos alternos**         | 1. Si aún hay procesos abiertos asociados al empleado, se solicita resolverlos antes de dar la baja. |
+| **Prioridad**               | Alta                                 |
+| **Mejoras**                 | Implementar bitácora de bajas <br> Automatizar alertas de pendientes asociados |
+| **Otras secciones**         |                                      |
+| **Seccion**                 | Gestión de empleados                    |
+|                             | 1. Validación de egreso administrativo <br> 2. Registro del motivo y fecha |
 
 
 | **ID**                      | CDU13                   |
@@ -235,107 +294,117 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 ### Requerimientos funcionales críticos (RF)
 
 #### Gestión de Clientes
-* **RF01**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
-* **RF02**: El sistema debe permitir modificar los datos de un cliente existente.
-* **RF03**: El sistema debe permitir eliminar un cliente registrado.
-* **RF04**: El sistema debe permitir buscar clientes por distintos criterios.
+* **RF01 - Registro de Cliente**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
+* **RF02 - Edición de Cliente**: El sistema debe permitir modificar los datos de un cliente existente.
+* **RF03 - Eliminación de Cliente**: El sistema debe permitir eliminar un cliente registrado.
+* **RF04 - Busqueda de Cliente**: El sistema debe permitir buscar clientes por distintos criterios.
 
 #### Gestión de Bodega
-* **RF05**: El sistema debe permitir registrar un nuevo producto en el inventario.
-* **RF06**: El sistema debe permitir modificar los detalles de un producto existente.
-* **RF07**: El sistema debe permitir eliminar productos del inventario.
-* **RF08**: El sistema debe permitir buscar productos por diferentes criterios.
-* **RF09**: El sistema debe permitir registrar una nueva venta con los datos del cliente y productos vendidos.
-* **RF10**: El sistema debe permitir registrar la salida de productos por ventas u otros motivos.
-* **RF11**: El sistema debe permitir registrar el ingreso de productos al inventario.
-* **RF12**: El sistema debe permitir realizar ajustes manuales al inventario registrado.
+* **RF05 - Registro de Producto**: El sistema debe permitir registrar un nuevo producto en el inventario.
+* **RF06 - Edición de Producto**: El sistema debe permitir modificar los detalles de un producto existente.
+* **RF07 - Eliminación de Producto**: El sistema debe permitir eliminar productos del inventario.
+* **RF08 - Busqueda de Producto**: El sistema debe permitir buscar productos por diferentes criterios.
+* **RF09 - Registro de Salida de Inventario**: El sistema debe permitir registrar la salida de productos por ventas u otros motivos.
+* **RF10 - Registro de Ingreso a Inventario**: El sistema debe permitir registrar el ingreso de productos al inventario.
+* **RF11 - Modificacion de Stock en Inventario**: El sistema debe permitir realizar ajustes manuales al inventario registrado.
 
 #### Gestión de Ventas
-* **RF13**: El sistema debe permitir anular ventas realizadas anteriormente.
-* **RF14**: El sistema debe permitir buscar ventas realizadas por diferentes parámetros.
-* **RF15**: El sistema debe permitir aplicar descuentos en las ventas según condiciones definidas.
+* **RF12 - Registro de Venta**: El sistema debe permitir registrar una nueva venta con los datos del cliente y productos vendidos.
+* **RF13 - Anulación de Venta**: El sistema debe permitir anular ventas realizadas anteriormente.
+* **RF14 - Busqueda de Ventas**: El sistema debe permitir buscar ventas realizadas por diferentes parámetros.
+* **RF15 - Aplicación de Descuento**: El sistema debe permitir aplicar descuentos en las ventas según condiciones definidas.
 
 #### Gestión de Empleados
-* **RF16**: El sistema debe permitir registrar nuevos empleados con sus datos.
-* **RF17**: El sistema debe permitir modificar los datos de un empleado existente.
-* **RF18**: El sistema debe permitir eliminar empleados registrados.
-* **RF19**: El sistema debe permitir buscar empleados por diferentes criterios.
+* **RF16 - Registro de Empleado**: El sistema debe permitir registrar nuevos empleados con sus datos.
+* **RF17 - Edición de Empleado**: El sistema debe permitir modificar los datos de un empleado existente.
+* **RF18 - Eliminación de Empleado**: El sistema debe permitir eliminar empleados registrados.
+* **RF19 - Busqueda de Empleado**: El sistema debe permitir buscar empleados por diferentes criterios.
+
+#### Generación de Reportes
+* **RF20 - Reportes de Empleados**: El sistema debe permitir la generacion de reportes estrategicos sobre empleados.
+* **RF21 - Reportes de Clientes**: El sistema debe permitir la generacion de reportes estrategicos sobre clientes.
+* **RF22 - Reportes de Pagos**: El sistema debe permitir la generacion de reportes estrategicos relacionado a los pagos.
+* **RF23 - Reportes de Ventas**: El sistema debe permitir la generacion de reportes estrategicos sobre ventas.
+* **RF24 - Reportes de Bodega**: El sistema debe permitir la generacion de reportes estrategicos relacionados con bodega.
+
+#### Control de Pagos
+* **RF25 - Registro de Pago**: El sistema debe permitir el registro de abonos y/o pagos completos para una venta.
 
 ### Requisitos No Funcionales (RNF)
 
 #### Seguridad
-- **RNF01**: El sistema requiere autenticación para acceder a funcionalidades de administración como la gestión de clientes, productos, ventas e inventario.
-- **RNF02**: Las contraseñas de los usuarios se almacenarán cifradas utilizando el algoritmo AES.
-- **RNF03**: Las sesiones de usuario tendrán una duración máxima de 24 horas, después de lo cual se cerrarán automáticamente.
-- **RNF04**: Solo los usuarios autenticados y autorizados podrán registrar ventas, cobros, salidas de bodega o realizar pagos.
+- **RNF01 - Autenticación**: El sistema requiere autenticación para acceder a funcionalidades de administración como la gestión de clientes, productos, ventas e inventario.
+- **RNF02 - Seguridad en Contraseñas**: Las contraseñas de los usuarios se almacenarán cifradas utilizando el algoritmo AES.
+- **RNF03 - Duración de Sesiones**: Las sesiones de usuario tendrán una duración máxima de 24 horas, después de lo cual se cerrarán automáticamente.
+- **RNF04 - Autorización**: Solo los usuarios autenticados y autorizados podrán registrar ventas, cobros, salidas de bodega o realizar pagos.
 
 #### Eficiencia
-- **RNF05**: Las operaciones críticas como registro de ventas, pagos y búsquedas de envíos deberán completarse en menos de 3 segundos.
-- **RNF06**: El sistema debe soportar al menos 10,000 transacciones simultáneas sin degradar el rendimiento, especialmente en los módulos de inventario y ventas.
+- **RNF05 - Operaciones Rapidas**: Las operaciones críticas como registro de ventas, pagos y búsquedas de envíos deberán completarse en menos de 3 segundos.
+- **RNF06 - Soporte a Varias Transacciones**: El sistema debe soportar al menos 10,000 transacciones simultáneas sin degradar el rendimiento, especialmente en los módulos de inventario y ventas.
 
 #### Usabilidad
-- **RNF07**: La interfaz adaptarse correctamente a dispositivos de escritorios.
-- **RNF08**: Las opciones del menú deben estar claramente categorizadas y organizadas según los roles de usuario (gerente, supervisor, vendedor).
-- **RNF09**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
+- **RNF07 - UI para Escritorio**: La interfaz adaptarse correctamente a dispositivos de escritorios.
+- **RNF08 - UI Especifica por Rol**: Las opciones del menú deben estar claramente categorizadas y organizadas según los roles de usuario (administrador, supervisor, vendedor).
+- **RNF09 - UI Intuitiva**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
 
 #### Disponibilidad
-- **RNF10**: El sistema deberá garantizar una disponibilidad del 99.99% anual.
-- **RNF11**: La implementación de nuevas funcionalidades no debe requerir la interrupción del servicio activo para los usuarios.
+- **RNF10 - Alta Disponibilidad**: El sistema deberá garantizar una disponibilidad del 99.99% anual.
+- **RNF11 - CI/CD**: La implementación de nuevas funcionalidades no debe requerir la interrupción del servicio activo para los usuarios.
 
 #### Escalabilidad
-- **RNF12**: La arquitectura del sistema debe ser modular y permitir la integración de nuevos módulos sin afectar el rendimiento existente.
-- **RNF13**: Debe ser posible escalar vertical u horizontalmente la infraestructura en la nube para soportar el crecimiento del negocio.
+- **RNF12 - Arquitectura Escalable**: La arquitectura del sistema debe ser modular y permitir la integración de nuevos módulos sin afectar el rendimiento existente.
 
 #### Mantenibilidad
-- **RNF14**: El código fuente deberá documentarse adecuadamente, siguiendo estándares de nomenclatura y comentarios estructurados.
-- **RNF15**: El sistema debe permitir actualizaciones sin afectar la integridad de los datos ni requerir reinstalación total del software.
+- **RNF13 - Clara Documentación**: El código fuente deberá documentarse adecuadamente, siguiendo estándares de nomenclatura y comentarios estructurados.
 
 #### Portabilidad
-- **RNF16**: El sistema debe poder ejecutarse en distintos navegadores web modernos (Chrome, Firefox, Edge).
-- **RNF17**: La solución debe estar preparada para ser desplegada tanto en ambientes Linux.
+- **RNF14 - Portabilidad de la Aplicación**: El sistema debe poder ejecutarse en distintos navegadores web modernos (Chrome, Firefox, Edge).
+- **RNF15 - Entorno de Despliegue**: La solución debe estar preparada para ser desplegada en ambientes Linux.
 
-#### Trazabilidad
-- **RNF18**: Cada requerimiento funcional debe estar relacionado con uno o más casos de uso (CDU) y ser rastreable en una matriz de trazabilidad.
-- **RNF19**: Cada modificación en el sistema debe quedar registrada con fecha, autor y motivo en un historial de cambios accesible al equipo.
-
-## 4. Matrices de trazabilidad
+## 4. Matrices de Trazabilidad
 ### Stakeholders vs Requerimientos
-| Stakeholder\Requerimientos       | RF01 | RF02 | RF03 | RF04 | RF05 | RF06 | RF07 | RF08 | RF09 | RF10 | RF11 | RF12 | RF13 | RF14 | RF15 | RF16 | RF17 | RF18 | RF19 |
-|-------------------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|
-| Gerente General   |  X   |  X   |  X   |      |      |      |      |      |  X   |      |      |  X   |  X   |  X   |  X   |      |      |      |      |
-| Ventas            |  X   |  X   |  X   |  X   |      |      |      |  X   |  X   |  X   |      |      |  X   |  X   |  X   |      |      |      |      |
-| Bodega            |      |      |      |      |  X   |  X   |  X   |  X   |  X   |  X   |  X   |  X   |  X   |      |      |      |      |      |      |
-| Finanzas          |      |      |      |      |      |      |      |      |  X   |      |      |      |  X   |  X   |  X   |      |      |      |      |
-| Administración    |      |      |      |      |      |      |      |      |      |      |      |      |      |      |      |  X   |  X   |  X   |  X   |
+|Stakeholders\Requerimientos|RF01 Registro de Cliente|RF02 Edicion de Cliente|RF03 Eliminacion de Cliente|RF04 Busqueda de Cliente|RF05 Registro de Producto|RF06 Edicion de Producto|RF07 Eliminacion de Producto|RF08 Busqueda de Producto|RF09 Registro de Salida de Inventario|RF10 Registro de Ingreso a Inventario|RF11 Modificacion de Stock en Inventario|RF12 Registro de Venta|RF13 Anulacion de Venta|RF14 Busqueda de Venta|RF15 Aplicacion de Descuento|RF16 Registro de Empleado|RF17 Edicion de Empleado|RF18 Eliminacion de Empleado|RF19 Busqueda de Empleado|RF20 Reportes de Empleados|RF21 Reportes de Clientes|RF22 Reporte de Pagos|RF23 Reporte de Ventas|RF24 Reportes de Bodega|Registro de Pagos|
+|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|Gerente General| | | | | | | | | | | | | | | | | | | |X|X|X|X|X| |
+|Ventas|X|X| |X| | | | | | | |X|X|X|X| | | | | | | | | | |
+|Bodega| | | | |X|X|X|X|X|X|X| | | | | | | | | | | | | | |
+|Finanzas| | | | | | | | | | | | | | | | | | | | | | | | |X|
+|Administracion| | |X|X| | | | | | | | | | | |X|X|X|X| | | | | | | |
 
 ### Stakeholders vs CDU
-| Stakeholder\CDU       | CDU01 | CDU02 | CDU03 | CDU04 | CDU05 | CDU06 | CDU07 | CDU08 | CDU09 | CDU10 | CDU11 | CDU12 | CDU13 | CDU14 | CDU15 | CDU16 | CDU17 |
-|-------------------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
-| Gerente General   |   X   |   X   |   X   |   X   |   X   |   X   |   X   |   X   |   X   |       |       |       |       |       |       |       |       |
-| Ventas            |   X   |   X   |   X   |   X   |   X   |       |   X   |   X   |       |       |       |       |       |       |       |       |   X   |
-| Bodega            |       |       |       |   X   |       |   X   |   X   |       |       |       |       |       |   X   |   X   |   X   |   X   |   X   |
-| Finanzas          |       |       |       |   X   |   X   |       |   X   |   X   |   X   |       |       |       |       |       |       |       |       |
-| Administración    |       |       |       |       |       |       |       |       |       |   X   |   X   |   X   |       |       |       |       |       |
+|Stakeholders\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Aplicar Descuento|CDU06 Modificar Cantidades en Inventario|CDU07 Anular Venta|CDU08 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Generar Reporte de Clientes|CDU19 Generar Reporte de Ventas|CDU20 Generar Reporte de Empleados|CDU21 Generar Reporte de Bodega|CDU22 Generar Reporte de Pagos|
+|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|Gerente General| | | | | | | | | | | | | | | | | |X|X|X|X|X|
+|Ventas|X|X| |X|X| |X|X| | | | | | | | | | | | | | |
+|Bodega| | | | | |X| | | | | | |X|X|X|X|X| | | | | |
+|Finanzas| | | | | | | |X|X| | | | | | | | | | | | | |
+|Administracion| | |X| | | | | | |X|X|X| | | | | | | | | | |
 
 ### Requerimientos vs CDU
-| Requerimiento\CDU | CDU01 | CDU02 | CDU03 | CDU04 | CDU05 | CDU06 | CDU07 | CDU08 | CDU09 | CDU10 | CDU11 | CDU12 | CDU13 | CDU14 | CDU15 | CDU16 | CDU17 |
-|---------------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
-| RF01 - Registrar cliente             |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |
-| RF02 - Modificar cliente             |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |
-| RF03 - Eliminar cliente              |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |
-| RF04 - Buscar cliente                |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |
-| RF05 - Registrar producto            |       |       |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |
-| RF06 - Modificar producto            |       |       |       |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |
-| RF07 - Eliminar producto             |       |       |       |       |       |       |       |       |       |       |       |       |       |       |   X   |       |       |
-| RF08 - Buscar producto               |       |       |       |       |       |       |       |       |       |       |       |       |   X   |   X   |       |       |       |
-| RF09 - Registrar venta               |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |       |
-| RF10 - Registrar salida productos    |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |   X   |
-| RF11 - Registrar ingreso productos   |       |       |       |       |       |       |       |       |       |       |       |       |       |       |       |   X   |       |
-| RF12 - Ajustes manuales inventario   |       |       |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |
-| RF13 - Anular venta                  |       |       |       |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |
-| RF14 - Buscar ventas                 |       |       |       |       |       |       |       |   X   |       |       |       |       |       |       |       |       |       |
-| RF15 - Aplicar descuentos            |       |       |       |       |   X   |       |       |       |       |       |       |       |       |       |       |       |       |
-| RF16 - Registrar empleados           |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |       |       |       |
-| RF17 - Modificar empleados           |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |       |       |
-| RF18 - Eliminar empleados            |       |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |       |
-| RF19 - Buscar empleados              |       |       |       |       |       |       |       |       |       |       |   X   |       |       |       |       |       |       |
+|Requerimientos\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Aplicar Descuento|CDU06 Modificar Cantidades en Inventario|CDU07 Anular Venta|CDU08 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Generar Reporte de Clientes|CDU19 Generar Reporte de Ventas|CDU20 Generar Reporte de Empleados|CDU21 Generar Reporte de Bodega|CDU22 Generar Reporte de Pagos|
+|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|RF01<br>Registro de Cliente|X| | | | | | | | | | | | | | | | | | | | | |
+|RF02<br>Edición de Cliente| |X| | | | | | | | | | | | | | | | | | | | |
+|RF03<br>Eliminación de Cliente| | |X| | | | | | | | | | | | | | | | | | | |
+|RF04<br>Busqueda de Cliente|X|X|X|X| | | | | | | | | | | | | | | | | | |
+|RF05<br>Registro de Producto| | | | | | | | | | | | |X| | | | | | | | | |
+|RF06<br>Edición de Producto| | | | | | | | | | | | | |X| | | | | | | | |
+|RF07<br>Eliminación de Producto| | | | | | | | | | | | | | |X| | | | | | | |
+|RF08<br>Busqueda de Producto| | | | | | | | | | | | |X|X|X| | | | | | | |
+|RF09<br>Registro de Salida de Inventario| | | | | | | |X| | | | | | | | |X| | | | | |
+|RF10<br>Registro de Ingreso a Inventario| | | | | | | | | | | | | | | |X| | | | | | |
+|RF11<br>Modificacion de Stock en Inventario| | | | | |X| | | | | | | | | | | | | | | | |
+|RF12<br>Registro de Venta| | | |X| | | | | | | | | | | | | | | | | | |
+|RF13<br>Anulación de Venta| | | | | | |X|X| | | | | | | | | | | | | | |
+|RF14<br>Busqueda de Ventas| | | | | | |X|X|X| | | | | | | |X| | | | | |
+|RF15<br>Aplicación de Descuento| | | |X| | | | | | | | | | | | | | | | | | |
+|RF16<br>Registro de Empleado| | | | | | | | | |X| | | | | | | | | | | | |
+|RF17<br>Edición de Empleado| | | | | | | | | | |X| | | | | | | | | | | |
+|RF18<br>Eliminación de Empleado| | | | | | | | | | | |X| | | | | | | | | | |
+|RF19<br>Busqueda de Empleado| | | | | | | | | |X|X|X| | | | | | | | | | |
+|RF20<br>Reportes de Empleados| | | | | | | | | | | | | | | | | | | |X| | |
+|RF21<br>Reportes de Clientes| | | | | | | | | | | | | | | | | |X| | | | |
+|RF22<br>Reportes de Pagos| | | | | | | | | | | | | | | | | | | | | |X|
+|RF23<br>Reportes de Ventas| | | | | | | | | | | | | | | | | | |X| | | |
+|RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| |
+|RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | |
