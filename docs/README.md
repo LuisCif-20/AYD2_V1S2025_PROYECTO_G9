@@ -54,6 +54,11 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 - **CDU20 - Generar Reporte de Empleados**
 - **CDU21 - Generar Reporte de Bodega**
 - **CDU22 - Generar Reporte de Pagos**
+- **CDU23 - Búsqueda de Cliente**
+- **CDU24 - Búsqueda de Producto**
+- **CDU25 - Búsqueda de Empleado**
+
+
 
 ### Descripciones
 | **ID**                      | CU01                    |
@@ -69,6 +74,31 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                         |
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
+
+| **ID**                      | CDU01                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Registrar Cliente       |
+| **Actores**                 | Empleado de Ventas      |
+| **Propósito**               | Incorporar un nuevo cliente al sistema para habilitar su participación en procesos comerciales. |
+| **Resumen**                 | El caso de uso inicia cuando un empleado de ventas debe registrar a un nuevo cliente. El sistema solicita los datos básicos del cliente, verifica que no exista previamente en la base de datos, y si todo es válido, se almacena el nuevo registro y se confirma la operación. |
+| **Curso Normal de eventos** | 1. El empleado accede al módulo de registro de clientes. <br> 2. El sistema solicita los datos personales y de contacto. <br> 3. El empleado ingresa los datos requeridos. <br> 4. El sistema verifica si el cliente ya está registrado. <br> 5. Si no existe, el sistema almacena el nuevo cliente. <br> 6. Se confirma el registro exitoso. |
+| **Cursos alternos**         | 4a. Si el cliente ya existe, el sistema notifica al usuario y cancela el proceso. <br> 3a. Si faltan campos obligatorios, el sistema muestra un mensaje de error y solicita completar la información. |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 | 1. Implementar validación automática de identificación por medio de API de registros públicos. <br> 2. Permitir precarga de datos mediante formularios en línea. |
+| **Otras secciones**         |  No aplica   |
+
+| **ID**                      | CDU02                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Actualizar Información del Cliente |
+| **Actores**                 | Empleado de Ventas      |
+| **Propósito**               | Modificar o corregir los datos previamente registrados de un cliente existente. |
+| **Resumen**                 | El caso de uso se activa cuando se detecta un cambio o error en la información de un cliente. El empleado localiza al cliente, modifica los campos necesarios, y el sistema guarda los cambios tras validaciones básicas. Se genera un registro de auditoría para trazabilidad. |
+| **Curso Normal de eventos** | 1. El empleado accede al módulo de búsqueda de clientes. <br> 2. El sistema muestra una lista o formulario para localización. <br> 3. El empleado selecciona al cliente y accede a su información. <br> 4. El empleado modifica los datos requeridos. <br> 5. El sistema valida la información ingresada. <br> 6. Se actualiza el registro del cliente. <br> 7. El sistema almacena un registro de auditoría. |
+| **Cursos alternos**         | 2a. Si el cliente no se encuentra, el sistema notifica al usuario y finaliza el proceso. <br> 5a. Si los datos modificados no cumplen con las validaciones, se muestra un mensaje de error y se solicita corrección. |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 | 1. Incorporar historial completo de modificaciones por campo. <br> 2. Agregar opción de revertir cambios recientes dentro de una ventana temporal. |
+| **Otras secciones**         |  No aplica   |
+
 
 | **ID**                      | CDU04                   |
 |-----------------------------|-------------------------|
