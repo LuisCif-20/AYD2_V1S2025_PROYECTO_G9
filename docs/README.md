@@ -11,11 +11,11 @@
 IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, especializada en la adquisición y distribución de productos provenientes del extranjero para su comercialización en el mercado nacional. Su modelo de negocio se centra en gestionar de forma eficiente el proceso completo de importación, almacenamiento, venta y entrega de mercancías, trabajando directamente con clientes y vendedores en distintas regiones del país.
 
 ### Stakeholders
-* Gerente general: Recibe reportes clave, toma desiciones estrategicas para el negocio. 
-* Ventas: Registran ventas dentro del sistema, consultan comisiones y gestiona clientes.
-* Bodega: Registran ingresos y egresos de bodega, gestionan inventario y productos.
-* Finanzas: Se encarga de controlar los pagos (completos o abonados) de las ventas realizadas.
-* Administracion: Gestion de vendedores, empleados y comisiones.
+* **Gerente general**: Recibe reportes clave, toma desiciones estrategicas para el negocio. 
+* **Ventas**: Registran ventas dentro del sistema, consultan comisiones y gestiona clientes.
+* **Bodega**: Registran ingresos y egresos de bodega, gestionan inventario y productos.
+* **Finanzas**: Se encarga de controlar los pagos (completos o abonados) de las ventas realizadas.
+* **Administracion**: Gestion de vendedores, empleados y comisiones.
 
 ### Diagrama CDU de Alto Nivel
 ![CDU_alto_nivel](./assets/cdu/CDU-ALTO-NIVEL.png)
@@ -67,19 +67,6 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 
 ### Descripciones
-| **ID**                      | CU01                    |
-|-----------------------------|-------------------------|
-| **Nombre**                  | Caso de uso             |
-| **Actores**                 | Actor 1                 |
-| **Propósito**               | Proposito               |
-| **Resumen**                 | Resumen del caso de uso |
-| **Curso Normal de eventos** | 1. Paso <br> 2. Paso 2 <br> 3. Paso 3 |
-| **Cursos alternos**         | 1. Flujo alterno <br> 2. Flujo alterno 2           |
-| **Prioridad**               | Alta                    |
-| **Mejoras**                 | Listado de mejoras      |
-| **Otras secciones**         |                         |
-| **Seccion**                 | Titulo de la seccion    |
-|                             | 1. paso <br> 2. Paso    |
 
 | **ID**                      | CDU01                   |
 |-----------------------------|-------------------------|
@@ -119,8 +106,6 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Prioridad**               | Alta                    |
 | **Mejoras**                 | 1. Establecer indicadores automáticos de inactividad para identificar oportunamente clientes candidatos a baja. <br> 2. Analizar patrones de baja para fortalecer políticas de retención y servicio. |
 | **Otras secciones**         | No aplica               |
-
-
 
 
 | **ID**                      | CDU04                   |
