@@ -79,25 +79,39 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |-----------------------------|-------------------------|
 | **Nombre**                  | Registrar Cliente       |
 | **Actores**                 | Empleado de Ventas      |
-| **Propósito**               | Incorporar un nuevo cliente al sistema para habilitar su participación en procesos comerciales. |
-| **Resumen**                 | El caso de uso inicia cuando un empleado de ventas debe registrar a un nuevo cliente. El sistema solicita los datos básicos del cliente, verifica que no exista previamente en la base de datos, y si todo es válido, se almacena el nuevo registro y se confirma la operación. |
-| **Curso Normal de eventos** | 1. El empleado accede al módulo de registro de clientes. <br> 2. El sistema solicita los datos personales y de contacto. <br> 3. El empleado ingresa los datos requeridos. <br> 4. El sistema verifica si el cliente ya está registrado. <br> 5. Si no existe, el sistema almacena el nuevo cliente. <br> 6. Se confirma el registro exitoso. |
-| **Cursos alternos**         | 4a. Si el cliente ya existe, el sistema notifica al usuario y cancela el proceso. <br> 3a. Si faltan campos obligatorios, el sistema muestra un mensaje de error y solicita completar la información. |
+| **Propósito**               | Formalizar la incorporación de nuevos clientes para habilitar relaciones comerciales y procesos de venta. |
+| **Resumen**                 | El caso de uso comienza cuando un empleado de ventas identifica a un nuevo cliente interesado en establecer una relación comercial. Se recopilan los datos necesarios para su registro formal, con el objetivo de permitir futuras transacciones, seguimiento comercial y segmentación estratégica. |
+| **Curso Normal de eventos** | 1. El empleado identifica a un cliente potencial. <br> 2. Se recopilan los datos relevantes del cliente (identificación, contacto, ubicación). <br> 3. Se valida que el cliente no haya sido previamente registrado. <br> 4. Se formaliza el alta del cliente como parte del portafolio comercial. <br> 5. Se confirma la incorporación y se habilita el historial comercial. |
+| **Cursos alternos**         | 3a. Si el cliente ya existe en el portafolio, se notifica al empleado y se sugiere revisar o actualizar su información. <br> 2a. Si los datos recopilados son incompletos, se solicita al empleado completarlos antes de continuar. |
 | **Prioridad**               | Alta                    |
-| **Mejoras**                 | 1. Implementar validación automática de identificación por medio de API de registros públicos. <br> 2. Permitir precarga de datos mediante formularios en línea. |
-| **Otras secciones**         |  No aplica   |
+| **Mejoras**                 | 1. Incorporar clasificación del cliente por segmento de mercado o volumen esperado de compra para priorización comercial. <br> 2. Establecer contacto inicial formal posterior al registro para afianzar la relación comercial. |
+| **Otras secciones**         | No aplica               |
+
 
 | **ID**                      | CDU02                   |
 |-----------------------------|-------------------------|
 | **Nombre**                  | Actualizar Información del Cliente |
 | **Actores**                 | Empleado de Ventas      |
-| **Propósito**               | Modificar o corregir los datos previamente registrados de un cliente existente. |
-| **Resumen**                 | El caso de uso se activa cuando se detecta un cambio o error en la información de un cliente. El empleado localiza al cliente, modifica los campos necesarios, y el sistema guarda los cambios tras validaciones básicas. Se genera un registro de auditoría para trazabilidad. |
-| **Curso Normal de eventos** | 1. El empleado accede al módulo de búsqueda de clientes. <br> 2. El sistema muestra una lista o formulario para localización. <br> 3. El empleado selecciona al cliente y accede a su información. <br> 4. El empleado modifica los datos requeridos. <br> 5. El sistema valida la información ingresada. <br> 6. Se actualiza el registro del cliente. <br> 7. El sistema almacena un registro de auditoría. |
-| **Cursos alternos**         | 2a. Si el cliente no se encuentra, el sistema notifica al usuario y finaliza el proceso. <br> 5a. Si los datos modificados no cumplen con las validaciones, se muestra un mensaje de error y se solicita corrección. |
+| **Propósito**               | Mantener actualizada la información comercial y de contacto de los clientes para asegurar la eficacia en las operaciones y la gestión de relaciones. |
+| **Resumen**                 | El caso de uso inicia cuando un empleado de ventas identifica cambios en los datos de un cliente, como nueva dirección, contacto actualizado o cambios en su perfil comercial. La información es corregida o complementada para asegurar una comunicación efectiva, una atención adecuada y una correcta segmentación en futuras campañas comerciales. |
+| **Curso Normal de eventos** | 1. El empleado identifica que un cliente tiene datos desactualizados o incorrectos. <br> 2. Se accede a la ficha del cliente y se revisa la información existente. <br> 3. Se actualizan los datos necesarios según la información confirmada. <br> 4. Se valida que la nueva información sea coherente. <br> 5. Se guarda el registro actualizado y se documenta el cambio. |
+| **Cursos alternos**         | 2a. Si el cliente no puede ser localizado en el sistema, se suspende la actualización y se notifica al responsable. <br> 4a. Si la nueva información no es verificable o presenta inconsistencias, se detiene la modificación hasta su validación. |
 | **Prioridad**               | Alta                    |
-| **Mejoras**                 | 1. Incorporar historial completo de modificaciones por campo. <br> 2. Agregar opción de revertir cambios recientes dentro de una ventana temporal. |
-| **Otras secciones**         |  No aplica   |
+| **Mejoras**                 | 1. Integrar actualización de información como parte de la gestión activa del cliente para reforzar el vínculo comercial. <br> 2. Utilizar la actualización como oportunidad para recategorizar al cliente según su comportamiento reciente o potencial de compra. |
+| **Otras secciones**         | No aplica               |
+
+| **ID**                      | CDU03                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Dar de Baja a Cliente   |
+| **Actores**                 | Administrador del Sistema |
+| **Propósito**               | Retirar del portafolio comercial a clientes que ya no mantienen una relación activa con la organización. |
+| **Resumen**                 | El caso de uso se inicia cuando se determina que un cliente debe ser excluido de las operaciones activas, ya sea por decisión comercial, inactividad prolongada, cierre de relación o razones contractuales. La baja permite depurar el portafolio, optimizar recursos de seguimiento comercial y focalizar esfuerzos en clientes activos con mayor potencial. |
+| **Curso Normal de eventos** | 1. Se identifica a un cliente inactivo o no elegible para continuar en la relación comercial. <br> 2. El administrador accede al registro del cliente. <br> 3. Se valida la situación comercial y se documentan los motivos de la baja. <br> 4. Se confirma la baja del cliente del portafolio activo. <br> 5. El cliente queda marcado como inactivo para fines operativos y de análisis. |
+| **Cursos alternos**         | 2a. Si el cliente presenta operaciones pendientes, se pospone la baja y se notifica al área correspondiente. <br> 3a. Si los motivos no son suficientes o no están claros, se eleva la decisión para validación. |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 | 1. Establecer criterios de negocio claros para la identificación proactiva de clientes candidatos a baja. <br> 2. Analizar motivos de baja para retroalimentar estrategias de retención y fidelización. |
+| **Otras secciones**         | No aplica               |
+
 
 
 | **ID**                      | CDU04                   |
@@ -359,6 +373,42 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Prioridad**          | Alta                                                                         |
 | **Mejoras**            | Ayuda al seguimiento efectivo de cuentas por cobrar.                        |
 | **Otras secciones**    | No aplica                                  |
+
+| **ID**                      | CDU23                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Búsqueda de Cliente     |
+| **Actores**                 | Empleado de Ventas      |
+| **Propósito**               | Localizar clientes registrados para facilitar procesos comerciales, seguimiento o actualización de información. |
+| **Resumen**                 | El caso de uso se activa cuando el empleado necesita consultar el estado o la información de un cliente, ya sea para iniciar una interacción comercial, validar datos o programar una acción de seguimiento. La búsqueda eficiente de clientes permite mejorar la atención, reducir tiempos de respuesta y mantener la continuidad de la relación comercial. |
+| **Curso Normal de eventos** | 1. El empleado accede al módulo de búsqueda de clientes. <br> 2. Se introducen filtros como nombre, identificación o estado. <br> 3. El sistema procesa la consulta y muestra los resultados coincidentes. <br> 4. El empleado accede a la información del cliente para consulta o acción posterior. |
+| **Cursos alternos**         | 3a. Si no se encuentran resultados, el sistema muestra un mensaje y sugiere ampliar o ajustar los filtros. |
+| **Prioridad**               | Media                   |
+| **Mejoras**                 | 1. Priorizar resultados según historial de compras o última interacción comercial. <br> 2. Permitir visualización rápida de indicadores clave del cliente (frecuencia de compra, volumen, estado actual). |
+| **Otras secciones**         | No aplica               |
+
+| **ID**                      | CDU24                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Búsqueda de Producto    |
+| **Actores**                 | Empleado de Ventas, Bodeguero |
+| **Propósito**               | Identificar productos en existencia o consultar sus características para facilitar la operación comercial y logística. |
+| **Resumen**                 | Este caso de uso se activa cuando se requiere localizar información de un producto para atender una solicitud de cliente, validar disponibilidad o coordinar movimiento de inventario. La búsqueda eficiente permite mejorar los tiempos de respuesta, reducir errores en la oferta y optimizar la atención al cliente. |
+| **Curso Normal de eventos** | 1. El actor accede al módulo de búsqueda de productos. <br> 2. Se definen filtros como nombre, código, categoría o existencia. <br> 3. El sistema ejecuta la búsqueda y presenta los productos coincidentes. <br> 4. El actor accede a la información detallada del producto. |
+| **Cursos alternos**         | 3a. Si no se encuentran coincidencias, se informa al usuario y se recomienda verificar los criterios de búsqueda. |
+| **Prioridad**               | Media                   |
+| **Mejoras**                 | 1. Incorporar visibilidad de rotación y disponibilidad para priorizar productos de mayor demanda. <br> 2. Sugerir productos relacionados o sustitutos para apoyar decisiones de venta o reposición. |
+| **Otras secciones**         | No aplica               |
+
+| **ID**                      | CDU25                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Búsqueda de Empleado    |
+| **Actores**                 | Administrador del Sistema |
+| **Propósito**               | Localizar información del personal registrado para facilitar la gestión administrativa y operativa. |
+| **Resumen**                 | El caso de uso se activa cuando el administrador necesita consultar datos de un empleado, ya sea para ver su estado, validar su información contractual, asignarlo a tareas o actualizar su situación laboral. La búsqueda permite gestionar eficazmente al personal, dar seguimiento a su historial y tomar decisiones con base en información confiable. |
+| **Curso Normal de eventos** | 1. El administrador accede al módulo de búsqueda de empleados. <br> 2. Se ingresan filtros como nombre, DPI, cargo o estado. <br> 3. El sistema ejecuta la consulta y presenta los resultados coincidentes. <br> 4. El administrador accede a la información del empleado para consulta o gestión. |
+| **Cursos alternos**         | 3a. Si no se encuentran coincidencias, se muestra un mensaje indicando que no existen registros que cumplan los criterios. |
+| **Prioridad**               | Media                   |
+| **Mejoras**                 | 1. Integrar filtros por unidad organizativa, fecha de ingreso o tipo de contrato para facilitar la segmentación del personal. <br> 2. Incluir indicadores de desempeño o alertas administrativas para apoyar la toma de decisiones. |
+| **Otras secciones**         | No aplica               |
 
 
 ## 3. Drivers arquitectónicos
