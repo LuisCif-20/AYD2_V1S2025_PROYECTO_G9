@@ -54,6 +54,11 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 - **CDU20 - Generar Reporte de Empleados**
 - **CDU21 - Generar Reporte de Bodega**
 - **CDU22 - Generar Reporte de Pagos**
+- **CDU23 - Búsqueda de Cliente**
+- **CDU24 - Búsqueda de Producto**
+- **CDU25 - Búsqueda de Empleado**
+
+
 
 ### Descripciones
 | **ID**                      | CU01                    |
@@ -70,6 +75,48 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Seccion**                 | Titulo de la seccion    |
 |                             | 1. paso <br> 2. Paso    |
 
+| **ID**                      | CDU01                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Registrar Cliente       |
+| **Actores**                 | Empleado de Ventas      |
+| **Propósito**               | Formalizar la incorporación de nuevos clientes para habilitar relaciones comerciales y procesos de venta. |
+| **Resumen**                 | Este proceso se inicia cuando un empleado de ventas identifica a un nuevo cliente interesado en establecer una relación comercial. Se recopilan los datos necesarios para su registro formal, con el objetivo de permitir futuras transacciones, seguimiento comercial y segmentación estratégica. |
+| **Curso Normal de eventos** | 1. El empleado identifica a un cliente potencial. <br> 2. Se recopilan los datos relevantes del cliente (identificación, contacto, ubicación). <br> 3. Se valida que el cliente no haya sido previamente registrado. <br> 4. Se formaliza el alta del cliente como parte del portafolio comercial. <br> 5. Se confirma la incorporación y se habilita el historial comercial. |
+| **Cursos alternos**         | 3a. Si el cliente ya existe en el portafolio, se notifica al empleado y se sugiere revisar o actualizar su información. <br> 2a. Si los datos recopilados son incompletos, se solicita al empleado completarlos antes de continuar. |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 | 1. Establecer un proceso de seguimiento posterior al registro para aumentar la conversión en ventas. <br> 2. Incorporar una categorización del cliente según su potencial comercial desde el momento del alta. |
+| **Otras secciones**         | No aplica               |
+
+
+
+| **ID**                      | CDU02                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Actualizar Información del Cliente |
+| **Actores**                 | Empleado de Ventas      |
+| **Propósito**               | Mantener actualizada la información comercial y de contacto de los clientes para asegurar la eficacia en las operaciones y la gestión de relaciones. |
+| **Resumen**                 | Este proceso se inicia cuando un empleado de ventas identifica cambios en los datos de un cliente, como nueva dirección, contacto actualizado o modificaciones en su perfil comercial. La actualización oportuna de esta información permite conservar relaciones comerciales vigentes, prevenir errores y planificar interacciones estratégicas. |
+| **Curso Normal de eventos** | 1. El empleado identifica que un cliente tiene datos desactualizados o incorrectos. <br> 2. Se recopila la información verificada directamente con el cliente o por medios oficiales. <br> 3. Se revisa y modifica la información registrada del cliente. <br> 4. Se confirma que los datos estén completos y actualizados. <br> 5. Se documenta la modificación como parte del seguimiento comercial. |
+| **Cursos alternos**         | 2a. Si no se logra verificar la nueva información, se posterga la actualización hasta obtener confirmación válida. <br> 4a. Si los datos resultan inconsistentes con el historial comercial, se notifica al área correspondiente para revisión adicional. |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 | 1. Utilizar cada actualización como punto de contacto para fortalecer la relación con el cliente. <br> 2. Aplicar criterios de clasificación comercial según los cambios detectados para ajustar estrategias de venta o retención. |
+| **Otras secciones**         | No aplica               |
+
+
+| **ID**                      | CDU03                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Dar de Baja a Cliente   |
+| **Actores**                 | Administrador del Sistema |
+| **Propósito**               | Retirar del portafolio comercial a clientes que ya no mantienen una relación activa con la organización. |
+| **Resumen**                 | Este proceso se lleva a cabo cuando se identifica que un cliente ha cesado su relación comercial con la empresa, ya sea por decisión propia, inactividad prolongada o criterios estratégicos definidos. Dar de baja a un cliente permite depurar la base activa, focalizar esfuerzos en relaciones vigentes y optimizar la asignación de recursos comerciales. |
+| **Curso Normal de eventos** | 1. Se determina que un cliente no presenta actividad comercial reciente o ha solicitado su exclusión. <br> 2. Se valida el cumplimiento de criterios establecidos para la baja. <br> 3. Se documentan los motivos de finalización de relación. <br> 4. Se formaliza la exclusión del cliente del portafolio activo. <br> 5. Se conserva el historial del cliente para análisis y referencia futura. |
+| **Cursos alternos**         | 2a. Si el cliente aún presenta obligaciones pendientes, se pospone la baja hasta su resolución. <br> 3a. Si los motivos no están claros o justificados, se solicita revisión adicional por parte de la unidad comercial. |
+| **Prioridad**               | Alta                    |
+| **Mejoras**                 | 1. Establecer indicadores automáticos de inactividad para identificar oportunamente clientes candidatos a baja. <br> 2. Analizar patrones de baja para fortalecer políticas de retención y servicio. |
+| **Otras secciones**         | No aplica               |
+
+
+
+
 | **ID**                      | CDU04                   |
 |-----------------------------|-------------------------|
 | **Nombre**                  | Efectuar venta             |
@@ -83,6 +130,35 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                         |
 | **Seccion**                 | Venta con oferta    |
 |                             | 1. El vendedor consulta si existen ofertas vigentes para los productos seleccionados. <br> 2. Aplica el descuento correspondiente al precio de venta.   |
+
+| **ID**                      | CDU05                             |
+|-----------------------------|-----------------------------------|
+| **Nombre**                  | Aplicar descuento                 |
+| **Actores**                 | Vendedor                          |
+| **Propósito**               | Ajustar el total de una venta aplicando un descuento global conforme a políticas comerciales. |
+| **Resumen**                 | Durante el proceso de facturación, el vendedor evalúa si el cliente cumple condiciones específicas. Si es así, se aplica un único descuento al total de la venta, modificando el monto final antes de generar el comprobante. |
+| **Curso Normal de eventos** | 1. Vendedor completa los productos de la venta. <br> 2. Evalúa si aplica un descuento global. <br> 3. Ingresa el porcentaje o monto autorizado. <br> 4. Se recalcula el total de la venta. <br> 5. Se muestra el nuevo total con descuento aplicado. |
+| **Cursos alternos**         | 1. Si el descuento excede el límite permitido, se solicita autorización del supervisor. <br> 2. Si el cliente no cumple condiciones, no se permite aplicar descuento. |
+| **Prioridad**               | Media                             |
+| **Mejoras**                 | Sugerencias automáticas de descuento según historial de cliente <br> Registro histórico para análisis comercial |
+| **Otras secciones**         |                                   |
+| **Seccion**                 | Gestión de ventas               |
+|                             | 1. Evaluación de condiciones <br> 2. Aplicación de descuento validado |
+
+| **ID**                      | CDU06                                   |
+|-----------------------------|-----------------------------------------|
+| **Nombre**                  | Modificar cantidades en inventario      |
+| **Actores**                 | Empleado de Bodega                                  |
+| **Propósito**               | Ajustar manualmente cantidades en inventario por errores, mermas o eventos especiales. |
+| **Resumen**                 | La bodega puede ajustar las existencias cuando hay errores detectados, roturas, productos vencidos o devoluciones. Este caso de uso registra una entrada o salida ajustada del inventario, asegurando trazabilidad. |
+| **Curso Normal de eventos** | 1. Personal de bodega detecta discrepancia. <br> 2. Registra observación y motivo del ajuste. <br> 3. Modifica cantidad correspondiente (ingreso o salida). <br> 4. El sistema actualiza total de unidades y guarda registro del movimiento. |
+| **Cursos alternos**         | 1. Si el ajuste es por lote dañado, se notifica a proveedor. <br> 2. Si hay diferencia grave, se remite al área de control interno. |
+| **Prioridad**               | Alta                                     |
+| **Mejoras**                 | Validación cruzada de inventario con ventas <br> Reporte mensual de ajustes realizados |
+| **Otras secciones**         |                                         |
+| **Seccion**                 | Gestión de bodega                        |
+|                             | No aplica |
+
 
 | **ID**                      | CDU07                    |
 |-----------------------------|-------------------------|
@@ -109,6 +185,20 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Mejoras**                 | 1. Designar responsables por área para atender búsquedas urgentes de ventas. <br> 2. Registrar intentos de búsqueda fallidos para mejorar la calidad de los datos.|
 | **Otras secciones**         | No aplica                         |
 
+| **ID**                      | CDU09                              |
+|-----------------------------|------------------------------------|
+| **Nombre**                  | Realizar pago                      |
+| **Actores**                 | Cajero              |
+| **Propósito**               | Gestionar el seguimiento y aplicación de pagos realizados por clientes a cuentas por cobrar. |
+| **Resumen**                 | Como parte del proceso de recuperación de crédito, el encargado de finanzas recibe, valida y aplica los pagos efectuados por los clientes. Estos pagos pueden ser abonos parciales o liquidaciones totales de ventas a crédito. El proceso garantiza la trazabilidad del cumplimiento de pago, facilita la gestión financiera y contribuye al flujo de caja de la empresa. |
+| **Curso Normal de eventos** | 1. Cliente realiza un pago correspondiente a una deuda pendiente. <br> 2. El encargado de finanzas recibe y valida el pago con la documentación de respaldo. <br> 3. Se registra internamente como parte del control de cuentas por cobrar. <br> 4. Se actualiza el estado de la cuenta del cliente para reflejar el nuevo saldo. <br> 5. Se conserva historial de pagos para auditoría y conciliación. |
+| **Cursos alternos**         | 1. Si el pago no coincide con el monto esperado, se registra como abono parcial y se notifica al cliente. <br> 2. Si el cliente presenta problemas con el método de pago, se difiere el registro hasta validación. |
+| **Prioridad**               | Alta                               |
+| **Mejoras**                 | Establecer alertas de vencimiento de pago <br> Automatizar conciliación con bancos |
+| **Otras secciones**         |                                    |
+| **Seccion**                 | Control de pagos  |
+|                             | 1. Recepción del pago <br> 2. Aplicación al saldo <br> 3. Gestión del estado de cuenta |
+
 | **ID**                      | CDU10                                |
 |-----------------------------|--------------------------------------|
 | **Nombre**                  | Registrar empleado                   |
@@ -122,6 +212,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Otras secciones**         |                                      |
 | **Seccion**                 | Gestión de empleados             |
 |                             | 1. Validación de datos básicos <br> 2. Aprobación por responsable administrativo |
+
 
 | **ID**                      | CDU11                                |
 |-----------------------------|--------------------------------------|
@@ -286,6 +377,44 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Mejoras**            | Ayuda al seguimiento efectivo de cuentas por cobrar.                        |
 | **Otras secciones**    | No aplica                                                                   |
 
+| **ID**                      | CDU23                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Búsqueda de Cliente     |
+| **Actores**                 | Empleado de Ventas      |
+| **Propósito**               | Acceder rápidamente a la información de un cliente para facilitar decisiones comerciales, seguimiento o actualización de relación. |
+| **Resumen**                 | Este proceso se activa cuando se necesita consultar la situación o los datos relevantes de un cliente en el contexto de una operación comercial. La identificación oportuna del cliente permite mejorar la atención, mantener relaciones efectivas y tomar decisiones basadas en el historial del vínculo comercial. |
+| **Curso Normal de eventos** | 1. El empleado identifica la necesidad de consultar un cliente. <br> 2. Define uno o varios criterios de búsqueda basados en información conocida del cliente. <br> 3. Se revisan los datos disponibles sobre el cliente localizado. <br> 4. Se procede con la gestión comercial o administrativa requerida. |
+| **Cursos alternos**         | 3a. Si no se encuentra información del cliente, se valora realizar un registro nuevo o solicitar verificación a otra área. |
+| **Prioridad**               | Media                   |
+| **Mejoras**                 | 1. Establecer criterios de priorización por valor comercial del cliente. <br> 2. Integrar datos de interacción previa para enriquecer la gestión. |
+| **Otras secciones**         | No aplica               |
+
+
+| **ID**                      | CDU24                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Búsqueda de Producto    |
+| **Actores**                 | Empleado de Ventas, Bodeguero |
+| **Propósito**               | Localizar productos relevantes para atención a clientes, control de inventario o soporte a decisiones de venta. |
+| **Resumen**                 | Este proceso permite a los responsables identificar productos disponibles o relacionados, ya sea para preparar una cotización, atender una consulta o verificar el estado de inventario. Su correcta ejecución permite mejorar la eficiencia comercial, evitar pérdidas de tiempo y brindar mejor asesoramiento. |
+| **Curso Normal de eventos** | 1. El empleado requiere identificar un producto por razones comerciales o logísticas. <br> 2. Se determinan las características conocidas del producto a localizar. <br> 3. Se analiza la información del producto recuperado. <br> 4. Se continúa con la acción comercial o de inventario según corresponda. |
+| **Cursos alternos**         | 3a. Si no se identifica el producto, se plantea la búsqueda de equivalentes o alternativas de venta. |
+| **Prioridad**               | Media                   |
+| **Mejoras**                 | 1. Incorporar criterios de rotación, margen o demanda como filtros de búsqueda. <br> 2. Facilitar el acceso a información complementaria útil para el cierre de la venta. |
+| **Otras secciones**         | No aplica               |
+
+
+| **ID**                      | CDU25                   |
+|-----------------------------|-------------------------|
+| **Nombre**                  | Búsqueda de Empleado    |
+| **Actores**                 | Administrador del Sistema |
+| **Propósito**               | Consultar información del personal para toma de decisiones operativas, asignación de tareas o evaluación administrativa. |
+| **Resumen**                 | Esta actividad permite al responsable acceder a la información de un empleado para dar seguimiento a sus funciones, validar su estado actual o asignarle responsabilidades. Facilita la correcta gestión de los recursos humanos en función de las necesidades de la operación. |
+| **Curso Normal de eventos** | 1. El responsable identifica la necesidad de consultar a un miembro del personal. <br> 2. Se determina un criterio de identificación o clasificación. <br> 3. Se revisa el perfil o historial del empleado. <br> 4. Se toma la decisión correspondiente o se coordina la acción administrativa. |
+| **Cursos alternos**         | 3a. Si no se encuentra al empleado, se coordina con recursos humanos para validar su situación o estado. |
+| **Prioridad**               | Media                   |
+| **Mejoras**                 | 1. Considerar atributos operativos como experiencia, desempeño o disponibilidad para facilitar decisiones estratégicas. <br> 2. Incluir métricas laborales en los criterios de consulta. |
+| **Otras secciones**         | No aplica               |
+
 
 ## 3. Drivers arquitectónicos
 ### Requerimientos funcionales críticos (RF)
@@ -405,3 +534,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |RF23<br>Reportes de Ventas| | | | | | | | | | | | | | | | | | |X| | | |
 |RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| |
 |RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | |
+
+## 8. Diagrama Entidad Relación
+Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
+![ER_IMPERCOMGUA](./assets/architecture/ER-DIAGRAM-IMPERCOMGUA-mod1.png)
