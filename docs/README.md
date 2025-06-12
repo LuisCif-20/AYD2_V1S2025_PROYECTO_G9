@@ -532,4 +532,4 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ## 8. Diagrama Entidad Relación
 Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
-![ER_IMPERCOMGUA](./assets/architecture/ER-DIAGRAM-IMPERCOMGUA.png)
+![ER_IMPERCOMGUA](./assets/architecture/ER-DIAGRAM-IMPERCOMGUA-mod1.png)
