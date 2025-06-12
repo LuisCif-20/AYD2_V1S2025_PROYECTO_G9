@@ -1,4 +1,10 @@
 # Fase 1 - Documentacion Sistema de Automatización IMPORCOMGUA
+## Tabla de contenido
+1. [Core del Negocio](#1-core-del-negocio)
+2. [Casos de Uso Expandidos](#2-casos-de-uso-expandidos)
+3. [Drivers Arquitectónicos](#3-drivers-arquitectónicos)
+4. [Matrices de Trazabilidad](#4-matrices-de-trazabilidad)
+8. [Diagrama Entidad Relación](#8-diagrama-entidad-relación)
 
 ## 1. Core del Negocio
 ### Descripcion
