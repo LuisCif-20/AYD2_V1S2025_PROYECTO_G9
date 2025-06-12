@@ -479,3 +479,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |RF23<br>Reportes de Ventas| | | | | | | | | | | | | | | | | | |X| | | |
 |RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| |
 |RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | |
+
+## 8. Diagrama Entidad Relación
+Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
+![ER_IMPERCOMGUA](./assets/architecture/ER-DIAGRAM-IMPERCOMGUA.png)
