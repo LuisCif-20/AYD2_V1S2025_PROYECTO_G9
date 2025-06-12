@@ -114,6 +114,35 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Seccion**                 | Venta con oferta    |
 |                             | 1. El vendedor consulta si existen ofertas vigentes para los productos seleccionados. <br> 2. Aplica el descuento correspondiente al precio de venta.   |
 
+| **ID**                      | CDU05                             |
+|-----------------------------|-----------------------------------|
+| **Nombre**                  | Aplicar descuento                 |
+| **Actores**                 | Vendedor                          |
+| **Propósito**               | Ajustar el total de una venta aplicando un descuento global conforme a políticas comerciales. |
+| **Resumen**                 | Durante el proceso de facturación, el vendedor evalúa si el cliente cumple condiciones específicas. Si es así, se aplica un único descuento al total de la venta, modificando el monto final antes de generar el comprobante. |
+| **Curso Normal de eventos** | 1. Vendedor completa los productos de la venta. <br> 2. Evalúa si aplica un descuento global. <br> 3. Ingresa el porcentaje o monto autorizado. <br> 4. Se recalcula el total de la venta. <br> 5. Se muestra el nuevo total con descuento aplicado. |
+| **Cursos alternos**         | 1. Si el descuento excede el límite permitido, se solicita autorización del supervisor. <br> 2. Si el cliente no cumple condiciones, no se permite aplicar descuento. |
+| **Prioridad**               | Media                             |
+| **Mejoras**                 | Sugerencias automáticas de descuento según historial de cliente <br> Registro histórico para análisis comercial |
+| **Otras secciones**         |                                   |
+| **Seccion**                 | Gestión de ventas               |
+|                             | 1. Evaluación de condiciones <br> 2. Aplicación de descuento validado |
+
+| **ID**                      | CDU06                                   |
+|-----------------------------|-----------------------------------------|
+| **Nombre**                  | Modificar cantidades en inventario      |
+| **Actores**                 | Empleado de Bodega                                  |
+| **Propósito**               | Ajustar manualmente cantidades en inventario por errores, mermas o eventos especiales. |
+| **Resumen**                 | La bodega puede ajustar las existencias cuando hay errores detectados, roturas, productos vencidos o devoluciones. Este caso de uso registra una entrada o salida ajustada del inventario, asegurando trazabilidad. |
+| **Curso Normal de eventos** | 1. Personal de bodega detecta discrepancia. <br> 2. Registra observación y motivo del ajuste. <br> 3. Modifica cantidad correspondiente (ingreso o salida). <br> 4. El sistema actualiza total de unidades y guarda registro del movimiento. |
+| **Cursos alternos**         | 1. Si el ajuste es por lote dañado, se notifica a proveedor. <br> 2. Si hay diferencia grave, se remite al área de control interno. |
+| **Prioridad**               | Alta                                     |
+| **Mejoras**                 | Validación cruzada de inventario con ventas <br> Reporte mensual de ajustes realizados |
+| **Otras secciones**         |                                         |
+| **Seccion**                 | Gestión de bodega                        |
+|                             | No aplica |
+
+
 | **ID**                      | CDU07                    |
 |-----------------------------|-------------------------|
 | **Nombre**                  | Anular Venta             |
@@ -139,19 +168,21 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Mejoras**                 | 1. Designar responsables por área para atender búsquedas urgentes de ventas. <br> 2. Registrar intentos de búsqueda fallidos para mejorar la calidad de los datos.|
 | **Otras secciones**         | No aplica                         |
 
-| **ID**                      | CDU10                                |
-|-----------------------------|--------------------------------------|
-| **Nombre**                  | Registrar empleado                   |
-| **Actores**                 | Administración                      |
-| **Propósito**               | Iniciar formalmente la incorporación de un nuevo empleado a la organización. |
-| **Resumen**                 | Este caso de uso inicia cuando se requiere registrar un nuevo empleado. Involucra recopilar sus datos personales y laborales para su integración en la empresa. El caso finaliza cuando el empleado queda formalmente registrado para desempeñar sus funciones. |
-| **Curso Normal de eventos** | 1. Administración identifica la necesidad de registrar un nuevo empleado. <br> 2. Recolecta los datos básicos: nombres, apellidos, dirección, teléfono y comisión (si aplica). <br> 3. Verifica que la información esté completa y correcta. <br> 4. Valida que no exista duplicidad. <br> 5. Formaliza el ingreso del empleado en la organización. |
-| **Cursos alternos**         | 1. Si la información es incompleta, se solicita corrección. <br> 2. Si ya existe un registro similar, se detiene el proceso y se revisa con recursos humanos. |
-| **Prioridad**               | Alta                                 |
-| **Mejoras**                 | Incorporar verificación automática de duplicidad <br> Integrar validaciones con área de RRHH |
-| **Otras secciones**         |                                      |
-| **Seccion**                 | Gestión de empleados             |
-|                             | 1. Validación de datos básicos <br> 2. Aprobación por responsable administrativo |
+| **ID**                      | CDU09                              |
+|-----------------------------|------------------------------------|
+| **Nombre**                  | Realizar pago                      |
+| **Actores**                 | Cajero              |
+| **Propósito**               | Gestionar el seguimiento y aplicación de pagos realizados por clientes a cuentas por cobrar. |
+| **Resumen**                 | Como parte del proceso de recuperación de crédito, el encargado de finanzas recibe, valida y aplica los pagos efectuados por los clientes. Estos pagos pueden ser abonos parciales o liquidaciones totales de ventas a crédito. El proceso garantiza la trazabilidad del cumplimiento de pago, facilita la gestión financiera y contribuye al flujo de caja de la empresa. |
+| **Curso Normal de eventos** | 1. Cliente realiza un pago correspondiente a una deuda pendiente. <br> 2. El encargado de finanzas recibe y valida el pago con la documentación de respaldo. <br> 3. Se registra internamente como parte del control de cuentas por cobrar. <br> 4. Se actualiza el estado de la cuenta del cliente para reflejar el nuevo saldo. <br> 5. Se conserva historial de pagos para auditoría y conciliación. |
+| **Cursos alternos**         | 1. Si el pago no coincide con el monto esperado, se registra como abono parcial y se notifica al cliente. <br> 2. Si el cliente presenta problemas con el método de pago, se difiere el registro hasta validación. |
+| **Prioridad**               | Alta                               |
+| **Mejoras**                 | Establecer alertas de vencimiento de pago <br> Automatizar conciliación con bancos |
+| **Otras secciones**         |                                    |
+| **Seccion**                 | Control de pagos  |
+|                             | 1. Recepción del pago <br> 2. Aplicación al saldo <br> 3. Gestión del estado de cuenta |
+
+
 
 | **ID**                      | CDU11                                |
 |-----------------------------|--------------------------------------|
