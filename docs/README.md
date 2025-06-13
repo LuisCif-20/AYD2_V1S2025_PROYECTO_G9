@@ -533,6 +533,59 @@ Se puede observar el diagrama con mas detalle en el siguiente [PDF](./assets/arc
 ![DEPLOYMENT_DIAGRAM_IMPERCOMGUA](./assets/architecture/deplyment-diagram-IMPERCOMGUA.jpeg)
 
 ### Justificacion de Frameworks y tecnologias
+Para el desarrollo del backend se ha optado por el framework Spring Boot sobre el lenguaje de programación Java, debido a sus ventajas en la construcción de aplicaciones empresariales robustas y escalables.
+
+#### Java + Spring Boot (Backend)
+El backend de IMPORCOMGUA estará construido con Spring Boot, un framework moderno sobre Java que organiza el código en capas bien definidas: controladores, servicios y acceso a datos. Esto ayuda a:
+
+* Establecer una arquitectura lógica clara, donde cada módulo funcional (ventas, pagos, inventario, empleados, etc.) tiene una ubicación específica y fácilmente identificable.
+
+* Mantener una correspondencia directa entre los casos de uso documentados y su implementación técnica, lo que facilita la trazabilidad entre los requerimientos del negocio y el código fuente.
+
+* Soporte nativo para seguridad, autenticación y validación, útil para la gestión de usuarios y control de acceso.
+
+* Aprovechar herramientas como validadores, control de errores, seguridad y configuración externa, que permiten enfocar el desarrollo en la lógica del negocio.
+
+En el diagrama de despliegue, el contenedor del backend representa este núcleo funcional del sistema, separado del frontend y la base de datos, facilitando su comprensión y mantenimiento independiente.
+#### Base de datos: PostgreSQL
+Se eligió PostgreSQL como sistema de gestión de base de datos relacional (RDBMS) por su solidez, compatibilidad con estándares SQL y extensiones avanzadas. Su uso es idóneo para:
+
+* Manejar relaciones complejas y garantizar integridad referencial entre las entidades del sistema.
+
+* Ejecutar consultas eficientes gracias a índices, funciones agregadas y soporte para procedimientos almacenados.
+
+* Integración eficiente con librerías de persistencia como JPA/Hibernate, lo cual facilita el mapeo de entidades desde PostgreSQL.
+
+* Ofrecer una solución escalable y segura, sin costos de licenciamiento.
+
+PostgreSQL asegura un backend de datos confiable, ideal para los módulos de ventas, pagos, inventario y clientes.
+
+#### Angular (Frontend)
+El frontend será desarrollado con Angular, un framework basado en TypeScript que permite organizar la interfaz de usuario en componentes reutilizables, cada uno asociado a una funcionalidad del sistema.
+
+* Permite desarrollar una interfaz modular y reutilizable, organizada por componentes.
+
+* Angular facilita el desarrollo de una interfaz rica y reactiva, que mejora la experiencia del usuario sin comprometer la claridad estructural del sistema.
+
+* Integra mecanismos nativos de consumo de APIs RESTful, facilitando la conexión con el backend de Spring Boot.
+
+* Se integrará una librería de componentes visuales para garantizar consistencia, accesibilidad y eficiencia en el diseño de pantallas.
+
+Gracias a esta división, es fácil comprender cómo las vistas del usuario se comunican con el sistema y cómo cada acción corresponde a un flujo entre componentes documentado gráficamente.
+
+#### Docker (Contenedores)
+La utilización de contenedores Docker tanto para el backend como para el frontend y la base de datos permite:
+
+* Representar de forma visual y clara la arquitectura modular del sistema, como se muestra en el diagrama de despliegue.
+*Despliegue estandarizado y portable entre entornos (desarrollo, pruebas, producción).
+
+* Facilitar el aislamiento y la independencia de los servicios, lo que mejora la comprensión del entorno de ejecución del sistema.
+
+* Reproducir fácilmente entornos de desarrollo y producción, garantizando coherencia en todas las etapas del ciclo de vida del software.
+
+* Posibilita una mayor integración con herramientas CI/CD en fases futuras del proyecto
+
+La combinación de Spring Boot + PostgreSQL + Angular, empaquetados en contenedores Docker, responde a las necesidades del proyecto IMPORCOMGUA en términos de modularidad, mantenibilidad, escalabilidad y portabilidad. 
 
 ## 8. Diagrama Entidad Relación
 Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
