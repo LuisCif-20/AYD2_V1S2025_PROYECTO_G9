@@ -4,7 +4,9 @@
 2. [Casos de Uso Expandidos](#2-casos-de-uso-expandidos)
 3. [Drivers Arquitectónicos](#3-drivers-arquitectónicos)
 4. [Matrices de Trazabilidad](#4-matrices-de-trazabilidad)
+7. [Diagrama de despliegue](#7-diagrama-de-despliegue)
 8. [Diagrama Entidad Relación](#8-diagrama-entidad-relación)
+10. [Gestión del Proyecto](#10-gestión-del-proyecto)
 
 ## 1. Core del Negocio
 ### Descripcion
