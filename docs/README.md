@@ -480,7 +480,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ## 4. Matrices de Trazabilidad
 ### Stakeholders vs Requerimientos
-|Stakeholders\Requerimientos|RF01 Registro de Cliente|RF02 Edicion de Cliente|RF03 Eliminacion de Cliente|RF04 Busqueda de Cliente|RF05 Registro de Producto|RF06 Edicion de Producto|RF07 Eliminacion de Producto|RF08 Busqueda de Producto|RF09 Registro de Salida de Inventario|RF10 Registro de Ingreso a Inventario|RF11 Modificacion de Stock en Inventario|RF12 Registro de Venta|RF13 Anulacion de Venta|RF14 Busqueda de Venta|RF15 Aplicacion de Descuento|RF16 Registro de Empleado|RF17 Edicion de Empleado|RF18 Eliminacion de Empleado|RF19 Busqueda de Empleado|RF20 Reportes de Empleados|RF21 Reportes de Clientes|RF22 Reporte de Pagos|RF23 Reporte de Ventas|RF24 Reportes de Bodega|Registro de Pagos|
+|Stakeholders\Requerimientos|RF01 Registro de Cliente|RF02 Edicion de Cliente|RF03 Eliminacion de Cliente|RF04 Busqueda de Cliente|RF05 Registro de Producto|RF06 Edicion de Producto|RF07 Eliminacion de Producto|RF08 Busqueda de Producto|RF09 Registro de Salida de Inventario|RF10 Registro de Ingreso a Inventario|RF11 Modificacion de Stock en Inventario|RF12 Registro de Venta|RF13 Anulacion de Venta|RF14 Busqueda de Venta|RF15 Aplicacion de Descuento|RF16 Registro de Empleado|RF17 Edicion de Empleado|RF18 Eliminacion de Empleado|RF19 Busqueda de Empleado|RF20 Reportes de Empleados|RF21 Reportes de Clientes|RF22 Reporte de Pagos|RF23 Reporte de Ventas|RF24 Reportes de Bodega|RF25 Registro de Pagos|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |Gerente General| | | | | | | | | | | | | | | | | | | |X|X|X|X|X| |
 |Ventas|X|X| |X| | | | | | | |X|X|X|X| | | | | | | | | | |
@@ -489,42 +489,42 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |Administracion| | |X|X| | | | | | | | | | | |X|X|X|X| | | | | | | |
 
 ### Stakeholders vs CDU
-|Stakeholders\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Aplicar Descuento|CDU06 Modificar Cantidades en Inventario|CDU07 Anular Venta|CDU08 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Generar Reporte de Clientes|CDU19 Generar Reporte de Ventas|CDU20 Generar Reporte de Empleados|CDU21 Generar Reporte de Bodega|CDU22 Generar Reporte de Pagos|
-|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|Gerente General| | | | | | | | | | | | | | | | | |X|X|X|X|X|
-|Ventas|X|X| |X|X| |X|X| | | | | | | | | | | | | | |
-|Bodega| | | | | |X| | | | | | |X|X|X|X|X| | | | | |
-|Finanzas| | | | | | | |X|X| | | | | | | | | | | | | |
-|Administracion| | |X| | | | | | |X|X|X| | | | | | | | | | |
+|Stakeholders\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Aplicar Descuento|CDU06 Modificar Cantidades en Inventario|CDU07 Anular Venta|CDU08 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Generar Reporte de Clientes|CDU19 Generar Reporte de Ventas|CDU20 Generar Reporte de Empleados|CDU21 Generar Reporte de Bodega|CDU22 Generar Reporte de Pagos|CDU 23 Busqueda de Cliente|CDU24 Busqueda de Producto|CDU25 Busqueda de Empleado|
+|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|Gerente General| | | | | | | | | | | | | | | | | |X|X|X|X|X| | | |
+|Ventas|X|X| |X|X| |X|X| | | | | | | | | | | | | | |X| | |
+|Bodega| | | | | |X| | | | | | |X|X|X|X|X| | | | | | |X| |
+|Finanzas| | | | | | | |X|X| | | | | | | | | | | | | | | | |
+|Administracion| | |X| | | | | | |X|X|X| | | | | | | | | | |X| |X|
 
 ### Requerimientos vs CDU
-|Requerimientos\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Aplicar Descuento|CDU06 Modificar Cantidades en Inventario|CDU07 Anular Venta|CDU08 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Generar Reporte de Clientes|CDU19 Generar Reporte de Ventas|CDU20 Generar Reporte de Empleados|CDU21 Generar Reporte de Bodega|CDU22 Generar Reporte de Pagos|
-|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|RF01<br>Registro de Cliente|X| | | | | | | | | | | | | | | | | | | | | |
-|RF02<br>Edición de Cliente| |X| | | | | | | | | | | | | | | | | | | | |
-|RF03<br>Eliminación de Cliente| | |X| | | | | | | | | | | | | | | | | | | |
-|RF04<br>Busqueda de Cliente|X|X|X|X| | | | | | | | | | | | | | | | | | |
-|RF05<br>Registro de Producto| | | | | | | | | | | | |X| | | | | | | | | |
-|RF06<br>Edición de Producto| | | | | | | | | | | | | |X| | | | | | | | |
-|RF07<br>Eliminación de Producto| | | | | | | | | | | | | | |X| | | | | | | |
-|RF08<br>Busqueda de Producto| | | | | | | | | | | | |X|X|X| | | | | | | |
-|RF09<br>Registro de Salida de Inventario| | | | | | | |X| | | | | | | | |X| | | | | |
-|RF10<br>Registro de Ingreso a Inventario| | | | | | | | | | | | | | | |X| | | | | | |
-|RF11<br>Modificacion de Stock en Inventario| | | | | |X| | | | | | | | | | | | | | | | |
-|RF12<br>Registro de Venta| | | |X| | | | | | | | | | | | | | | | | | |
-|RF13<br>Anulación de Venta| | | | | | |X|X| | | | | | | | | | | | | | |
-|RF14<br>Busqueda de Ventas| | | | | | |X|X|X| | | | | | | |X| | | | | |
-|RF15<br>Aplicación de Descuento| | | |X| | | | | | | | | | | | | | | | | | |
-|RF16<br>Registro de Empleado| | | | | | | | | |X| | | | | | | | | | | | |
-|RF17<br>Edición de Empleado| | | | | | | | | | |X| | | | | | | | | | | |
-|RF18<br>Eliminación de Empleado| | | | | | | | | | | |X| | | | | | | | | | |
-|RF19<br>Busqueda de Empleado| | | | | | | | | |X|X|X| | | | | | | | | | |
-|RF20<br>Reportes de Empleados| | | | | | | | | | | | | | | | | | | |X| | |
-|RF21<br>Reportes de Clientes| | | | | | | | | | | | | | | | | |X| | | | |
-|RF22<br>Reportes de Pagos| | | | | | | | | | | | | | | | | | | | | |X|
-|RF23<br>Reportes de Ventas| | | | | | | | | | | | | | | | | | |X| | | |
-|RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| |
-|RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | |
+|Requerimientos\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Aplicar Descuento|CDU06 Modificar Cantidades en Inventario|CDU07 Anular Venta|CDU08 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Generar Reporte de Clientes|CDU19 Generar Reporte de Ventas|CDU20 Generar Reporte de Empleados|CDU21 Generar Reporte de Bodega|CDU22 Generar Reporte de Pagos|CDU 23 Busqueda de Cliente|CDU24 Busqueda de Producto|CDU25 Busqueda de Empleado|
+|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|RF01<br>Registro de Cliente|X| | | | | | | | | | | | | | | | | | | | | | | | |
+|RF02<br>Edición de Cliente| |X| | | | | | | | | | | | | | | | | | | | |X| | |
+|RF03<br>Eliminación de Cliente| | |X| | | | | | | | | | | | | | | | | | | |X| | |
+|RF04<br>Busqueda de Cliente|X|X|X|X| | | | | | | | | | | | | | | | | | |X| | |
+|RF05<br>Registro de Producto| | | | | | | | | | | | |X| | | | | | | | | | | | |
+|RF06<br>Edición de Producto| | | | | | | | | | | | | |X| | | | | | | | | |X| |
+|RF07<br>Eliminación de Producto| | | | | | | | | | | | | | |X| | | | | | | | |X| |
+|RF08<br>Busqueda de Producto| | | | | | | | | | | | |X|X|X| | | | | | | | |X| |
+|RF09<br>Registro de Salida de Inventario| | | | | | | |X| | | | | | | | |X| | | | | | | | |
+|RF10<br>Registro de Ingreso a Inventario| | | | | | | | | | | | | | | |X| | | | | | | | | |
+|RF11<br>Modificacion de Stock en Inventario| | | | | |X| | | | | | | | | | | | | | | | | | | |
+|RF12<br>Registro de Venta| | | |X| | | | | | | | | | | | | | | | | | |X| | |
+|RF13<br>Anulación de Venta| | | | | | |X|X| | | | | | | | | | | | | | | | | |
+|RF14<br>Busqueda de Ventas| | | | | | |X|X|X| | | | | | | |X| | | | | | | | |
+|RF15<br>Aplicación de Descuento| | | |X| | | | | | | | | | | | | | | | | | | | | |
+|RF16<br>Registro de Empleado| | | | | | | | | |X| | | | | | | | | | | | | | | |
+|RF17<br>Edición de Empleado| | | | | | | | | | |X| | | | | | | | | | | | | |X|
+|RF18<br>Eliminación de Empleado| | | | | | | | | | | |X| | | | | | | | | | | | |X|
+|RF19<br>Busqueda de Empleado| | | | | | | | | |X|X|X| | | | | | | | | | | | |X|
+|RF20<br>Reportes de Empleados| | | | | | | | | | | | | | | | | | | |X| | | | | |
+|RF21<br>Reportes de Clientes| | | | | | | | | | | | | | | | | |X| | | | | | | |
+|RF22<br>Reportes de Pagos| | | | | | | | | | | | | | | | | | | | | |X| | | |
+|RF23<br>Reportes de Ventas| | | | | | | | | | | | | | | | | | |X| | | | | | |
+|RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| | | | |
+|RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | | | | |
 
 ## 8. Diagrama Entidad Relación
 Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
