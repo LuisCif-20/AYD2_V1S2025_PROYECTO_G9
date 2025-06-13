@@ -529,3 +529,20 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 ## 8. Diagrama Entidad Relación
 Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
 ![ER_IMPERCOMGUA](./assets/architecture/ER-DIAGRAM-IMPERCOMGUA-mod1.png)
+
+
+
+
+## 10. Gestión del Proyecto
+
+Utilizamos [Trello](https://trello.com) para planificar, asignar y seguir el avance de tareas del proyecto. A continuación, algunas capturas:
+
+![Tablero General](./assets/trello/TABLERO-GENERAL.png)
+
+![Dashboard de distribución](./assets/trello/DASHBOARD-TAREAS.png)
+
+
+### Acceso al Tablero Trello
+
+Puedes ver el tablero completo aquí:  
+🔗 [Tablero Trello de IMPORCOMGUA](https://trello.com/invite/b/6847ba5b69dfcd9af1c397e7/ATTIb7e79dd9e84a644089e6ced6e8777d17530D11B0/ayd2v1s2025proyectog9)
