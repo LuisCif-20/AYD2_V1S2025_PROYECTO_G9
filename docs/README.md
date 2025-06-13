@@ -526,12 +526,15 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| | | | |
 |RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | | | | |
 
+## 7. Diagrama de despliegue
+Se puede observar el diagrama con mas detalle en el siguiente [PDF](./assets/architecture/deplyment-diagram-IMPERCOMGUA.pdf)
+![DEPLOYMENT_DIAGRAM_IMPERCOMGUA](./assets/architecture/deplyment-diagram-IMPERCOMGUA.jpeg)
+
+### Justificacion de Frameworks y tecnologias
+
 ## 8. Diagrama Entidad Relación
 Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
 ![ER_IMPERCOMGUA](./assets/architecture/ER-DIAGRAM-IMPERCOMGUA-mod1.png)
-
-
-
 
 ## 10. Gestión del Proyecto
 
