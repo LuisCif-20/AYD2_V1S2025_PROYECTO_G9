@@ -5,8 +5,10 @@
 3. [Drivers Arquitectónicos](#3-drivers-arquitectónicos)
 4. [Matrices de Trazabilidad](#4-matrices-de-trazabilidad)
 5. [Estructuras Arquitectonicas y estilos arquitectonicos](#5-estructuras-arquitectonicas-y-estilos-arquitectonicos)
+6. [Diagrama de bloques](#6-diagrama-de-bloques)
 7. [Diagrama de despliegue](#7-diagrama-de-despliegue)
 8. [Diagrama Entidad Relación](#8-diagrama-entidad-relación)
+9. [Prototipo de interfaces](#9-mockups)
 10. [Gestión del Proyecto](#10-gestión-del-proyecto)
 
 ## 1. Core del Negocio
@@ -560,6 +562,10 @@ Se seleccionó porque estructura la interacción entre quien usa el sistema y qu
 Este estilo implica que el sistema se estructura en servicios funcionales independientes, cada uno encargado de un proceso del negocio.
 
 Se eligió porque permite una organización modular por funcionalidades, lo cual facilita el desarrollo, la documentación y futuras integraciones.
+
+## 6. Diagrama de bloques
+![BLOCKS_DIAGRAM_IMPORCOMGUA](./assets/architecture/blocks-diagram-IMPORCOMGUA.png)
+
 ## 7. Diagrama de despliegue
 ![DEPLOYMENT_DIAGRAM_IMPERCOMGUA](./assets/architecture/DESPLIEGUE-IMPERCOMGUA.jpeg)
 
