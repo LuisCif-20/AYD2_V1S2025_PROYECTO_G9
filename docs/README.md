@@ -38,7 +38,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ![CDU_expandido-control_pagos](./assets/cdu/CDU-CONTROL-PAGOS.png)
 
-![CDU_expandido-generacion_reportes](./assets/cdu/CDU-GENERACION-REPORTES.png)
+![CDU_expandido-toma_desiciones](./assets/cdu/CDU-TOMA-DESICIONES.png)
 
 ### Listado
 - **CDU01 - Registrar Cliente**
@@ -550,8 +550,7 @@ Este estilo implica que el sistema se estructura en servicios funcionales indepe
 
 Se eligió porque permite una organización modular por funcionalidades, lo cual facilita el desarrollo, la documentación y futuras integraciones.
 ## 7. Diagrama de despliegue
-Se puede observar el diagrama con mas detalle en el siguiente [PDF](./assets/architecture/deplyment-diagram-IMPERCOMGUA.pdf)
-![DEPLOYMENT_DIAGRAM_IMPERCOMGUA](./assets/architecture/deplyment-diagram-IMPERCOMGUA.jpeg)
+![DEPLOYMENT_DIAGRAM_IMPERCOMGUA](./assets/architecture/DESPLIEGUE-IMPERCOMGUA.jpeg)
 
 ### Justificacion de Frameworks y tecnologias
 Para el desarrollo del backend se ha optado por el framework Spring Boot sobre el lenguaje de programación Java, debido a sus ventajas en la construcción de aplicaciones empresariales robustas y escalables.
