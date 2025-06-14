@@ -477,9 +477,20 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 #### Mantenibilidad
 - **RNF13 - Clara Documentación**: El código fuente deberá documentarse adecuadamente, siguiendo estándares de nomenclatura y comentarios estructurados.
 
-#### Portabilidad
+### Requisitos de Restricción (Drivers de Restricción)
+
+#### Técnicos
 - **RNF14 - Portabilidad de la Aplicación**: El sistema debe poder ejecutarse en distintos navegadores web modernos (Chrome, Firefox, Edge).
 - **RNF15 - Entorno de Despliegue**: La solución debe estar preparada para ser desplegada en ambientes Linux.
+- **RNF16 - Base de datos**: La base de datos debe ser relacional y compatible con SQL estándar.
+
+#### Operacionales
+- **RNF17 - Ventas**: Los procesos de venta deben permitir pagos parciales, y manejar correctamente los saldos pendientes.
+- **RNF18 - Eliminación de registros**: No se permite eliminación física de registros por normativas del negocio. Solo debe aplicarse baja lógica o estado "inactivo".
+
+#### Gestión de proyecto
+- **RNF19 - Desarrollo del sistema**: El sistema debe desarrollarse en 3 fases durante un mes, según cronograma aprobado.
+- **RNF20 - Metodología**: Se debe usar metodología ágil con tablero Kanban.
 
 ## 4. Matrices de Trazabilidad
 ### Stakeholders vs Requerimientos
