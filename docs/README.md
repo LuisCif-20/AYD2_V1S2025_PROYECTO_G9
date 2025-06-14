@@ -4,7 +4,10 @@
 2. [Casos de Uso Expandidos](#2-casos-de-uso-expandidos)
 3. [Drivers Arquitectónicos](#3-drivers-arquitectónicos)
 4. [Matrices de Trazabilidad](#4-matrices-de-trazabilidad)
+5. [Estructuras Arquitectonicas y estilos arquitectonicos](#5-estructuras-arquitectonicas-y-estilos-arquitectonicos)
+7. [Diagrama de despliegue](#7-diagrama-de-despliegue)
 8. [Diagrama Entidad Relación](#8-diagrama-entidad-relación)
+10. [Gestión del Proyecto](#10-gestión-del-proyecto)
 
 ## 1. Core del Negocio
 ### Descripcion
@@ -526,11 +529,178 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| | | | |
 |RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | | | | |
 
+## 5. Estructuras Arquitectonicas y estilos arquitectonicos
+### Identificación de estructuras arquitectónicas
+> aun falta
+
+### Selección de los estilos arquitectónicos
+El sistema propuesto para IMPORCOMGUA se construirá combinando tres estilos arquitectónicos que permiten una estructura clara, modular y fácil de entender. Cada uno responde a necesidades específicas del negocio y del desarrollo del software.
+#### Arquitectura en o por capas
+Este estilo organiza el sistema en capas independientes, donde cada una cumple una función específica: presentación, lógica de negocio y persistencia de datos.
+
+Se eligió porque facilita la organización del sistema, separa responsabilidades, y mejora el mantenimiento y comprensión general de su funcionamiento.
+
+#### Call return: Cliente-Servidor
+Este estilo define una comunicación entre un cliente que solicita servicios y un servidor que los atiende mediante un esquema de petición-respuesta.
+
+Se seleccionó porque estructura la interacción entre quien usa el sistema y quien lo procesa, permitiendo un flujo de datos claro.
+
+#### Call return: SOA (Service-Oriented Architecture)
+Este estilo implica que el sistema se estructura en servicios funcionales independientes, cada uno encargado de un proceso del negocio.
+
+Se eligió porque permite una organización modular por funcionalidades, lo cual facilita el desarrollo, la documentación y futuras integraciones.
+## 7. Diagrama de despliegue
+Se puede observar el diagrama con mas detalle en el siguiente [PDF](./assets/architecture/deplyment-diagram-IMPERCOMGUA.pdf)
+![DEPLOYMENT_DIAGRAM_IMPERCOMGUA](./assets/architecture/deplyment-diagram-IMPERCOMGUA.jpeg)
+
+### Justificacion de Frameworks y tecnologias
+Para el desarrollo del backend se ha optado por el framework Spring Boot sobre el lenguaje de programación Java, debido a sus ventajas en la construcción de aplicaciones empresariales robustas y escalables.
+
+#### Java + Spring Boot (Backend)
+El backend de IMPORCOMGUA estará construido con Spring Boot, un framework moderno sobre Java que organiza el código en capas bien definidas: controladores, servicios y acceso a datos. Esto ayuda en la arquitectura a:
+
+* Establecer una arquitectura lógica clara, donde cada módulo funcional (ventas, pagos, inventario, empleados, etc.) tiene una ubicación específica y fácilmente identificable.
+
+* Mantener una correspondencia directa entre los casos de uso documentados y su implementación técnica, lo que facilita la trazabilidad entre los requerimientos del negocio y el código fuente.
+
+* Soporte nativo para seguridad, autenticación y validación, útil para la gestión de usuarios y control de acceso.
+
+* Aprovechar herramientas como validadores, control de errores, seguridad y configuración externa, que permiten enfocar el desarrollo en la lógica del negocio.
+
+En el diagrama de despliegue, el contenedor del backend representa este núcleo funcional del sistema, separado del frontend y la base de datos, facilitando su comprensión y mantenimiento independiente.
+#### Base de datos: PostgreSQL
+Se eligió PostgreSQL como sistema de gestión de base de datos relacional (RDBMS) por su solidez, compatibilidad con estándares SQL y extensiones avanzadas. Estas serviran en la arquitectura para:
+
+* Manejar relaciones complejas y garantizar integridad referencial entre las entidades del sistema.
+
+* Ejecutar consultas eficientes gracias a índices, funciones agregadas y soporte para procedimientos almacenados.
+
+* Integración eficiente con librerías de persistencia como JPA/Hibernate, lo cual facilita el mapeo de entidades desde PostgreSQL.
+
+* Ofrecer una solución escalable y segura, sin costos de licenciamiento.
+
+PostgreSQL asegura un backend de datos confiable, ideal para los módulos de ventas, pagos, inventario y clientes.
+
+#### Angular (Frontend)
+El frontend será desarrollado con Angular, un framework basado en TypeScript que permite organizar la interfaz de usuario en componentes reutilizables, cada uno asociado a una funcionalidad del sistema.
+
+* Permite desarrollar una interfaz modular y reutilizable, organizada por componentes.
+
+* Angular facilita el desarrollo de una interfaz rica y reactiva, que mejora la experiencia del usuario sin comprometer la claridad estructural del sistema.
+
+* Integra mecanismos nativos de consumo de APIs RESTful, facilitando la conexión con el backend de Spring Boot.
+
+* Se integrará una librería de componentes visuales para garantizar consistencia, accesibilidad y eficiencia en el diseño de pantallas.
+
+Gracias a esta división, es fácil comprender cómo las vistas del usuario se comunican con el sistema y cómo cada acción corresponde a un flujo entre componentes documentado gráficamente.
+
+#### Docker (Contenedores)
+La utilización de contenedores Docker tanto para el backend como para el frontend:
+
+* Representar de forma visual y clara la arquitectura modular del sistema, como se muestra en el diagrama de despliegue.
+*Despliegue estandarizado y portable.
+
+* Facilitar el aislamiento y la independencia de los servicios, lo que mejora la comprensión del entorno de ejecución del sistema.
+
+* Reproducir fácilmente entornos de desarrollo y producción, garantizando coherencia en todas las etapas del ciclo de vida del software.
+
+* Posibilita una mayor integración con herramientas CI/CD en fases futuras del proyecto
+
+La combinación de Spring Boot + PostgreSQL + Angular, empaquetados en contenedores Docker, responde a las necesidades del proyecto IMPORCOMGUA en términos de modularidad, mantenibilidad, escalabilidad y portabilidad. 
+
 ## 8. Diagrama Entidad Relación
 Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
 ![ER_IMPERCOMGUA](./assets/architecture/ER-DIAGRAM-IMPERCOMGUA-mod1.png)
 
+## 9. Mockups
 
+### 9.1 Clientes
+
+#### 9.1.1 Listar clientes
+![ER_IMPERCOMGUA](./assets/mockups/clientes/listar.png)
+
+#### 9.1.2 Agregar clientes
+![ER_IMPERCOMGUA](./assets/mockups/clientes/agregar.png)
+
+
+#### 9.1.3 Editar clientes
+![ER_IMPERCOMGUA](./assets/mockups/clientes/editar.png)
+
+#### 9.1.4 Eliminar clientes
+![ER_IMPERCOMGUA](./assets/mockups/clientes/eliminar.png)
+
+### 9.2 Empleados
+
+#### 9.2.1 Listar empleados
+![ER_IMPERCOMGUA](./assets/mockups/empleados/listar.jpeg)
+
+#### 9.2.2 Agregar empleados
+![ER_IMPERCOMGUA](./assets/mockups/empleados/agregar.png)
+
+#### 9.2.3 Editar empleados
+![ER_IMPERCOMGUA](./assets/mockups/empleados/editar.png)
+
+#### 9.2.4 Eliminar empleados
+![ER_IMPERCOMGUA](./assets/mockups/empleados/eliminar.png)
+
+### 9.3 Productos
+
+#### 9.3.1 Listar productos
+![ER_IMPERCOMGUA](./assets/mockups/productos/listar.png)
+
+#### 9.3.2 Agregar productos
+![ER_IMPERCOMGUA](./assets/mockups/productos/agregar.png)
+
+#### 9.3.3 Editar productos
+![ER_IMPERCOMGUA](./assets/mockups/productos/editar.png)
+
+#### 9.3.4 Eliminar productos
+![ER_IMPERCOMGUA](./assets/mockups/productos/eliminar.png)
+
+### 9.4 Inventario
+
+#### 9.4.1 Listar inventario
+![ER_IMPERCOMGUA](./assets/mockups/inventario/listar.png)
+
+#### 9.4.2 Agregar inventario
+![ER_IMPERCOMGUA](./assets/mockups/inventario/agregar.png)
+
+#### 9.4.3 Editar inventario
+![ER_IMPERCOMGUA](./assets/mockups/inventario/editar.png)
+
+#### 9.4.4 Eliminar inventario
+![ER_IMPERCOMGUA](./assets/mockups/inventario/eliminar.png)
+
+#### 9.4.5 Stock
+![ER_IMPERCOMGUA](./assets/mockups/inventario/stock.jpeg)
+
+
+### 9.5 Pagos
+
+#### 9.5.1 Registrar
+![ER_IMPERCOMGUA](./assets/mockups/pagos/registrar.png)
+
+### 9.6 Salidas
+
+#### 9.6.1 Registrar salida
+![ER_IMPERCOMGUA](./assets/mockups/salidas/registrar.png)
+
+#### 9.6.2 Buscar salidas
+![ER_IMPERCOMGUA](./assets/mockups/salidas/buscar.png)
+
+### 9.7 Ventas
+
+#### 9.7.1 Listar ventas
+![ER_IMPERCOMGUA](./assets/mockups/ventas/listar.png)
+
+#### 9.7.2 Agregar ventas
+![ER_IMPERCOMGUA](./assets/mockups/ventas/agregar.png)
+
+#### 9.7.3 Editar ventas
+![ER_IMPERCOMGUA](./assets/mockups/ventas/editar.png)
+
+#### 9.7.4 Eliminar ventas
+![ER_IMPERCOMGUA](./assets/mockups/ventas/eliminar.png)
 
 
 ## 10. Gestión del Proyecto
