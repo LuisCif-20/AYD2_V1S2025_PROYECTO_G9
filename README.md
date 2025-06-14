@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./docs/assets/logo-IMPORCOMGUA.png" alt="LOGO_IMPORCOMGUA" width="200"/>
+  <img src="./docs/assets/logo-IMPORCOMGUA.png" alt="LOGO_IMPORCOMGUA" width="150"/>
 </p>
 <h1 align="center">Sistema de Automatización IMPORCOMGUA</h1>
 
