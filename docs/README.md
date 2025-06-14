@@ -536,7 +536,7 @@ Se puede observar el diagrama con mas detalle en el siguiente [PDF](./assets/arc
 Para el desarrollo del backend se ha optado por el framework Spring Boot sobre el lenguaje de programación Java, debido a sus ventajas en la construcción de aplicaciones empresariales robustas y escalables.
 
 #### Java + Spring Boot (Backend)
-El backend de IMPORCOMGUA estará construido con Spring Boot, un framework moderno sobre Java que organiza el código en capas bien definidas: controladores, servicios y acceso a datos. Esto ayuda a:
+El backend de IMPORCOMGUA estará construido con Spring Boot, un framework moderno sobre Java que organiza el código en capas bien definidas: controladores, servicios y acceso a datos. Esto ayuda en la arquitectura a:
 
 * Establecer una arquitectura lógica clara, donde cada módulo funcional (ventas, pagos, inventario, empleados, etc.) tiene una ubicación específica y fácilmente identificable.
 
@@ -548,7 +548,7 @@ El backend de IMPORCOMGUA estará construido con Spring Boot, un framework moder
 
 En el diagrama de despliegue, el contenedor del backend representa este núcleo funcional del sistema, separado del frontend y la base de datos, facilitando su comprensión y mantenimiento independiente.
 #### Base de datos: PostgreSQL
-Se eligió PostgreSQL como sistema de gestión de base de datos relacional (RDBMS) por su solidez, compatibilidad con estándares SQL y extensiones avanzadas. Su uso es idóneo para:
+Se eligió PostgreSQL como sistema de gestión de base de datos relacional (RDBMS) por su solidez, compatibilidad con estándares SQL y extensiones avanzadas. Estas serviran en la arquitectura para:
 
 * Manejar relaciones complejas y garantizar integridad referencial entre las entidades del sistema.
 
@@ -574,10 +574,10 @@ El frontend será desarrollado con Angular, un framework basado en TypeScript qu
 Gracias a esta división, es fácil comprender cómo las vistas del usuario se comunican con el sistema y cómo cada acción corresponde a un flujo entre componentes documentado gráficamente.
 
 #### Docker (Contenedores)
-La utilización de contenedores Docker tanto para el backend como para el frontend y la base de datos permite:
+La utilización de contenedores Docker tanto para el backend como para el frontend:
 
 * Representar de forma visual y clara la arquitectura modular del sistema, como se muestra en el diagrama de despliegue.
-*Despliegue estandarizado y portable entre entornos (desarrollo, pruebas, producción).
+*Despliegue estandarizado y portable.
 
 * Facilitar el aislamiento y la independencia de los servicios, lo que mejora la comprensión del entorno de ejecución del sistema.
 
