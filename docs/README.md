@@ -4,6 +4,7 @@
 2. [Casos de Uso Expandidos](#2-casos-de-uso-expandidos)
 3. [Drivers Arquitectónicos](#3-drivers-arquitectónicos)
 4. [Matrices de Trazabilidad](#4-matrices-de-trazabilidad)
+5. [Estructuras Arquitectonicas y estilos arquitectonicos](#5-estructuras-arquitectonicas-y-estilos-arquitectonicos)
 7. [Diagrama de despliegue](#7-diagrama-de-despliegue)
 8. [Diagrama Entidad Relación](#8-diagrama-entidad-relación)
 10. [Gestión del Proyecto](#10-gestión-del-proyecto)
@@ -528,7 +529,11 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| | | | |
 |RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | | | | |
 
-## 5. Identificacion de Estructuras Arquitectonicas
+## 5. Estructuras Arquitectonicas y estilos arquitectonicos
+### Identificación de estructuras arquitectónicas
+> aun falta
+
+### Selección de los estilos arquitectónicos
 El sistema propuesto para IMPORCOMGUA se construirá combinando tres estilos arquitectónicos que permiten una estructura clara, modular y fácil de entender. Cada uno responde a necesidades específicas del negocio y del desarrollo del software.
 ### Arquitectura en o por capas
 Este estilo organiza el sistema en capas independientes, donde cada una cumple una función específica: presentación, lógica de negocio y persistencia de datos.
