@@ -12,6 +12,9 @@
 10. [Gestión del Proyecto](#10-gestión-del-proyecto)
 
 ## 1. Core del Negocio
+<p align="center">
+  <img src="./assets/logo-IMPORCOMGUA.png" alt="LOGO_IMPORCOMGUA" width="200"/>
+</p>
 ### Descripcion
 IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, especializada en la adquisición y distribución de productos provenientes del extranjero para su comercialización en el mercado nacional. Su modelo de negocio se centra en gestionar de forma eficiente el proceso completo de importación, almacenamiento, venta y entrega de mercancías, trabajando directamente con clientes y vendedores en distintas regiones del país.
 

@@ -1,4 +1,9 @@
-# Sistema de Automatización IMPORCOMGUA
+<p align="center">
+  <img src="./docs/assets/logo-IMPORCOMGUA.png" alt="LOGO_IMPORCOMGUA" width="200"/>
+</p>
+<h1 align="center">Sistema de Automatización IMPORCOMGUA</h1>
+
+
 Proyecto realizado por:
 
 | Nombre                                   | Carné     |
@@ -11,5 +16,5 @@ Proyecto realizado por:
 | Luis Nery Cifuentes Rodas                | 202030482 |
 | Manuel Antonio Rojas Paxtor              | 202030799 |
 
-## Documentacion
-Para ver la documentacion, referirse [aquí](./docs/)
+## Documentación
+Para ver la documentación, referirse [aquí](./docs/)
