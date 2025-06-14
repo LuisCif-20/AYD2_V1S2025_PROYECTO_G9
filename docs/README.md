@@ -544,7 +544,43 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ## 5. Estructuras Arquitectonicas y estilos arquitectonicos
 ### Identificación de estructuras arquitectónicas
-> aun falta
+
+
+### 5.1 Estructura Modular
+
+Representa el sistema como un conjunto de módulos lógicos organizados por responsabilidad o funcionalidad. Cada módulo encapsula una parte del comportamiento del sistema y se comunica con los demás a través de interfaces bien definidas.
+
+El sistema automatizado de IMPORCOMGUA estará compuesto por módulos como:
+
+1. Gestión de clientes
+2. Gestión de productos
+3. Ventas
+4. Pagos
+5. Inventario
+6. Reportes
+
+Esta estructura ofre las siguientes ventajas:
+
+1. Mejora la mantenibilidad y escalabilidad.
+2. Facilita la asignación de tareas en el equipo de desarrollo.
+3. Permite la reutilización de componentes en futuros proyectos o versiones.
+
+### 5.2 Componentes y Conectores
+
+Describe el sistema en términos de componentes ejecutables (por ejemplo, servicios, APIs, interfaces de usuario) y conectores que representan la interacción entre ellos (llamadas a funciones y protocolos de red).
+
+En el siste automatizado de IMPORCOMGUA, esta estructura arquitectonica se podrá ver reflejada en:
+
+1. Un frontend (cliente web) que se comunica con el backend.
+2. Servicios expuestos que permiten la integración modular.
+3. Conector HTTP/REST entre cliente y servidor.
+4. Posibilidad de desacoplar funcionalidades para futuras integraciones externas.
+
+Esta estructura ofre las siguientes ventajas:
+
+1. Modela cómo fluye la información entre los componentes.
+2. Permite analizar rendimiento, escalabilidad y tolerancia a fallos.
+3. Ideal para arquitecturas orientadas a servicios y cliente-servidor.
 
 ### Selección de los estilos arquitectónicos
 El sistema propuesto para IMPORCOMGUA se construirá combinando tres estilos arquitectónicos que permiten una estructura clara, modular y fácil de entender. Cada uno responde a necesidades específicas del negocio y del desarrollo del software.
