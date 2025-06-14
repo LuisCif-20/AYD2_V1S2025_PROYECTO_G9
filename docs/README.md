@@ -58,11 +58,11 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 - **CDU15 - Dar de Baja a Producto**
 - **CDU16 - Registrar Ingreso a Bodega**
 - **CDU17 - Registrar Salida de Bodega**
-- **CDU18 - Generar Reporte de Clientes**
-- **CDU19 - Generar Reporte de Ventas**
-- **CDU20 - Generar Reporte de Empleados**
-- **CDU21 - Generar Reporte de Bodega**
-- **CDU22 - Generar Reporte de Pagos**
+- **CDU18 - Analizar Resultados de Clientes**
+- **CDU19 - Analizar Resultados de Ventas**
+- **CDU20 - Analizar Resultados de Empleados**
+- **CDU21 - Analizar Resultados de Bodega**
+- **CDU22 - Analizar Resultados de Pagos**
 - **CDU23 - Búsqueda de Cliente**
 - **CDU24 - Búsqueda de Producto**
 - **CDU25 - Búsqueda de Empleado**
@@ -309,7 +309,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 | **ID**                 | CDU18                                                                       |
 |------------------------|-----------------------------------------------------------------------------|
-| **Nombre**             | Generar Reporte de Clientes                                                 |
+| **Nombre**             | Analizar Resultados de Clientes                                             |
 | **Actores**            | Gerente General                                                             |
 | **Propósito**          | Analizar la información registrada de los clientes.                         |
 | **Resumen**            | Se genera un informe con la información detallada de clientes.              |
@@ -322,7 +322,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 | **ID**                 | CDU19                                                                              |
 |------------------------|------------------------------------------------------------------------------------|
-| **Nombre**             | Generar Reporte de Ventas                                                          |
+| **Nombre**             | Analizar Resultados de Ventas                                                      |
 | **Actores**            | Gerente General                                                                    |
 | **Propósito**          | Analizar las ventas realizadas en un período específico.                           |
 | **Resumen**            | Se genera un informe con la información detallada de las ventas.                   |
@@ -335,7 +335,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 | **ID**                 | CDU20                                                                   |
 |------------------------|-------------------------------------------------------------------------|
-| **Nombre**             | Generar Reporte de Empleados                                            |
+| **Nombre**             | Analizar Resultados de Empleados                                        |
 | **Actores**            | Gerente General                                                         |
 | **Propósito**          | Visualizar la información de los vendedores y su desempeño.             |
 | **Resumen**            | Se genera un informe con la información detallada de los empleados.     |
@@ -348,7 +348,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 | **ID**                 | CDU21                                                                       |
 |------------------------|-----------------------------------------------------------------------------|
-| **Nombre**             | Generar Reporte de Bodega                                                   |
+| **Nombre**             | Analizar Resultados de Bodega                                               |
 | **Actores**            | Gerente General                                                             |
 | **Propósito**          | Consultar el estado actual del inventario en bodega.                        |
 | **Resumen**            | Muestra existencia de productos, cantidades disponibles y apartadas.        |
@@ -361,7 +361,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 | **ID**                 | CDU22                                                                       |
 |------------------------|-----------------------------------------------------------------------------|
-| **Nombre**             | Generar Reporte de Pagos                                                    |
+| **Nombre**             | Analizar Resultados de Pagos                                                |
 | **Actores**            | Gerente General                                                             |
 | **Propósito**          | Consultar los pagos realizados por los clientes y estados de cuenta.        |
 | **Resumen**            | Lista abonos realizados, fechas, montos, bancos y estado de cobro.          |
