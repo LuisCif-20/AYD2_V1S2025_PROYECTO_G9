@@ -528,6 +528,22 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| | | | |
 |RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | | | | |
 
+## 5. Identificacion de Estructuras Arquitectonicas
+El sistema propuesto para IMPORCOMGUA se construirá combinando tres estilos arquitectónicos que permiten una estructura clara, modular y fácil de entender. Cada uno responde a necesidades específicas del negocio y del desarrollo del software.
+### Arquitectura en o por capas
+Este estilo organiza el sistema en capas independientes, donde cada una cumple una función específica: presentación, lógica de negocio y persistencia de datos.
+
+Se eligió porque facilita la organización del sistema, separa responsabilidades, y mejora el mantenimiento y comprensión general de su funcionamiento.
+
+## Call return: Cliente-Servidor
+Este estilo define una comunicación entre un cliente que solicita servicios y un servidor que los atiende mediante un esquema de petición-respuesta.
+
+Se seleccionó porque estructura la interacción entre quien usa el sistema y quien lo procesa, permitiendo un flujo de datos claro.
+
+### Call return: SOA (Service-Oriented Architecture)
+Este estilo implica que el sistema se estructura en servicios funcionales independientes, cada uno encargado de un proceso del negocio.
+
+Se eligió porque permite una organización modular por funcionalidades, lo cual facilita el desarrollo, la documentación y futuras integraciones.
 ## 7. Diagrama de despliegue
 Se puede observar el diagrama con mas detalle en el siguiente [PDF](./assets/architecture/deplyment-diagram-IMPERCOMGUA.pdf)
 ![DEPLOYMENT_DIAGRAM_IMPERCOMGUA](./assets/architecture/deplyment-diagram-IMPERCOMGUA.jpeg)
