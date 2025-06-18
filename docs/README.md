@@ -475,33 +475,26 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |Proveedor| | |X| | |
 
 ### Requerimientos vs CDU
-|Requerimientos\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Aplicar Descuento|CDU06 Modificar Cantidades en Inventario|CDU07 Anular Venta|CDU08 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Analizar Resultados de Clientes|CDU19 Analizar Resultados de Ventas|CDU20 Analizar Resultados de Empleados|CDU21 Analizar Resultados de Bodega|CDU22 Analizar Resultados de Pagos|CDU 23 Busqueda de Cliente|CDU24 Busqueda de Producto|CDU25 Busqueda de Empleado|
-|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|RF01<br>Registro de Cliente|X| | | | | | | | | | | | | | | | | | | | | | | | |
-|RF02<br>Edición de Cliente| |X| | | | | | | | | | | | | | | | | | | | |X| | |
-|RF03<br>Eliminación de Cliente| | |X| | | | | | | | | | | | | | | | | | | |X| | |
-|RF04<br>Busqueda de Cliente|X|X|X|X| | | | | | | | | | | | | | | | | | |X| | |
-|RF05<br>Registro de Producto| | | | | | | | | | | | |X| | | | | | | | | | | | |
-|RF06<br>Edición de Producto| | | | | | | | | | | | | |X| | | | | | | | | |X| |
-|RF07<br>Eliminación de Producto| | | | | | | | | | | | | | |X| | | | | | | | |X| |
-|RF08<br>Busqueda de Producto| | | | | | | | | | | | |X|X|X| | | | | | | | |X| |
-|RF09<br>Registro de Salida de Inventario| | | | | | | |X| | | | | | | | |X| | | | | | | | |
-|RF10<br>Registro de Ingreso a Inventario| | | | | | | | | | | | | | | |X| | | | | | | | | |
-|RF11<br>Modificacion de Stock en Inventario| | | | | |X| | | | | | | | | | | | | | | | | | | |
-|RF12<br>Registro de Venta| | | |X| | | | | | | | | | | | | | | | | | |X| | |
-|RF13<br>Anulación de Venta| | | | | | |X|X| | | | | | | | | | | | | | | | | |
-|RF14<br>Busqueda de Ventas| | | | | | |X|X|X| | | | | | | |X| | | | | | | | |
-|RF15<br>Aplicación de Descuento| | | |X| | | | | | | | | | | | | | | | | | | | | |
-|RF16<br>Registro de Empleado| | | | | | | | | |X| | | | | | | | | | | | | | | |
-|RF17<br>Edición de Empleado| | | | | | | | | | |X| | | | | | | | | | | | | |X|
-|RF18<br>Eliminación de Empleado| | | | | | | | | | | |X| | | | | | | | | | | | |X|
-|RF19<br>Busqueda de Empleado| | | | | | | | | |X|X|X| | | | | | | | | | | | |X|
-|RF20<br>Reportes de Empleados| | | | | | | | | | | | | | | | | | | |X| | | | | |
-|RF21<br>Reportes de Clientes| | | | | | | | | | | | | | | | | |X| | | | | | | |
-|RF22<br>Reportes de Pagos| | | | | | | | | | | | | | | | | | | | | |X| | | |
-|RF23<br>Reportes de Ventas| | | | | | | | | | | | | | | | | | |X| | | | | | |
-|RF24<br>Reportes de Bodega| | | | | | | | | | | | | | | | | | | | |X| | | | |
-|RF25<br>Registro de Pago| | | | | | | |X|X| | | | | | | | | | | | | | | | |
+|Requerimientos\CDU|CDU100 Gestionar Clientes|CDU200 Gestiona Ventas|CDU300 Gestionar Bodega|CDU400 Gestionar Vendedores|CDU500 Controlar Pagos|
+|--|:--:|:--:|:--:|:--:|:--:|
+|RF01<br>Registro de Cliente|X| | | | |
+|RF02<br>Edición de Cliente|X| | | | |
+|RF03<br>Eliminación de Cliente|X| | | | |
+|RF04<br>Busqueda de Cliente|X|X| | |X|
+|RF05<br>Registro de Producto| | |X| | |
+|RF06<br>Edición de Producto| | |X| | |
+|RF07<br>Eliminación de Producto| | |X| | |
+|RF08<br>Busqueda de Producto| | |X| | |
+|RF09<br>Establecer de Salida de Inventario| | |X| | |
+|RF10<br>Registro de Ingreso a Inventario| | |X| | |
+|RF11<br>Registro de Venta| |X| | | |
+|RF12<br>Anulación de Venta| |X| | | |
+|RF13<br>Busqueda de Ventas| |X|X| |X|
+|RF14<br>Registro de Vendedor| | | |x| |
+|RF15<br>Edición de Vendedor| | | |X| |
+|RF16<br>Eliminación de Vendedor| | | |X| |
+|RF17<br>Busqueda de Vendedor| |X| |X| |
+|RF18<br>Registro de Pago| | | | |X|
 
 ## 5. Estructuras Arquitectonicas y estilos arquitectonicos
 ### Identificación de estructuras arquitectónicas
