@@ -411,10 +411,10 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 * **RF13 - Busqueda de Ventas**: El sistema debe permitir buscar ventas realizadas por diferentes parámetros.
 
 #### Gestión de Empleados
-* **RF14 - Registro de Empleado**: El sistema debe permitir registrar nuevos empleados con sus datos.
-* **RF14 - Edición de Empleado**: El sistema debe permitir modificar los datos de un empleado existente.
-* **RF16 - Eliminación de Empleado**: El sistema debe permitir eliminar empleados registrados.
-* **RF17 - Busqueda de Empleado**: El sistema debe permitir buscar empleados por diferentes criterios.
+* **RF14 - Registro de Vendedor**: El sistema debe permitir registrar nuevos empleados con sus datos.
+* **RF14 - Edición de Vendedor**: El sistema debe permitir modificar los datos de un empleado existente.
+* **RF16 - Eliminación de Vendedor**: El sistema debe permitir eliminar empleados registrados.
+* **RF17 - Busqueda de Vendedor**: El sistema debe permitir buscar empleados por diferentes criterios.
 
 #### Control de Pagos
 * **RF18 - Registro de Pago**: El sistema debe permitir el registro de abonos y/o pagos completos para una venta.
@@ -457,16 +457,16 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ## 4. Matrices de Trazabilidad
 ### Stakeholders vs Requerimientos
-|Stakeholders\Requerimientos|RF01 Registro de Cliente|RF02 Edicion de Cliente|RF03 Eliminacion de Cliente|RF04 Busqueda de Cliente|RF05 Registro de Producto|RF06 Edicion de Producto|RF07 Eliminacion de Producto|RF08 Busqueda de Producto|RF09 Registro de Salida de Inventario|RF10 Registro de Ingreso a Inventario|RF11 Modificacion de Stock en Inventario|RF12 Registro de Venta|RF13 Anulacion de Venta|RF14 Busqueda de Venta|RF15 Aplicacion de Descuento|RF16 Registro de Empleado|RF17 Edicion de Empleado|RF18 Eliminacion de Empleado|RF19 Busqueda de Empleado|RF20 Reportes de Empleados|RF21 Reportes de Clientes|RF22 Reporte de Pagos|RF23 Reporte de Ventas|RF24 Reportes de Bodega|RF25 Registro de Pagos|
-|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|Gerente General| | | | | | | | | | | | | | | | | | | |X|X|X|X|X| |
-|Ventas|X|X| |X| | | | | | | |X|X|X|X| | | | | | | | | | |
-|Bodega| | | | |X|X|X|X|X|X|X| | | | | | | | | | | | | | |
-|Finanzas| | | | | | | | | | | | | | | | | | | | | | | | |X|
-|Administracion| | |X|X| | | | | | | | | | | |X|X|X|X| | | | | | | |
+|Stakeholders\Requerimientos|RF01 Registro de Cliente|RF02 Edicion de Cliente|RF03 Eliminacion de Cliente|RF04 Busqueda de Cliente|RF05 Registro de Producto|RF06 Edicion de Producto|RF07 Eliminacion de Producto|RF08 Busqueda de Producto|RF09 Establecer de Salida de Inventario|RF10 Registro de Ingreso a Inventario|RF11 Registro de Venta|RF12 Anulacion de Venta|RF13 Busqueda de Venta|RF14 Registro de Vendedor|RF15 Edicion de Vendedor|RF16 Eliminacion de Vendedor|RF17 Busqueda de Vendedor|RF18 Registro de Pagos|
+|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+|Administrador|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|
+|Vendedor| | | | | | | | | | |X| | |X|X| | | |
+|Cliente|X|X| | | | | | | | |X| | | | | | |X|
+|Aduana| | | | | | | | |X| | | | | | | | | |
+|Proveedor| | | | | | | | |X| | | | | | | | | |
 
 ### Stakeholders vs CDU
-|Stakeholders\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Aplicar Descuento|CDU06 Modificar Cantidades en Inventario|CDU07 Anular Venta|CDU08 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Analizar Resultados de Clientes|CDU19 Analizar Resultados de Ventas|CDU20 Analizar Resultados de Empleados|CDU21 Analizar Resultados de Bodega|CDU22 Analizar Resultados de Pagos|CDU 23 Busqueda de Cliente|CDU24 Busqueda de Producto|CDU25 Busqueda de Empleado|
+|Stakeholders\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Anular Venta|CDU0 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Analizar Resultados de Clientes|CDU19 Analizar Resultados de Ventas|CDU20 Analizar Resultados de Empleados|CDU21 Analizar Resultados de Bodega|CDU22 Analizar Resultados de Pagos|CDU 23 Busqueda de Cliente|CDU24 Busqueda de Producto|CDU25 Busqueda de Empleado|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |Gerente General| | | | | | | | | | | | | | | | | |X|X|X|X|X| | | |
 |Ventas|X|X| |X|X| |X|X| | | | | | | | | | | | | | |X| | |
