@@ -466,13 +466,13 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |Proveedor| | | | | | | | |X| | | | | | | | | |
 
 ### Stakeholders vs CDU
-|Stakeholders\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Anular Venta|CDU0 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Analizar Resultados de Clientes|CDU19 Analizar Resultados de Ventas|CDU20 Analizar Resultados de Empleados|CDU21 Analizar Resultados de Bodega|CDU22 Analizar Resultados de Pagos|CDU 23 Busqueda de Cliente|CDU24 Busqueda de Producto|CDU25 Busqueda de Empleado|
-|--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
-|Gerente General| | | | | | | | | | | | | | | | | |X|X|X|X|X| | | |
-|Ventas|X|X| |X|X| |X|X| | | | | | | | | | | | | | |X| | |
-|Bodega| | | | | |X| | | | | | |X|X|X|X|X| | | | | | |X| |
-|Finanzas| | | | | | | |X|X| | | | | | | | | | | | | | | | |
-|Administracion| | |X| | | | | | |X|X|X| | | | | | | | | | |X| |X|
+|Stakeholders\CDU|CDU100 Gestionar Clientes|CDU200 Gestiona Ventas|CDU300 Gestionar Bodega|CDU400 Gestionar Vendedores|CDU500 Controlar Pagos| 
+|--|:--:|:--:|:--:|:--:|:--:|
+|Administrador|X|X|X|X|X|
+|Vendedor| |X| |X| |
+|Cliente|X|X| | |X|
+|Aduana| | |X| | |
+|Proveedor| | |X| | |
 
 ### Requerimientos vs CDU
 |Requerimientos\CDU|CDU01 Registrar Cliente|CDU02 Actualizar Informacion del Cliente|CDU03 Dar de Baja a Cliente|CDU04 Efectuar Venta|CDU05 Aplicar Descuento|CDU06 Modificar Cantidades en Inventario|CDU07 Anular Venta|CDU08 Encontrar Venta|CDU09 Realizar Pago|CDU10 Registrar Empleado|CDU11 Actualizar Información del Empleado|CDU12 Dar de Baja a Empleado|CDU13 Registrar Producto|CDU14 Actualizar Información del Producto|CDU15 Dar de Baja a Producto|CDU16 Registrar Ingreso a Bodega|CDU17 Registrar Salida de Bodega|CDU18 Analizar Resultados de Clientes|CDU19 Analizar Resultados de Ventas|CDU20 Analizar Resultados de Empleados|CDU21 Analizar Resultados de Bodega|CDU22 Analizar Resultados de Pagos|CDU 23 Busqueda de Cliente|CDU24 Busqueda de Producto|CDU25 Busqueda de Empleado|
