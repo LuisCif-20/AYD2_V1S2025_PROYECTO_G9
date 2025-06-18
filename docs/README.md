@@ -402,7 +402,8 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 * **RF06 - Edición de Producto**: El sistema debe permitir modificar los detalles de un producto existente.
 * **RF07 - Eliminación de Producto**: El sistema debe permitir eliminar productos del inventario.
 * **RF08 - Busqueda de Producto**: El sistema debe permitir buscar productos por diferentes criterios.
-* **RF09 - Registro de Salida de Inventario**: El sistema debe permitir registrar la salida de productos por ventas u otros motivos.
+* **RF09 - Establecer Fecha de Salida**: El sistema debe permitir registrar la salida de productos por ventas u otros motivos.
+* **RF10 - Registrar Ingreso a Inventario**: El sistema debe permitir registrar el ingreso de productos y modificar stock en inventario.
 
 #### Gestión de Ventas
 * **RF11 - Registro de Venta**: El sistema debe permitir registrar una nueva venta con los datos del cliente y productos vendidos.
