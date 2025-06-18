@@ -16,11 +16,11 @@
 IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, especializada en la adquisición y distribución de productos provenientes del extranjero para su comercialización en el mercado nacional. Su modelo de negocio se centra en gestionar de forma eficiente el proceso completo de importación, almacenamiento, venta y entrega de mercancías, trabajando directamente con clientes y vendedores en distintas regiones del país.
 
 ### Stakeholders
-* **Gerente general**: Recibe reportes clave, toma desiciones estrategicas para el negocio. 
-* **Ventas**: Registran ventas dentro del sistema, consultan comisiones y gestiona clientes.
-* **Bodega**: Registran ingresos y egresos de bodega, gestionan inventario y productos.
-* **Finanzas**: Se encarga de controlar los pagos (completos o abonados) de las ventas realizadas.
-* **Administracion**: Gestion de vendedores, empleados y comisiones.
+* **Administrador**: Gestiona todos los procesos internos de IMPORCOMGUA. (Registrar, Actualizar, Dar de Baja)
+* **Vendedor**: Provee informacion sobre si mismo y las ventas a favor de IMPORCOMGUA.
+* **Cliente**: Provee informacion de si mismo para IMPORCOMGUA.
+* **Aduana**: Se encarga de controlar que los tramites aduaneros esten en orden.
+* **Proveedor**: Se encarga de proveer de productos a IMPORCOMGUA.
 
 ### Diagrama CDU de Alto Nivel
 ![CDU_alto_nivel](./assets/cdu/CDU-ALTO-NIVEL.png)
@@ -32,7 +32,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 ### Diagramas
 ![CDU_expandido-gestion_clientes](./assets/cdu/CDU-GESTION-CLIENTES.png)
 
-![CDU_expandido-gestion_empleados](./assets/cdu/CDU-GESTION-EMPLEADOS.png)
+![CDU_expandido-gestion_vendedores](./assets/cdu/CDU-GESTION-VENDEDORES.png)
 
 ![CDU_expandido-gestion_ventas](./assets/cdu/CDU-GESTION-VENTAS.png)
 
@@ -40,36 +40,12 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ![CDU_expandido-control_pagos](./assets/cdu/CDU-CONTROL-PAGOS.png)
 
-![CDU_expandido-toma_desiciones](./assets/cdu/CDU-TOMA-DESICIONES.png)
-
 ### Listado
-- **CDU01 - Registrar Cliente**
-- **CDU02 - Actualizar Información del Cliente** 
-- **CDU03 - Dar de Baja a Cliente**
-- **CDU04 - Efectuar Venta**
-- **CDU05 - Aplicar Descuento**
-- **CDU06 - Modificar Cantidades en Inventario**
-- **CDU07 - Anular Venta**
-- **CDU08 - Encontrar Venta**
-- **CDU09 - Realizar Pago**
-- **CDU10 - Registrar Empleado**
-- **CDU11 - Actualizar Información del Empleado**
-- **CDU12 - Dar de Baja a Empleado** 
-- **CDU13 - Registrar Producto**  
-- **CDU14 - Actualizar Información del Producto**
-- **CDU15 - Dar de Baja a Producto**
-- **CDU16 - Registrar Ingreso a Bodega**
-- **CDU17 - Registrar Salida de Bodega**
-- **CDU18 - Analizar Resultados de Clientes**
-- **CDU19 - Analizar Resultados de Ventas**
-- **CDU20 - Analizar Resultados de Empleados**
-- **CDU21 - Analizar Resultados de Bodega**
-- **CDU22 - Analizar Resultados de Pagos**
-- **CDU23 - Búsqueda de Cliente**
-- **CDU24 - Búsqueda de Producto**
-- **CDU25 - Búsqueda de Empleado**
-
-
+- **CDU100 - Gestionar Clientes**
+- **CDU200 - Gestionar Ventas** 
+- **CDU300 - Gestionar Bodega**
+- **CDU400 - Gestionar Vendedores**
+- **CDU500 - Controlar Pagos**
 
 ### Descripciones
 
@@ -427,72 +403,56 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 * **RF07 - Eliminación de Producto**: El sistema debe permitir eliminar productos del inventario.
 * **RF08 - Busqueda de Producto**: El sistema debe permitir buscar productos por diferentes criterios.
 * **RF09 - Registro de Salida de Inventario**: El sistema debe permitir registrar la salida de productos por ventas u otros motivos.
-* **RF10 - Registro de Ingreso a Inventario**: El sistema debe permitir registrar el ingreso de productos al inventario.
-* **RF11 - Modificacion de Stock en Inventario**: El sistema debe permitir realizar ajustes manuales al inventario registrado.
 
 #### Gestión de Ventas
-* **RF12 - Registro de Venta**: El sistema debe permitir registrar una nueva venta con los datos del cliente y productos vendidos.
-* **RF13 - Anulación de Venta**: El sistema debe permitir anular ventas realizadas anteriormente.
-* **RF14 - Busqueda de Ventas**: El sistema debe permitir buscar ventas realizadas por diferentes parámetros.
-* **RF15 - Aplicación de Descuento**: El sistema debe permitir aplicar descuentos en las ventas según condiciones definidas.
+* **RF11 - Registro de Venta**: El sistema debe permitir registrar una nueva venta con los datos del cliente y productos vendidos.
+* **RF12 - Anulación de Venta**: El sistema debe permitir anular ventas realizadas anteriormente.
+* **RF13 - Busqueda de Ventas**: El sistema debe permitir buscar ventas realizadas por diferentes parámetros.
 
 #### Gestión de Empleados
-* **RF16 - Registro de Empleado**: El sistema debe permitir registrar nuevos empleados con sus datos.
-* **RF17 - Edición de Empleado**: El sistema debe permitir modificar los datos de un empleado existente.
-* **RF18 - Eliminación de Empleado**: El sistema debe permitir eliminar empleados registrados.
-* **RF19 - Busqueda de Empleado**: El sistema debe permitir buscar empleados por diferentes criterios.
-
-#### Generación de Reportes
-* **RF20 - Reportes de Empleados**: El sistema debe permitir la generacion de reportes estrategicos sobre empleados.
-* **RF21 - Reportes de Clientes**: El sistema debe permitir la generacion de reportes estrategicos sobre clientes.
-* **RF22 - Reportes de Pagos**: El sistema debe permitir la generacion de reportes estrategicos relacionado a los pagos.
-* **RF23 - Reportes de Ventas**: El sistema debe permitir la generacion de reportes estrategicos sobre ventas.
-* **RF24 - Reportes de Bodega**: El sistema debe permitir la generacion de reportes estrategicos relacionados con bodega.
+* **RF14 - Registro de Empleado**: El sistema debe permitir registrar nuevos empleados con sus datos.
+* **RF14 - Edición de Empleado**: El sistema debe permitir modificar los datos de un empleado existente.
+* **RF16 - Eliminación de Empleado**: El sistema debe permitir eliminar empleados registrados.
+* **RF17 - Busqueda de Empleado**: El sistema debe permitir buscar empleados por diferentes criterios.
 
 #### Control de Pagos
-* **RF25 - Registro de Pago**: El sistema debe permitir el registro de abonos y/o pagos completos para una venta.
+* **RF18 - Registro de Pago**: El sistema debe permitir el registro de abonos y/o pagos completos para una venta.
 
 ### Requisitos No Funcionales (RNF)
 
-#### Seguridad
-- **RNF01 - Autenticación**: El sistema requiere autenticación para acceder a funcionalidades de administración como la gestión de clientes, productos, ventas e inventario.
-- **RNF02 - Seguridad en Contraseñas**: Las contraseñas de los usuarios se almacenarán cifradas utilizando el algoritmo AES.
-- **RNF03 - Duración de Sesiones**: Las sesiones de usuario tendrán una duración máxima de 24 horas, después de lo cual se cerrarán automáticamente.
-- **RNF04 - Autorización**: Solo los usuarios autenticados y autorizados podrán registrar ventas, cobros, salidas de bodega o realizar pagos.
-
 #### Eficiencia
-- **RNF05 - Operaciones Rapidas**: Las operaciones críticas como registro de ventas, pagos y búsquedas de envíos deberán completarse en menos de 3 segundos.
-- **RNF06 - Soporte a Varias Transacciones**: El sistema debe soportar al menos 10,000 transacciones simultáneas sin degradar el rendimiento, especialmente en los módulos de inventario y ventas.
+- **RNF01 - Operaciones Rapidas**: Las operaciones críticas como registro de ventas, pagos y búsquedas de envíos deberán completarse en menos de 3 segundos.
+- **RNF02 - Soporte a Varias Transacciones**: El sistema debe soportar al menos 10,000 transacciones simultáneas sin degradar el rendimiento, especialmente en los módulos de inventario y ventas.
 
 #### Usabilidad
-- **RNF07 - UI para Escritorio**: La interfaz adaptarse correctamente a dispositivos de escritorios.
-- **RNF08 - UI Especifica por Rol**: Las opciones del menú deben estar claramente categorizadas y organizadas según los roles de usuario (administrador, supervisor, vendedor).
-- **RNF09 - UI Intuitiva**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
+- **RNF03 - UI para Escritorio**: La interfaz adaptarse correctamente a dispositivos de escritorios.
+- **RNF04 - UI Especifica por Rol**: Las opciones del menú deben estar claramente categorizadas y organizadas según los roles de usuario (administrador, supervisor, vendedor).
+- **RNF05 - UI Intuitiva**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
 
 #### Disponibilidad
-- **RNF10 - Alta Disponibilidad**: El sistema deberá garantizar una disponibilidad del 99.99% anual.
-- **RNF11 - CI/CD**: La implementación de nuevas funcionalidades no debe requerir la interrupción del servicio activo para los usuarios.
+- **RNF06 - Alta Disponibilidad**: El sistema deberá garantizar una disponibilidad del 99.99% anual.
+- **RNF07 - CI/CD**: La implementación de nuevas funcionalidades no debe requerir la interrupción del servicio activo para los usuarios.
 
 #### Escalabilidad
-- **RNF12 - Arquitectura Escalable**: La arquitectura del sistema debe ser modular y permitir la integración de nuevos módulos sin afectar el rendimiento existente.
+- **RNF08 - Arquitectura Escalable**: La arquitectura del sistema debe ser modular y permitir la integración de nuevos módulos sin afectar el rendimiento existente.
 
 #### Mantenibilidad
-- **RNF13 - Clara Documentación**: El código fuente deberá documentarse adecuadamente, siguiendo estándares de nomenclatura y comentarios estructurados.
+- **RNF09 - Clara Documentación**: El código fuente deberá documentarse adecuadamente, siguiendo estándares de nomenclatura y comentarios estructurados.
 
 ### Requisitos de Restricción (Drivers de Restricción)
 
 #### Técnicos
-- **RNF14 - Portabilidad de la Aplicación**: El sistema debe poder ejecutarse en distintos navegadores web modernos (Chrome, Firefox, Edge).
-- **RNF15 - Entorno de Despliegue**: La solución debe estar preparada para ser desplegada en ambientes Linux.
-- **RNF16 - Base de datos**: La base de datos debe ser relacional y compatible con SQL estándar.
+- **RNF10 - Portabilidad de la Aplicación**: El sistema debe poder ejecutarse en distintos navegadores web modernos (Chrome, Firefox, Edge).
+- **RNF11 - Entorno de Despliegue**: La solución debe estar preparada para ser desplegada en cualquier entorno..
 
 #### Operacionales
-- **RNF17 - Ventas**: Los procesos de venta deben permitir pagos parciales, y manejar correctamente los saldos pendientes.
-- **RNF18 - Eliminación de registros**: No se permite eliminación física de registros por normativas del negocio. Solo debe aplicarse baja lógica o estado "inactivo".
+- **RNF12 - Ventas**: Los procesos de venta deben permitir pagos parciales, y manejar correctamente los saldos pendientes.
+- **RNF13 - Eliminación de registros**: No se permite eliminación física de registros por normativas del negocio. Solo debe aplicarse baja lógica o estado "inactivo".
+- **RNF14 - Modificacion en Stock**: Los procesos involucrados con el stock de productos en el inventario, deben de ser seguros y correctos, manteniendo uniformidad entre los ingresos y ventas.
 
 #### Gestión de proyecto
-- **RNF19 - Desarrollo del sistema**: El sistema debe desarrollarse en 3 fases durante un mes, según cronograma aprobado.
-- **RNF20 - Metodología**: Se debe usar metodología ágil con tablero Kanban.
+- **RNF15 - Desarrollo del sistema**: El sistema debe desarrollarse en 3 fases durante un mes, según cronograma aprobado.
+- **RNF16 - Metodología**: Se debe usar metodología ágil con tablero Kanban.
 
 ## 4. Matrices de Trazabilidad
 ### Stakeholders vs Requerimientos
@@ -603,7 +563,14 @@ Se eligió porque permite una organización modular por funcionalidades, lo cual
 ![BLOCKS_DIAGRAM_IMPORCOMGUA](./assets/architecture/blocks-diagram-IMPORCOMGUA-mod1.png)
 
 ## 7. Diagrama de despliegue
-![DEPLOYMENT_DIAGRAM_IMPERCOMGUA](./assets/architecture/DESPLIEGUE-IMPERCOMGUA.jpeg)
+
+![diagrama-despliegue](./assets/architecture/DIAGRAMA-DESPLIEGUE.png)
+
+### 7.1 Diagrama de Componentes
+![diagrama-componentes](./assets/architecture/DIAGRAMA-COMPONENTES.png)
+
+### 7.2 Diagrama de Distribucion
+![diagrama-distribucion](./assets/architecture/DIAGRAMA-DISTRIBUCION.png)
 
 ### Justificacion de Frameworks y tecnologias
 Para el desarrollo del backend se ha optado por el framework Spring Boot sobre el lenguaje de programación Java, debido a sus ventajas en la construcción de aplicaciones empresariales robustas y escalables.
