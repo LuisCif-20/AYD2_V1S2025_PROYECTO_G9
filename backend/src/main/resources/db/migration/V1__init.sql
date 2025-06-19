@@ -69,7 +69,11 @@ CREATE TABLE sale (
     
     payment_status VARCHAR(10) NOT NULL DEFAULT 'PENDIENTE'
         CHECK (payment_status IN ('PAGADO', 'PARCIAL', 'PENDIENTE')),
+    
+    sale_status VARCHAR(10) NOT NULL DEFAULT 'VIGENTE'
+        CHECK (sale_status IN ('VIGENTE', 'ANULADA')),
     payment_date DATE,
+    notes TEXT,
 
     FOREIGN KEY (client_id) REFERENCES client(id),
     FOREIGN KEY (salesman_code) REFERENCES salesman(code)
@@ -83,9 +87,6 @@ CREATE TABLE sale_detail (
     unit_quantity INT NOT NULL CHECK (unit_quantity >= 0),
     price_per_presentation DECIMAL(10,2) NOT NULL CHECK (price_per_presentation >= 0),
     subtotal DECIMAL(10,2) NOT NULL CHECK (subtotal >= 0),
-    notes TEXT,
-    sale_status VARCHAR(10) NOT NULL DEFAULT 'VIGENTE'
-        CHECK (sale_status IN ('VIGENTE', 'ANULADA')),
 
     FOREIGN KEY (sale_id) REFERENCES sale(id) ON DELETE CASCADE,
     FOREIGN KEY (product_code) REFERENCES product(code)
