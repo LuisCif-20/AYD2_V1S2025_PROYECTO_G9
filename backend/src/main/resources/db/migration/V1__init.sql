@@ -72,7 +72,7 @@ CREATE TABLE sale (
     payment_date DATE,
 
     FOREIGN KEY (client_id) REFERENCES client(id),
-    FOREIGN KEY (salesman_code) REFERENCES salesman(vendor_code)
+    FOREIGN KEY (salesman_code) REFERENCES salesman(code)
 );
 
 CREATE TABLE sale_detail (
@@ -88,7 +88,7 @@ CREATE TABLE sale_detail (
         CHECK (sale_status IN ('VIGENTE', 'ANULADA')),
 
     FOREIGN KEY (sale_id) REFERENCES sale(id) ON DELETE CASCADE,
-    FOREIGN KEY (product_code) REFERENCES product(product_code)
+    FOREIGN KEY (product_code) REFERENCES product(code)
 );
 
 CREATE TABLE inventory (
@@ -98,7 +98,7 @@ CREATE TABLE inventory (
     available_quantity INT NOT NULL CHECK (available_quantity >= 0),
     reserved_quantity INT NOT NULL CHECK (reserved_quantity >= 0),
 
-    FOREIGN KEY (product_code) REFERENCES product(product_code)
+    FOREIGN KEY (product_code) REFERENCES product(code)
 );
 
 CREATE TABLE payment (
@@ -127,5 +127,5 @@ CREATE TABLE product_warehouse_entry (
     rectified_duca_date DATE,
     notes TEXT,
 
-    FOREIGN KEY (product_code) REFERENCES product(product_code)
+    FOREIGN KEY (product_code) REFERENCES product(code)
 );
