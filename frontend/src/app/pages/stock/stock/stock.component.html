@@ -1,0 +1,32 @@
+<p-table #dt [value]="stockProductos" dataKey="codigo" [paginator]="true" [rows]="10"
+         [rowsPerPageOptions]="[10,20,50]" [globalFilterFields]="['codigo','nombre']"
+         [resizableColumns]="true" [scrollable]="true" scrollHeight="500px">
+    <ng-template pTemplate="caption">
+        <div class="flex justify-between items-center">
+            <span class="text-xl font-semibold">Inventario de Productos</span>
+            <span class="p-input-icon-left">
+                <input type="text"
+                       pInputText
+                       placeholder="Buscar producto..."
+                       (input)="onGlobalFilter($event)" />
+            </span>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+    <tr>
+        <th *ngFor="let col of cols" [pSortableColumn]="col.field">
+            {{ col.header }}
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+    </tr>
+</ng-template>
+
+    <ng-template pTemplate="body" let-prod>
+        <tr>
+            <td *ngFor="let col of cols">
+                {{ prod[col.field] }}
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
