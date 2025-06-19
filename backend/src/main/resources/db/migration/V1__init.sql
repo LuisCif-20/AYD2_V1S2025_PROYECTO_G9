@@ -49,16 +49,16 @@ CREATE TABLE product (
 );
 
 CREATE TABLE bank (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     name VARCHAR(50) NOT NULL UNIQUE
 );
 
 CREATE TABLE sale (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     sale_date DATE NOT NULL DEFAULT CURRENT_DATE,
     warehouse_exit_date DATE,
     client_id INT NOT NULL,
-    shipment_number UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(), -- POSSIBLY VARCHAR(10)
+    shipment_number UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
     payment_type VARCHAR(7) NOT NULL CHECK (payment_type IN ('Contado', 'Crédito')),
     credit_days INT NOT NULL CHECK (credit_days >= 0),
     salesman_code UUID NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE sale (
 
 CREATE TABLE sale_detail (
     id SERIAL PRIMARY KEY,
-    sale_id INT NOT NULL,
+    sale_id UUID NOT NULL,
     product_code CHAR(8) NOT NULL,
     quantity INT NOT NULL DEFAULT 1 CHECK (quantity > 0),
     unit_quantity INT NOT NULL CHECK (unit_quantity >= 0),
@@ -92,7 +92,7 @@ CREATE TABLE sale_detail (
 );
 
 CREATE TABLE inventory (
-    product_code CHAR(9) PRIMARY KEY,
+    product_code CHAR(8) PRIMARY KEY,
     last_updated DATE NOT NULL DEFAULT CURRENT_DATE,
     total_quantity INT NOT NULL CHECK (total_quantity >= 0),
     available_quantity INT NOT NULL CHECK (available_quantity >= 0),
@@ -104,8 +104,8 @@ CREATE TABLE inventory (
 CREATE TABLE payment (
     receipt_number UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     payment_date DATE NOT NULL DEFAULT CURRENT_DATE,
-    sale_id INT NOT NULL,
-    bank_id INT NOT NULL,
+    sale_id UUID NOT NULL,
+    bank_id UUID NOT NULL,
     account_number VARCHAR(15) NOT NULL,
     transaction_number VARCHAR(15) NOT NULL,
     amount DECIMAL(10,2) NOT NULL CHECK (amount > 0),
@@ -115,7 +115,7 @@ CREATE TABLE payment (
 );
 
 CREATE TABLE product_warehouse_entry (
-    id SERIAL PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     entry_date DATE NOT NULL DEFAULT CURRENT_DATE,
     product_code CHAR(8) NOT NULL,
     quantity_presentation INT NOT NULL CHECK (quantity_presentation > 0),
