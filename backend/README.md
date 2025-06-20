@@ -22,6 +22,8 @@ Copia el archivo `.env.example` y renómbralo como `.env`. Luego edita sus valor
 ```bash
 cp .env.example .env
 ```
+Utiliza las variables para el proyecto las cuales estan en el siguiente [documento de google](https://docs.google.com/document/d/1Uaa0Ij9dkQ2dBta8Z6N8YTGLyxgoy7ZZ2MWxmEoQbMY/edit?usp=sharing)
+> Si no te deja entrar pidele permiso al encargado del backend
 ### 📝 Variables de entorno por defecto
 Si no se crea el archivo `.env`, la aplicación usará los siguientes valores por defecto:
 
