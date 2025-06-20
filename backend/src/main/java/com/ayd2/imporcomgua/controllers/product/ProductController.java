@@ -1,21 +1,20 @@
 package com.ayd2.imporcomgua.controllers.product;
 
 import com.ayd2.imporcomgua.dto.products.*;
-import com.ayd2.imporcomgua.dto.generic.PagedResponseDTO;
 import com.ayd2.imporcomgua.exceptions.*;
 import com.ayd2.imporcomgua.services.products.ProductService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/v1.0/products")
 @RequiredArgsConstructor
 public class ProductController {
 
@@ -44,8 +43,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public ResponseEntity<PagedResponseDTO<ProductResponseDTO>> getAllProducts(@PageableDefault Pageable pageable) {
-        return ResponseEntity.ok(productService.getAllProducts(pageable));
+    public List<ProductResponseDTO> getAllProducts() {
+        return productService.getAllProducts();
     }
 
     @DeleteMapping("/{code}")
