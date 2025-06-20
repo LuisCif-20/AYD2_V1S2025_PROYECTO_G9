@@ -6,13 +6,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PostPersist;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -28,31 +28,31 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "code", length = 10, nullable = false, unique = true)
+    @Column(length = 10, unique = true)
     private String code;
 
     @Size(max = 100)
-    @Column(name = "contact_name", nullable = false)
+    @Column(nullable = false)
     private String contactName;
 
     @Size(max = 100)
-    @Column(name = "business_name")
+    @Column
     private String businessName;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "municipality_code", nullable = false)
+    @ManyToOne
+    @JoinColumn(nullable = false)
     private Municipality municipality;
 
     @Size(max = 255)
-    @Column(name = "address")
+    @Column
     private String address;
 
     @Size(min = 9, max = 9)
-    @Column(name = "nit", length = 9)
+    @Column(length = 9)
     private String nit;
 
     @Size(max = 100)
-    @Column(name = "warehouse_manager")
+    @Column
     private String warehouseManager;
 
     @Size(min = 9, max = 9)
@@ -60,11 +60,21 @@ public class Client {
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "sale_type", length = 7, nullable = false)
+    @Column(length = 7, nullable = false)
     private SaleType saleType;
 
     @Lob
-    @Column(name = "notes")
+    @Column
     private String notes;
+
+    @Column(nullable = false)
+    private boolean isActive = true;
+
+    @PostPersist
+    public void generateCode() {
+        if (this.municipality != null && this.municipality.getDepartment() != null) {
+            this.code = this.municipality.getDepartment().getCode() + this.id;
+        }
+    }
     
 }

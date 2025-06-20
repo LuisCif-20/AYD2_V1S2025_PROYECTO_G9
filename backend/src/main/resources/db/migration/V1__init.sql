@@ -12,7 +12,7 @@ CREATE TABLE municipality (
 
 CREATE TABLE client (
     id SERIAL PRIMARY KEY,
-    code VARCHAR(10) NOT NULL,
+    code VARCHAR(10),
     contact_name VARCHAR(100) NOT NULL,
     business_name VARCHAR(100),
     municipality_code CHAR(4) NOT NULL,
@@ -20,8 +20,9 @@ CREATE TABLE client (
     nit CHAR(9),
     warehouse_manager VARCHAR(100),
     phone CHAR(9),
-    sale_type VARCHAR(7) NOT NULL CHECK (sale_type IN ('Crédito', 'Contado', 'Ambas')),
+    sale_type VARCHAR(7) NOT NULL CHECK (sale_type IN ('CREDITO', 'CONTADO', 'AMBAS')),
     notes TEXT,
+    is_active BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (municipality_code) REFERENCES municipality(code)
 );
 
@@ -31,7 +32,8 @@ CREATE TABLE salesman (
     last_name VARCHAR(100) NOT NULL,
     phone CHAR(9),
     address VARCHAR(255),
-    commission_percent DECIMAL(3,2) NOT NULL
+    commission_percent DECIMAL(3,2) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE presentation (
@@ -45,6 +47,7 @@ CREATE TABLE product (
     presentation_id INT NOT NULL,
     units_per_presentation INT NOT NULL,
     price_per_presentation DECIMAL(10,2) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (presentation_id) REFERENCES presentation(id)
 );
 
@@ -59,7 +62,7 @@ CREATE TABLE sale (
     warehouse_exit_date DATE,
     client_id INT NOT NULL,
     shipment_number UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
-    payment_type VARCHAR(7) NOT NULL CHECK (payment_type IN ('Contado', 'Crédito')),
+    payment_type VARCHAR(7) NOT NULL CHECK (payment_type IN ('CONTADO', 'CREDITO')),
     credit_days INT NOT NULL CHECK (credit_days >= 0),
     salesman_code UUID NOT NULL,
     dte_invoice_number INT,

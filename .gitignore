@@ -1,2 +1,22 @@
 .vscode/
 .idea/
+
+# Node modules
+frontend/node_modules/
+
+# Angular/Vite cache and build outputs
+frontend/.angular/
+frontend/dist/
+frontend/.cache/
+frontend/coverage/
+frontend/package-lock.json
+
+# Env files
+frontend/.env
+
+# Logs
+*.log
+
+
+
+
