@@ -2,6 +2,7 @@ package com.ayd2.imporcomgua.controllers.sale;
 
 import com.ayd2.imporcomgua.dto.sales.NewSaleRequestDTO;
 import com.ayd2.imporcomgua.dto.sales.SaleResponseDTO;
+import com.ayd2.imporcomgua.dto.sales.SaleSearchRequestDTO;
 import com.ayd2.imporcomgua.exceptions.DuplicatedEntityException;
 import com.ayd2.imporcomgua.exceptions.InvalidPaymentTypeException;
 import com.ayd2.imporcomgua.exceptions.NoStockException;
@@ -37,8 +38,8 @@ public class SaleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SaleResponseDTO>> getAllSales() {
-        return ResponseEntity.ok(saleService.getAllSales());
+    public ResponseEntity<List<SaleResponseDTO>> getAllSales(@Valid SaleSearchRequestDTO saleSearchRequestDTO) {
+        return ResponseEntity.ok(saleService.getAllSales(saleSearchRequestDTO));
     }
 
     @DeleteMapping("/{id}")

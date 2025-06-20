@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ayd2.imporcomgua.dto.sales.NewSaleDetailRequestDTO;
 import com.ayd2.imporcomgua.dto.sales.NewSaleRequestDTO;
 import com.ayd2.imporcomgua.dto.sales.SaleResponseDTO;
+import com.ayd2.imporcomgua.dto.sales.SaleSearchRequestDTO;
 import com.ayd2.imporcomgua.exceptions.InvalidPaymentTypeException;
 import com.ayd2.imporcomgua.exceptions.NoStockException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
@@ -31,6 +33,7 @@ import com.ayd2.imporcomgua.repositories.product.ProductRepository;
 import com.ayd2.imporcomgua.repositories.sale.SaleRepository;
 import com.ayd2.imporcomgua.repositories.salesman.SalesmanRepository;
 import com.ayd2.imporcomgua.repositories.warehouse.InventoryRepository;
+import com.ayd2.imporcomgua.specifications.sale.SaleSpecs;
 
 import lombok.RequiredArgsConstructor;
 
@@ -48,20 +51,52 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleResponseDTO getSale(UUID id) throws NotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSale'");
+        Sale sale = saleRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Venta no encontrada con ID: " + id));
+        return saleMapper.toSaleResponseDTO(sale);
     }
 
     @Override
-    public List<SaleResponseDTO> getAllSales() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getAllSales'");
+    public List<SaleResponseDTO> getAllSales(SaleSearchRequestDTO saleSearchRequestDTO) {
+        Specification<Sale> spec = Specification.anyOf(
+                SaleSpecs.hasShipmentNumber(saleSearchRequestDTO.shipmentNumber()),
+                SaleSpecs.clientContactNameContains(saleSearchRequestDTO.clientName()),
+                SaleSpecs.clientBusinessNameContains(saleSearchRequestDTO.clientName())).and(
+                        SaleSpecs.hasSaleStatus(saleSearchRequestDTO.status()));
+
+        List<Sale> sales = saleRepository.findAll(spec);
+        return sales.stream()
+                .map(saleMapper::toSaleResponseDTO)
+                .toList();
     }
 
     @Override
     public void deleteSale(UUID id) throws NotFoundException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'deleteSale'");
+        // 1. Obtener la venta con sus detalles
+        Sale sale = saleRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Venta no encontrada con ID: " + id));
+
+        // 2. Validar que no esté ya anulada
+        if (sale.getSaleStatus() == SaleStatus.ANULADA) {
+            throw new IllegalStateException("La venta ya está anulada");
+        }
+
+        // 3. Revertir el inventario para cada detalle
+        for (SaleDetail detail : sale.getDetails()) {
+            Inventory inventory = inventoryRepository.findByProduct(detail.getProduct())
+                    .orElseThrow(() -> new NotFoundException(
+                            "Inventario no encontrado para producto: " + detail.getProduct().getCode()));
+
+            // Revertir: quitar de reservado y sumar a disponible
+            inventory.setReservedQuantity(inventory.getReservedQuantity() - detail.getQuantity());
+            inventory.setAvailableQuantity(inventory.getAvailableQuantity() + detail.getQuantity());
+
+            inventoryRepository.save(inventory);
+        }
+
+        // 4. Marcar la venta como anulada
+        sale.setSaleStatus(SaleStatus.ANULADA);
+        saleRepository.save(sale);
     }
 
     @Override
