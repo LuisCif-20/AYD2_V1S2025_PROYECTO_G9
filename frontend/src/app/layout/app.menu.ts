@@ -43,7 +43,7 @@ export class AppMenu {
                     {
                         label: 'Productos',
                         icon: 'pi pi-fw pi-list-check',
-                        routerLink: ['/pages/crud']
+                        routerLink: ['/pages/products']
                     },
                     {
                         label: 'Inventario',
