@@ -1,0 +1,96 @@
+<p-toolbar styleClass="mb-6">
+    <ng-template #start>
+        <p-button (onClick)="formVendedor.mostrarFormulario()" 
+        class="mr-2" icon="pi pi-plus" label="Registrar nuevo Vendedor" 
+        severity="secondary"/>
+        
+    </ng-template>
+
+    
+</p-toolbar>
+<app-form-vendor #formVendedor></app-form-vendor>
+
+<p-table
+    #dt
+    [(selection)]="selectedProducts"
+    [columns]="cols"
+    [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
+    [paginator]="true"
+    [rowHover]="true"
+    [rowsPerPageOptions]="[10, 20, 30]"
+    [rows]="10"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '75rem' }"
+    [value]="products()"
+    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
+    dataKey="id"
+>
+    <ng-template #caption>
+        <div class="flex items-center justify-between">
+            <h5 class="m-0">Lista de Vendedores</h5>
+            <p-iconfield>
+                <p-inputicon styleClass="pi pi-search"/>
+                <input (input)="onGlobalFilter(dt, $event)" pInputText placeholder="Search..." type="text"/>
+            </p-iconfield>
+        </div>
+    </ng-template>
+    <ng-template #header>
+        <tr>
+            <!-- <th style="width: 3rem">
+                <p-tableHeaderCheckbox/>
+            </th> -->
+            <th style="min-width: 16rem">Código</th>
+            <th pSortableColumn="name" style="min-width:16rem">
+                Nombre
+                <p-sortIcon field="name"/>
+            </th>
+            <th pSortableColumn="name" style="min-width:16rem">
+                Apellidos
+                <p-sortIcon field="name"/>
+            </th>
+            <th pSortableColumn="price" style="min-width: 8rem">
+                Porcentaje de comisión
+                <p-sortIcon field="price"/>
+            </th>
+            <th pSortableColumn="category" style="min-width:10rem">
+                Telefono
+                <p-sortIcon field="category"/>
+            </th>
+            <th pSortableColumn="inventoryStatus" style="min-width: 12rem">
+                Dirección
+                <p-sortIcon field="inventoryStatus"/>
+            </th>
+            <th pSortableColumn="inventoryStatus" style="min-width: 12rem">
+                Rol
+                <p-sortIcon field="inventoryStatus"/>
+            </th>
+            <th style="min-width: 12rem"></th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-product>
+        <tr>
+            <!-- <td style="width: 3rem">
+                <p-tableCheckbox [value]="product"/>
+            </td> -->
+            <td style="min-width: 6rem">{{ product.code }}</td>
+            <td style="min-width: 10rem">{{ product.name }}</td>
+            <td style="max-width: 3rem">{{ product.category }}</td>
+            <td style="width: 3rem">{{ product.price | currency: 'USD' }}</td>
+            <td>{{ product.price | currency: 'USD' }}</td>
+            <td>
+                <p-rating [(ngModel)]="product.rating" [readonly]="true"/>
+            </td>
+            <td>
+                <p-tag [severity]="getSeverity(product.inventoryStatus)" [value]="product.inventoryStatus"/>
+            </td>
+            <td>
+                <p-button (click)="editProduct(product)" [outlined]="true" [rounded]="true" class="mr-2"
+                          icon="pi pi-pencil"/>
+                <p-button (click)="deleteProduct(product)" [outlined]="true" [rounded]="true" icon="pi pi-trash"
+                          severity="danger"/>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<p-confirmdialog [style]="{ width: '450px' }"/>
