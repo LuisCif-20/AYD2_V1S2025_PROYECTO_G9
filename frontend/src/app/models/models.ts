@@ -122,3 +122,26 @@ export interface ProductEntryForm {
   notes?: string;
 }
 
+export interface StockProducto {
+  id: number;
+  product: {
+    code: string;
+    name: string;
+    presentation: {
+      id: number;
+      name: string;
+    };
+    unitsPerPresentation: number;
+    pricePerPresentation: number;
+    isActive: boolean;
+  };
+  lastUpdated: string;
+  totalQuantity: number;
+  availableQuantity: number;
+  reservedQuantity: number;
+}
+
+export interface Column {
+  field: string;
+  header: string;
+}
