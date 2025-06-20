@@ -57,7 +57,7 @@ public class SalesmanController {
             @RequestBody @Valid UpdateSalesmanRequestDTO updateSalesmanRequestDTO)
             throws NotFoundException {
         final SalesmanResponseDTO salesmanResponseDTO = salesmanService.updateSalesmanResponseDTO(id, updateSalesmanRequestDTO);
-        return ResponseEntity.status(HttpStatus.CREATED).body(salesmanResponseDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(salesmanResponseDTO);
     }
 
     @DeleteMapping("/id")
