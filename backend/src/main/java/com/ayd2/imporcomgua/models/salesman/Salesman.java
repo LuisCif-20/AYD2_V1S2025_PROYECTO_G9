@@ -33,5 +33,5 @@ public class Salesman {
     private Double commissionPercent;
 
     @Column
-    private Boolean isActive;
+    private Boolean isActive = true;
 }
