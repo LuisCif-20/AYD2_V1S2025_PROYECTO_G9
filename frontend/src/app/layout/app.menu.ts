@@ -48,7 +48,7 @@ export class AppMenu {
                     {
                         label: 'Inventario',
                         icon: 'pi pi-fw pi-warehouse',
-                        routerLink: ['/pages/crud']
+                        routerLink: ['/pages/entrada-inventario']
                     },
                     {
                         label: 'Ventas',
