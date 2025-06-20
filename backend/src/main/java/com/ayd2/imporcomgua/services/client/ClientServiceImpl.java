@@ -38,7 +38,9 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public List<ClientResponseDTO> getAllClients(ClientSearchRequestDTO clientSearchRequestDTO) {
-        Specification<Client> spec = ClientSpecs.hasCode(null);
+        Specification<Client> spec = Specification
+                .anyOf(ClientSpecs.hasCode(null), ClientSpecs.nameContains(clientSearchRequestDTO.name()))
+                .and(ClientSpecs.isActive(clientSearchRequestDTO.active()));
         final List<ClientResponseDTO> clients = clientRepository.findAll(spec)
                 .stream()
                 .map(clientMapper::toClientResponseDTO)
@@ -49,7 +51,7 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public ClientResponseDTO createClient(NewClientRequestDTO newClientRequestDTO) throws NotFoundException {
         final String municipalityCode = newClientRequestDTO.municipalityCode();
-        final Municipality municipality = municipalityRepository.findByCode(municipalityCode)
+        final Municipality municipality = municipalityRepository.findById(municipalityCode)
                 .orElseThrow(() -> new NotFoundException("No existe el municipio con el codigo: " + municipalityCode));
         final Client client = clientMapper.toClient(newClientRequestDTO);
         client.setMunicipality(municipality);
@@ -71,7 +73,7 @@ public class ClientServiceImpl implements ClientService {
     public void deleteClient(Long id) throws NotFoundException {
         final Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("No existe el cliente con el id: " + id.toString()));
-        client.setActive(false);
+        client.setIsActive(false);
         clientRepository.save(client);
     }
 
