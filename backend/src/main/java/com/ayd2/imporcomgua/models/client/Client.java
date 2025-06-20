@@ -10,7 +10,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PostPersist;
 import jakarta.validation.constraints.Size;
@@ -63,7 +62,6 @@ public class Client {
     @Column(length = 7, nullable = false)
     private SaleType saleType;
 
-    @Lob
     @Column
     private String notes;
 
