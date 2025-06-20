@@ -12,7 +12,7 @@ CREATE TABLE municipality (
 
 CREATE TABLE client (
     id SERIAL PRIMARY KEY,
-    code VARCHAR(10) NOT NULL,
+    code VARCHAR(10),
     contact_name VARCHAR(100) NOT NULL,
     business_name VARCHAR(100),
     municipality_code CHAR(4) NOT NULL,
