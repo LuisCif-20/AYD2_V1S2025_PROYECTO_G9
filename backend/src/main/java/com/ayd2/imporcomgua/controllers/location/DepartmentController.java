@@ -14,7 +14,7 @@ import com.ayd2.imporcomgua.services.location.DepartmentService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/v1.0/department")
+@RequestMapping("/v1.0/departments")
 @RequiredArgsConstructor
 public class DepartmentController {
 

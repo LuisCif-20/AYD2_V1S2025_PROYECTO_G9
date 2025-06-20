@@ -22,6 +22,7 @@ CREATE TABLE client (
     phone CHAR(9),
     sale_type VARCHAR(7) NOT NULL CHECK (sale_type IN ('CREDITO', 'CONTADO', 'AMBAS')),
     notes TEXT,
+    is_active BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (municipality_code) REFERENCES municipality(code)
 );
 
@@ -31,7 +32,8 @@ CREATE TABLE salesman (
     last_name VARCHAR(100) NOT NULL,
     phone CHAR(9),
     address VARCHAR(255),
-    commission_percent DECIMAL(3,2) NOT NULL
+    commission_percent DECIMAL(3,2) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE
 );
 
 CREATE TABLE presentation (
@@ -45,6 +47,7 @@ CREATE TABLE product (
     presentation_id INT NOT NULL,
     units_per_presentation INT NOT NULL,
     price_per_presentation DECIMAL(10,2) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
     FOREIGN KEY (presentation_id) REFERENCES presentation(id)
 );
 
