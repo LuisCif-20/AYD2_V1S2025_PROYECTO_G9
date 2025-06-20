@@ -12,6 +12,8 @@ import { DropdownModule } from "primeng/dropdown";
 import { TextareaModule } from "primeng/textarea";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { ClienteService } from "../../../services/cliente/cliente.service";
+import { UbicacionService } from "../../../services/ubicacion/ubicacion.service";
+import { Departamento } from "../../../models/models";
 
 export interface Cliente {
   id?: number;
@@ -59,11 +61,9 @@ export class ClientesComponent implements OnInit {
   selectedClientes!: Cliente[] | null;
   submitted: boolean = false;
   cols!: Column[];
+  departamentos!: Departamento[];
 
-  departamentos = [
-    { label: "Guatemala", value: "GT" },
-    { label: "Quetzaltenango", value: "QZ" },
-  ];
+  
 
   municipios: any[] = [];
   municipiosPorDepartamento: { [key: string]: string[] } = {
@@ -80,6 +80,7 @@ export class ClientesComponent implements OnInit {
   @ViewChild("dt") dt!: Table;
 
   constructor(
+    private ubicacionService: UbicacionService,
     private clienteService: ClienteService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
@@ -109,6 +110,21 @@ export class ClientesComponent implements OnInit {
         }),
     });
   }
+
+  loadDepartamentos() {
+    this.ubicacionService.getDepartamentos().subscribe({
+        next: (data) => this.departamentos = data,
+        error: () => this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudieron cargar los departamentos' })
+    });
+}
+
+onDepartamentoSeleccionado(code: string) {
+    this.ubicacionService.getMunicipiosByDepartamento(code).subscribe({
+        next: (data) => this.municipios = data,
+        error: () => this.messageService.add({ severity: 'error', summary: 'Error', detail: 'No se pudieron cargar los municipios' })
+    });
+}
+
 
   onGlobalFilter(event: Event) {
     const input = event.target as HTMLInputElement;
