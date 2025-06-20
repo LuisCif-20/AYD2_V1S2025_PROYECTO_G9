@@ -14,6 +14,7 @@ import java.util.UUID;
 public class Salesman {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID code;
 
     @Column
