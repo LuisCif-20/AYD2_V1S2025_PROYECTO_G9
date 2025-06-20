@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Vendor } from '../../models/models';
 
-const baseUrl = environment.IMPORCOMGUA + '/vendor';
+const baseUrl = environment.IMPORCOMGUA + '/salesmans';
 
 @Injectable({
     providedIn: 'root'
@@ -23,7 +23,7 @@ export class VendorService {
         if (vendor.code) {
             return this.http.put<Vendor>(`${baseUrl}/${vendor.code}`, vendor);
         }
-        return this.http.post<any>(`${baseUrl}`, vendor);
+        return this.http.patch<any>(`${baseUrl}`, vendor);
     }
 
     deleteSoftVendor(code: string): Observable<boolean> {
