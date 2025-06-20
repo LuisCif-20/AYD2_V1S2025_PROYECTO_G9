@@ -78,3 +78,30 @@ export class Vendor {
     commissionPercent!: number;
     address!: string;
 }
+
+
+export interface Producto {
+  code: string;
+  name: string;
+  presentation: {
+    id: number;
+    name: string;
+  };
+  unitsPerPresentation?: number;
+  pricePerPresentation: number;
+}
+
+
+export interface ProductEntryForm {
+  productCode?: string;
+  entryDate?: string;
+  unitsPerPresentation?: number;
+  quantityPresentation?: number;
+  containerNumber?: string;
+  ducaNumber?: string;
+  ducaDate?: string;
+  rectifiedDucaNumber?: string;
+  rectifiedDucaDate?: string;
+  notes?: string;
+}
+
