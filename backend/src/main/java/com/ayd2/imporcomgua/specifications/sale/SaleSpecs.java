@@ -17,19 +17,19 @@ public class SaleSpecs {
     public static Specification<Sale> clientContactNameContains(String contactName) {
         return (root, query, criteriaBuilder) -> contactName == null ? null
                 : criteriaBuilder.like(
-                    criteriaBuilder.lower(root.join("client").get("contactName")),
-                    "%" + contactName.toLowerCase() + "%");
+                        criteriaBuilder.lower(root.join("client").get("contactName")),
+                        "%" + contactName.toLowerCase() + "%");
     }
 
     public static Specification<Sale> clientBusinessNameContains(String businessName) {
         return (root, query, criteriaBuilder) -> businessName == null ? null
                 : criteriaBuilder.like(
-                    criteriaBuilder.lower(root.join("client").get("businessName")),
-                    "%" + businessName.toLowerCase() + "%");
+                        criteriaBuilder.lower(root.join("client").get("businessName")),
+                        "%" + businessName.toLowerCase() + "%");
     }
 
     public static Specification<Sale> hasSaleStatus(SaleStatus saleStatus) {
-        return (root, query, criteriaBuilder) -> saleStatus == null ? null
-                : criteriaBuilder.equal(root.get("saleStatus"), saleStatus);
+        return (root, query, criteriaBuilder) -> criteriaBuilder
+                .equal(root.get("saleStatus"), saleStatus == null ? SaleStatus.VIGENTE : saleStatus);
     }
 }
