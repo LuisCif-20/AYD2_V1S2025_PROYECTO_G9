@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Vendor } from '../../models/models';
 
@@ -27,7 +27,10 @@ export class VendorService {
     }
 
     deleteSoftVendor(code: string): Observable<boolean> {
-        return this.http.delete<boolean>(`${baseUrl}/${code}`);
+        return this.http.delete<boolean>(`${baseUrl}/${code}`).pipe(
+            map(() => true),
+            catchError((error: HttpErrorResponse) => throwError(() => error))
+        );
     }
 
 }

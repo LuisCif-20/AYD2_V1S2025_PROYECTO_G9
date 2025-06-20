@@ -127,6 +127,7 @@ export class VendorsListComponent implements OnInit {
                     .subscribe(
                         {
                             next: (data) => {
+                                console.log(data)
                                 if (data) {
                                     this.messageService.add({
                                         severity: 'success',
