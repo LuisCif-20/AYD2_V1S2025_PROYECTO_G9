@@ -13,7 +13,16 @@ public class ProductSpecs {
     public static Specification<Product> nameContains(String name) {
         return (root, query, criteriaBuilder) -> name == null ? null
                 : criteriaBuilder.like(
-                    criteriaBuilder.lower(root.get("name")),
-                    "%" + name.toLowerCase() + "%");
+                        criteriaBuilder.lower(root.get("name")),
+                        "%" + name.toLowerCase() + "%");
+    }
+
+    public static Specification<Product> isActive(Boolean isActive) {
+        return (root, query, criteriaBuilder) -> {
+            if (isActive == null) {
+                return null;
+            }
+            return criteriaBuilder.equal(root.get("isActive"), isActive);
+        };
     }
 }

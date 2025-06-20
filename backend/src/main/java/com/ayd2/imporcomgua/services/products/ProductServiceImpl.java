@@ -78,6 +78,8 @@ public class ProductServiceImpl implements ProductService{
         Specification<Product> spec = Specification.anyOf(
             ProductSpecs.hasCode(productSearchRequestDTO.code()),
             ProductSpecs.nameContains(productSearchRequestDTO.name())
+        ).and(
+            ProductSpecs.isActive(true)
         );
         List<Product> products = productRepository.findAll(spec);
         return products.stream()
