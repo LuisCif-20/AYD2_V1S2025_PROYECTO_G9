@@ -4,6 +4,7 @@ import com.ayd2.imporcomgua.models.client.SaleType;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
 public record NewClientRequestDTO(
@@ -19,19 +20,19 @@ public record NewClientRequestDTO(
     @NotNull(message = "El tipo de venta es obligatorio")
     SaleType saleType,
 
-    @Size(max = 100, message = "El nombre de negocio debe ser menor a 100 caracteres.")
+    @Size(max = 100, message = "El nombre de negocio debe ser menor a 100 caracteres")
     String businessName,
 
-    @Size(max = 255, message = "La direccion debe ser menor a 255 caracteres.")
+    @Size(max = 255, message = "La direccion debe ser menor a 255 caracteres")
     String address,
 
-    @Size(min=9, max = 9, message = "El nit debe ser de 9 caracteres exactos.")
+    @Pattern(regexp = "^\\d{9}$", message = "El nit debe ser de 9 digitos exactos")
     String nit,
 
-    @Size(max = 100, message = "El nombre del encargado de almacen debe ser menor a 100 caracteres.")
+    @Size(max = 100, message = "El nombre del encargado de almacen debe ser menor a 100 caracteres")
     String warehouseManager,
 
-    @Size(min=9, max = 9, message = "El numer de telefono debe ser de 9 caracteres exactos.")
+    @Pattern(regexp = "^\\d{4}-\\d{4}$", message = "El numero de telefono debe tener el formato ####-####")
     String phone,
 
     String notes
