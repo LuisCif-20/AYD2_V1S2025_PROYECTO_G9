@@ -4,7 +4,6 @@ import jakarta.validation.constraints.*;
 
 public record NewProductRequestDTO(
     @NotBlank(message = "El código del producto es obligatorio")
-    @Size(min = 8, max = 8, message = "El código debe tener exactamente 8 caracteres")
     @Pattern(regexp = "^[A-Z]{4}\\d{4}$", 
              message = "El código debe tener 4 letras mayúsculas seguidas de 4 dígitos (Ej: ABCD1234)")
     String code,
