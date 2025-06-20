@@ -13,21 +13,9 @@ import { TextareaModule } from "primeng/textarea";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { ClienteService } from "../../../services/cliente/cliente.service";
 import { UbicacionService } from "../../../services/ubicacion/ubicacion.service";
-import { Departamento } from "../../../models/models";
+import { Cliente, Departamento } from "../../../models/models";
 
-export interface Cliente {
-  id?: number;
-  code?: string;
-  contactName?: string;
-  businessName?: string;
-  municipalityCode?: string;
-  address?: string;
-  nit?: string;
-  warehouseManager?: string;
-  phone?: string;
-  saleType?: "CREDITO" | "CONTADO" | "AMBAS";
-  notes?: string;
-}
+
 
 interface Column {
   field: string;
@@ -88,29 +76,42 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: "code", header: "Código" },
-      { field: "contactName", header: "Contacto" },
-      { field: "businessName", header: "Negocio" },
-      { field: "municipalityCode", header: "Municipio" },
-      { field: "phone", header: "Teléfono" },
-      { field: "saleType", header: "Tipo Venta" },
-    ];
+  { field: "code", header: "Código" },
+  { field: "contactName", header: "Contacto" },
+  { field: "businessName", header: "Negocio" },
+  { field: "municipality.name", header: "Municipio" },  
+  { field: "phone", header: "Teléfono" },
+  { field: "saleType", header: "Tipo Venta" }
+];
+
 
     this.loadClientes();
     this.loadDepartamentos();
   }
 
   loadClientes() {
-    this.clienteService.getClientes().subscribe({
-      next: (data) => (this.clientes = data),
-      error: () =>
-        this.messageService.add({
-          severity: "error",
-          summary: "Error",
-          detail: "No se pudieron cargar los clientes",
-        }),
-    });
-  }
+  this.clienteService.getClientes().subscribe({
+    next: (data) => {
+      this.clientes = data.map(cliente => {
+        // Si municipality.name está vacío pero municipalityCode está definido
+        if (!cliente.municipality?.name && cliente.municipalityCode && this.municipios.length > 0) {
+          const municipio = this.municipios.find(m => m.code === cliente.municipalityCode);
+          if (municipio) {
+            cliente.municipality = { ...cliente.municipality, name: municipio.name };
+          }
+        }
+        return cliente;
+      });
+    },
+    error: () =>
+      this.messageService.add({
+        severity: "error",
+        summary: "Error",
+        detail: "No se pudieron cargar los clientes",
+      }),
+  });
+}
+
 
   loadDepartamentos() {
     this.ubicacionService.getDepartamentos().subscribe({
@@ -146,6 +147,10 @@ onDepartamentoSeleccionado(code: string) {
       contactName: "",
       businessName: "",
       municipalityCode: "",
+      municipality: {
+        
+        name: ""
+      },
       address: "",
       nit: "",
       warehouseManager: "",

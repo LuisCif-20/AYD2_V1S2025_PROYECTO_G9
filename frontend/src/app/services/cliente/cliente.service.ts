@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Cliente } from '../../pages/clientes/clientes/clientes.component';
+import { Cliente} from "../../../app/models/models";
 
 
 @Injectable({
@@ -26,7 +26,7 @@ export class ClienteService {
     }
 
     updateCliente(cliente: Cliente): Observable<Cliente> {
-        return this.http.put<Cliente>(`${this.apiUrl}/${cliente.id}`, cliente);
+        return this.http.patch<Cliente>(`${this.apiUrl}/${cliente.id}`, cliente);
     }
 
     deleteCliente(id: string): Observable<void> {

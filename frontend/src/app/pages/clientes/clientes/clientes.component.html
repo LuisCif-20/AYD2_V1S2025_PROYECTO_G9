@@ -28,7 +28,7 @@
     'contactName',
     'businessName',
     'code',
-    'municipalityCode',
+    'municipality.name',
     'phone',
   ]"
   [resizableColumns]="true"
@@ -68,8 +68,8 @@
         <p-tableCheckbox [value]="cliente"></p-tableCheckbox>
       </td>
       <td *ngFor="let col of cols">
-        {{ cliente[col.field] }}
-      </td>
+  {{ cliente[col.field] }}
+</td>
       <td>
         <p-button
           icon="pi pi-pencil"

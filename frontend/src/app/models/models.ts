@@ -79,6 +79,23 @@ export class Vendor {
     address!: string;
 }
 
+export interface Cliente {
+  id?: number;
+  code?: string;
+  contactName?: string;
+  businessName?: string;
+  municipalityCode?: string;
+    municipality?: {
+    code?:number,
+    name?: string
+  };
+  address?: string;
+  nit?: string;
+  warehouseManager?: string;
+  phone?: string;
+  saleType?: "CREDITO" | "CONTADO" | "AMBAS";
+  notes?: string;
+}
 
 export interface Producto {
   code: string;
