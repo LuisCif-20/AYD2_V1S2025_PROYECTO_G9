@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.ayd2.imporcomgua.dto.location.DepartmentResponseDTO;
+import com.ayd2.imporcomgua.exceptions.NotFoundException;
+import com.ayd2.imporcomgua.mappers.location.DepartmentMapper;
 import com.ayd2.imporcomgua.models.location.Department;
 import com.ayd2.imporcomgua.repositories.location.DepartmentRepository;
 
@@ -17,15 +19,22 @@ import lombok.RequiredArgsConstructor;
 public class DepartmentSerivceImpl implements DepartmentService {
 
     private final DepartmentRepository departmentRepository;
+    private final DepartmentMapper departmentMapper;
 
     @Override
-    public DepartmentResponseDTO getDepartment(String code) {
+    public DepartmentResponseDTO getDepartment(String code) throws NotFoundException {
         final Department department = departmentRepository.findByCode(code)
-                .orElseThrow(() -> );
+                .orElseThrow(() -> new NotFoundException("Departamento con el codigo " + code + " no existe."));
+        return departmentMapper.toDepartmentResponseDTO(department);
     }
 
     @Override
     public List<DepartmentResponseDTO> getAllDepartments() {
+        final List<DepartmentResponseDTO> departments = departmentRepository.findAll()
+                .stream()
+                .map(department -> departmentMapper.toDepartmentResponseDTO(department))
+                .toList();
+        return departments;
     }
     
 }
