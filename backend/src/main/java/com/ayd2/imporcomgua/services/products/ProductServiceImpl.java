@@ -15,8 +15,10 @@ import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.mappers.product.ProductMapper;
 import com.ayd2.imporcomgua.models.product.Presentation;
 import com.ayd2.imporcomgua.models.product.Product;
+import com.ayd2.imporcomgua.models.warehouse.Inventory;
 import com.ayd2.imporcomgua.repositories.product.PresentationRepository;
 import com.ayd2.imporcomgua.repositories.product.ProductRepository;
+import com.ayd2.imporcomgua.repositories.warehouse.InventoryRepository;
 import com.ayd2.imporcomgua.specifications.product.ProductSpecs;
 
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class ProductServiceImpl implements ProductService{
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
     private final PresentationRepository presentationRepository;
+    private final InventoryRepository inventoryRepository;
 
     @Override
     public ProductResponseDTO createProduct(NewProductRequestDTO productRequestDTO) throws NotFoundException, DuplicatedEntityException {
@@ -44,6 +47,15 @@ public class ProductServiceImpl implements ProductService{
         product.setPresentation(presentation);
 
         Product savedProduct = productRepository.save(product);
+
+        Inventory inventory = new Inventory();
+        inventory.setProduct(savedProduct);
+        inventory.setTotalQuantity(0);
+        inventory.setAvailableQuantity(0);
+        inventory.setReservedQuantity(0);
+
+        inventoryRepository.save(inventory);
+
         return productMapper.toProductResponseDTO(savedProduct);
     }
 
