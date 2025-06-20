@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-import com.ayd2.imporcomgua.models.client.SaleType;
+import com.ayd2.imporcomgua.models.sale.PaymentType;
 
 public record NewSaleRequestDTO(
     @NotNull(message = "La fecha de venta es requerida")
@@ -19,7 +19,7 @@ public record NewSaleRequestDTO(
     Long clientId,
 
     @NotNull(message = "El tipo de pago es requerido")
-    SaleType paymentType,
+    PaymentType paymentType,
 
     @NotNull(message = "Los días de crédito son requeridos")
     @Min(value = 0, message = "Los días de crédito no pueden ser negativos")

@@ -1,7 +1,6 @@
 package com.ayd2.imporcomgua.models.sale;
 
 import com.ayd2.imporcomgua.models.client.Client;
-import com.ayd2.imporcomgua.models.client.SaleType;
 import com.ayd2.imporcomgua.models.salesman.Salesman;
 
 import jakarta.persistence.*;
@@ -38,7 +37,7 @@ public class Sale {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "payment_type")
-    private SaleType paymentType;
+    private PaymentType paymentType;
 
     @Column(name = "credit_days")
     private Integer creditDays;
