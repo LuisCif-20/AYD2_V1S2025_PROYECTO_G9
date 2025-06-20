@@ -1,96 +1,125 @@
 <p-toolbar styleClass="mb-6">
-    <ng-template #start>
-        <p-button (onClick)="formVendedor.mostrarFormulario()" 
-        class="mr-2" icon="pi pi-plus" label="Registrar nuevo Vendedor" 
-        severity="secondary"/>
-        
-    </ng-template>
-
+    <h5 class="m-0">Gestion de Vendedores</h5>
+  <ng-template #end>
     
+    <p-button
+  label="Nuevo Vendedor"
+  icon="pi pi-user-plus"
+  (onClick)="formVendedor.mostrarFormulario(undefined)"
+  class="nuevo-vendedor-btn"
+/>
+  </ng-template>
 </p-toolbar>
 <app-form-vendor #formVendedor></app-form-vendor>
 
 <p-table
-    #dt
-    [(selection)]="selectedProducts"
-    [columns]="cols"
-    [globalFilterFields]="['name', 'country.name', 'representative.name', 'status']"
-    [paginator]="true"
-    [rowHover]="true"
-    [rowsPerPageOptions]="[10, 20, 30]"
-    [rows]="10"
-    [showCurrentPageReport]="true"
-    [tableStyle]="{ 'min-width': '75rem' }"
-    [value]="products()"
-    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products"
-    dataKey="id"
+  #dt
+  [(selection)]="selectedVendor"
+  [columns]="cols"
+  [globalFilterFields]="[
+    'name',
+    'code',
+    'lastName',
+    'phone',
+  ]"
+  [paginator]="true"
+  [rowHover]="true"
+  [rowsPerPageOptions]="[5, 10, 20]"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  [tableStyle]="{ 'min-width': '30rem' }"
+  [value]="vendors()"
+  currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} Vendedores"
+  dataKey="vendorId"
 >
-    <ng-template #caption>
-        <div class="flex items-center justify-between">
-            <h5 class="m-0">Lista de Vendedores</h5>
-            <p-iconfield>
-                <p-inputicon styleClass="pi pi-search"/>
-                <input (input)="onGlobalFilter(dt, $event)" pInputText placeholder="Search..." type="text"/>
-            </p-iconfield>
-        </div>
-    </ng-template>
-    <ng-template #header>
-        <tr>
-            <!-- <th style="width: 3rem">
+  <ng-template #caption>
+    <div class="flex items-center justify-between">
+      
+      <p-iconfield>
+       
+        <p-inputicon styleClass="pi pi-search" />
+        <input
+          (input)="onGlobalFilter(dt, $event)"
+          pInputText
+          placeholder="Buscar..."
+          type="text"
+        />
+         <!-- <p-button
+          (onClick)="formVendedor.mostrarFormulario()"
+          class="mr-2"
+          icon="pi pi-plus"
+          label="Agregar filtro"
+          severity="secondary"
+        /> -->
+      </p-iconfield>
+    </div>
+  </ng-template>
+  <ng-template #header>
+    <tr>
+      <!-- <th style="width: 3rem">
                 <p-tableHeaderCheckbox/>
             </th> -->
-            <th style="min-width: 16rem">Código</th>
-            <th pSortableColumn="name" style="min-width:16rem">
-                Nombre
-                <p-sortIcon field="name"/>
-            </th>
-            <th pSortableColumn="name" style="min-width:16rem">
-                Apellidos
-                <p-sortIcon field="name"/>
-            </th>
-            <th pSortableColumn="price" style="min-width: 8rem">
-                Porcentaje de comisión
-                <p-sortIcon field="price"/>
-            </th>
-            <th pSortableColumn="category" style="min-width:10rem">
-                Telefono
-                <p-sortIcon field="category"/>
-            </th>
-            <th pSortableColumn="inventoryStatus" style="min-width: 12rem">
-                Dirección
-                <p-sortIcon field="inventoryStatus"/>
-            </th>
-            <th pSortableColumn="inventoryStatus" style="min-width: 12rem">
-                Rol
-                <p-sortIcon field="inventoryStatus"/>
-            </th>
-            <th style="min-width: 12rem"></th>
-        </tr>
-    </ng-template>
-    <ng-template #body let-product>
-        <tr>
-            <!-- <td style="width: 3rem">
+      <th>Código</th>
+      <th pSortableColumn="name">
+        Nombre
+        <p-sortIcon field="name" />
+      </th>
+      <th pSortableColumn="lastName">
+        Apellidos
+        <p-sortIcon field="lastName" />
+      </th>
+      <th pSortableColumn="commission">
+        Porcentaje de comisión
+        <p-sortIcon field="commission" />
+      </th>
+      <th pSortableColumn="phone">
+        Telefono
+        <p-sortIcon field="phone" />
+      </th>
+      <th pSortableColumn="direction">
+        Dirección
+        <p-sortIcon field="direction" />
+      </th>
+      <!-- <th pSortableColumn="inventoryStatus" style="min-width: 12rem">
+        Rol
+        <p-sortIcon field="inventoryStatus" />
+      </th> -->
+      <th pSortableColumn="options">
+        Opciones
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template #body let-vendedor>
+    <tr>
+      <!-- <td style="width: 3rem">
                 <p-tableCheckbox [value]="product"/>
             </td> -->
-            <td style="min-width: 6rem">{{ product.code }}</td>
-            <td style="min-width: 10rem">{{ product.name }}</td>
-            <td style="max-width: 3rem">{{ product.category }}</td>
-            <td style="width: 3rem">{{ product.price | currency: 'USD' }}</td>
-            <td>{{ product.price | currency: 'USD' }}</td>
-            <td>
-                <p-rating [(ngModel)]="product.rating" [readonly]="true"/>
-            </td>
-            <td>
-                <p-tag [severity]="getSeverity(product.inventoryStatus)" [value]="product.inventoryStatus"/>
-            </td>
-            <td>
-                <p-button (click)="editProduct(product)" [outlined]="true" [rounded]="true" class="mr-2"
-                          icon="pi pi-pencil"/>
-                <p-button (click)="deleteProduct(product)" [outlined]="true" [rounded]="true" icon="pi pi-trash"
-                          severity="danger"/>
-            </td>
-        </tr>
-    </ng-template>
+      <td>{{ vendedor.code }}</td>
+      <td>{{ vendedor.name }}</td>
+      <td>{{ vendedor.lastName }}</td>
+      <td>{{ vendedor.commission | currency: "%" }}</td>
+      <td>{{ vendedor.phone }}</td>
+      <td>{{vendedor.direction}}</td>
+      <td>
+        <p-button
+          (click)="formVendedor.mostrarFormulario(vendedor)"
+          [outlined]="true"
+          [rounded]="true"
+          class="mr-2"
+          icon="pi pi-pencil"
+        />
+        <p-button
+          (click)="deleteProduct(vendedor)"
+          [outlined]="true"
+          [rounded]="true"
+          icon="pi pi-trash"
+          severity="danger"
+        />
+      </td>
+    </tr>
+  </ng-template>
 </p-table>
 
-<p-confirmdialog [style]="{ width: '450px' }"/>
+<p-confirmdialog [style]="{ width: '450px' }" />
+
+<p-toast></p-toast>

@@ -1,0 +1,119 @@
+/* Opción 1: CSS Global (en styles.css) */
+.custom-dialog .p-dialog-header {
+  background: linear-gradient(135deg, #8b5cf6, #a855f7) !important;
+  color: white !important;
+  border-bottom: none !important;
+  padding: 1rem 1.5rem !important;
+}
+
+.custom-dialog .p-dialog-header .p-dialog-title {
+  color: white !important;
+  font-weight: 600 !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+}
+
+.custom-dialog .p-dialog-header .p-dialog-title::before {
+  content: '👤';
+  font-size: 1.2rem;
+}
+
+.custom-dialog .p-dialog-header .p-dialog-header-close {
+  color: white !important;
+  width: 2rem !important;
+  height: 2rem !important;
+  border-radius: 50% !important;
+  transition: all 0.2s ease !important;
+}
+
+.custom-dialog .p-dialog-header .p-dialog-header-close:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: white !important;
+}
+
+.custom-dialog .p-dialog-content {
+  padding: 1.5rem !important;
+}
+
+.custom-dialog .p-dialog-footer {
+  padding: 1rem 1.5rem !important;
+  border-top: 1px solid #e5e7eb !important;
+  background-color: #f9fafb !important;
+}
+
+/* Estilo adicional para el input de código */
+.custom-dialog input:disabled {
+  background-color: #f3f4f6 !important;
+  color: #8b5cf6 !important;
+  font-weight: 600 !important;
+}
+
+/* ============================================ */
+/* Opción 2: CSS Específico del Componente */
+/* Agregar en el archivo .component.scss */
+
+:host ::ng-deep .custom-dialog {
+  .p-dialog-header {
+    background: linear-gradient(135deg, #8b5cf6, #a855f7);
+    color: white;
+    border-bottom: none;
+    padding: 1rem 1.5rem;
+    
+    .p-dialog-title {
+      color: white;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      
+      &::before {
+        content: '👤';
+        font-size: 1.2rem;
+      }
+    }
+    
+    .p-dialog-header-close {
+      color: white;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        color: white;
+      }
+    }
+  }
+  
+  .p-dialog-content {
+    padding: 1.5rem;
+  }
+  
+  .p-dialog-footer {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e5e7eb;
+    background-color: #f9fafb;
+  }
+}
+
+/* ============================================ */
+/* Opción 3: CSS más simple (solo el header) */
+
+::ng-deep .custom-dialog .p-dialog-header {
+  background-color: #8b5cf6 !important;
+  color: white !important;
+}
+
+::ng-deep .custom-dialog .p-dialog-header .p-dialog-title {
+  color: white !important;
+}
+
+::ng-deep .custom-dialog .p-dialog-header .p-dialog-header-close {
+  color: white !important;
+}
+
+::ng-deep .custom-dialog .p-dialog-header .p-dialog-header-close:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}

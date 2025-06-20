@@ -57,3 +57,13 @@ export interface Product {
     image?: string;
     rating?: number;
 }
+
+export class Vendor {
+    vendorId!: number;
+    code!: string;
+    name!: string;
+    lastName!: string;
+    phone!: string;
+    commission!: number;
+    direction!: string;
+}

@@ -1,63 +1,120 @@
-<p-dialog [(visible)]="visible" [modal]="true" [style]="{ width: '450px' }" header="Product Details">
-    <ng-template #content>
-        <div class="flex flex-col gap-6">
-            <div>
-                <label class="block font-bold mb-3" for="name">Name</label>
-                <input [(ngModel)]="product.name" autofocus fluid id="name" pInputText required type="text"/>
-                <small *ngIf="submitted && !product.name" class="text-red-500">Name is required.</small>
-            </div>
-            <div>
-                <label class="block font-bold mb-3" for="description">Description</label>
-                <textarea [(ngModel)]="product.description" cols="20" fluid id="description" pTextarea required
-                          rows="3"></textarea>
-            </div>
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  header="Nuevo Vendedor"
+  [closable]="true"
+  [style]="{ width: '700px' }"
+  styleClass="custom-dialog"
+>
+  <ng-template pTemplate="content">
+    <div class="p-fluid">
+      <!-- Código -->
+      <div class="mb-4" *ngIf="vendorCode">
+        <label for="codigo" class="block font-bold mb-2"
+          >Código de Vendedor</label
+        >
+        <input
+          id="codigo"
+          pInputText
+          [disabled]="true"
+          [(ngModel)]="vendedor.code"
+          class="w-full text-purple-600 font-bold bg-purple-50"
+        />
+      </div>
 
-            <div>
-                <label class="block font-bold mb-3" for="inventoryStatus">Inventory Status</label>
-                <p-select [(ngModel)]="product.inventoryStatus" [options]="statuses" fluid
-                          inputId="inventoryStatus" optionLabel="label" optionValue="label" placeholder="Select a Status"/>
-            </div>
-
-            <div>
-                <span class="block font-bold mb-4">Category</span>
-                <div class="grid grid-cols-12 gap-4">
-                    <div class="flex items-center gap-2 col-span-6">
-                        <p-radiobutton [(ngModel)]="product.category" id="category1" name="category"
-                                       value="Accessories"/>
-                        <label for="category1">Accessories</label>
-                    </div>
-                    <div class="flex items-center gap-2 col-span-6">
-                        <p-radiobutton [(ngModel)]="product.category" id="category2" name="category" value="Clothing"/>
-                        <label for="category2">Clothing</label>
-                    </div>
-                    <div class="flex items-center gap-2 col-span-6">
-                        <p-radiobutton [(ngModel)]="product.category" id="category3" name="category"
-                                       value="Electronics"/>
-                        <label for="category3">Electronics</label>
-                    </div>
-                    <div class="flex items-center gap-2 col-span-6">
-                        <p-radiobutton [(ngModel)]="product.category" id="category4" name="category" value="Fitness"/>
-                        <label for="category4">Fitness</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-6">
-                    <label class="block font-bold mb-3" for="price">Price</label>
-                    <p-inputnumber [(ngModel)]="product.price" currency="USD" fluid id="price" locale="en-US"
-                                   mode="currency"/>
-                </div>
-                <div class="col-span-6">
-                    <label class="block font-bold mb-3" for="quantity">Quantity</label>
-                    <p-inputnumber [(ngModel)]="product.quantity" fluid id="quantity"/>
-                </div>
-            </div>
+      <!-- Grid de 2 columnas -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <!-- Nombres -->
+        <div>
+          <label for="nombres" class="block font-bold mb-2">Nombres *</label>
+          <input
+            id="nombres"
+            pInputText
+            placeholder="Ej: Juan Carlos"
+            [(ngModel)]="vendedor.name"
+            class="w-full"
+          />
         </div>
-    </ng-template>
 
-    <ng-template #footer>
-        <p-button (click)="hideDialog()" icon="pi pi-times" label="Cancel" text/>
-        <p-button (click)="guardar()" icon="pi pi-check" label="Save"/>
-    </ng-template>
+        <!-- Apellidos -->
+        <div>
+          <label for="apellidos" class="block font-bold mb-2"
+            >Apellidos *</label
+          >
+          <input
+            id="apellidos"
+            pInputText
+            placeholder="Ej: García López"
+            [(ngModel)]="vendedor.lastName"
+            class="w-full"
+          />
+        </div>
+
+        <!-- Teléfono -->
+        <div>
+          <label for="telefono" class="block font-bold mb-2">Teléfono (opcional)</label>
+           <i class="pi pi-phone mr-1"></i>
+          <p-inputMask
+            id="telefono"
+            mask="9999-9999"
+            placeholder="0000-0000"
+            [(ngModel)]="vendedor.phone"
+            class="w-full"
+          ></p-inputMask>
+        </div>
+
+        <!-- Comisión -->
+        <div>
+          <label for="comision" class="block font-bold mb-2"
+            >Porcentaje de Comisión *</label
+          >
+          <p-inputNumber
+            id="comision"
+            mode="decimal"
+            [min]="0"
+            [max]="100"
+            [step]="0.01"
+            suffix="%"
+            [(ngModel)]="vendedor.commission"
+            class="w-full"
+          ></p-inputNumber>
+          <small class="text-gray-500 mt-1 block"
+            >% Porcentaje de comisión sobre ventas</small
+          >
+        </div>
+      </div>
+
+      <!-- Dirección -->
+      <div class="mb-4">
+        <label for="direccion" class="block font-bold mb-2">Dirección (opcional)</label>
+        <textarea
+          id="direccion"
+          pInputTextarea
+          rows="3"
+          placeholder="Dirección completa del vendedor..."
+          [(ngModel)]="vendedor.direction"
+          class="w-full"
+        ></textarea>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Footer con botones -->
+  <ng-template pTemplate="footer">
+    <div class="flex justify-end gap-2">
+      <p-button
+        label="Cancelar"
+        icon="pi pi-times"
+        severity="secondary"
+        (onClick)="hideDialog()"
+      />
+      <p-button
+        label="Guardar Vendedor"
+        icon="pi pi-save"
+        (onClick)="guardar()"
+      />
+    </div>
+  </ng-template>
 </p-dialog>
+
+<p-toast></p-toast>
