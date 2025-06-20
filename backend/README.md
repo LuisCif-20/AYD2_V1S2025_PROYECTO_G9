@@ -52,7 +52,7 @@ El servidor iniciará en el puerto definido en tu archivo `.env`.
 Una vez el servidor esté corriendo, puedes acceder a la documentación Swagger en:
 
 ```
-http://localhost:3000/api/v1/swagger-ui/index.html
+http://localhost:3000/api/swagger-ui/index.html
 ```
 
 > 🔁 El dominio y puerto pueden variar según el entorno o configuración.
