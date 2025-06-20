@@ -31,7 +31,7 @@ public class SalesmanController {
 
     private final SalesmanService salesmanService;
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<SalesmanResponseDTO> getSalesman(@PathVariable UUID id) throws NotFoundException {
         final SalesmanResponseDTO salesmanResponseDTO = salesmanService.getSalesman(id);
         return ResponseEntity.status(HttpStatus.OK).body(salesmanResponseDTO);
@@ -51,7 +51,7 @@ public class SalesmanController {
         return ResponseEntity.status(HttpStatus.CREATED).body(salesmanResponseDTO);
     }
 
-    @PatchMapping("/id")
+    @PatchMapping("/{id}")
     public ResponseEntity<SalesmanResponseDTO> updateSalesman(
             @PathVariable UUID id,
             @RequestBody @Valid UpdateSalesmanRequestDTO updateSalesmanRequestDTO)
@@ -60,7 +60,7 @@ public class SalesmanController {
         return ResponseEntity.status(HttpStatus.OK).body(salesmanResponseDTO);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteSalesman(@PathVariable UUID id) throws NotFoundException {
         salesmanService.deleteSalesman(id);
         return ResponseEntity.status(HttpStatus.OK).build();
