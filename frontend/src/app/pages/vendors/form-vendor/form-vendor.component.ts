@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
@@ -19,12 +19,13 @@ import { RippleModule } from 'primeng/ripple';
 import { CommonModule } from '@angular/common';
 import { InputMaskModule } from 'primeng/inputmask';
 import { MessageService } from 'primeng/api';
+import { VendorService } from '../../../services/vendor/vendor.service';
 
 
 @Component({
   selector: 'app-form-vendor',
   standalone: true,
-  providers: [MessageService],
+  providers: [MessageService, VendorService],
   imports: [
     DialogModule,
     InputTextModule,
@@ -62,24 +63,26 @@ export class FormVendorComponent implements OnInit {
   statuses!: any[];
   submitted: boolean = false;
   vendorCode!: string | undefined;
+  @Output() cerrado = new EventEmitter<boolean>();
 
   constructor(
-    private messageService: MessageService
+    private messageService: MessageService,
+    private vendorService: VendorService,
   ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   mostrarFormulario(vendor: Vendor | undefined): void {
     console.log(vendor)
-    if(vendor){
+    if (vendor) {
       this.vendedor = vendor;
       this.vendorCode = vendor.code;
     } else {
       this.vendedor = new Vendor();
     }
-    
+
     this.visible = true;
   }
 
@@ -88,13 +91,31 @@ export class FormVendorComponent implements OnInit {
 
     if ((name?.trim() ?? '') && (lastName?.trim() ?? '') && commission >= 0) {
       console.log('Vendedor guardado:', this.vendedor);
-      this.visible = false;
+      this.vendorService.save(this.vendedor)
+        .subscribe(
+          {
+            next: (data) => {
+              this.visible = false;
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Éxito',
+                detail: 'Vendedor guardado correctamente',
+              });
+            },
+            error: (err) => {
+              console.error('Error al cargar vendedor:', err);
+              this.messageService.add({
+                severity: 'error',
+                summary: 'Error',
+                detail: 'Error al intentar registrar un vendedor, por favor, intente mas tarde',
+              });
+            },
+            complete: () => {
+              console.log('Carga de proveedores completada');
+            }
 
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Éxito',
-        detail: 'Vendedor guardado correctamente',
-      });
+          });
+
 
     } else {
       this.messageService.add({

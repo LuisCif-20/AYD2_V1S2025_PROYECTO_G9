@@ -10,7 +10,7 @@
 />
   </ng-template>
 </p-toolbar>
-<app-form-vendor #formVendedor></app-form-vendor>
+<app-form-vendor #formVendedor  (cerrado)="loadIniData()"></app-form-vendor>
 
 <p-table
   #dt

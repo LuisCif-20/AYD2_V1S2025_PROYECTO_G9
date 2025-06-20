@@ -21,16 +21,12 @@ import { FormVendorComponent } from '../form-vendor/form-vendor.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { Product, Vendor } from '../../../models/models';
 import { ProductService } from '../../../services/product/product.service';
+import { VendorService } from '../../../services/vendor/vendor.service';
 
 interface Column {
     field: string;
     header: string;
     customExportHeader?: string;
-}
-
-interface ExportColumn {
-    title: string;
-    dataKey: string;
 }
 
 @Component({
@@ -57,7 +53,7 @@ interface ExportColumn {
         ConfirmDialogModule,
         FormVendorComponent
     ],
-    providers: [MessageService, ProductService, ConfirmationService],
+    providers: [MessageService, VendorService, ConfirmationService],
     templateUrl: './vendors-list.component.html',
     styleUrl: './vendors-list.component.scss'
 })
@@ -72,28 +68,32 @@ export class VendorsListComponent implements OnInit {
     cols!: Column[];
 
     constructor(
-        private productService: ProductService,
         private messageService: MessageService,
-        private confirmationService: ConfirmationService
+        private confirmationService: ConfirmationService,
+        private vendorService: VendorService,
     ) {
     }
 
     ngOnInit() {
-        this.loadDemoData();
+        this.loadIniData();
     }
 
-    loadDemoData() {
-        //llamar api con todo los vendedores
-        const vendorsss = new Vendor()
-        vendorsss.code = "aasd11"
-        vendorsss.name = "dani"
-        vendorsss.commission = 0
+    loadIniData() {
 
-        const vendorsss1 = new Vendor()
-        vendorsss1.code = "3ert"
-        vendorsss1.name = "kami"
-        vendorsss1.commission = 0
-        this.vendors.set([vendorsss, vendorsss1])
+        this.vendorService.getAll()
+            .subscribe(
+                {
+                    next: (data) => {
+                        this.vendors.set(data);
+                    },
+                    error: (err) => {
+                        console.error('Error al cargar vendedor:', err);
+                    },
+                    complete: () => {
+                        console.log('Carga de proveedores completada');
+                    }
+
+                });
 
         this.cols = [
             { field: 'code', header: 'Code', customExportHeader: 'Code' },
@@ -112,26 +112,51 @@ export class VendorsListComponent implements OnInit {
         this.submitted = false;
     }
 
-    editProduct(vendor: Vendor) {
-    }
-
     hideDialog() {
         this.submitted = false;
     }
 
-    deleteProduct(product: Vendor) {
+    deleteProduct(vendor: Vendor) {
         this.confirmationService.confirm({
-            message: 'Estas seguro en eliminar el vendedor ' + product.name + '?',
+            message: 'Estas seguro en eliminar el vendedor ' + vendor.name + '?',
             header: 'Confirmación',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 //logica para eliminar
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Éxito',
-                    detail: 'Vendedor eliminado',
-                    life: 3000
-                });
+                this.vendorService.deleteSoftVendor(vendor.code)
+                    .subscribe(
+                        {
+                            next: (data) => {
+                                if (data) {
+                                    this.messageService.add({
+                                        severity: 'success',
+                                        summary: 'Éxito',
+                                        detail: 'Vendedor eliminado',
+                                        life: 3000
+                                    });
+                                    this.loadIniData();
+                                } else {
+                                    this.messageService.add({
+                                        severity: 'error',
+                                        summary: 'Error',
+                                        detail: 'Error al intentar eliminar un vendedor, por favor, intente mas tarde',
+                                    });
+                                }
+                            },
+                            error: (err) => {
+                                console.error('Error al cargar vendedor:', err);
+                                this.messageService.add({
+                                    severity: 'error',
+                                    summary: 'Error',
+                                    detail: 'Error al intentar eliminar un vendedor, por favor, intente mas tarde',
+                                });
+                            },
+                            complete: () => {
+                                console.log('Carga de proveedores completada');
+                            }
+
+                        });
+
             }
         });
     }
