@@ -22,7 +22,7 @@ public class ProductController {
 
     @PostMapping
     public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody @Valid NewProductRequestDTO productRequestDTO) 
-            throws DuplicatedEntityException {
+            throws NotFoundException, DuplicatedEntityException {
         ProductResponseDTO responseDTO = productService.createProduct(productRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
@@ -43,8 +43,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductResponseDTO> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<ProductResponseDTO>> getAllProducts(@Valid ProductSearchRequestDTO productSearchRequestDTO) {
+        return ResponseEntity.ok(productService.getAllProducts(productSearchRequestDTO));
     }
 
     @DeleteMapping("/{code}")

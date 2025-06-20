@@ -21,9 +21,12 @@ public class Product {
     @JoinColumn(name = "presentation_id")
     private Presentation presentation;
 
-    @Column(name = "units_per_presentation")
+    @Column
     private Integer unitsPerPresentation;
 
-    @Column(name = "price_per_presentation")
+    @Column
     private Double pricePerPresentation;
+
+    @Column
+    private Boolean isActive;
 }

@@ -19,9 +19,11 @@ public interface ProductMapper {
     ProductResponseDTO toProductResponseDTO(Product product);
 
     @Mapping(target = "code", ignore = true)
+    @Mapping(target = "presentation", ignore = true)
     Product toProduct(NewProductRequestDTO productRequestDTO);
 
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "code", ignore = true)
+    @Mapping(target = "presentation", ignore = true)
     void updateProductFromDTO(UpdateProductRequestDTO dto, @MappingTarget Product product);
 }

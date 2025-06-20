@@ -7,10 +7,10 @@ import java.util.List;
 
 
 public interface ProductService {
-    ProductResponseDTO createProduct(NewProductRequestDTO productRequestDTO) throws DuplicatedEntityException;
+    ProductResponseDTO createProduct(NewProductRequestDTO productRequestDTO) throws NotFoundException, DuplicatedEntityException;
     ProductResponseDTO updateProduct(String code, UpdateProductRequestDTO productRequestDTO) 
         throws NotFoundException, DuplicatedEntityException;
     ProductResponseDTO getProduct(String code) throws NotFoundException;
-    List<ProductResponseDTO> getAllProducts();
+    List<ProductResponseDTO> getAllProducts(ProductSearchRequestDTO productSearchRequestDTO);
     void deleteProduct(String code) throws NotFoundException;
 }

@@ -12,6 +12,6 @@ public record UpdateProductRequestDTO(
     Integer unitsPerPresentation,
 
     @Positive(message = "El precio debe ser mayor a 0")
-    @Digits(integer = 10, fraction = 2, message = "El precio debe tener máximo 10 dígitos enteros y 2 decimales")
+    @Digits(integer = 8, fraction = 2, message = "El precio debe tener máximo 8 dígitos enteros y 2 decimales")
     Double pricePerPresentation
 ) {}
