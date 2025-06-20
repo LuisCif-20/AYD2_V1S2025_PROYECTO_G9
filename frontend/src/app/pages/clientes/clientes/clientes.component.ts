@@ -1,211 +1,262 @@
-import {Component, OnInit, signal, ViewChild} from '@angular/core';
-import {ConfirmationService, MessageService} from 'primeng/api';
-import {Table, TableModule} from 'primeng/table';
-import {CommonModule} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {ButtonModule} from 'primeng/button';
-import {RippleModule} from 'primeng/ripple';
-import {ToastModule} from 'primeng/toast';
-import {ToolbarModule} from 'primeng/toolbar';
-import {RatingModule} from 'primeng/rating';
-import {InputTextModule} from 'primeng/inputtext';
-import {TextareaModule} from 'primeng/textarea';
-import {SelectModule} from 'primeng/select';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {InputNumberModule} from 'primeng/inputnumber';
-import {DialogModule} from 'primeng/dialog';
-import {TagModule} from 'primeng/tag';
-import {InputIconModule} from 'primeng/inputicon';
-import {IconFieldModule} from 'primeng/iconfield';
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import {Product, ProductService} from '../../../services/product/product.service';
-import { DropdownModule } from 'primeng/dropdown';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { ConfirmationService, MessageService } from "primeng/api";
+import { Table, TableModule } from "primeng/table";
+import { CommonModule } from "@angular/common";
+import { FormsModule } from "@angular/forms";
+import { ButtonModule } from "primeng/button";
+import { ToastModule } from "primeng/toast";
+import { ToolbarModule } from "primeng/toolbar";
+import { InputTextModule } from "primeng/inputtext";
+import { DialogModule } from "primeng/dialog";
+import { DropdownModule } from "primeng/dropdown";
+import { TextareaModule } from "primeng/textarea";
+import { ConfirmDialogModule } from "primeng/confirmdialog";
+import { ClienteService } from "../../../services/cliente/cliente.service";
 
-
-
-interface Cliente {
-    id?: string;
-    numero?: number;
-    codigo?: string;
-    nombreContacto?: string;
-    nombreNegocio?: string;
-    departamento?: string;
-    municipio?: string;
-    direccion?: string;
-    nit?: number;
-    encargadoBodega?: string;
-    telefono?: string;
-    tipoVentaAutorizado?: 'Contado' | 'Crédito' | 'Ambas';
-    observaciones?: string;
+export interface Cliente {
+  id?: number;
+  code?: string;
+  contact_name?: string;
+  business_name?: string;
+  municipality_code?: string;
+  address?: string;
+  nit?: string;
+  warehouse_manager?: string;
+  phone?: string;
+  sale_type?: "CREDITO" | "CONTADO" | "AMBAS";
+  notes?: string;
 }
 
 interface Column {
-    field: string;
-    header: string;
+  field: string;
+  header: string;
 }
 
 @Component({
-    selector: 'app-clientes',
-    standalone: true,
-    templateUrl: './clientes.component.html',
-    styleUrls: ['./clientes.component.scss'],
-    imports: [
-        CommonModule,
-        FormsModule,
-        TableModule,
-        ButtonModule,
-        ToolbarModule,
-        InputTextModule,
-        DialogModule,
-        DropdownModule,
-        TextareaModule,
-        ConfirmDialogModule,
-        ToastModule
-    ],
-    providers: [MessageService, ConfirmationService]
+  selector: "app-clientes",
+  standalone: true,
+  templateUrl: "./clientes.component.html",
+  styleUrls: ["./clientes.component.scss"],
+  imports: [
+    CommonModule,
+    FormsModule,
+    TableModule,
+    ButtonModule,
+    ToolbarModule,
+    InputTextModule,
+    DialogModule,
+    DropdownModule,
+    TextareaModule,
+    ConfirmDialogModule,
+    ToastModule,
+  ],
+  providers: [MessageService, ConfirmationService],
 })
 export class ClientesComponent implements OnInit {
-    clienteDialog: boolean = false;
-    clientes = signal<Cliente[]>([]);
-    cliente!: Cliente;
-    selectedClientes!: Cliente[] | null;
-    submitted: boolean = false;
-    cols!: Column[];
+  clienteDialog: boolean = false;
+  clientes: Cliente[] = [];
+  cliente!: Cliente;
+  selectedClientes!: Cliente[] | null;
+  submitted: boolean = false;
+  cols!: Column[];
 
-    departamentos = [
-        { label: 'Guatemala', value: 'GT' },
-        { label: 'Quetzaltenango', value: 'QZ' }
-        // Agrega más departamentos aquí
+  departamentos = [
+    { label: "Guatemala", value: "GT" },
+    { label: "Quetzaltenango", value: "QZ" },
+  ];
+
+  municipios: any[] = [];
+  municipiosPorDepartamento: { [key: string]: string[] } = {
+    GT: ["Guatemala", "Mixco", "Villa Nueva"],
+    QZ: ["Quetzaltenango", "Olintepeque"],
+  };
+
+  tiposVenta = [
+    { label: "Contado", value: "CONTADO" },
+    { label: "Crédito", value: "CREDITO" },
+    { label: "Ambas", value: "AMBAS" },
+  ];
+
+  @ViewChild("dt") dt!: Table;
+
+  constructor(
+    private clienteService: ClienteService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) {}
+
+  ngOnInit() {
+    this.cols = [
+      { field: "code", header: "Código" },
+      { field: "contact_name", header: "Contacto" },
+      { field: "business_name", header: "Negocio" },
+      { field: "municipality_code", header: "Municipio" },
+      { field: "phone", header: "Teléfono" },
+      { field: "sale_type", header: "Tipo Venta" },
     ];
-    municipios: any[] = [];
-    tiposVenta = [
-        { label: 'Contado', value: 'Contado' },
-        { label: 'Crédito', value: 'Crédito' },
-        { label: 'Ambas', value: 'Ambas' }
-    ];
-    municipiosPorDepartamento: { [key: string]: string[] } = {
-        'GT': ['Guatemala', 'Mixco', 'Villa Nueva'],
-        'QZ': ['Quetzaltenango', 'Olintepeque']
-    };
 
-    @ViewChild('dt') dt!: Table;
+    this.loadClientes();
+  }
 
-    constructor(private messageService: MessageService, private confirmationService: ConfirmationService) { }
+  loadClientes() {
+    this.clienteService.getClientes().subscribe({
+      next: (data) => (this.clientes = data),
+      error: () =>
+        this.messageService.add({
+          severity: "error",
+          summary: "Error",
+          detail: "No se pudieron cargar los clientes",
+        }),
+    });
+  }
 
-    ngOnInit() {
-        this.cols = [
-            { field: 'numero', header: 'No.' },
-            { field: 'codigo', header: 'Código' },
-            { field: 'nombreContacto', header: 'Contacto' },
-            { field: 'nombreNegocio', header: 'Negocio' },
-            { field: 'departamento', header: 'Departamento' },
-            { field: 'municipio', header: 'Municipio' },
-            { field: 'telefono', header: 'Teléfono' },
-            { field: 'tipoVentaAutorizado', header: 'Tipo Venta' }
-        ];
-    }
-    onGlobalFilter(event: Event) {
+  onGlobalFilter(event: Event) {
     const input = event.target as HTMLInputElement;
-    this.dt.filterGlobal(input.value, 'contains');
-}
+    this.dt.filterGlobal(input.value, "contains");
+  }
 
+  loadMunicipios() {
+    const dep = this.cliente.municipality_code?.substring(0, 2);
+    this.municipios =
+      this.municipiosPorDepartamento[dep!]?.map((m) => ({
+        label: m,
+        value: m,
+      })) || [];
+  }
 
-    loadMunicipios() {
-        const dep = this.cliente.departamento;
-        this.municipios = this.municipiosPorDepartamento[dep!]?.map(m => ({ label: m, value: m })) || [];
-    }
-
-    openNew() {
-        this.cliente = {
-        nombreContacto: '',
-        nombreNegocio: '',
-        departamento: '',
-        municipio: '',
-        direccion: '',
-        nit: undefined,
-        encargadoBodega: '',
-        telefono: '',
-        tipoVentaAutorizado: undefined,
-        observaciones: ''
+  openNew() {
+    this.cliente = {
+      contact_name: "",
+      business_name: "",
+      municipality_code: "",
+      address: "",
+      nit: "",
+      warehouse_manager: "",
+      phone: "",
+      sale_type: undefined,
+      notes: "",
     };
 
-        this.submitted = false;
-        this.clienteDialog = true;
-    }
+    this.submitted = false;
+    this.clienteDialog = true;
+  }
 
-    hideDialog() {
-        this.clienteDialog = false;
-        this.submitted = false;
-    }
+  hideDialog() {
+    this.clienteDialog = false;
+    this.submitted = false;
+  }
 
-    saveCliente() {
-        this.submitted = true;
-        let _clientes = this.clientes();
-        if (this.cliente.nombreContacto?.trim()) {
-            if (this.cliente.id) {
-                _clientes[this.findIndexById(this.cliente.id)] = this.cliente;
-                this.clientes.set([..._clientes]);
-                this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Cliente Actualizado', life: 3000 });
-            } else {
-                this.cliente.id = this.createId();
-                this.cliente.numero = this.clientes().length + 1;
-                this.cliente.codigo = this.generateCodigo();
-                this.clientes.set([..._clientes, this.cliente]);
-                this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Cliente Creado', life: 3000 });
-            }
-            this.clienteDialog = false;
-            this.cliente = {};
-        }
-    }
+  saveCliente() {
+    this.submitted = true;
+    console.log(this.cliente)
+    if (
+      !this.cliente.contact_name ||
+      !this.cliente.municipality_code ||
+      !this.cliente.sale_type
+    )
+      return;
 
-    editCliente(cliente: Cliente) {
-        this.cliente = { ...cliente };
-        this.loadMunicipios();
-        this.clienteDialog = true;
-    }
-
-    deleteCliente(cliente: Cliente) {
-        this.confirmationService.confirm({
-            message: '¿Está seguro que desea eliminar a ' + cliente.nombreContacto + '?',
-            header: 'Confirmar',
-            icon: 'pi pi-exclamation-triangle',
-            accept: () => {
-                this.clientes.set(this.clientes().filter(val => val.id !== cliente.id));
-                this.cliente = {};
-                this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Cliente Eliminado', life: 3000 });
-            }
+    const esEdicion = !!this.cliente.id;
+    const request$ = esEdicion
+      ? this.clienteService.updateCliente(this.cliente)
+      : this.clienteService.createCliente(this.cliente);
+    console.log(this.cliente)
+    request$.subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: "success",
+          summary: "Éxito",
+          detail: esEdicion ? "Cliente actualizado" : "Cliente creado",
+          life: 3000,
         });
-    }
+        this.loadClientes();
+      },
+      error: () =>
+        this.messageService.add({
+          severity: "error",
+          summary: "Error",
+          detail: "No se pudo guardar el cliente",
+          life: 3000,
+        }),
+    });
 
-    deleteSelectedClientes() {
-        this.confirmationService.confirm({
-            message: '¿Está seguro que desea eliminar los clientes seleccionados?',
-            header: 'Confirmar',
-            icon: 'pi pi-exclamation-triangle',
-            accept: () => {
-                this.clientes.set(this.clientes().filter(val => !this.selectedClientes?.includes(val)));
-                this.selectedClientes = null;
-                this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Clientes Eliminados', life: 3000 });
-            }
+    this.clienteDialog = false;
+    this.cliente = {};
+  }
+
+  editCliente(cliente: Cliente) {
+    this.cliente = { ...cliente };
+    this.loadMunicipios();
+    this.clienteDialog = true;
+  }
+
+  deleteCliente(cliente: Cliente) {
+    this.confirmationService.confirm({
+      message:
+        "¿Está seguro que desea eliminar a " + cliente.contact_name + "?",
+      header: "Confirmar",
+      icon: "pi pi-exclamation-triangle",
+      accept: () => {
+        this.clienteService.deleteCliente(cliente.id!.toString()).subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: "success",
+              summary: "Éxito",
+              detail: "Cliente eliminado",
+              life: 3000,
+            });
+            this.loadClientes();
+          },
+          error: () =>
+            this.messageService.add({
+              severity: "error",
+              summary: "Error",
+              detail: "No se pudo eliminar el cliente",
+              life: 3000,
+            }),
         });
-    }
+      },
+    });
+  }
 
-    findIndexById(id: string): number {
-        return this.clientes().findIndex(c => c.id === id);
-    }
+  deleteSelectedClientes() {
+    if (!this.selectedClientes || !this.selectedClientes.length) return;
 
-    createId(): string {
-        let id = '';
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        for (let i = 0; i < 5; i++) {
-            id += chars.charAt(Math.floor(Math.random() * chars.length));
-        }
-        return id;
-    }
+    this.confirmationService.confirm({
+      message: "¿Está seguro que desea eliminar los clientes seleccionados?",
+      header: "Confirmar",
+      icon: "pi pi-exclamation-triangle",
+      accept: () => {
+        const eliminaciones = this.selectedClientes!.map((cliente) =>
+          this.clienteService.deleteCliente(cliente.id!.toString())
+        );
 
-    generateCodigo(): string {
-        const depCode = this.cliente.departamento;
-        const correlativo = String(this.clientes().length + 1).padStart(2, '0');
-        return `${depCode}${correlativo}`;
-    }
+        Promise.all(eliminaciones.map((obs) => obs.toPromise()))
+          .then(() => {
+            this.messageService.add({
+              severity: "success",
+              summary: "Éxito",
+              detail: "Clientes eliminados",
+              life: 3000,
+            });
+            this.selectedClientes = null;
+            this.loadClientes();
+          })
+          .catch(() => {
+            this.messageService.add({
+              severity: "error",
+              summary: "Error",
+              detail: "Error al eliminar uno o más clientes",
+              life: 3000,
+            });
+          });
+      },
+    });
+  }
+
+  generateCodigo(): string {
+    const depCode = this.cliente.municipality_code?.substring(0, 2) ?? "XX";
+    const correlativo = String(this.clientes.length + 1).padStart(2, "0");
+    return `${depCode}${correlativo}`;
+  }
 }

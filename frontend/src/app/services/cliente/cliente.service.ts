@@ -1,22 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Cliente } from '../../pages/clientes/clientes/clientes.component';
 
-export interface Cliente {
-    id?: string;
-    numero?: number;
-    codigo?: string;
-    nombreContacto?: string;
-    nombreNegocio?: string;
-    departamento?: string;
-    municipio?: string;
-    direccion?: string;
-    nit?: number;
-    encargadoBodega?: string;
-    telefono?: string;
-    tipoVentaAutorizado?: 'Contado' | 'Crédito' | 'Ambas';
-    observaciones?: string;
-}
 
 @Injectable({
   providedIn: 'root'
