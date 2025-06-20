@@ -30,7 +30,7 @@ public class ClientController {
 
     private final ClientService clientService;
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> getClient(@PathVariable Long id) throws NotFoundException {
         final ClientResponseDTO clientResponseDTO = clientService.getClient(id);
         return ResponseEntity.status(HttpStatus.OK).body(clientResponseDTO);
@@ -50,7 +50,7 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clientResponseDTO);
     }
 
-    @PatchMapping("/id")
+    @PatchMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> updateClient(
             @PathVariable Long id,
             @RequestBody @Valid UpdateClientRequestDTO updateClientRequestDTO) throws NotFoundException {
@@ -58,7 +58,7 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(clientResponseDTO);
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteClient(@PathVariable Long id) throws NotFoundException {
         clientService.deleteClient(id);
         return ResponseEntity.status(HttpStatus.OK).build();
