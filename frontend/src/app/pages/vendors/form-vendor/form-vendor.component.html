@@ -71,11 +71,12 @@
           <p-inputNumber
             id="comision"
             mode="decimal"
-            [min]="0"
-            [max]="100"
+            [min]="0.00"
+            [max]="0.99"
             [step]="0.01"
             suffix="%"
             [(ngModel)]="vendedor.commissionPercent"
+            [minFractionDigits]="2"
             class="w-full"
           ></p-inputNumber>
           <small class="text-gray-500 mt-1 block"

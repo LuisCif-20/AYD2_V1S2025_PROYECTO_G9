@@ -91,7 +91,6 @@ export class FormVendorComponent implements OnInit {
 
     if ((firstName?.trim() ?? '') && (lastName?.trim() ?? '') && commissionPercent >= 0) {
       console.log('Vendedor guardado:', this.vendedor);
-      this.vendedor.commissionPercent = this.vendedor.commissionPercent / 100;
       this.vendorService.save(this.vendedor)
         .subscribe(
           {
