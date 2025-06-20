@@ -24,7 +24,7 @@ public class MunicipalityServiceImpl implements MunicipalityService {
 
     @Override
     public List<MunicipalityResponseDTO> findAllMunicipalities(String code) throws NotFoundException {
-        if (!departmentRepository.existByCode(code))
+        if (!departmentRepository.existsByCode(code))
                 throw new NotFoundException("Departamento con codigo " + code + " no existe.");
         final List<MunicipalityResponseDTO> municipalities = municipalityRepository.findByDepartmentCode(code)
                 .stream()
