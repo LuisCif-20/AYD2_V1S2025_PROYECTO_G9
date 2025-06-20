@@ -13,17 +13,17 @@ CREATE TABLE municipality (
 CREATE TABLE client (
     id SERIAL PRIMARY KEY,
     code VARCHAR(10),
-    contact_name VARCHAR(100) NOT NULL,
-    business_name VARCHAR(100),
-    municipality_code CHAR(4) NOT NULL,
+    contactName VARCHAR(100) NOT NULL,
+    businessName VARCHAR(100),
+    municipalityCode CHAR(4) NOT NULL,
     address VARCHAR(255),
     nit CHAR(9),
-    warehouse_manager VARCHAR(100),
+    warehouseManager VARCHAR(100),
     phone CHAR(9),
-    sale_type VARCHAR(7) NOT NULL CHECK (sale_type IN ('CREDITO', 'CONTADO', 'AMBAS')),
+    saleType VARCHAR(7) NOT NULL CHECK (saleType IN ('CREDITO', 'CONTADO', 'AMBAS')),
     notes TEXT,
     is_active BOOLEAN DEFAULT TRUE,
-    FOREIGN KEY (municipality_code) REFERENCES municipality(code)
+    FOREIGN KEY (municipalityCode) REFERENCES municipality(code)
 );
 
 CREATE TABLE salesman (

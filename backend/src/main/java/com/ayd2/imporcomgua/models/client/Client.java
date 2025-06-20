@@ -32,15 +32,15 @@ public class Client {
     private String code;
 
     @Size(max = 100)
-    @Column(name = "contact_name", nullable = false)
+    @Column(name = "contactName", nullable = false)
     private String contactName;
 
     @Size(max = 100)
-    @Column(name = "business_name")
+    @Column(name = "businessName")
     private String businessName;
 
     @ManyToOne
-    @JoinColumn(name = "municipality_code", nullable = false)
+    @JoinColumn(name = "municipalityCode", nullable = false)
     private Municipality municipality;
 
     @Size(max = 255)
@@ -52,7 +52,7 @@ public class Client {
     private String nit;
 
     @Size(max = 100)
-    @Column(name = "warehouse_manager")
+    @Column(name = "warehouseManager")
     private String warehouseManager;
 
     @Size(min = 9, max = 9)
@@ -60,7 +60,7 @@ public class Client {
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "sale_type", length = 7, nullable = false)
+    @Column(name = "saleType", length = 7, nullable = false)
     private SaleType saleType;
 
     @Lob

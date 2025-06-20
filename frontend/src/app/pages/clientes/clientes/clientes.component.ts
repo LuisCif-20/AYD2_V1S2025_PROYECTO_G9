@@ -18,14 +18,14 @@ import { Departamento } from "../../../models/models";
 export interface Cliente {
   id?: number;
   code?: string;
-  contact_name?: string;
-  business_name?: string;
-  municipality_code?: string;
+  contactName?: string;
+  businessName?: string;
+  municipalityCode?: string;
   address?: string;
   nit?: string;
-  warehouse_manager?: string;
+  warehouseManager?: string;
   phone?: string;
-  sale_type?: "CREDITO" | "CONTADO" | "AMBAS";
+  saleType?: "CREDITO" | "CONTADO" | "AMBAS";
   notes?: string;
 }
 
@@ -89,11 +89,11 @@ export class ClientesComponent implements OnInit {
   ngOnInit() {
     this.cols = [
       { field: "code", header: "Código" },
-      { field: "contact_name", header: "Contacto" },
-      { field: "business_name", header: "Negocio" },
-      { field: "municipality_code", header: "Municipio" },
+      { field: "contactName", header: "Contacto" },
+      { field: "businessName", header: "Negocio" },
+      { field: "municipalityCode", header: "Municipio" },
       { field: "phone", header: "Teléfono" },
-      { field: "sale_type", header: "Tipo Venta" },
+      { field: "saleType", header: "Tipo Venta" },
     ];
 
     this.loadClientes();
@@ -133,7 +133,7 @@ onDepartamentoSeleccionado(code: string) {
   }
 
   loadMunicipios() {
-    const dep = this.cliente.municipality_code?.substring(0, 2);
+    const dep = this.cliente.municipalityCode?.substring(0, 2);
     this.municipios =
       this.municipiosPorDepartamento[dep!]?.map((m) => ({
         label: m,
@@ -143,14 +143,14 @@ onDepartamentoSeleccionado(code: string) {
 
   openNew() {
     this.cliente = {
-      contact_name: "",
-      business_name: "",
-      municipality_code: "",
+      contactName: "",
+      businessName: "",
+      municipalityCode: "",
       address: "",
       nit: "",
-      warehouse_manager: "",
+      warehouseManager: "",
       phone: "",
-      sale_type: undefined,
+      saleType: undefined,
       notes: "",
     };
 
@@ -167,9 +167,9 @@ onDepartamentoSeleccionado(code: string) {
     this.submitted = true;
     console.log(this.cliente)
     if (
-      !this.cliente.contact_name ||
-      !this.cliente.municipality_code ||
-      !this.cliente.sale_type
+      !this.cliente.contactName ||
+      !this.cliente.municipalityCode ||
+      !this.cliente.saleType
     )
       return;
 
@@ -210,7 +210,7 @@ onDepartamentoSeleccionado(code: string) {
   deleteCliente(cliente: Cliente) {
     this.confirmationService.confirm({
       message:
-        "¿Está seguro que desea eliminar a " + cliente.contact_name + "?",
+        "¿Está seguro que desea eliminar a " + cliente.contactName + "?",
       header: "Confirmar",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
@@ -272,7 +272,7 @@ onDepartamentoSeleccionado(code: string) {
   }
 
   generateCodigo(): string {
-    const depCode = this.cliente.municipality_code?.substring(0, 2) ?? "XX";
+    const depCode = this.cliente.municipalityCode?.substring(0, 2) ?? "XX";
     const correlativo = String(this.clientes.length + 1).padStart(2, "0");
     return `${depCode}${correlativo}`;
   }
