@@ -18,13 +18,13 @@ public interface ClientMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "code", ignore = true)
     @Mapping(target = "municipality", ignore = true)
-    @Mapping(target = "active", ignore = true)
+    @Mapping(target = "isActive", ignore = true)
     Client toClient(NewClientRequestDTO newClientRequestDTO);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "code", ignore = true)
     @Mapping(target = "municipality", ignore = true)
-    @Mapping(target = "active", ignore = true)
+    @Mapping(target = "isActive", ignore = true)
     void updateClientFromDTO(UpdateClientRequestDTO updateClientRequestDTO, @MappingTarget Client client);
 
 }

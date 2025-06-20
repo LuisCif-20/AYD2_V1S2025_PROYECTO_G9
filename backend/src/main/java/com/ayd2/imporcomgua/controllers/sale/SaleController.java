@@ -2,7 +2,10 @@ package com.ayd2.imporcomgua.controllers.sale;
 
 import com.ayd2.imporcomgua.dto.sales.NewSaleRequestDTO;
 import com.ayd2.imporcomgua.dto.sales.SaleResponseDTO;
+import com.ayd2.imporcomgua.dto.sales.SaleSearchRequestDTO;
 import com.ayd2.imporcomgua.exceptions.DuplicatedEntityException;
+import com.ayd2.imporcomgua.exceptions.InvalidPaymentTypeException;
+import com.ayd2.imporcomgua.exceptions.NoStockException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.services.sales.SaleService;
 import jakarta.validation.Valid;
@@ -23,7 +26,7 @@ public class SaleController {
 
     @PostMapping
     public ResponseEntity<SaleResponseDTO> createSale(
-            @RequestBody @Valid NewSaleRequestDTO saleRequestDTO) throws DuplicatedEntityException {
+            @RequestBody @Valid NewSaleRequestDTO saleRequestDTO) throws DuplicatedEntityException, NotFoundException, InvalidPaymentTypeException, NoStockException {
         SaleResponseDTO response = saleService.createSale(saleRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
@@ -35,8 +38,8 @@ public class SaleController {
     }
 
     @GetMapping
-    public ResponseEntity<List<SaleResponseDTO>> getAllSales() {
-        return ResponseEntity.ok(saleService.getAllSales());
+    public ResponseEntity<List<SaleResponseDTO>> getAllSales(@Valid SaleSearchRequestDTO saleSearchRequestDTO) {
+        return ResponseEntity.ok(saleService.getAllSales(saleSearchRequestDTO));
     }
 
     @DeleteMapping("/{id}")

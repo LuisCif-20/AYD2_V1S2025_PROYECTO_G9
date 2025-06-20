@@ -96,7 +96,8 @@ CREATE TABLE sale_detail (
 );
 
 CREATE TABLE inventory (
-    product_code CHAR(8) PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
+    product_code CHAR(8) NOT NULL UNIQUE,
     last_updated DATE NOT NULL DEFAULT CURRENT_DATE,
     total_quantity INT NOT NULL CHECK (total_quantity >= 0),
     available_quantity INT NOT NULL CHECK (available_quantity >= 0),

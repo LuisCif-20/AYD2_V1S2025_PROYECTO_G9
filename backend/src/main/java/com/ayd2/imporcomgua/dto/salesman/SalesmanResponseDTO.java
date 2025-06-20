@@ -1,4 +1,4 @@
-package com.ayd2.imporcomgua.dto.salesmen;
+package com.ayd2.imporcomgua.dto.salesman;
 
 import java.util.UUID;
 
