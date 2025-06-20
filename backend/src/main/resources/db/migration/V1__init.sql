@@ -20,7 +20,7 @@ CREATE TABLE client (
     nit CHAR(9),
     warehouse_manager VARCHAR(100),
     phone CHAR(9),
-    sale_type VARCHAR(7) NOT NULL CHECK (sale_type IN ('Crédito', 'Contado', 'Ambas')),
+    sale_type VARCHAR(7) NOT NULL CHECK (sale_type IN ('CREDITO', 'CONTADO', 'AMBAS')),
     notes TEXT,
     FOREIGN KEY (municipality_code) REFERENCES municipality(code)
 );
@@ -59,7 +59,7 @@ CREATE TABLE sale (
     warehouse_exit_date DATE,
     client_id INT NOT NULL,
     shipment_number UUID NOT NULL UNIQUE DEFAULT gen_random_uuid(),
-    payment_type VARCHAR(7) NOT NULL CHECK (payment_type IN ('Contado', 'Crédito')),
+    payment_type VARCHAR(7) NOT NULL CHECK (payment_type IN ('CONTADO', 'CREDITO')),
     credit_days INT NOT NULL CHECK (credit_days >= 0),
     salesman_code UUID NOT NULL,
     dte_invoice_number INT,
