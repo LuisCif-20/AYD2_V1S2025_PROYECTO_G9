@@ -28,5 +28,5 @@ public class Product {
     private Double pricePerPresentation;
 
     @Column
-    private Boolean isActive;
+    private Boolean isActive = true;
 }
