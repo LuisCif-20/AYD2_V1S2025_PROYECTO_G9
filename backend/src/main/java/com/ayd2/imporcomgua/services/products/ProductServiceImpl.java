@@ -91,7 +91,7 @@ public class ProductServiceImpl implements ProductService{
             ProductSpecs.hasCode(productSearchRequestDTO.code()),
             ProductSpecs.nameContains(productSearchRequestDTO.name())
         ).and(
-            ProductSpecs.isActive(true)
+            ProductSpecs.isActive(productSearchRequestDTO.isActive())
         );
         List<Product> products = productRepository.findAll(spec);
         return products.stream()

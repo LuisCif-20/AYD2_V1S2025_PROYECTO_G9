@@ -18,11 +18,7 @@ public class ProductSpecs {
     }
 
     public static Specification<Product> isActive(Boolean isActive) {
-        return (root, query, criteriaBuilder) -> {
-            if (isActive == null) {
-                return null;
-            }
-            return criteriaBuilder.equal(root.get("isActive"), isActive);
-        };
+        return (root, query, criteriaBuilder) -> criteriaBuilder
+                .equal(root.get("isActive"), isActive == null ? true : isActive);
     }
 }

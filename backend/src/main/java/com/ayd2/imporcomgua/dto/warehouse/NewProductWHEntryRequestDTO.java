@@ -10,6 +10,10 @@ public record NewProductWHEntryRequestDTO(
              message = "El código debe tener 4 letras mayúsculas seguidas de 4 dígitos (Ej: ABCD1234)")
     String productCode,
 
+    @NotNull(message = "La fecha de entrada es obligatoria")
+    @PastOrPresent(message = "La fecha de entrada no puede ser futura")
+    LocalDate entryDate,
+
     @NotNull(message = "La cantidad de presentaciones es obligatoria")
     @Positive(message = "La cantidad debe ser mayor a cero")
     Integer quantityPresentation,
