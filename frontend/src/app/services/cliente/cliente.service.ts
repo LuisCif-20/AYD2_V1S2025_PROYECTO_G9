@@ -9,7 +9,7 @@ import { Cliente } from '../../pages/clientes/clientes/clientes.component';
 })
 export class ClienteService {
 
-   private apiUrl = 'http://localhost:3000/api/v1.0/clients/'; // Ajusta esta URL según tu backend
+   private apiUrl = 'http://localhost:3000/api/v1.0/clients'; // Ajusta esta URL según tu backend
 
     constructor(private http: HttpClient) { }
 

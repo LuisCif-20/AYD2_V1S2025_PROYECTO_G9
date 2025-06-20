@@ -97,6 +97,7 @@ export class ClientesComponent implements OnInit {
     ];
 
     this.loadClientes();
+    this.loadDepartamentos();
   }
 
   loadClientes() {
