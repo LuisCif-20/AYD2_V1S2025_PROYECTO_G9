@@ -28,7 +28,7 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "code", length = 10, unique = true)
+    @Column(length = 10, unique = true)
     private String code;
 
     @Size(max = 100)
@@ -44,11 +44,11 @@ public class Client {
     private Municipality municipality;
 
     @Size(max = 255)
-    @Column(name = "address")
+    @Column
     private String address;
 
     @Size(min = 9, max = 9)
-    @Column(name = "nit", length = 9)
+    @Column(length = 9)
     private String nit;
 
     @Size(max = 100)
@@ -64,7 +64,7 @@ public class Client {
     private SaleType saleType;
 
     @Lob
-    @Column(name = "notes")
+    @Column
     private String notes;
 
     @Column(nullable = false)
