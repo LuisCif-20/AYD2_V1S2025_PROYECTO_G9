@@ -5,4 +5,5 @@ public enum SaleType {
     CREDITO,
     CONTADO,
     AMBAS;
+    
 }
