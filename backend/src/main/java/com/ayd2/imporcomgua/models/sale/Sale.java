@@ -20,6 +20,7 @@ import java.util.UUID;
 public class Sale {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "sale_date")
