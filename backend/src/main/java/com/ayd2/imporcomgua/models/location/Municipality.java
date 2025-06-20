@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 public class Municipality {
 
     @Id
-    @Column(name = "code", length = 4)
+    @Column(length = 4)
     private String code;
 
-    @Column(name = "name", length = 100, nullable = false)
+    @Column(length = 100, nullable = false)
     private String name;
 
     @ManyToOne
