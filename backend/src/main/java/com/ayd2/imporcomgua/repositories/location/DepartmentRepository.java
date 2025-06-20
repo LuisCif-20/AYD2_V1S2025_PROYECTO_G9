@@ -6,6 +6,4 @@ import com.ayd2.imporcomgua.models.location.Department;
 
 public interface DepartmentRepository extends JpaRepository<Department, String> {
     
-    boolean existsByCode(String code);
-    
 }
