@@ -57,3 +57,15 @@ export interface Product {
     image?: string;
     rating?: number;
 }
+
+
+export interface Departamento {
+    code: string;
+    name: string;
+}
+
+export interface Municipio {
+    code: string;
+    name: string;
+    department_code: string;
+}
