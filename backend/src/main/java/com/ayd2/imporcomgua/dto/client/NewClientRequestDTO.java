@@ -17,7 +17,6 @@ public record NewClientRequestDTO(
     String municipalityCode,
     
     @NotNull(message = "El tipo de venta es obligatorio")
-    @Size(min = 7, message = "El tipo de venta debe ser menor a 7 caracteres.")
     SaleType saleType,
 
     @Size(max = 100, message = "El nombre de negocio debe ser menor a 100 caracteres.")
