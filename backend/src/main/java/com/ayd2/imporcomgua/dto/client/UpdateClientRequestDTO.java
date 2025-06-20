@@ -8,7 +8,6 @@ public record UpdateClientRequestDTO(
     @Size(max = 100, message = "El nombre de contacto debe ser menor a 100 caracteres.")
     String contactName,
 
-    @Size(min = 7, message = "El tipo de venta debe ser menor a 7 caracteres.")
     SaleType saleType,
 
     @Size(max = 100, message = "El nombre de negocio debe ser menor a 100 caracteres.")
