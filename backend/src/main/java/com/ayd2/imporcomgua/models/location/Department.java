@@ -14,10 +14,10 @@ import lombok.NoArgsConstructor;
 public class Department {
 
     @Id
-    @Column(length = 2)
+    @Column
     private String code;
 
-    @Column(length = 50, nullable = false)
+    @Column
     private String name;
     
 }

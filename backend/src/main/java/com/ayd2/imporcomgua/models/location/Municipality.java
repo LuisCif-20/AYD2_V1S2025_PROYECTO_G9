@@ -16,14 +16,13 @@ import lombok.NoArgsConstructor;
 public class Municipality {
 
     @Id
-    @Column(length = 4)
     private String code;
 
-    @Column(length = 100, nullable = false)
+    @Column
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "department_code", nullable = false)
+    @JoinColumn(name = "department_code")
     private Department department;
     
 }
