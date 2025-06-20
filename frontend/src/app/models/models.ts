@@ -58,7 +58,6 @@ export interface Product {
     rating?: number;
 }
 
-
 export interface Departamento {
     code: string;
     name: string;
@@ -68,4 +67,14 @@ export interface Municipio {
     code: string;
     name: string;
     department_code: string;
+}
+
+export class Vendor {
+    vendorId!: number;
+    code!: string;
+    name!: string;
+    lastName!: string;
+    phone!: string;
+    commission!: number;
+    direction!: string;
 }
