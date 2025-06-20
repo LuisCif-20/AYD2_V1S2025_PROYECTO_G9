@@ -1,13 +1,15 @@
-package com.ayd2.imporcomgua.dto.salesmen;
+package com.ayd2.imporcomgua.dto.salesman;
 
-import jakarta.validation.constraints.*;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
-public record NewSalesmanRequestDTO(
-    @NotBlank(message = "El nombre es obligatorio")
+public record UpdateSalesmanRequestDTO(
+
     @Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres")
     String firstName,
 
-    @NotBlank(message = "El apellido es obligatorio")
     @Size(min = 2, max = 100, message = "El apellido debe tener entre 2 y 100 caracteres")
     String lastName,
 
@@ -17,8 +19,8 @@ public record NewSalesmanRequestDTO(
     @Size(max = 255, message = "La dirección no puede exceder los 255 caracteres")
     String address,
 
-    @NotNull(message = "El porcentaje de comisión es obligatorio")
     @DecimalMin(value = "0.00", message = "La comisión no puede ser negativa")
     @DecimalMax(value = "0.99", message = "La comisión no puede ser mayor a 99%")
     Double commissionPercent
+
 ) {}
