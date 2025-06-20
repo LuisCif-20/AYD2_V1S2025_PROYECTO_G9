@@ -87,9 +87,9 @@ export class FormVendorComponent implements OnInit {
   }
 
   guardar(): void {
-    const { name, lastName, commission } = this.vendedor;
+    const { firstName, lastName, commissionPercent } = this.vendedor;
 
-    if ((name?.trim() ?? '') && (lastName?.trim() ?? '') && commission >= 0) {
+    if ((firstName?.trim() ?? '') && (lastName?.trim() ?? '') && commissionPercent >= 0) {
       console.log('Vendedor guardado:', this.vendedor);
       this.vendorService.save(this.vendedor)
         .subscribe(

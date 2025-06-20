@@ -97,10 +97,10 @@ export class VendorsListComponent implements OnInit {
 
         this.cols = [
             { field: 'code', header: 'Code', customExportHeader: 'Code' },
-            { field: 'name', header: 'Name' },
+            { field: 'firstName', header: 'FirstName' },
             { field: 'lastName', header: 'LastName' },
             { field: 'phone', header: 'Phone' },
-            { field: 'direction', header: 'Direction' }
+            { field: 'address', header: 'Address' }
         ];
     }
 
@@ -118,7 +118,7 @@ export class VendorsListComponent implements OnInit {
 
     deleteProduct(vendor: Vendor) {
         this.confirmationService.confirm({
-            message: 'Estas seguro en eliminar el vendedor ' + vendor.name + '?',
+            message: 'Estas seguro en eliminar el vendedor ' + vendor.firstName + '?',
             header: 'Confirmación',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {

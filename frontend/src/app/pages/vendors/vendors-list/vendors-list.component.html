@@ -17,7 +17,7 @@
   [(selection)]="selectedVendor"
   [columns]="cols"
   [globalFilterFields]="[
-    'name',
+    'firstName',
     'code',
     'lastName',
     'phone',
@@ -95,11 +95,11 @@
                 <p-tableCheckbox [value]="product"/>
             </td> -->
       <td>{{ vendedor.code }}</td>
-      <td>{{ vendedor.name }}</td>
+      <td>{{ vendedor.firstName }}</td>
       <td>{{ vendedor.lastName }}</td>
-      <td>{{ vendedor.commission | currency: "%" }}</td>
+      <td>{{ vendedor.commissionPercent | currency: "%" }}</td>
       <td>{{ vendedor.phone }}</td>
-      <td>{{vendedor.direction}}</td>
+      <td>{{vendedor.address}}</td>
       <td>
         <p-button
           (click)="formVendedor.mostrarFormulario(vendedor)"

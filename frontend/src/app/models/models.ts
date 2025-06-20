@@ -72,9 +72,9 @@ export interface Municipio {
 export class Vendor {
     vendorId!: number;
     code!: string;
-    name!: string;
+    firstName!: string;
     lastName!: string;
     phone!: string;
-    commission!: number;
-    direction!: string;
+    commissionPercent!: number;
+    address!: string;
 }

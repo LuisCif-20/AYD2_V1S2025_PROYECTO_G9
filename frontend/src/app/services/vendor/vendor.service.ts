@@ -21,13 +21,13 @@ export class VendorService {
 
     save(vendor: Vendor): Observable<Vendor> {
         if (vendor.code) {
-            return this.http.put<Vendor>(`${baseUrl}/update/${vendor.code}`, vendor);
+            return this.http.put<Vendor>(`${baseUrl}/${vendor.code}`, vendor);
         }
-        return this.http.post<any>(`${baseUrl}/create`, vendor);
+        return this.http.post<any>(`${baseUrl}`, vendor);
     }
 
     deleteSoftVendor(code: string): Observable<boolean> {
-        return this.http.delete<boolean>(`${baseUrl}/delete/${code}`);
+        return this.http.delete<boolean>(`${baseUrl}/${code}`);
     }
 
 }
