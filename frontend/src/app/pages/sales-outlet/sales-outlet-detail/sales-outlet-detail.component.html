@@ -26,13 +26,12 @@
           <div class="mb-3">
             <label for="fechaSalida" class="block font-bold mb-2"
               >Fecha de salida de bodega<small class="text-red-500">*</small></label
-            >
+            ><!-- [disabled]="venta.warehouseExitDate" -->
             <p-calendar
               id="fechaSalida"
               [(ngModel)]="wareHouseExitDate"
               dateFormat="dd/mm/yy"
-              showIcon="true"
-              [disabled]="venta.warehouseExitDate"
+              showIcon="true"          
               placeholder="Selecciona una fecha"
               class="w-full"
             ></p-calendar>
