@@ -22,114 +22,8 @@ import {ProductService} from "../../services/product/product.service";
 import {ClienteService} from "../../services/cliente/cliente.service";
 import {Cliente} from "../clientes/clientes/clientes.component";
 import {SalesService} from "../../services/sales/sales.service";
-
-export interface Sale {
-    id: string
-    saleDate: string
-    warehouseExitDate: string
-    client: {
-        id: number
-        code: string
-        contactName: string
-        businessName: string
-        municipality: {
-            code: string
-            name: string
-            department: {
-                code: string
-                name: string
-            }
-        }
-        address: string
-        nit: string
-        warehouseManager: string
-        phone: string
-        saleType: string
-        notes: string
-        active: boolean
-    }
-    shipmentNumber: string
-    paymentType: string
-    creditDays: number
-    salesman: {
-        code: string
-        firstName: string
-        lastName: string
-        phone: string
-        address: string
-        commissionPercent: number
-    }
-    dteInvoiceNumber: number
-    invoiceName: string
-    invoiceNit: string
-    total: number
-    paymentStatus: string
-    saleStatus: string
-    paymentDate: string
-    notes: string
-    details: SaleDetail[]
-}
-
-// Interfaz actualizada para los detalles (GET)
-export interface SaleDetail {
-    productName: string
-    quantity: number
-    unitQuantity: number
-    pricePerPresentation: number
-    subtotal: number
-}
-
-// Interfaz para crear/editar ventas (POST)
-export interface SaleForm {
-    saleDate: string
-    clientId: number | null
-    paymentType: string
-    creditDays: number
-    salesmanCode: string
-    dteInvoiceNumber: number
-    invoiceName: string
-    invoiceNit: string
-    notes: string
-    details: SaleDetailForm[]
-}
-
-export interface SaleDetailForm {
-    productCode: string
-    quantity: number
-    unitQuantity: number
-    pricePerPresentation: number
-}
-
-export interface Client {
-    id: number
-    code: string
-    contactName: string
-    businessName: string
-    nit: string
-    phone: string
-    address: string
-}
-
-export interface Salesman {
-    code: string
-    firstName: string
-    lastName: string
-    fullName: string
-    phone: string
-    address: string
-    commissionPercent: number
-}
-
-export interface ItemProduct {
-    code: string
-    name: string
-    presentation: {
-        id: number
-        name: string
-    }
-    unitsPerPresentation: number
-    pricePerPresentation: number
-}
+import {DatePickerModule} from "primeng/datepicker";
+import {Client, ItemProduct, Sale, SaleDetailForm, SaleForm, Salesman} from "../../models/models";
 
 @Component({
     selector: 'app-sales',
@@ -153,13 +47,14 @@ export interface ItemProduct {
         TagModule,
         InputIconModule,
         IconFieldModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        DatePickerModule,
     ],
     providers: [MessageService, ProductService, ConfirmationService, ClienteService]
 })
 export class Sales implements OnInit {
     sales = signal<Sale[]>([])
-
+    @ViewChild("dt") dt: any
     saleDialog = false
     viewSaleDialog = false
     isEditMode = false
@@ -173,7 +68,7 @@ export class Sales implements OnInit {
     cols: any[] = []
 
     // Datos para los selects
-    clients: Cliente[] = []
+    clients: Client[] = []
     salesmen: Salesman[] = []
     products: ItemProduct[] = []
 
@@ -181,6 +76,7 @@ export class Sales implements OnInit {
         { label: "Contado", value: "CONTADO" },
         { label: "Crédito", value: "CREDITO" },
     ]
+    selectedClientNit: any = '';
 
     constructor(
         private messageService: MessageService,
@@ -212,22 +108,22 @@ export class Sales implements OnInit {
 
     loadClients() {
         // Llamada al servicio para obtener clientes
-        this.clientService.getClientes().subscribe(clients => this.clients = clients)
+        this.salesService.getClients().subscribe(clients => this.clients = clients)
     }
 
     loadSalesmen() {
         // Llamada al servicio para obtener vendedores
-        // this.salesmanService.getSalesmen().subscribe(salesmen => {
-        //   this.salesmen = salesmen.map(s => ({
-        //     ...s,
-        //     fullName: `${s.firstName} ${s.lastName}`
-        //   }))
-        // })
+        this.salesService.getSalesmen().subscribe(salesmen => {
+           this.salesmen = salesmen.map(s => ({
+             ...s,
+             fullName: `${s.firstName} ${s.lastName}`
+           }));
+        })
     }
 
     loadProducts() {
         // Llamada al servicio para obtener productos
-        // this.productService.getProducts().subscribe(products => this.products = products)
+        this.salesService.getProducts().subscribe(products => this.products = products)
     }
 
     openNew() {
@@ -279,20 +175,20 @@ export class Sales implements OnInit {
 
     deleteSale(sale: Sale) {
         this.confirmationService.confirm({
-            message: "¿Está seguro de que desea eliminar esta venta?",
+            message: "¿Está seguro de que desea anular esta venta?",
             header: "Confirmar",
-            icon: "pi pi-exclamation-triangle",
+            icon: "pi pi-times-circle",
             accept: () => {
                 // Llamada al servicio para eliminar
-                // this.salesService.deleteSale(sale.id).subscribe(() => {
-                //   this.loadSales()
-                //   this.messageService.add({
-                //     severity: "success",
-                //     summary: "Exitoso",
-                //     detail: "Venta eliminada",
-                //     life: 3000,
-                //   })
-                // })
+                this.salesService.deleteSale(sale.id).subscribe(() => {
+                   this.loadSales()
+                   this.messageService.add({
+                     severity: "success",
+                     summary: "Exitoso",
+                     detail: "Venta eliminada",
+                     life: 3000,
+                   })
+                })
             },
         })
     }
@@ -316,24 +212,24 @@ export class Sales implements OnInit {
 
             if (this.isEditMode) {
                 // Actualizar venta existente
-                // this.salesService.updateSale(this.saleForm).subscribe({
-                //   next: () => {
-                //     this.handleSaveSuccess("Venta actualizada")
-                //   },
-                //   error: () => {
-                //     this.saving = false
-                //   }
-                // })
+                /*this.salesService.updateSale(this.saleForm).subscribe({
+                   next: () => {
+                     this.handleSaveSuccess("Venta actualizada")
+                   },
+                   error: () => {
+                     this.saving = false
+                   }
+                })*/
             } else {
                 // Crear nueva venta
-                // this.salesService.createSale(this.saleForm).subscribe({
-                //   next: () => {
-                //     this.handleSaveSuccess("Venta creada")
-                //   },
-                //   error: () => {
-                //     this.saving = false
-                //   }
-                // })
+                 this.salesService.createSale(this.saleForm).subscribe({
+                   next: () => {
+                     this.handleSaveSuccess("Venta creada")
+                   },
+                   error: () => {
+                     this.saving = false
+                   }
+                 })
             }
 
             // Simulación para el ejemplo
@@ -413,10 +309,6 @@ export class Sales implements OnInit {
         table.filterGlobal((event.target as HTMLInputElement).value, "contains")
     }
 
-    exportCSV() {
-        // Implementar exportación CSV
-    }
-
     getPaymentStatusSeverity(status: string): string {
         switch (status) {
             case "PAGADO":
@@ -474,5 +366,33 @@ export class Sales implements OnInit {
             notes: "",
             details: [],
         }
+    }
+
+    // Método para manejar cambio de cliente
+    onClientChange(event: any) {
+        const clientId = event.value
+        const selectedClient = this.clients.find((c) => c.id === clientId)
+        if (selectedClient) {
+            this.selectedClientNit = selectedClient.nit
+            // Opcionalmente, puedes llenar automáticamente el NIT de factura
+            if (!this.saleForm.invoiceNit) {
+                this.saleForm.invoiceNit = selectedClient.nit
+            }
+        } else {
+            this.selectedClientNit = ""
+        }
+    }
+
+    exportCSV() {
+        // Usar el método nativo de PrimeNG si está disponible
+        if (this.dt) {
+            this.dt.exportCSV()
+        }
+    }
+
+    printSale(sale: any) {
+       const resp = this.salesService.printSale(sale);
+       this.messageService.add(resp)
+
     }
 }

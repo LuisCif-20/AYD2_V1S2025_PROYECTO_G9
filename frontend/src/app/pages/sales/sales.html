@@ -96,10 +96,13 @@
             <td>
                 <p-button (click)="viewSale(sale)" [outlined]="true" [rounded]="true" class="mr-2"
                           icon="pi pi-eye" pTooltip="Ver detalles" severity="info"/>
-                <p-button (click)="editSale(sale)" [outlined]="true" [rounded]="true" class="mr-2"
-                          icon="pi pi-pencil" pTooltip="Editar"/>
-                <p-button (click)="deleteSale(sale)" [outlined]="true" [rounded]="true" icon="pi pi-trash"
+                <!--<p-button (click)="editSale(sale)" [outlined]="true" [rounded]="true" class="mr-2"
+                          icon="pi pi-pencil" pTooltip="Editar"/>-->
+
+                <p-button (click)="deleteSale(sale)" *ngIf="sale.paymentStatus !== 'PAGADO'" [outlined]="true" [rounded]="true" icon="pi pi-times-circle"
                           severity="danger" pTooltip="Eliminar"/>
+                <p-button (click)="printSale(sale)" [outlined]="true" [rounded]="true" class="mr-2"
+                          icon="pi pi-print" pTooltip="Imprimir venta" severity="secondary"/>
             </td>
         </tr>
     </ng-template>
@@ -111,28 +114,37 @@
         <div class="flex flex-col gap-6">
             <!-- Información General -->
             <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-6">
+                <div class="col-span-12">
                     <label class="block font-bold mb-3" for="saleDate">Fecha de Venta *</label>
-                    <input id="saleDate" [(ngModel)]="saleForm.saleDate" pInputText type="text" placeholder="Seleccionar fecha" [disabled]="true"/>
+                    <p-datepicker [showIcon]="true" [showButtonBar]="true" [(ngModel)]="saleForm.saleDate" placeholder="Seleccionar fecha"></p-datepicker>
+                    <small *ngIf="submitted && !saleForm.saleDate" class="text-red-500">Fecha de venta es requerida.</small>
                 </div>
-                <div class="col-span-6">
-                    <label class="block font-bold mb-3" for="paymentType">Tipo de Pago *</label>
-                    <p-select [(ngModel)]="saleForm.paymentType" [options]="paymentTypes" fluid
-                              optionLabel="label" optionValue="value" placeholder="Seleccionar tipo de pago"/>
-                    <small *ngIf="submitted && !saleForm.paymentType" class="text-red-500">Tipo de pago es requerido.</small>
-                </div>
+
             </div>
 
             <!-- Cliente y Vendedor -->
             <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-6">
+                <div class="col-span-4">
                     <label class="block font-bold mb-3" for="client">Cliente *</label>
                     <p-select [(ngModel)]="saleForm.clientId" [options]="clients" fluid
                               optionLabel="businessName" optionValue="id" placeholder="Seleccionar cliente"
-                              [filter]="true" filterBy="businessName,contactName"/>
+                              [filter]="true" filterBy="businessName,contactName"
+                              (onChange)="onClientChange($event)"/>
                     <small *ngIf="submitted && !saleForm.clientId" class="text-red-500">Cliente es requerido.</small>
                 </div>
-                <div class="col-span-6">
+                <div class="col-span-4">
+                    <label class="block font-bold mb-3" for="clientNit">NIT del Cliente</label>
+                    <input
+                            [value]="selectedClientNit"
+                            fluid
+                            id="clientNit"
+                            pInputText
+                            type="text"
+                            readonly
+                            placeholder="Se llena automáticamente"
+                            class="bg-gray-50" [disabled]="true"/>
+                </div>
+                <div class="col-span-4">
                     <label class="block font-bold mb-3" for="salesman">Vendedor *</label>
                     <p-select [(ngModel)]="saleForm.salesmanCode" [options]="salesmen" fluid
                               optionLabel="fullName" optionValue="code" placeholder="Seleccionar vendedor"
@@ -144,28 +156,31 @@
             <!-- Información de Crédito y Factura -->
             <div class="grid grid-cols-12 gap-4">
                 <div class="col-span-4">
+                    <label class="block font-bold mb-3" for="paymentType">Tipo de Pago *</label>
+                    <p-select [(ngModel)]="saleForm.paymentType" [options]="paymentTypes" fluid
+                              optionLabel="label" optionValue="value" placeholder="Seleccionar tipo de pago"/>
+                    <small *ngIf="submitted && !saleForm.paymentType" class="text-red-500">Tipo de pago es requerido.</small>
+                </div>
+                <div class="col-span-4">
                     <label class="block font-bold mb-3" for="creditDays">Días de Crédito</label>
                     <p-inputnumber [(ngModel)]="saleForm.creditDays" fluid id="creditDays"
                                    [disabled]="saleForm.paymentType !== 'CREDITO'"/>
                 </div>
                 <div class="col-span-4">
                     <label class="block font-bold mb-3" for="dteInvoiceNumber">Número DTE</label>
-                    <p-inputnumber [(ngModel)]="saleForm.dteInvoiceNumber" fluid id="dteInvoiceNumber"/>
+                    <input [(ngModel)]="saleForm.dteInvoiceNumber" fluid id="dteInvoiceNumber" pInputText type="text"/>
                 </div>
+
+            </div>
+
+            <div class="grid grid-cols-12 gap-4">
                 <div class="col-span-4">
                     <label class="block font-bold mb-3" for="invoiceNit">NIT Factura</label>
                     <input [(ngModel)]="saleForm.invoiceNit" fluid id="invoiceNit" pInputText type="text"/>
                 </div>
-            </div>
-
-            <div class="grid grid-cols-12 gap-4">
-                <div class="col-span-6">
+                <div class="col-span-4">
                     <label class="block font-bold mb-3" for="invoiceName">Nombre Factura</label>
                     <input [(ngModel)]="saleForm.invoiceName" fluid id="invoiceName" pInputText type="text"/>
-                </div>
-                <div class="col-span-6">
-                    <label class="block font-bold mb-3" for="notes">Notas</label>
-                    <input [(ngModel)]="saleForm.notes" fluid id="notes" pInputText type="text"/>
                 </div>
             </div>
 
@@ -176,7 +191,10 @@
                     <p-button (click)="addProductDetail()" icon="pi pi-plus" label="Agregar Producto" size="small"/>
                 </div>
 
-                <p-table [value]="saleForm.details" [tableStyle]="{'min-width': '50rem'}">
+                <p-table
+                        [tableStyle]="{'min-width': '50rem'}"
+                        [scrollable]="true"
+                        [value]="saleForm.details">
                     <ng-template #header>
                         <tr>
                             <th style="width: 30%">Producto</th>
@@ -187,13 +205,28 @@
                             <th style="width: 5%">Acciones</th>
                         </tr>
                     </ng-template>
-                    <ng-template #body let-detail let-i="rowIndex">
+                    <ng-template  #body let-detail let-i="rowIndex">
                         <tr>
                             <td>
-                                <p-select [(ngModel)]="detail.productCode" [options]="products"
-                                          optionLabel="name" optionValue="code" placeholder="Seleccionar producto"
-                                          [filter]="true" filterBy="name,code" fluid
-                                          (onChange)="onProductChange(i, detail.productCode)"/>
+                                <p-select
+                                        [(ngModel)]="detail.productCode"
+                                        [options]="products"
+                                        optionLabel="name"
+                                        optionValue="code"
+                                        placeholder="Seleccionar producto"
+                                        [filter]="true"
+                                        filterBy="name,code"
+                                        fluid
+                                        appendTo="body"
+                                        [style]="{'min-width': '250px'}"
+                                        (onChange)="onProductChange(i, detail.productCode)">
+                                    <ng-template #item let-product>
+                                        <div>
+                                            <div class="font-semibold">{{ product.name }}</div>
+                                            <div class="text-sm text-gray-600">{{ product.code }} - {{ product.presentation.name }}</div>
+                                        </div>
+                                    </ng-template>
+                                </p-select>
                             </td>
                             <td>
                                 <p-inputnumber [(ngModel)]="detail.quantity" fluid
@@ -204,9 +237,9 @@
                                                (onInput)="calculateSubtotal(i)"/>
                             </td>
                             <td>
-                                <p-inputnumber [(ngModel)]="detail.pricePerPresentation" currency="USD"
+                                <p-inputnumber [(ngModel)]="detail.pricePerPresentation"  currency="USD"
                                                locale="en-US" mode="currency" fluid
-                                               (onInput)="calculateSubtotal(i)"/>
+                                               (onInput)="calculateSubtotal(i)" [disabled]="true"/>
                             </td>
                             <td>
                                 <span class="font-semibold">{{ getDetailSubtotal(detail) | currency: 'USD' }}</span>
@@ -233,6 +266,13 @@
                 <small *ngIf="submitted && (!saleForm.details || saleForm.details.length === 0)" class="text-red-500">
                     Debe agregar al menos un producto.
                 </small>
+            </div>
+
+            <div class="grid grid-cols-12 gap-4">
+                <div class="col-span-12">
+                    <label class="block font-bold mb-3" for="notes">Notas</label>
+                    <textarea fluid id="notes" pInputText type="text" [(ngModel)]="saleForm.notes" pTextarea placeholder="Your Message" [autoResize]="true" rows="3" cols="30"></textarea>
+                </div>
             </div>
         </div>
     </ng-template>
