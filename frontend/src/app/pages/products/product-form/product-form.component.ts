@@ -90,55 +90,69 @@ export class ProductFormComponent implements OnInit {
   }
 
   guardar(): void {
-  const { code, name, presentation, unitsPerPresentation, pricePerPresentation } = this.product;
+    const { code, name, presentation, unitsPerPresentation, pricePerPresentation } = this.product;
 
-  const camposValidos =
-    (code?.trim() ?? '') &&
-    (name?.trim() ?? '') &&
-    presentation?.id != null &&
-    unitsPerPresentation > 0 &&
-    pricePerPresentation >= 0;
+    if (!this.validarCodigo(this.product.code)) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Código inválido. Debe tener 4 letras y 4 números.',
+      });
+      return;
+    }
 
-  if (camposValidos) {
-    const productoDTO = {
-      code,
-      name,
-      presentationId: presentation.id,
-      unitsPerPresentation,
-      pricePerPresentation,
-    };
+    const camposValidos =
+      (code?.trim() ?? '') &&
+      (name?.trim() ?? '') &&
+      presentation?.id != null &&
+      unitsPerPresentation > 0 &&
+      pricePerPresentation >= 0;
 
-    this.productService.saveProduct(productoDTO).subscribe({
-      next: () => {
-        this.visible = false;
-        this.cerrado.emit(true);
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Éxito',
-          detail: 'Producto guardado correctamente',
-        });
-      },
-      error: (err) => {
-        console.error('Error al guardar producto:', err);
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Error al intentar registrar el producto. Intente más tarde.',
-        });
-      },
-    });
-  } else {
-    this.messageService.add({
-      severity: 'error',
-      summary: 'Campos incompletos',
-      detail: 'Debes ingresar un código, nombre, presentación, unidades y precio válidos.',
-    });
+    if (camposValidos) {
+      const productoDTO = {
+        code,
+        name,
+        presentationId: presentation.id,
+        unitsPerPresentation,
+        pricePerPresentation,
+      };
+
+      this.productService.saveProduct(productoDTO).subscribe({
+        next: () => {
+          this.visible = false;
+          this.cerrado.emit(true);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Éxito',
+            detail: 'Producto guardado correctamente',
+          });
+        },
+        error: (err) => {
+          console.error('Error al guardar producto:', err);
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Error al intentar registrar el producto. Intente más tarde.',
+          });
+        },
+      });
+    } else {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Campos incompletos',
+        detail: 'Debes ingresar un código, nombre, presentación, unidades y precio válidos.',
+      });
+    }
   }
-}
 
 
   hideDialog() {
     this.visible = false;
+  }
+
+  validarCodigo(codigo: string): boolean {
+    const regex = /^[A-Za-z]{4}[0-9]{4}$/;
+    return regex.test(codigo);
   }
 
 }
