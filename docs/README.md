@@ -280,7 +280,7 @@ Este estilo implica que el sistema se estructura en servicios funcionales indepe
 Se eligió porque permite una organización modular por funcionalidades, lo cual facilita el desarrollo, la documentación y futuras integraciones.
 
 ## 6. Diagrama de bloques
-![BLOCKS_DIAGRAM_IMPORCOMGUA](./assets/architecture/blocks-diagram-IMPORCOMGUA-mod1.png)
+![BLOCKS_DIAGRAM_IMPORCOMGUA](./assets/architecture/DIAGRAMA-BLOQUES.png)
 
 ## 7. Diagrama de despliegue
 
@@ -349,7 +349,7 @@ La combinación de Spring Boot + PostgreSQL + Angular, empaquetados en contenedo
 
 ## 8. Diagrama Entidad Relación
 Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
-![ER_IMPERCOMGUA](./assets/architecture/ER-DIAGRAM-IMPERCOMGUA-mod1.png)
+![ER_IMPERCOMGUA](./assets/architecture/DIAGRAMA-ER.pngg)
 
 ## 9. Mockups
 
