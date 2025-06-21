@@ -1,8 +1,8 @@
 <p-toolbar styleClass="mb-6">
     <ng-template #start>
         <p-button (onClick)="openNew()" class="mr-2" icon="pi pi-plus" label="Nueva Venta" severity="secondary"/>
-        <p-button (onClick)="deleteSelectedSales()" [disabled]="!selectedSales || !selectedSales.length" icon="pi pi-trash" label="Eliminar" outlined
-                  severity="secondary"/>
+        <!--<p-button (onClick)="deleteSelectedSales()" [disabled]="!selectedSales || !selectedSales.length" icon="pi pi-trash" label="Eliminar" outlined
+                  severity="secondary"/>-->
     </ng-template>
 
     <ng-template #end>
@@ -36,9 +36,9 @@
     </ng-template>
     <ng-template #header>
         <tr>
-            <th style="width: 3rem">
+            <!--<th style="width: 3rem">
                 <p-tableHeaderCheckbox/>
-            </th>
+            </th>-->
             <th pSortableColumn="saleDate" style="min-width: 12rem">
                 Fecha Venta
                 <p-sortIcon field="saleDate"/>
@@ -72,9 +72,9 @@
     </ng-template>
     <ng-template #body let-sale>
         <tr>
-            <td style="width: 3rem">
+            <!--<td style="width: 3rem">
                 <p-tableCheckbox [value]="sale"/>
-            </td>
+            </td>-->
             <td>{{ sale.saleDate | date: 'dd/MM/yyyy' }}</td>
             <td style="min-width: 16rem">
                 <div>
