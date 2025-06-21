@@ -280,7 +280,7 @@ Este estilo implica que el sistema se estructura en servicios funcionales indepe
 Se eligió porque permite una organización modular por funcionalidades, lo cual facilita el desarrollo, la documentación y futuras integraciones.
 
 ## 6. Diagrama de bloques
-![BLOCKS_DIAGRAM_IMPORCOMGUA](./assets/architecture/blocks-diagram-IMPORCOMGUA-mod1.png)
+![BLOCKS_DIAGRAM_IMPORCOMGUA](./assets/architecture/DIAGRAMA-BLOQUES.png)
 
 ## 7. Diagrama de despliegue
 
