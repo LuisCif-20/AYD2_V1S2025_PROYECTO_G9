@@ -68,7 +68,7 @@ export class AppMenu {
 
                 ]
             },
-            {
+            /*{
                 label: 'Ayuda',
                 items: [
                     {
@@ -97,7 +97,7 @@ export class AppMenu {
                         ]
                     }
                 ]
-            }
+            }*/
         ];
     }
 }
