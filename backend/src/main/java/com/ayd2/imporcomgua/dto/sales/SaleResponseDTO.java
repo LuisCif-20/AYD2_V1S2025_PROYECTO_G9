@@ -27,5 +27,6 @@ public record SaleResponseDTO(
     SaleStatus saleStatus,
     LocalDate paymentDate,
     String notes,
-    List<SaleDetailResponseDTO> details
+    List<SaleDetailResponseDTO> details,
+    Double remainingBalance
 ) {}
