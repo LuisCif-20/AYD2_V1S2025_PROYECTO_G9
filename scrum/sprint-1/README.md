@@ -50,3 +50,17 @@ Los registros diarios se encuentran en la carpeta [`daily-transcripts/`](./daily
 7. [`Estuardo Ramos`](./daily-transcripts/estuardo-ramos.md)
 
 ---
+
+## Sprint Retrospective
+
+| ID   | Historia de Usuario                                                                  | Prioridad  | Estado       |
+| ---- | ------------------------------------------------------------------------------------ | ---------- | ------------ |
+| US01 | Como administrador quiero registrar ventas para llevar control diario                | Alta       | ✅ Completado |
+| US02 | Como administrador deseo registrar el ingreso de productos al inventario             | Alta       | ✅ Completado |
+| US03 | Como administrador quiero registrar salidas de inventario para mantener trazabilidad | Media-Alta | ✅ Completado |
+| US04 | Como cajero deseo registrar pagos de clientes                                        | Media-Alta | ✅ Completado |
+| US05 | Como administrador deseo gestionar clientes                                          | Alta       | ✅ Completado |
+| US06 | Como administrador deseo gestionar productos                                         | Alta       | ✅ Completado |
+| US07 | Como administrador deseo gestionar vendedores                                        | Media-Alta | ✅ Completado |
+
+El proceso de validación y testeo quedó incompleto debido a que el tiempo designado para todas las tareas no fue suficiente.
