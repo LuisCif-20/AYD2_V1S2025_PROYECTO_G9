@@ -53,7 +53,7 @@ export class AppMenu {
                     {
                         label: 'Ventas',
                         icon: 'pi pi-fw pi-truck',
-                        routerLink: ['/pages/crud']
+                        routerLink: ['/pages/sales']
                     },
                     {
                         label: 'Pagos',
