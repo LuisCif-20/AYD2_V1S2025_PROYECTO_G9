@@ -73,6 +73,9 @@ public class Sale {
     @Column
     private String notes;
 
+    @Column
+    private Double remainingBalance;
+
     @OneToMany(mappedBy = "sale", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SaleDetail> details = new ArrayList<>();
 }

@@ -134,7 +134,9 @@ public class SaleServiceImpl implements SaleService {
         sale.setDetails(details);
 
         // 6. Calcular y establecer total
-        calculateAndSetTotal(sale);
+        double total = calculateAndSetTotal(sale);
+        sale.setTotal(total);
+        sale.setRemainingBalance(total);
 
         // 7. Guardar y retornar respuesta
         Sale savedSale = saleRepository.save(sale);
@@ -191,11 +193,11 @@ public class SaleServiceImpl implements SaleService {
         return details;
     }
 
-    private void calculateAndSetTotal(Sale sale) {
+    private double calculateAndSetTotal(Sale sale) {
         double total = sale.getDetails().stream()
                 .mapToDouble(SaleDetail::getSubtotal)
                 .sum();
-        sale.setTotal(total);
+        return total;
     }
 
 }
