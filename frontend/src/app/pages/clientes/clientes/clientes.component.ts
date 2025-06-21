@@ -50,6 +50,8 @@ export class ClientesComponent implements OnInit {
   submitted: boolean = false;
   cols!: Column[];
   departamentos!: Departamento[];
+  modoEdicion: boolean = false;
+
 
   
 
@@ -143,25 +145,23 @@ onDepartamentoSeleccionado(code: string) {
   }
 
   openNew() {
-    this.cliente = {
-      contactName: "",
-      businessName: "",
-      municipalityCode: "",
-      municipality: {
-        
-        name: ""
-      },
-      address: "",
-      nit: "",
-      warehouseManager: "",
-      phone: "",
-      saleType: undefined,
-      notes: "",
-    };
+  this.cliente = {
+    contactName: "",
+    businessName: "",
+    municipalityCode: "",
+    municipality: { name: "" },
+    address: "",
+    nit: "",
+    warehouseManager: "",
+    phone: "",
+    saleType: undefined,
+    notes: "",
+  };
+  this.modoEdicion = false;
+  this.submitted = false;
+  this.clienteDialog = true;
+}
 
-    this.submitted = false;
-    this.clienteDialog = true;
-  }
 
   hideDialog() {
     this.clienteDialog = false;
@@ -207,10 +207,18 @@ onDepartamentoSeleccionado(code: string) {
   }
 
   editCliente(cliente: Cliente) {
-    this.cliente = { ...cliente };
-    this.loadMunicipios();
-    this.clienteDialog = true;
+  this.cliente = { ...cliente };
+
+  if (!this.cliente.municipalityCode && this.cliente.municipality?.code) {
+    this.cliente.municipalityCode = String(this.cliente.municipality.code);
   }
+
+  this.modoEdicion = true;
+  this.loadMunicipios();
+  this.clienteDialog = true;
+}
+
+
 
   deleteCliente(cliente: Cliente) {
     this.confirmationService.confirm({
