@@ -55,11 +55,76 @@ Los registros diarios se encuentran en la carpeta [`daily-transcripts/`](./daily
 
 ![Backlog-Final](../assets/Backlog-Final-Spring-1.png)
 
+### Manuel Rojas
+***¿Qué se hizo bien durante el Sprint?***
+Hubo una constante comunicacion con los compañeros que dependian de funcionalidades de otras para no quedarse estancados mucho tiempo.
 
-## Sprint Retrospective
+***¿Qué se hizo mal durante el Sprint?***
+Hubieron tareas que no se estimaron de manera correcta.
+
+***¿Qué mejoras se deben implementar para el próximo sprint?***
+Una mejor estimacion para las tareas y mejor planificacion
+
+### Luis Nery Cifuentes Rodas
+***¿Qué se hizo bien durante el Sprint?***
+Se trabajo de forma organizada cada tarea.
+***¿Qué se hizo mal durante el Sprint?***
+No tengo ninguna objecion.
+***¿Qué mejoras se deben implementar para el próximo sprint?***
+Para mi nada, esta bien asi como lo estamos trabajando.
+
+### Bilhán López
+***¿Qué se hizo bien durante el Sprint?***
+Asignación de actividades
+***¿Qué se hizo mal durante el Sprint?***
+Se inicio tarde el proyecto
+***¿Qué mejoras se deben implementar para el próximo sprint?***
+Iniciar lo mas pronto posible
+
+### Hector Son
+***¿Qué se hizo bien durante el Sprint?***
+Se logró avanzar con éxito en la implementación de varios casos de uso clave como el registro de clientes, productos y empleados. También se cumplió con la organización del proyecto en Trello.
+
+***¿Qué se hizo mal durante el Sprint?***
+Hubo dificultades al integrar algunas partes del backend con el frontend, principalmente por falta de definición clara en los contratos de las APIs. También se detectaron retrasos por no estimar correctamente la complejidad de ciertas tareas técnicas, como el control de inventario.
+
+***¿Qué mejoras se deben implementar para el próximo sprint?***
+- Establecer reuniones de sincronización técnica al inicio y a mitad del sprint.
+- Definir con anticipación los endpoints y esquemas de datos para evitar bloqueos entre frontend y backend.
+
+### Estuardo Ramos
+***¿Qué se hizo bien durante el Sprint?***
+La distribución de cada tarea se hizo de una buena forma clara y ordenada
+***¿Qué se hizo mal durante el Sprint?***
+Nada, todo bien
+***¿Qué mejoras se deben implementar para el próximo sprint?***
+Mejorar un poco la comunicación
+
+
+### Jaqueline Cifuentes
+***¿Qué se hizo bien durante el Sprint?***
+La asignación de las tareas se asignó de acuerdo a las habilidades de los miembros el equipo y hubo una buena comunicación.
+***¿Qué se hizo mal durante el Sprint?***
+No considero que se haya hecho mal algo durante el sprint.
+***¿Qué mejoras se deben implementar para el próximo sprint?***
+Por el momento no veo necesarias alguna mejora.
+
+### José Alarcón
+***¿Qué se hizo bien durante el Sprint?***
+El equipo logró mantener un ritmo constante de trabajo, lo cual permitió avanzar de forma equilibrada en varias funcionalidades clave. También destaco la buena disposición de todos para ayudar cuando alguien se encontraba bloqueado.
+
+***¿Qué se hizo mal durante el Sprint?***
+Algunas decisiones técnicas se tomaron sobre la marcha sin una revisión conjunta, lo que generó ligeros retrabajos en la integración de algunos módulos.
+
+***¿Qué mejoras se deben implementar para el próximo sprint?***
+Sería ideal realizar sesiones breves de revisión técnica antes de comenzar las tareas más complejas y dejar asentadas convenciones claras para el código compartido, como el formato de respuestas de API y nombres de endpoints.
+
+
+
+### Estado Final del Sprint Backlog
 
 | ID   | Historia de Usuario                                                                  | Prioridad  | Estado       |
-| ---- | ------------------------------------------------------------------------------------ | ---------- | ------------ |
+| ---- | ------------------------------------------------------------------------------------ | :--------: | :----------: |
 | US01 | Como administrador quiero registrar ventas para llevar control diario                | Alta       | ✅ Completado |
 | US02 | Como administrador deseo registrar el ingreso de productos al inventario             | Alta       | ✅ Completado |
 | US03 | Como administrador quiero registrar salidas de inventario para mantener trazabilidad | Media-Alta | ✅ Completado |
