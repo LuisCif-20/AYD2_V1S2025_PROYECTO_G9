@@ -30,8 +30,9 @@ Imagen del tablero al inicio del sprint:
 ---
 
 ## 📅 Daily Standup
+Se grabó cada daily y se puede encontrar en la siguiente [carpeta de drive](https://drive.google.com/drive/folders/1cfmjz10v609Wzfselk9M3RHIlcwegJWg?usp=sharing)
 
-Cada integrante del equipo documentó diariamente lo siguiente:
+Ademas, cada integrante del equipo documentó diariamente lo siguiente:
 
 - ✅ Qué hizo el día anterior
 - 🔜 Qué planea hacer el día actual
