@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 //import { VentaService } from 'src/app/services/venta/venta.service';
 import { MessageService } from 'primeng/api';
-import { Banco, PagoRequest, Venta } from '../../../models/models';
+import { Banco, Pago, Venta } from '../../../models/models';
 import { PaymentService } from '../../../services/payments/payment.service';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
@@ -44,7 +44,7 @@ export class PagosComponent implements OnInit {
   pagoDialog = false;
   submitted = false;
 
-  pago: PagoRequest = {
+  pago: Pago = {
     saleId: '',
     bankId: '',
     accountNumber: '',
@@ -99,16 +99,23 @@ export class PagosComponent implements OnInit {
   }
 
   abrirPago(venta: any) {
-    this.selectedVenta = venta;
-    this.pago = {
-      saleId: venta.id,
-      bankId: '',
-      accountNumber: '',
-      transactionNumber: '',
-      amount: venta.remainingBalance,
-    };
-    this.pagoDialog = true;
-  }
+  this.selectedVenta = venta;
+
+  const today = new Date();
+  const paymentDay = today.toISOString().split('T')[0]; // yyyy-MM-dd
+
+  this.pago = {
+    saleId: venta.id,
+    bankId: '',
+    accountNumber: '',
+    transactionNumber: '',
+    amount: venta.remainingBalance,
+    paymentDay: paymentDay
+  };
+
+  this.pagoDialog = true;
+}
+
 
   registrarPago() {
     this.submitted = true;

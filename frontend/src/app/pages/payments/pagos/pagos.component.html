@@ -37,6 +37,7 @@
       <div class="font-medium text-gray-800">Cliente:</div>
       <div class="mb-1 ml-2 text-sm text-gray-700">{{ selectedVenta?.client?.contactName }}</div>
 
+
       <div class="font-medium text-gray-800">Número de Envío:</div>
       <div class="mb-1 ml-2 text-sm text-gray-700">{{ selectedVenta?.shipmentNumber }}</div>
 
@@ -65,6 +66,12 @@
       <input pInputText [(ngModel)]="pago.accountNumber" id="cuenta" class="w-full" />
       <small *ngIf="submitted && !pago.accountNumber" class="text-red-500">Campo obligatorio</small>
     </div>
+
+    <div class="mb-3">
+  <label for="fechaPago" class="block font-semibold mb-1">Fecha de Pago*</label>
+  <input type="date" [(ngModel)]="pago.paymentDay" id="fechaPago" class="w-full" />
+</div>
+
 
     <div class="mb-3">
       <label for="transaccion" class="block font-semibold mb-1">No. de Transacción*</label>

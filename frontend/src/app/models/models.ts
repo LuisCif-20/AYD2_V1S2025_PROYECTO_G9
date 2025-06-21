@@ -158,6 +158,7 @@ export interface Venta {
 export interface Pago {
   saleId: string;
   bankId: string;
+  paymentDay?: string;
   accountNumber: string;
   transactionNumber: string;
   amount: number;
@@ -168,10 +169,3 @@ export interface Banco {
   name: string;
 }
 
-export interface PagoRequest {
-  saleId: string;
-  bankId: string;
-  accountNumber: string;
-  transactionNumber: string;
-  amount: number;
-}

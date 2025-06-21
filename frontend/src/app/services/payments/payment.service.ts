@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Banco, PagoRequest } from '../../models/models';
+import { Banco, Pago} from '../../models/models';
 
 
 
@@ -17,7 +17,7 @@ export class PaymentService {
     return this.http.get<Banco[]>(`${this.baseUrl}/banks`);
   }
 
-  registrarPago(payload: PagoRequest): Observable<void> {
+  registrarPago(payload: Pago): Observable<void> {
     return this.http.post<void>(`${this.baseUrl}/payments`, payload);
   }
 

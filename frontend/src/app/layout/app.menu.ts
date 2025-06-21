@@ -58,7 +58,7 @@ export class AppMenu {
                     {
                         label: 'Pagos',
                         icon: 'pi pi-fw pi-wallet',
-                        routerLink: ['/pages/empty']
+                        routerLink: ['/pages/pay']
                     },
                     {
                         label: 'Salidas',
