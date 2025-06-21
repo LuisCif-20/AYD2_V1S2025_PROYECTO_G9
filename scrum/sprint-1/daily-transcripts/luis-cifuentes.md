@@ -27,3 +27,13 @@
 
 - ⚠️ **¿Algún impedimento?**  
   > Ninguno por el momento.
+
+    ## 🗓️ Día 4
+- ✅ **¿Qué hice ayer?**  
+  > Implementación de endpoints para obtener crear vendedores y correcion de la documentacion.
+
+- 🔜 **¿Qué haré hoy?**  
+  > Correccion de endpoints de controladores de clientes y vendedores, y agregar criterios de busquda.
+
+- ⚠️ **¿Algún impedimento?**  
+  > Ninguno por el momento.
