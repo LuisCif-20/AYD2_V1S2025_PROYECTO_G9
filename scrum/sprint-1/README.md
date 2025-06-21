@@ -49,3 +49,7 @@ Los registros diarios se encuentran en la carpeta [`daily-transcripts/`](./daily
 7. [`Estuardo Ramos`](./daily-transcripts/estuardo-ramos.md)
 
 ---
+
+### Sprint Retrospective
+
+![Backlog-Final](../assets/Backlog-Final-Spring-1.png)
