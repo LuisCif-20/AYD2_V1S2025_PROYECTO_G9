@@ -1,5 +1,6 @@
 package com.ayd2.imporcomgua.controllers.payment;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,26 +9,26 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ayd2.imporcomgua.dto.payment.NewPaymentRequestDTO;
 import com.ayd2.imporcomgua.dto.payment.PaymentResponseDTO;
+import com.ayd2.imporcomgua.exceptions.DuplicatedEntityException;
+import com.ayd2.imporcomgua.exceptions.NotFoundException;
+import com.ayd2.imporcomgua.exceptions.PaymentExceedsSaleBalanceException;
+import com.ayd2.imporcomgua.services.payment.PaymentService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/v1.0/payments")
+@RequiredArgsConstructor
 public class PaymentController {
+    private final PaymentService paymentService;
+
     @PostMapping
     public ResponseEntity<PaymentResponseDTO> createPayment(
-        @RequestBody @Valid NewPaymentRequestDTO paymentRequestDTO
-    ) {
-        // Aquí iría la lógica para crear un pago
-        // Por ahora, retornamos un ResponseEntity vacío
-        return ResponseEntity.ok(new PaymentResponseDTO(
-            null, // receipt_number
-            null, // sale
-            null, // bank
-            null, // accountNumber
-            null, // transactionNumber
-            null,
-            null  // amount
-        ));
+            @RequestBody @Valid NewPaymentRequestDTO paymentRequestDTO)
+            throws NotFoundException, PaymentExceedsSaleBalanceException, DuplicatedEntityException {
+
+        PaymentResponseDTO responseDTO = paymentService.createPayment(paymentRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 }
