@@ -1,0 +1,107 @@
+<p-toolbar styleClass="mb-6">
+  <ng-template pTemplate="start">
+    <div class="flex flex-col gap-4 w-full">
+      <h5 class="m-0">Salida de productos</h5>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <label for="info"
+          >Complete uno de los campos para buscar una venta y registrar la
+          salida del producto
+        </label>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div>
+          <label for="contactName" class="block font-bold mb-2"
+            >Nombre cliente *</label
+          >
+          <input
+            id="contactName"
+            pInputText
+            placeholder="Ej: Juan Carlos"
+            [(ngModel)]="salesSearch.clientName"
+            class="w-full"
+          />
+        </div>
+
+        <div>
+          <label for="shipmentNumber" class="block font-bold mb-2"
+            >Número de envío *</label
+          >
+          <input
+            id="shipmentNumber"
+            pInputText
+            placeholder="Ej: 3fa85f64"
+            [(ngModel)]="salesSearch.shipmentNumber"
+            class="w-full"
+          />
+        </div>
+
+        <div class="flex items-end">
+          <p-button
+            (onClick)="searchForSales()"
+            icon="pi pi-search"
+            label="Buscar venta"
+            severity="secondary"
+            class="w-full secondary"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</p-toolbar>
+
+<ng-container *ngIf="searchPerformed">
+  <p-table
+    #dt
+    [columns]="cols"
+    [globalFilterFields]="[
+      'shipmentNumber',
+      'client.code',
+      'client.contactName',
+      'saleStatus',
+    ]"
+    [paginator]="true"
+    [rowHover]="true"
+    [rowsPerPageOptions]="[5, 10, 20]"
+    [rows]="5"
+    [showCurrentPageReport]="true"
+    [tableStyle]="{ 'min-width': '30rem' }"
+    [value]="salesDataList()"
+    currentPageReportTemplate="Mostrando {first} al {last} de {totalRecords} Ventas"
+    dataKey="vendorId"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Numero de envio</th>
+        <th>Cliente</th>
+        <th>Codigo cliente</th>
+        <th>Fecha de venta</th>
+        <th>Total</th>
+        <th>Estado de venta</th>
+        <th>Esta de pago</th>
+        <th>Opciones</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-venta>
+      <tr>
+        <td>{{ venta.shipmentNumber }}</td>
+        <td>{{ venta.client.contactName }}</td>
+        <td>{{ venta.client.code }}</td>
+        <td>{{ venta.saleDate | currency: "%" }}</td>
+        <td>{{ venta.tatal }}</td>
+        <td>{{ venta.saleStatus }}</td>
+        <td>{{ venta.paymentStatus }}</td>
+        <td>
+          <p-button
+            (click)="recordOutput(venta)"
+            [outlined]="true"
+            [rounded]="true"
+            class="mr-2"
+            icon="pi pi-pencil"
+          />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</ng-container>
+
+<p-toast></p-toast>

@@ -5,6 +5,8 @@ import { ClientesComponent } from './clientes/clientes/clientes.component';
 import { StockComponent } from './stock/stock/stock.component';
 import { VendorsListComponent } from './vendors/vendors-list/vendors-list.component';
 import { EntradaInventarioComponent } from './inventario/entrada-inventario/entrada-inventario.component';
+import { SalesOutletComponent } from './sales-outlet/sales-outlet/sales-outlet.component';
+import { SalesOutletDetailComponent } from './sales-outlet/sales-outlet-detail/sales-outlet-detail.component';
 
 export default [
     {path: 'crud', component: Crud},
@@ -13,5 +15,7 @@ export default [
     {path: 'client', component: ClientesComponent},
     { path: 'stock', component: StockComponent },
     { path: 'entrada-inventario', component: EntradaInventarioComponent },
+    { path: 'sales-outlet', component: SalesOutletComponent },
+    { path: 'sales-outlet-detail', component: SalesOutletDetailComponent },
     {path: '**', redirectTo: '/notfound'}
 ] as Routes;
