@@ -102,12 +102,9 @@
       <label for="fechaPago" class="block font-semibold mb-1"
         >Fecha de Pago*</label
       >
-      <input
-        type="date"
-        [(ngModel)]="pago.paymentDate"
-        id="fechaPago"
-        class="w-full"
-      />
+
+      <p-datepicker id="fechaPago"
+                    class="w-full" [showIcon]="true" [showButtonBar]="true"  [(ngModel)]="pago.paymentDate" placeholder="Seleccionar fecha"></p-datepicker>
     </div>
 
     <div class="mb-3">

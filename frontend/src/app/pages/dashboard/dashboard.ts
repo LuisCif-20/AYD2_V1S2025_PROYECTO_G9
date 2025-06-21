@@ -8,7 +8,7 @@ import {RevenueStreamWidget} from './components/revenuestreamwidget/revenuestrea
 @Component({
     selector: 'app-dashboard',
     templateUrl: 'dashboard.html',
-    imports: [StatsWidget, RecentSalesWidget, BestSellingWidget, RevenueStreamWidget, NotificationsWidget]
+    imports: [BestSellingWidget]
 
 })
 export class Dashboard {
