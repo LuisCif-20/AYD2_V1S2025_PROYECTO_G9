@@ -23,22 +23,22 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 * **Proveedor**: Se encarga de proveer de productos a IMPORCOMGUA.
 
 ### Diagrama CDU de Alto Nivel
-![CDU_alto_nivel](./assets/cdu/CDU-ALTO-NIVEL.png)
+![CDU_alto_nivel](./assets/cdu/CDU-ALTO-NIVEL-V2.png)
 
 ### Primera Descomposición
-![CDU_primera_descomposicion](./assets/cdu/CDU-PRIMERA-DESCOMPOSICION.png)
+![CDU_primera_descomposicion](./assets/cdu/CDU-PRIMERA-DESCOMPOSICION-V2.png)
 
 ## 2. Casos de Uso Expandidos
 ### Diagramas
-![CDU_expandido-gestion_clientes](./assets/cdu/CDU-GESTION-CLIENTES.png)
+![CDU_expandido-gestion_clientes](./assets/cdu/CDU-GESTION-CLIENTES-V2.png)
 
-![CDU_expandido-gestion_vendedores](./assets/cdu/CDU-GESTION-VENDEDORES.png)
+![CDU_expandido-gestion_vendedores](./assets/cdu/CDU-GESTION-VENDEDORES-V2.png)
 
-![CDU_expandido-gestion_ventas](./assets/cdu/CDU-GESTION-VENTAS.png)
+![CDU_expandido-gestion_ventas](./assets/cdu/CDU-GESTION-VENTAS-V2.png)
 
-![CDU_expandido-gestion_bodega](./assets/cdu/CDU-GESTION-BODEGA.png)
+![CDU_expandido-gestion_bodega](./assets/cdu/CDU-GESTION-BODEGA-V2.png)
 
-![CDU_expandido-control_pagos](./assets/cdu/CDU-CONTROL-PAGOS.png)
+![CDU_expandido-control_pagos](./assets/cdu/CDU-CONTROL-PAGOS-V2.png)
 
 ### Listado
 - **CDU100 - Gestionar Clientes**
