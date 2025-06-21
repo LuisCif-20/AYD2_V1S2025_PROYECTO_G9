@@ -19,15 +19,9 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { FormVendorComponent } from '../form-vendor/form-vendor.component';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { Product, Vendor } from '../../../models/models';
+import { Column, Product, Vendor } from '../../../models/models';
 import { ProductService } from '../../../services/product/product.service';
 import { VendorService } from '../../../services/vendor/vendor.service';
-
-interface Column {
-    field: string;
-    header: string;
-    customExportHeader?: string;
-}
 
 @Component({
     selector: 'app-vendors-list',
