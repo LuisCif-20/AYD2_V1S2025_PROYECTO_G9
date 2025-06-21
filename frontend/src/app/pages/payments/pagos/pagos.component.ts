@@ -102,15 +102,16 @@ export class PagosComponent implements OnInit {
   this.selectedVenta = venta;
 
   const today = new Date();
-  const paymentDay = today.toISOString().split('T')[0]; // yyyy-MM-dd
+  const paymentDate = today.toISOString().split('T')[0];
 
   this.pago = {
     saleId: venta.id,
     bankId: '',
+    //paymentDate: "",
     accountNumber: '',
     transactionNumber: '',
     amount: venta.remainingBalance,
-    paymentDay: paymentDay
+    paymentDate: paymentDate
   };
 
   this.pagoDialog = true;
@@ -118,29 +119,40 @@ export class PagosComponent implements OnInit {
 
 
   registrarPago() {
-    this.submitted = true;
-    if (!this.pago.saleId || !this.pago.bankId || !this.pago.accountNumber || !this.pago.transactionNumber || !this.pago.amount) {
-      return;
-    }
+  this.submitted = true;
 
-    this.paymentService.registrarPago(this.pago).subscribe({
-      next: () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Pago registrado',
-          detail: 'El pago se ha guardado exitosamente',
-        });
-        this.pagoDialog = false;
-        this.obtenerVentas();
-      },
-      error: () =>
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'No se pudo registrar el pago',
-        }),
-    });
+  if (
+    !this.pago.saleId ||
+    !this.pago.bankId ||
+    !this.pago.accountNumber ||
+    !this.pago.transactionNumber ||
+    !this.pago.amount ||
+    !this.pago.paymentDate
+  ) {
+    return;
   }
+
+  this.paymentService.registrarPago(this.pago).subscribe({
+    next: () => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Pago registrado',
+        detail: 'El pago se ha guardado exitosamente',
+      });
+      this.pagoDialog = false;
+      this.obtenerVentas();
+    },
+    error: (err) => {
+      const detalle = err?.error?.detail || 'Error desconocido al registrar el pago';
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: detalle,
+      });
+    },
+  });
+}
+
 
   onGlobalFilter(event: Event) {
   const input = event.target as HTMLInputElement;
