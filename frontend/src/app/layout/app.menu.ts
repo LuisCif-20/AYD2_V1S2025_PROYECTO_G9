@@ -63,7 +63,7 @@ export class AppMenu {
                     {
                         label: 'Salidas',
                         icon: 'pi pi-fw pi-arrow-circle-right',
-                        routerLink: ['/pages/empty']
+                        routerLink: ['/pages/sales-outlet']
                     }
 
                 ]

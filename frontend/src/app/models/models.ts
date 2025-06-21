@@ -98,28 +98,28 @@ export interface Cliente {
 }
 
 export interface Producto {
-  code: string;
-  name: string;
-  presentation: {
-    id: number;
+    code: string;
     name: string;
-  };
-  unitsPerPresentation?: number;
-  pricePerPresentation: number;
+    presentation: {
+        id: number;
+        name: string;
+    };
+    unitsPerPresentation?: number;
+    pricePerPresentation: number;
 }
 
 
 export interface ProductEntryForm {
-  productCode?: string;
-  entryDate?: string;
-  unitsPerPresentation?: number;
-  quantityPresentation?: number;
-  containerNumber?: string;
-  ducaNumber?: string;
-  ducaDate?: string;
-  rectifiedDucaNumber?: string;
-  rectifiedDucaDate?: string;
-  notes?: string;
+    productCode?: string;
+    entryDate?: string;
+    unitsPerPresentation?: number;
+    quantityPresentation?: number;
+    containerNumber?: string;
+    ducaNumber?: string;
+    ducaDate?: string;
+    rectifiedDucaNumber?: string;
+    rectifiedDucaDate?: string;
+    notes?: string;
 }
 
 export interface StockProducto {
@@ -169,3 +169,85 @@ export interface Banco {
   name: string;
 }
 
+export class SalesSearch {
+    clientName!: string;
+    shipmentNumber!: string;
+    status!: string;
+}
+
+export interface SalesDataDto {
+  id: string
+  saleDate: string
+  warehouseExitDate: string
+  client: Client
+  shipmentNumber: string
+  paymentType: string
+  creditDays: number
+  salesman: Salesman
+  dteInvoiceNumber: number
+  invoiceName: string
+  invoiceNit: string
+  total: number
+  paymentStatus: string
+  saleStatus: string
+  paymentDate: string
+  notes: string
+  details: Detail[]
+}
+
+export interface Client {
+  id: number
+  code: string
+  contactName: string
+  businessName: string
+  municipality: Municipality
+  address: string
+  nit: string
+  warehouseManager: string
+  phone: string
+  saleType: string
+  notes: string
+  isActive: boolean
+}
+
+export interface Municipality {
+  code: string
+  name: string
+  department: Department
+}
+
+export interface Department {
+  code: string
+  name: string
+}
+
+export interface Salesman {
+  code: string
+  firstName: string
+  lastName: string
+  phone: string
+  address: string
+  commissionPercent: number
+  isActive: boolean
+}
+
+export interface Detail {
+  productName: string
+  quantity: number
+  unitQuantity: number
+  pricePerPresentation: number
+  subtotal: number
+}
+
+
+export interface Column {
+    field: string;
+    header: string;
+    customExportHeader?: string;
+}
+
+
+export class SalesOutlet {
+    saleId!: string;
+    exitDate!: Date;
+}

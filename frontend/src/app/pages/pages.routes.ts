@@ -6,6 +6,8 @@ import { VendorsListComponent } from './vendors/vendors-list/vendors-list.compon
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { EntradaInventarioComponent } from './inventario/entrada-inventario/entrada-inventario.component';
 import { PagosComponent } from './payments/pagos/pagos.component';
+import { SalesOutletComponent } from './sales-outlet/sales-outlet/sales-outlet.component';
+import { SalesOutletDetailComponent } from './sales-outlet/sales-outlet-detail/sales-outlet-detail.component';
 
 export default [
     {path: 'products', component: ProductListComponent},
@@ -15,5 +17,7 @@ export default [
     { path: 'stock', component: StockComponent },
     { path: 'entrada-inventario', component: EntradaInventarioComponent },
     { path: 'pay', component: PagosComponent },
+    { path: 'sales-outlet', component: SalesOutletComponent },
+    { path: 'sales-outlet-detail', component: SalesOutletDetailComponent },
     {path: '**', redirectTo: '/notfound'}
 ] as Routes;
