@@ -78,6 +78,9 @@ public class SaleServiceImpl implements SaleService {
         Sale sale = saleRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Venta no encontrada con ID: " + id));
 
+        if (sale.getPaymentStatus() == PaymentStatus.PAGADO) {
+            throw new IllegalStateException("La venta ya está pagada y no puede ser anulada");
+        }
         // 2. Validar que no esté ya anulada
         if (sale.getSaleStatus() == SaleStatus.ANULADA) {
             throw new IllegalStateException("La venta ya está anulada");
