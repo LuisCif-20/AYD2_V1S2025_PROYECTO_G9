@@ -153,33 +153,32 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 #### Usabilidad
 - **RNF03 - UI para Escritorio**: La interfaz adaptarse correctamente a dispositivos de escritorios.
-- **RNF04 - UI Especifica por Rol**: Las opciones del menú deben estar claramente categorizadas y organizadas según los roles de usuario (administrador, supervisor, vendedor).
-- **RNF05 - UI Intuitiva**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
+- **RNF04 - UI Intuitiva**: El usuario debe poder realizar búsquedas de clientes, ventas o productos de forma intuitiva desde cualquier vista relevante.
 
 #### Disponibilidad
-- **RNF06 - Alta Disponibilidad**: El sistema deberá garantizar una disponibilidad del 99.99% anual.
-- **RNF07 - CI/CD**: La implementación de nuevas funcionalidades no debe requerir la interrupción del servicio activo para los usuarios.
+- **RNF05 - Alta Disponibilidad**: El sistema deberá garantizar una disponibilidad del 99.99% anual.
+- **RNF06 - CI/CD**: La implementación de nuevas funcionalidades no debe requerir la interrupción del servicio activo para los usuarios.
 
 #### Escalabilidad
-- **RNF08 - Arquitectura Escalable**: La arquitectura del sistema debe ser modular y permitir la integración de nuevos módulos sin afectar el rendimiento existente.
+- **RNF07 - Arquitectura Escalable**: La arquitectura del sistema debe ser modular y permitir la integración de nuevos módulos sin afectar el rendimiento existente.
 
 #### Mantenibilidad
-- **RNF09 - Clara Documentación**: El código fuente deberá documentarse adecuadamente, siguiendo estándares de nomenclatura y comentarios estructurados.
+- **RNF08 - Clara Documentación**: El código fuente deberá documentarse adecuadamente, siguiendo estándares de nomenclatura y comentarios estructurados.
 
 ### Requisitos de Restricción (Drivers de Restricción)
 
 #### Técnicos
-- **RNF10 - Portabilidad de la Aplicación**: El sistema debe poder ejecutarse en distintos navegadores web modernos (Chrome, Firefox, Edge).
-- **RNF11 - Entorno de Despliegue**: La solución debe estar preparada para ser desplegada en cualquier entorno..
+- **RNF09 - Aplicacion Web**: La aplicación debe ser desarrollada como una aplicación web accesible mediante navegadores modernos (Chrome, Firefox, Edge), sin requerir instalación en el dispositivo cliente.
+- **RNF10 - Entorno de Despliegue**: La solución debe estar preparada para ser desplegada en cualquier entorno..
 
 #### Operacionales
-- **RNF12 - Ventas**: Los procesos de venta deben permitir pagos parciales, y manejar correctamente los saldos pendientes.
-- **RNF13 - Eliminación de registros**: No se permite eliminación física de registros por normativas del negocio. Solo debe aplicarse baja lógica o estado "inactivo".
-- **RNF14 - Modificacion en Stock**: Los procesos involucrados con el stock de productos en el inventario, deben de ser seguros y correctos, manteniendo uniformidad entre los ingresos y ventas.
+- **RNF11 - Ventas**: Los procesos de venta deben permitir pagos parciales, y manejar correctamente los saldos pendientes.
+- **RNF12 - Eliminación de registros**: No se permite eliminación física de registros por normativas del negocio. Solo debe aplicarse baja lógica o estado "inactivo".
+- **RNF13 - Modificacion en Stock**: Los procesos involucrados con el stock de productos en el inventario, deben de ser seguros y correctos, manteniendo uniformidad entre los ingresos y ventas.
 
 #### Gestión de proyecto
-- **RNF15 - Desarrollo del sistema**: El sistema debe desarrollarse en 3 fases durante un mes, según cronograma aprobado.
-- **RNF16 - Metodología**: Se debe usar metodología ágil con tablero Kanban.
+- **RNF14 - Desarrollo del sistema**: El sistema debe desarrollarse en 3 fases durante un mes, según cronograma aprobado.
+- **RNF15 - Metodología**: Se debe usar metodología ágil con tablero Kanban.
 
 ## 4. Matrices de Trazabilidad
 ### Stakeholders vs Requerimientos
@@ -282,15 +281,16 @@ Se eligió porque permite una organización modular por funcionalidades, lo cual
 ## 6. Diagrama de bloques
 ![BLOCKS_DIAGRAM_IMPORCOMGUA](./assets/architecture/DIAGRAMA-BLOQUES.png)
 
-## 7. Diagrama de despliegue
-
-![diagrama-despliegue](./assets/architecture/DIAGRAMA-DESPLIEGUE.png)
+## 7. Diagrama de despliegue (Componentes y Distribucion)
 
 ### 7.1 Diagrama de Componentes
 ![diagrama-componentes](./assets/architecture/DIAGRAMA-COMPONENTES.png)
 
 ### 7.2 Diagrama de Distribucion
 ![diagrama-distribucion](./assets/architecture/DIAGRAMA-DISTRIBUCION.png)
+
+### 7.3 Digrama de Despliegue
+![diagrama-despliegue](./assets/architecture/DIAGRAMA-DESPLIEGUE.png)
 
 ### Justificacion de Frameworks y tecnologias
 Para el desarrollo del backend se ha optado por el framework Spring Boot sobre el lenguaje de programación Java, debido a sus ventajas en la construcción de aplicaciones empresariales robustas y escalables.
@@ -349,7 +349,7 @@ La combinación de Spring Boot + PostgreSQL + Angular, empaquetados en contenedo
 
 ## 8. Diagrama Entidad Relación
 Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
-![ER_IMPERCOMGUA](./assets/architecture/DIAGRAMA-ER.pngg)
+![ER_IMPERCOMGUA](./assets/architecture/DIAGRAMA-ER.png)
 
 ## 9. Mockups
 
