@@ -14,6 +14,7 @@ import { ToastModule } from 'primeng/toast';
 import { FormsModule } from '@angular/forms';
 
 import { Table } from 'primeng/table';
+import {DatePickerModule} from "primeng/datepicker";
 
 
 
@@ -31,7 +32,8 @@ import { Table } from 'primeng/table';
     InputNumberModule,
     ButtonModule,
     ToastModule,
-    FormsModule
+    FormsModule,
+    DatePickerModule
   ],
   providers: [MessageService]
 })
