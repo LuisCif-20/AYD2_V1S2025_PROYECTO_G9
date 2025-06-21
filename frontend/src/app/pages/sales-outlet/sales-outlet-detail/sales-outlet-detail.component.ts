@@ -115,7 +115,7 @@ export class SalesOutletDetailComponent {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
-              detail: 'Error al intentar registrar la salida de productos a bodega, por favor, intente mas tarde',
+              detail: err.error.detail,
             });
           },
           complete: () => {
