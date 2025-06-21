@@ -145,3 +145,33 @@ export interface Column {
   field: string;
   header: string;
 }
+
+export interface Venta {
+  id: string;
+  shipmentNumber: string;
+  client: {
+    contactName: string;
+  };
+  remainingBalance: number;
+}
+
+export interface Pago {
+  saleId: string;
+  bankId: string;
+  accountNumber: string;
+  transactionNumber: string;
+  amount: number;
+}
+
+export interface Banco {
+  id: string;
+  name: string;
+}
+
+export interface PagoRequest {
+  saleId: string;
+  bankId: string;
+  accountNumber: string;
+  transactionNumber: string;
+  amount: number;
+}
