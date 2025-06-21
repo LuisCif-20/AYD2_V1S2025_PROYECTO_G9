@@ -10,7 +10,7 @@ Tener un Producto Mínimo Viable (MVP) del sistema de automatización para IMPOR
 ### Sprint Backlog
 
 | ID | Historia de Usuario | Tareas | Prioridad	|
-|	:---:	|	-----	|	-----	| :------ :	|
+|	:---:	|	-----	|	-----	| :------: 	|
 |	US01	|	Como administrador quiero registrar ventas para llevar control diario               	|	1.	Diseñar formulario para ventas con campos de cliente, productos, cantidades, total.<br>2.	Crear servicio backend para registrar la venta (incluyendo lógica de stock).<br>3.	Permitir búsqueda de ventas por cliente, fecha o estado.<br>4.	Permitir anulación de ventas con justificación (modal + servicio).<br>5.	Mostrar historial de ventas con filtros.	|	 Alta      	|
 |	US02	|	Como administrador deseo registrar el ingreso de productos al inventario            	|	1.	Crear interfaz para registrar nuevos ingresos a inventario.<br>2.	Validar existencia de producto y cantidad ingresada.<br>3.	Actualizar automáticamente el stock al registrar el ingreso.<br>4.	Mostrar confirmación y registro histórico de ingresos. "	|	 Alta     	|
 |	US03	|	Como administrador quiero registrar salidas de inventario para mantener trazabilidad	|	1.	Diseñar formulario con producto, cantidad y motivo de salida.<br>2.	Validar que la cantidad no exceda el stock actual.<br>3.	Registrar salida en el sistema con fecha y usuario.<br>4.	Mostrar historial de salidas por producto."	|	 Media-Alta    	|
