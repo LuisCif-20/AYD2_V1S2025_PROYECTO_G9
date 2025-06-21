@@ -27,3 +27,13 @@
 
 - ⚠️ **¿Algún impedimento?**  
   > No tiene impedimentos reportados.
+
+  ## 🗓️ Día 4
+- ✅ **¿Qué hice ayer?**  
+  > Desarrollo de la vista para el flujo de registro de salida de productos de bodega y la implementación del servicio  correspondiente.
+
+- 🔜 **¿Qué haré hoy?**  
+  > Descansar.
+
+- ⚠️ **¿Algún impedimento?**  
+  > No tiene impedimentos reportados.
