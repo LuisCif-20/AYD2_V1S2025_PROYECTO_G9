@@ -33,7 +33,7 @@ export class AppMenu {
                     {
                         label: 'Vendedores',
                         icon: 'pi pi-fw pi-user',
-                        routerLink: ['/pages/crud']
+                        routerLink: ['/pages/vendors']
                     },
                     {
                         label: 'Clientes',
@@ -43,12 +43,12 @@ export class AppMenu {
                     {
                         label: 'Productos',
                         icon: 'pi pi-fw pi-list-check',
-                        routerLink: ['/pages/crud']
+                        routerLink: ['/pages/products']
                     },
                     {
                         label: 'Inventario',
                         icon: 'pi pi-fw pi-warehouse',
-                        routerLink: ['/pages/crud']
+                        routerLink: ['/pages/entrada-inventario']
                     },
                     {
                         label: 'Ventas',
@@ -58,7 +58,7 @@ export class AppMenu {
                     {
                         label: 'Pagos',
                         icon: 'pi pi-fw pi-wallet',
-                        routerLink: ['/pages/empty']
+                        routerLink: ['/pages/pay']
                     },
                     {
                         label: 'Salidas',

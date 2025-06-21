@@ -13,21 +13,9 @@ import { TextareaModule } from "primeng/textarea";
 import { ConfirmDialogModule } from "primeng/confirmdialog";
 import { ClienteService } from "../../../services/cliente/cliente.service";
 import { UbicacionService } from "../../../services/ubicacion/ubicacion.service";
-import { Departamento } from "../../../models/models";
+import { Cliente, Departamento } from "../../../models/models";
 
-export interface Cliente {
-  id?: number;
-  code?: string;
-  contact_name?: string;
-  business_name?: string;
-  municipality_code?: string;
-  address?: string;
-  nit?: string;
-  warehouse_manager?: string;
-  phone?: string;
-  sale_type?: "CREDITO" | "CONTADO" | "AMBAS";
-  notes?: string;
-}
+
 
 interface Column {
   field: string;
@@ -62,6 +50,8 @@ export class ClientesComponent implements OnInit {
   submitted: boolean = false;
   cols!: Column[];
   departamentos!: Departamento[];
+  modoEdicion: boolean = false;
+
 
   
 
@@ -88,29 +78,42 @@ export class ClientesComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: "code", header: "Código" },
-      { field: "contact_name", header: "Contacto" },
-      { field: "business_name", header: "Negocio" },
-      { field: "municipality_code", header: "Municipio" },
-      { field: "phone", header: "Teléfono" },
-      { field: "sale_type", header: "Tipo Venta" },
-    ];
+  { field: "code", header: "Código" },
+  { field: "contactName", header: "Contacto" },
+  { field: "businessName", header: "Negocio" },
+  { field: "municipality.name", header: "Municipio" },  
+  { field: "phone", header: "Teléfono" },
+  { field: "saleType", header: "Tipo Venta" }
+];
+
 
     this.loadClientes();
     this.loadDepartamentos();
   }
 
   loadClientes() {
-    this.clienteService.getClientes().subscribe({
-      next: (data) => (this.clientes = data),
-      error: () =>
-        this.messageService.add({
-          severity: "error",
-          summary: "Error",
-          detail: "No se pudieron cargar los clientes",
-        }),
-    });
-  }
+  this.clienteService.getClientes().subscribe({
+    next: (data) => {
+      this.clientes = data.map(cliente => {
+        // Si municipality.name está vacío pero municipalityCode está definido
+        if (!cliente.municipality?.name && cliente.municipalityCode && this.municipios.length > 0) {
+          const municipio = this.municipios.find(m => m.code === cliente.municipalityCode);
+          if (municipio) {
+            cliente.municipality = { ...cliente.municipality, name: municipio.name };
+          }
+        }
+        return cliente;
+      });
+    },
+    error: () =>
+      this.messageService.add({
+        severity: "error",
+        summary: "Error",
+        detail: "No se pudieron cargar los clientes",
+      }),
+  });
+}
+
 
   loadDepartamentos() {
     this.ubicacionService.getDepartamentos().subscribe({
@@ -133,7 +136,7 @@ onDepartamentoSeleccionado(code: string) {
   }
 
   loadMunicipios() {
-    const dep = this.cliente.municipality_code?.substring(0, 2);
+    const dep = this.cliente.municipalityCode?.substring(0, 2);
     this.municipios =
       this.municipiosPorDepartamento[dep!]?.map((m) => ({
         label: m,
@@ -142,21 +145,23 @@ onDepartamentoSeleccionado(code: string) {
   }
 
   openNew() {
-    this.cliente = {
-      contact_name: "",
-      business_name: "",
-      municipality_code: "",
-      address: "",
-      nit: "",
-      warehouse_manager: "",
-      phone: "",
-      sale_type: undefined,
-      notes: "",
-    };
+  this.cliente = {
+    contactName: "",
+    businessName: "",
+    municipalityCode: "",
+    municipality: { name: "" },
+    address: "",
+    nit: "",
+    warehouseManager: "",
+    phone: "",
+    saleType: undefined,
+    notes: "",
+  };
+  this.modoEdicion = false;
+  this.submitted = false;
+  this.clienteDialog = true;
+}
 
-    this.submitted = false;
-    this.clienteDialog = true;
-  }
 
   hideDialog() {
     this.clienteDialog = false;
@@ -167,9 +172,9 @@ onDepartamentoSeleccionado(code: string) {
     this.submitted = true;
     console.log(this.cliente)
     if (
-      !this.cliente.contact_name ||
-      !this.cliente.municipality_code ||
-      !this.cliente.sale_type
+      !this.cliente.contactName ||
+      !this.cliente.municipalityCode ||
+      !this.cliente.saleType
     )
       return;
 
@@ -202,15 +207,23 @@ onDepartamentoSeleccionado(code: string) {
   }
 
   editCliente(cliente: Cliente) {
-    this.cliente = { ...cliente };
-    this.loadMunicipios();
-    this.clienteDialog = true;
+  this.cliente = { ...cliente };
+
+  if (!this.cliente.municipalityCode && this.cliente.municipality?.code) {
+    this.cliente.municipalityCode = String(this.cliente.municipality.code);
   }
+
+  this.modoEdicion = true;
+  this.loadMunicipios();
+  this.clienteDialog = true;
+}
+
+
 
   deleteCliente(cliente: Cliente) {
     this.confirmationService.confirm({
       message:
-        "¿Está seguro que desea eliminar a " + cliente.contact_name + "?",
+        "¿Está seguro que desea eliminar a " + cliente.contactName + "?",
       header: "Confirmar",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
@@ -272,7 +285,7 @@ onDepartamentoSeleccionado(code: string) {
   }
 
   generateCodigo(): string {
-    const depCode = this.cliente.municipality_code?.substring(0, 2) ?? "XX";
+    const depCode = this.cliente.municipalityCode?.substring(0, 2) ?? "XX";
     const correlativo = String(this.clientes.length + 1).padStart(2, "0");
     return `${depCode}${correlativo}`;
   }

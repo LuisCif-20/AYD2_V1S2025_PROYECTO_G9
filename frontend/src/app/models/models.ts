@@ -53,7 +53,6 @@ export interface Product {
     rating?: number;
 }
 
-
 export interface Departamento {
     code: string;
     name: string;
@@ -63,6 +62,106 @@ export interface Municipio {
     code: string;
     name: string;
     department_code: string;
+}
+
+export class Vendor {
+    vendorId!: number;
+    code!: string;
+    firstName!: string;
+    lastName!: string;
+    phone!: string;
+    commissionPercent!: number;
+    address!: string;
+}
+
+export interface Cliente {
+  id?: number;
+  code?: string;
+  contactName?: string;
+  businessName?: string;
+  municipalityCode?: string;
+    municipality?: {
+    code?:number,
+    name?: string
+  };
+  address?: string;
+  nit?: string;
+  warehouseManager?: string;
+  phone?: string;
+  saleType?: "CREDITO" | "CONTADO" | "AMBAS";
+  notes?: string;
+}
+
+export interface Producto {
+  code: string;
+  name: string;
+  presentation: {
+    id: number;
+    name: string;
+  };
+  unitsPerPresentation?: number;
+  pricePerPresentation: number;
+}
+
+
+export interface ProductEntryForm {
+  productCode?: string;
+  entryDate?: string;
+  unitsPerPresentation?: number;
+  quantityPresentation?: number;
+  containerNumber?: string;
+  ducaNumber?: string;
+  ducaDate?: string;
+  rectifiedDucaNumber?: string;
+  rectifiedDucaDate?: string;
+  notes?: string;
+}
+
+export interface StockProducto {
+  id: number;
+  product: {
+    code: string;
+    name: string;
+    presentation: {
+      id: number;
+      name: string;
+    };
+    unitsPerPresentation: number;
+    pricePerPresentation: number;
+    isActive: boolean;
+  };
+  lastUpdated: string;
+  totalQuantity: number;
+  availableQuantity: number;
+  reservedQuantity: number;
+}
+
+export interface Column {
+  field: string;
+  header: string;
+}
+
+export interface Venta {
+  id: string;
+  shipmentNumber: string;
+  client: {
+    contactName: string;
+  };
+  remainingBalance: number;
+}
+
+export interface Pago {
+  saleId: string;
+  bankId: string;
+  paymentDate?: string;
+  accountNumber: string;
+  transactionNumber: string;
+  amount: number;
+}
+
+export interface Banco {
+  id: string;
+  name: string;
 }
 
 
@@ -180,3 +279,4 @@ export interface ItemProduct {
     unitsPerPresentation: number
     pricePerPresentation: number
 }
+

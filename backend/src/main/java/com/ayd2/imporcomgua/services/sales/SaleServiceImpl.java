@@ -78,6 +78,9 @@ public class SaleServiceImpl implements SaleService {
         Sale sale = saleRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Venta no encontrada con ID: " + id));
 
+        if (sale.getPaymentStatus() == PaymentStatus.PAGADO) {
+            throw new IllegalStateException("La venta ya está pagada y no puede ser anulada");
+        }
         // 2. Validar que no esté ya anulada
         if (sale.getSaleStatus() == SaleStatus.ANULADA) {
             throw new IllegalStateException("La venta ya está anulada");
@@ -134,7 +137,9 @@ public class SaleServiceImpl implements SaleService {
         sale.setDetails(details);
 
         // 6. Calcular y establecer total
-        calculateAndSetTotal(sale);
+        double total = calculateAndSetTotal(sale);
+        sale.setTotal(total);
+        sale.setRemainingBalance(total);
 
         // 7. Guardar y retornar respuesta
         Sale savedSale = saleRepository.save(sale);
@@ -191,11 +196,11 @@ public class SaleServiceImpl implements SaleService {
         return details;
     }
 
-    private void calculateAndSetTotal(Sale sale) {
+    private double calculateAndSetTotal(Sale sale) {
         double total = sale.getDetails().stream()
                 .mapToDouble(SaleDetail::getSubtotal)
                 .sum();
-        sale.setTotal(total);
+        return total;
     }
 
 }

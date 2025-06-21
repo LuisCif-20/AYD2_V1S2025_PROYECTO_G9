@@ -1,0 +1,171 @@
+<p-table
+  #dt
+  [value]="ventas"
+  [paginator]="true"
+  [rows]="10"
+  [globalFilterFields]="['shipmentNumber', 'client.contactName']"
+  [rowsPerPageOptions]="[10, 20, 50]"
+>
+  <ng-template pTemplate="caption">
+    <div class="flex justify-between items-center">
+      <span class="text-xl font-semibold">Ventas con Saldo Pendiente</span>
+      <input
+        type="text"
+        pInputText
+        (input)="onGlobalFilter($event)"
+        placeholder="Buscar por envío o cliente"
+      />
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Número de Envío</th>
+      <th>Cliente</th>
+      <th>Saldo Adeudado</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+
+  <ng-template pTemplate="body" let-venta>
+    <tr>
+      <td>{{ venta.shipmentNumber }}</td>
+      <td>{{ venta.client.contactName }}</td>
+      <td>Q {{ venta.remainingBalance | number: "1.2-2" }}</td>
+      <td>
+        <p-button label="Registrar Pago" (click)="abrirPago(venta)"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog
+  [(visible)]="pagoDialog"
+  header="Registrar Pago"
+  [modal]="true"
+  [style]="{ width: '500px' }"
+  class="p-fluid"
+>
+  <div class="p-3">
+    <!-- Información de Cliente -->
+    <div class="mb-4">
+      <div class="font-medium text-gray-800">Cliente:</div>
+      <div class="mb-1 ml-2 text-sm text-gray-700">
+        {{ selectedVenta?.client?.contactName }}
+      </div>
+
+      <div class="font-medium text-gray-800">Número de Envío:</div>
+      <div class="mb-1 ml-2 text-sm text-gray-700">
+        {{ selectedVenta?.shipmentNumber }}
+      </div>
+
+      <div class="font-medium text-gray-800">Saldo Pendiente:</div>
+      <div class="ml-2 text-sm font-semibold text-green-700">
+        Q {{ selectedVenta?.remainingBalance | number: "1.2-2" }}
+      </div>
+    </div>
+
+    <!-- Formulario -->
+    <div class="mb-3">
+      <label for="banco" class="block font-semibold mb-1">Banco*</label>
+      <p-dropdown
+        [(ngModel)]="pago.bankId"
+        [options]="bancos"
+        optionLabel="name"
+        optionValue="id"
+        placeholder="Seleccione un banco"
+        class="w-full"
+        [showClear]="true"
+      >
+      </p-dropdown>
+      <small *ngIf="submitted && !pago.bankId" class="text-red-500"
+        >Campo obligatorio</small
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="cuenta" class="block font-semibold mb-1"
+        >No. de Cuenta*</label
+      >
+      <input
+        pInputText
+        [(ngModel)]="pago.accountNumber"
+        id="cuenta"
+        class="w-full"
+      />
+      <small *ngIf="submitted && !pago.accountNumber" class="text-red-500"
+        >Campo obligatorio</small
+      >
+    </div>
+
+    <div class="mb-3">
+      <label for="fechaPago" class="block font-semibold mb-1"
+        >Fecha de Pago*</label
+      >
+      <input
+        type="date"
+        [(ngModel)]="pago.paymentDate"
+        id="fechaPago"
+        class="w-full"
+      />
+    </div>
+
+    <div class="mb-3">
+      <label for="transaccion" class="block font-semibold mb-1"
+        >No. de Transacción*</label
+      >
+      <input
+        pInputText
+        [(ngModel)]="pago.transactionNumber"
+        id="transaccion"
+        class="w-full"
+      />
+      <small *ngIf="submitted && !pago.transactionNumber" class="text-red-500"
+        >Campo obligatorio</small
+      >
+    </div>
+
+    <div class="mb-4">
+      <label for="monto" class="block font-semibold mb-1">Monto*</label>
+      <p-inputNumber
+        [(ngModel)]="pago.amount"
+        mode="decimal"
+        [min]="0.01"
+        [max]="selectedVenta?.remainingBalance"
+        [showButtons]="true"
+        class="w-full"
+        inputId="monto"
+        inputClass="w-full text-right"
+      >
+      </p-inputNumber>
+      <small *ngIf="submitted && !pago.amount" class="text-red-500"
+        >Campo obligatorio</small
+      >
+      <small
+        *ngIf="pago.amount > selectedVenta?.remainingBalance"
+        class="text-red-500"
+      >
+        El monto no puede ser mayor a Q{{ selectedVenta?.remainingBalance }}
+      </small>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <ng-template #footer>
+    <div class="flex justify-end gap-2">
+      <p-button
+        (click)="pagoDialog = false"
+        icon="pi pi-times"
+        label="Cancelar"
+        text
+      />
+      <p-button
+        (click)="registrarPago()"
+        icon="pi pi-check"
+        label="Registrar"
+      />
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-toast></p-toast>

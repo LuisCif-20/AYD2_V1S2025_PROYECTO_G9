@@ -20,7 +20,6 @@ import {IconFieldModule} from 'primeng/iconfield';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import {ProductService} from "../../services/product/product.service";
 import {ClienteService} from "../../services/cliente/cliente.service";
-import {Cliente} from "../clientes/clientes/clientes.component";
 import {SalesService} from "../../services/sales/sales.service";
 import {DatePickerModule} from "primeng/datepicker";
 import {Client, ItemProduct, Sale, SaleDetailForm, SaleForm, Salesman} from "../../models/models";

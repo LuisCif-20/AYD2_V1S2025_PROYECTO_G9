@@ -1,0 +1,93 @@
+<p-table [value]="productos" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10]" class="mb-4">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Código</th>
+      <th>Nombre</th>
+      <th>Presentación</th>
+      <th>Unidades x Presentación</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-producto>
+    <tr>
+      <td>{{ producto.code }}</td>
+      <td>{{ producto.name }}</td>
+      <td>{{ producto.presentation.name }}</td>
+      <td>{{ producto.unitsPerPresentation }}</td>
+      <td>
+        <p-button label="Ingresar a bodega" icon="pi pi-plus" (click)="openIngreso(producto)"></p-button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-dialog header="Ingreso a Bodega" [(visible)]="showDialog" [modal]="true" [style]="{ width: '500px' }">
+  <div *ngIf="selectedProduct" class="flex flex-col gap-4">
+
+    <div>
+      <label class="font-bold block">Producto:</label>
+      <p>{{ selectedProduct.name }} - {{ selectedProduct.unitsPerPresentation }} unidades</p>
+    </div>
+
+    <div>
+      <label class="font-bold block">Presentación:</label>
+      <p>{{ selectedProduct.presentation.name }} - {{ selectedProduct.unitsPerPresentation }} unidades</p>
+    </div>
+
+    <div>
+      <label class="block font-bold mb-1">Fecha de ingreso*</label>
+      <p-calendar [(ngModel)]="entry.entryDate" dateFormat="yy-mm-dd" class="w-full"></p-calendar>
+      <small *ngIf="submitted && !entry.entryDate" class="text-red-500">Requerido</small>
+    </div>
+
+    <div>
+      <label class="block font-bold mb-1">Cantidad en Presentación*</label>
+      <p-inputNumber [(ngModel)]="entry.quantityPresentation" [min]="1" class="w-full" />
+      <small *ngIf="submitted && !entry.quantityPresentation" class="text-red-500">Requerido</small>
+    </div>
+
+    <div>
+      <label class="block font-bold mb-1">Total Unidades</label>
+      <p class="text-lg font-semibold">{{ totalUnidades }}</p>
+    </div>
+
+    <div>
+      <label class="block font-bold mb-1">No. Contenedor*</label>
+      <input pInputText [(ngModel)]="entry.containerNumber" class="w-full" />
+      <small *ngIf="submitted && !entry.containerNumber" class="text-red-500">Requerido</small>
+    </div>
+
+    <div>
+      <label class="block font-bold mb-1">No. DUCA*</label>
+      <input pInputText [(ngModel)]="entry.ducaNumber" class="w-full" />
+      <small *ngIf="submitted && !entry.ducaNumber" class="text-red-500">Requerido</small>
+    </div>
+
+    <div>
+      <label class="block font-bold mb-1">Fecha DUCA*</label>
+      <p-calendar [(ngModel)]="entry.ducaDate" dateFormat="yy-mm-dd" class="w-full"></p-calendar>
+      <small *ngIf="submitted && !entry.ducaDate" class="text-red-500">Requerido</small>
+    </div>
+
+    <div>
+      <label class="block font-bold mb-1">No. DUCA Rectificada</label>
+      <input pInputText [(ngModel)]="entry.rectifiedDucaNumber" class="w-full" />
+    </div>
+
+    <div>
+      <label class="block font-bold mb-1">Fecha DUCA Rectificada</label>
+      <p-calendar [(ngModel)]="entry.rectifiedDucaDate" dateFormat="yy-mm-dd" class="w-full"></p-calendar>
+    </div>
+
+    <div>
+      <label class="block font-bold mb-1">Observaciones</label>
+      <textarea pTextarea [(ngModel)]="entry.notes" rows="2" class="w-full"></textarea>
+    </div>
+
+    <div class="flex justify-end mt-4">
+      <p-button label="Guardar" icon="pi pi-check" (click)="saveIngreso()"></p-button>
+    </div>
+  </div>
+</p-dialog>
+
+<p-toast></p-toast>
