@@ -62,7 +62,9 @@ public class SaleServiceImpl implements SaleService {
                 SaleSpecs.hasShipmentNumber(saleSearchRequestDTO.shipmentNumber()),
                 SaleSpecs.clientContactNameContains(saleSearchRequestDTO.clientName()),
                 SaleSpecs.clientBusinessNameContains(saleSearchRequestDTO.clientName())).and(
-                        SaleSpecs.hasSaleStatus(saleSearchRequestDTO.status()));
+                        SaleSpecs.hasSaleStatus(saleSearchRequestDTO.status()))
+                .and(
+                        SaleSpecs.hasPaymentStatusIn(saleSearchRequestDTO.paymentStatus()));
 
         List<Sale> sales = saleRepository.findAll(spec);
         return sales.stream()
