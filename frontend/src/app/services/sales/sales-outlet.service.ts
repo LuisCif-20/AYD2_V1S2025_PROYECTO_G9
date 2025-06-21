@@ -2,9 +2,9 @@ import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http'
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { SalesDataDto, Vendor } from '../../models/models';
+import { SalesDataDto, SalesOutlet, Vendor } from '../../models/models';
 
-const baseUrl = environment.IMPORCOMGUA + '/sales';
+const baseUrl = environment.IMPORCOMGUA + '/warehouse-outputs';
 
 @Injectable({
     providedIn: 'root'
@@ -15,12 +15,8 @@ export class SalesOutletService {
         private http: HttpClient
     ) { }
 
-    findSalesByQuery(params: Map<string, any>): Observable<SalesDataDto[]> {
-        let httpParams = new HttpParams();
-        params.forEach((value, key, map) => {
-            if (value && key) httpParams = httpParams.set(key, value);
-        });
-        return this.http.get<SalesDataDto[]>(`${baseUrl}`, { params: httpParams });
+    registerSalesOutlet(request: SalesOutlet): Observable<boolean> {
+        return this.http.put<boolean>(`${baseUrl}`, request);
     }
 
 }

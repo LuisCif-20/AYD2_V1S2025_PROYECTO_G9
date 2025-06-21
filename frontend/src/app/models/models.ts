@@ -181,3 +181,9 @@ export interface Column {
     header: string;
     customExportHeader?: string;
 }
+
+
+export class SalesOutlet {
+    saleId!: string;
+    exitDate!: Date;
+}

@@ -19,6 +19,8 @@ import { CommonModule } from '@angular/common';
 import { Column, SalesDataDto, SalesSearch } from '../../../models/models';
 import { MessageService } from 'primeng/api';
 import { SalesOutletService } from '../../../services/sales/sales-outlet.service';
+import { SalesService } from '../../../services/sales/sales.services';
+import { SalesOutletDetailComponent } from "../sales-outlet-detail/sales-outlet-detail.component";
 
 @Component({
   selector: 'app-sales-outlet',
@@ -41,7 +43,8 @@ import { SalesOutletService } from '../../../services/sales/sales-outlet.service
     TagModule,
     InputIconModule,
     IconFieldModule,
-  ],
+    SalesOutletDetailComponent
+],
   providers: [MessageService, SalesOutletService],
   templateUrl: './sales-outlet.component.html',
   styleUrl: './sales-outlet.component.scss'
@@ -56,7 +59,7 @@ export class SalesOutletComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private salesOutletService: SalesOutletService,
+    private salesService: SalesService,
   ) { }
 
 
@@ -76,7 +79,7 @@ export class SalesOutletComponent implements OnInit {
       paramsCreated.set("shipmentNumber", this.salesSearch.shipmentNumber);
       paramsCreated.set("status", "VIGENTE");
 
-      this.salesOutletService.findSalesByQuery(paramsCreated)
+      this.salesService.findSalesByQuery(paramsCreated)
         .subscribe(
           {
             next: (data) => {

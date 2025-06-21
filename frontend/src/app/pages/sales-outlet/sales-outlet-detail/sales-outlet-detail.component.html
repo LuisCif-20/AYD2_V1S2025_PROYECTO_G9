@@ -1,1 +1,298 @@
-<p>sales-outlet-detail works!</p>
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  header="Registrar salida de producto"
+  [closable]="true"
+  [style]="{ width: '900px' }"
+  styleClass="custom-dialog"
+>
+  <ng-template pTemplate="content">
+    <div class="p-fluid">
+      <!-- Información general -->
+      <div class="mb-4">
+        <h2 class="text-xl font-bold mb-2">Información de la Venta</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold mb-2">Fecha de venta</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.saleDate"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <!-- Fecha de salida -->
+          <div class="mb-3">
+            <label for="fechaSalida" class="block font-bold mb-2"
+              >Fecha de salida de bodega<small class="text-red-500">*</small></label
+            >
+            <p-calendar
+              id="fechaSalida"
+              [(ngModel)]="wareHouseExitDate"
+              dateFormat="dd/mm/yy"
+              showIcon="true"
+              [disabled]="venta.warehouseExitDate"
+              placeholder="Selecciona una fecha"
+              class="w-full"
+            ></p-calendar>
+            <small class="text-red-500 mt-1 block">
+                Tienes que ingresar la fecha de salida para continuar
+            </small>
+          </div>
+          <!-- <div>
+            <label class="block font-bold mb-2">Fecha de salida de bodega</label>
+            <input pInputText [(ngModel)]="venta.warehouseExitDate" [disabled]="true" class="w-full" />
+          </div> -->
+          <div>
+            <label class="block font-bold mb-2">Número de envío</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.shipmentNumber"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Tipo de pago</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.paymentType"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Días de crédito</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.creditDays"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Total</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.total"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Estado de pago</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.paymentStatus"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Estado de venta</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.saleStatus"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Fecha de pago</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.paymentDate"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Información del cliente -->
+      <div class="mb-4">
+        <h2 class="text-xl font-bold mb-2">Cliente</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold mb-2">Nombre de contacto</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.client.contactName"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Razón social</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.client.businessName"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Departamento</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.client.municipality.department.name"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Municipio</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.client.municipality.name"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Dirección</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.client.address"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Teléfono</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.client.phone"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Información del vendedor -->
+      <div class="mb-4">
+        <h2 class="text-xl font-bold mb-2">Vendedor</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold mb-2">Nombres</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.salesman.firstName"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Apellidos</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.salesman.lastName"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Teléfono</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.salesman.phone"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Comisión (%)</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.salesman.commissionPercent"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Facturación -->
+      <div class="mb-4">
+        <h2 class="text-xl font-bold mb-2">Datos de Factura</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold mb-2">Nombre en factura</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.invoiceName"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">NIT en factura</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.invoiceNit"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+          <div>
+            <label class="block font-bold mb-2">Número de DTE</label>
+            <input
+              pInputText
+              [(ngModel)]="venta.dteInvoiceNumber"
+              [disabled]="true"
+              class="w-full"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Detalle de productos -->
+      <div class="mb-4">
+        <h2 class="text-xl font-bold mb-2">Detalle de venta</h2>
+        <p-table [value]="venta.details">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>Unidad</th>
+              <th>Precio</th>
+              <th>Subtotal</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-item>
+            <tr>
+              <td>{{ item.productName }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>{{ item.unitQuantity }}</td>
+              <td>{{ item.pricePerPresentation }}</td>
+              <td>{{ item.subtotal }}</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- Botón de cerrar -->
+  <ng-template pTemplate="footer">
+    <div class="flex justify-end gap-2">
+      <p-button 
+        label="Cancelar" 
+        icon="pi pi-times" 
+        severity="secondary" 
+        (onClick)="visible = false"
+      />
+      <p-button 
+        label="Registrar salida" 
+        icon="pi pi-check" 
+        (onClick)="registerOutput()" 
+        severity="success"
+      />
+    </div>
+  </ng-template>
+</p-dialog>
+
+
+<p-toast></p-toast>

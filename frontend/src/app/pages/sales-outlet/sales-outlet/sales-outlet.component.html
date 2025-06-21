@@ -86,17 +86,17 @@
         <td>{{ venta.shipmentNumber }}</td>
         <td>{{ venta.client.contactName }}</td>
         <td>{{ venta.client.code }}</td>
-        <td>{{ venta.saleDate | currency: "%" }}</td>
+        <td>{{ venta.saleDate }}</td>
         <td>{{ venta.tatal }}</td>
         <td>{{ venta.saleStatus }}</td>
         <td>{{ venta.paymentStatus }}</td>
         <td>
           <p-button
-            (click)="recordOutput(venta)"
-            [outlined]="true"
-            [rounded]="true"
+            label="Registrar salida"
+            icon="pi pi-sign-out"
+            (onClick)="salesDetail.viewDetail(venta)"
+            severity="success"
             class="mr-2"
-            icon="pi pi-pencil"
           />
         </td>
       </tr>
@@ -105,3 +105,5 @@
 </ng-container>
 
 <p-toast></p-toast>
+
+<app-sales-outlet-detail #salesDetail></app-sales-outlet-detail>
