@@ -10,10 +10,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PostPersist;
-import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -28,47 +26,40 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 10, unique = true)
+    @Column
     private String code;
 
-    @Size(max = 100)
-    @Column(nullable = false)
+    @Column
     private String contactName;
 
-    @Size(max = 100)
     @Column
     private String businessName;
 
     @ManyToOne
-    @JoinColumn(nullable = false)
+    @JoinColumn(name = "municipality_code")
     private Municipality municipality;
 
-    @Size(max = 255)
     @Column
     private String address;
 
-    @Size(min = 9, max = 9)
-    @Column(length = 9)
+    @Column
     private String nit;
 
-    @Size(max = 100)
     @Column
     private String warehouseManager;
 
-    @Size(min = 9, max = 9)
-    @Column(name = "phone", length = 9)
+    @Column
     private String phone;
 
     @Enumerated(EnumType.STRING)
-    @Column(length = 7, nullable = false)
+    @Column
     private SaleType saleType;
 
-    @Lob
     @Column
     private String notes;
 
-    @Column(nullable = false)
-    private boolean isActive = true;
+    @Column
+    private Boolean isActive = true;
 
     @PostPersist
     public void generateCode() {
