@@ -51,6 +51,11 @@ Los registros diarios se encuentran en la carpeta [`daily-transcripts/`](./daily
 
 ---
 
+### Sprint Retrospective
+
+![Backlog-Final](../assets/Backlog-Final-Spring-1.png)
+
+
 ## Sprint Retrospective
 
 | ID   | Historia de Usuario                                                                  | Prioridad  | Estado       |
