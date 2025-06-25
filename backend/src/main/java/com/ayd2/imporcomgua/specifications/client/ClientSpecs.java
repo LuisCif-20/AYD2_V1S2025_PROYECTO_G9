@@ -19,8 +19,8 @@ public class ClientSpecs {
     }
 
     public static Specification<Client> isActive(Boolean isActive) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder
-                .equal(root.get("isActive"), isActive == null ? true : isActive);
+        return (root, query, criteriaBuilder) -> isActive == null ? null
+                : criteriaBuilder.equal(root.get("isActive"), isActive);
     }
 
 }
