@@ -52,6 +52,7 @@ jobs:
 
       # Paso 6: Subir Docker Compose y el código al servidor
       - name: Subir Docker Compose y el código al servidor
+        working-directory: backend
         run: |
           scp -i ~/.ssh/id_rsa target/*.jar ${{ secrets.SSH_USER_OR }}@${{ secrets.SSH_HOST_OR }}:/home/${{ secrets.SSH_USER_OR }}/backend.jar
           # Copiar el archivo docker-compose.yml al servidor remoto
