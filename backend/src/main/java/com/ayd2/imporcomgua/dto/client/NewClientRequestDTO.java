@@ -1,5 +1,7 @@
 package com.ayd2.imporcomgua.dto.client;
 
+import java.util.UUID;
+
 import com.ayd2.imporcomgua.models.client.SaleType;
 
 import jakarta.validation.constraints.NotBlank;
@@ -20,8 +22,7 @@ public record NewClientRequestDTO(
     @NotNull(message = "El tipo de venta es obligatorio")
     SaleType saleType,
 
-    @Size(max = 100, message = "El nombre de negocio debe ser menor a 100 caracteres")
-    String businessName,
+    UUID businessId,
 
     @Size(max = 255, message = "La direccion debe ser menor a 255 caracteres")
     String address,

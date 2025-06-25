@@ -10,11 +10,16 @@ CREATE TABLE municipality (
     FOREIGN KEY (department_code) REFERENCES department(code)
 );
 
+CREATE TABLE business (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(100)
+);
+
 CREATE TABLE client (
     id SERIAL PRIMARY KEY,
     code VARCHAR(10),
     contact_name VARCHAR(100) NOT NULL,
-    business_name VARCHAR(100),
+    business_id UUID,
     municipality_code CHAR(4) NOT NULL,
     address VARCHAR(255),
     nit CHAR(9),
@@ -23,6 +28,7 @@ CREATE TABLE client (
     sale_type VARCHAR(7) NOT NULL CHECK (sale_type IN ('CREDITO', 'CONTADO', 'AMBAS')),
     notes TEXT,
     is_active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (business_id) REFERENCES business(id),
     FOREIGN KEY (municipality_code) REFERENCES municipality(code)
 );
 

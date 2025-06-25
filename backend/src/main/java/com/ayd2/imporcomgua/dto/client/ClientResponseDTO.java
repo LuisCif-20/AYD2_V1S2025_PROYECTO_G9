@@ -1,5 +1,6 @@
 package com.ayd2.imporcomgua.dto.client;
 
+import com.ayd2.imporcomgua.dto.business.BusinessResponseDTO;
 import com.ayd2.imporcomgua.dto.location.MunicipalityResponseDTO;
 import com.ayd2.imporcomgua.models.client.SaleType;
 
@@ -7,7 +8,7 @@ public record ClientResponseDTO(
     Long id,
     String code,
     String contactName,
-    String businessName,
+    BusinessResponseDTO business,
     MunicipalityResponseDTO municipality,
     String address,
     String nit,

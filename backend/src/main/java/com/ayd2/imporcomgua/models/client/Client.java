@@ -1,5 +1,6 @@
 package com.ayd2.imporcomgua.models.client;
 
+import com.ayd2.imporcomgua.models.business.Business;
 import com.ayd2.imporcomgua.models.location.Municipality;
 
 import jakarta.persistence.Column;
@@ -32,8 +33,9 @@ public class Client {
     @Column
     private String contactName;
 
-    @Column
-    private String businessName;
+    @ManyToOne
+    @JoinColumn(name = "business_id")
+    private Business business;
 
     @ManyToOne
     @JoinColumn(name = "municipality_code")
