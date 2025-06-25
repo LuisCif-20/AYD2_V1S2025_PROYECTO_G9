@@ -5,5 +5,6 @@ public record ProductResponseDTO(
     String name,
     PresentationResponseDTO presentation,
     Integer unitsPerPresentation,
-    Double pricePerPresentation
+    Double pricePerPresentation,
+    Boolean isActive
 ) {}

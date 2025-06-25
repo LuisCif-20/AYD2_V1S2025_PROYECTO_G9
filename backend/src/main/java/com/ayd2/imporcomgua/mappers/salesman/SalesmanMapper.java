@@ -19,7 +19,6 @@ public interface SalesmanMapper {
     Salesman toSalesman(NewSalesmanRequestDTO newSalesmanRequestDTO);
 
     @Mapping(target = "code", ignore = true)
-    @Mapping(target = "isActive", ignore = true)
     void updateSalesmanFromDTO(UpdateSalesmanRequestDTO updateSalesmanRequestDTO, @MappingTarget Salesman salesman);
     
 }
