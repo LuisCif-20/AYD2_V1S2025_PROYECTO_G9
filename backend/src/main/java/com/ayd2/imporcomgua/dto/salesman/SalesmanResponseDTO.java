@@ -8,5 +8,6 @@ public record SalesmanResponseDTO (
     String lastName,
     String phone,
     String address,
-    Double commissionPercent
+    Double commissionPercent,
+    Boolean isActive
 ){}

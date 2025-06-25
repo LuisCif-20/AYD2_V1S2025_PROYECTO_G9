@@ -25,5 +25,8 @@ public record UpdateClientRequestDTO(
     @Size(min=9, max = 9, message = "El numer de telefono debe ser de 9 caracteres exactos")
     String phone,
 
-    String notes
+    String notes,
+
+    Boolean isActive
+
 ) { }

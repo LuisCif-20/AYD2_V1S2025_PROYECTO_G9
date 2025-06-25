@@ -21,6 +21,8 @@ public record UpdateSalesmanRequestDTO(
 
     @DecimalMin(value = "0.00", message = "La comisión no puede ser negativa")
     @DecimalMax(value = "0.99", message = "La comisión no puede ser mayor a 99%")
-    Double commissionPercent
+    Double commissionPercent,
+
+    Boolean isActive
 
 ) {}

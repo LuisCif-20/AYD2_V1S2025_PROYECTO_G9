@@ -14,5 +14,6 @@ public record ClientResponseDTO(
     String warehouseManager,
     String phone,
     SaleType saleType,
-    String notes
+    String notes,
+    Boolean isActive
 ) { }
