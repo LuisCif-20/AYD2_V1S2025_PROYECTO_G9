@@ -59,4 +59,4 @@ http://localhost:3000/api/swagger-ui/index.html
 
 > 🔁 El dominio y puerto pueden variar según el entorno o configuración.
 
-----
+-----
