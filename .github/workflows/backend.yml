@@ -36,6 +36,7 @@ jobs:
 
       # Paso 5: Construir el contenedor
       - name: 📦 Construir el Backend con Docker Compose
+        working-directory: backend
         run: |
           ./mvnw clean package -DskipTests
 
