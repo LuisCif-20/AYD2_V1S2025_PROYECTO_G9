@@ -146,11 +146,11 @@ CREATE TABLE role (
     name VARCHAR(75) NOT NULL
 );
 
-CREATE TABLE user (
+CREATE TABLE user_account (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    email VARCHAR NOT NULL,
+    email VARCHAR UNIQUE NOT NULL,
     password VARCHAR(25) NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     role_id UUID NOT NULL,
