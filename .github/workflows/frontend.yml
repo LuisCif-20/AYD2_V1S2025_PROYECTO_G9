@@ -43,7 +43,7 @@ jobs:
         run: ssh ${{ secrets.SSH_USER_OR }}@${{ secrets.SSH_HOST_OR }} "sudo mkdir -p /var/www/html && sudo chown ${{ secrets.SSH_USER_OR }} /var/www/html"
 
       - name: Subir archivos al servidor
-        run: scp -r ./frontend/dist/frontend/* ${{ secrets.SSH_USER_OR }}@${{ secrets.SSH_HOST_OR }}:/var/www/html
+        run: scp -r ./frontend/dist/sakai-ng/* ${{ secrets.SSH_USER_OR }}@${{ secrets.SSH_HOST_OR }}:/var/www/html
 
       - name: Reiniciar NGINX en el servidor
         run: ssh ${{ secrets.SSH_USER_OR }}@${{ secrets.SSH_HOST_OR }} "sudo systemctl restart nginx"
