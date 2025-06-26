@@ -75,6 +75,7 @@ CREATE TABLE sale (
     invoice_name VARCHAR(100),
     invoice_nit VARCHAR(9),
     total DECIMAL(10,2) NOT NULL CHECK (total >= 0),
+    remaining_balance DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (remaining_balance >= 0),
     
     payment_status VARCHAR(10) NOT NULL DEFAULT 'PENDIENTE'
         CHECK (payment_status IN ('PAGADO', 'PARCIAL', 'PENDIENTE')),
