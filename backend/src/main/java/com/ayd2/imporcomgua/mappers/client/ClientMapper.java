@@ -7,7 +7,6 @@ import org.mapstruct.MappingTarget;
 import com.ayd2.imporcomgua.dto.client.ClientResponseDTO;
 import com.ayd2.imporcomgua.dto.client.NewClientRequestDTO;
 import com.ayd2.imporcomgua.dto.client.UpdateClientRequestDTO;
-import com.ayd2.imporcomgua.mappers.business.BusinessMapper;
 import com.ayd2.imporcomgua.mappers.location.MunicipalityMapper;
 import com.ayd2.imporcomgua.models.client.Client;
 

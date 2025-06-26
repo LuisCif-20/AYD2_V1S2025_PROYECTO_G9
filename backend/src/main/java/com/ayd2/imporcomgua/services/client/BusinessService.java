@@ -1,8 +1,8 @@
-package com.ayd2.imporcomgua.services.business;
+package com.ayd2.imporcomgua.services.client;
 
 import java.util.List;
 
-import com.ayd2.imporcomgua.dto.business.BusinessResponseDTO;
+import com.ayd2.imporcomgua.dto.client.BusinessResponseDTO;
 
 public interface BusinessService {
     

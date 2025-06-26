@@ -1,4 +1,4 @@
-package com.ayd2.imporcomgua.models.business;
+package com.ayd2.imporcomgua.models.client;
 
 import java.util.UUID;
 

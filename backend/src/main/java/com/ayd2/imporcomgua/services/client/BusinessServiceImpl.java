@@ -1,13 +1,13 @@
-package com.ayd2.imporcomgua.services.business;
+package com.ayd2.imporcomgua.services.client;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.ayd2.imporcomgua.dto.business.BusinessResponseDTO;
-import com.ayd2.imporcomgua.mappers.business.BusinessMapper;
-import com.ayd2.imporcomgua.repositories.business.BusinessRepository;
+import com.ayd2.imporcomgua.dto.client.BusinessResponseDTO;
+import com.ayd2.imporcomgua.mappers.client.BusinessMapper;
+import com.ayd2.imporcomgua.repositories.client.BusinessRepository;
 
 import lombok.RequiredArgsConstructor;
 

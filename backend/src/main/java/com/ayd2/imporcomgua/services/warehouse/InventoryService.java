@@ -5,6 +5,7 @@ import java.util.List;
 import com.ayd2.imporcomgua.models.warehouse.Inventory;
 
 public interface InventoryService {
-    // TODO Implement mappers
+    
     List<Inventory> getAllInventories();
+
 }
