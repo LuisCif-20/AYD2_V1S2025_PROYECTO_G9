@@ -21,12 +21,12 @@ import { CommonModule } from '@angular/common';
 import { InputMaskModule } from 'primeng/inputmask';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
-import { SalesOutletService } from '../../../services/sales/sales-outlet.service';
+import {SalesService} from "../../../services/sales/sales.service";
 
 @Component({
   selector: 'app-sales-outlet-detail',
   standalone: true,
-  providers: [MessageService, SalesOutletService],
+  providers: [MessageService, SalesService],
   imports: [
     DialogModule,
     InputTextModule,
@@ -68,7 +68,7 @@ export class SalesOutletDetailComponent {
   salesOutlet!: SalesOutlet;
 
   constructor(
-    private salesOutletService: SalesOutletService,
+    private salesOutletService: SalesService,
     private messageService: MessageService,
   ) { }
 
@@ -102,7 +102,7 @@ export class SalesOutletDetailComponent {
     this.salesOutletService.registerSalesOutlet(this.salesOutlet)
       .subscribe(
         {
-          next: (data) => {
+          next: (data: any) => {
             this.visible = false;
             this.messageService.add({
               severity: 'success',
@@ -110,7 +110,7 @@ export class SalesOutletDetailComponent {
               detail: 'Se registro la salida de productos a bodega correctamente',
             });
           },
-          error: (err) => {
+          error: (err: any) => {
             console.error('Error en registro de salida:', err);
             this.messageService.add({
               severity: 'error',

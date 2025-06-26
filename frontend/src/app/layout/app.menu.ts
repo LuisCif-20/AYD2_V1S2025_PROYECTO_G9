@@ -64,7 +64,28 @@ export class AppMenu {
                         label: 'Salidas',
                         icon: 'pi pi-fw pi-arrow-circle-right',
                         routerLink: ['/pages/sales-outlet']
-                    }
+                    },
+                    {
+                        label: 'Auth',
+                        icon: 'pi pi-fw pi-user',
+                        items: [
+                            {
+                                label: 'Login',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/auth/login']
+                            },
+                            {
+                                label: 'Error',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/auth/error']
+                            },
+                            {
+                                label: 'Access Denied',
+                                icon: 'pi pi-fw pi-lock',
+                                routerLink: ['/auth/access']
+                            }
+                        ]
+                    },
 
                 ]
             },

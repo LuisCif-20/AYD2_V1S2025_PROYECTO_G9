@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
-import { HttpClient } from "@angular/common/http"
+import {HttpClient, HttpParams} from "@angular/common/http"
 import { Observable } from "rxjs"
-import {Client, ItemProduct, Sale, SaleForm, Salesman} from "../../models/models";
+import {Client, ItemProduct, Sale, SaleForm, SalesDataDto, Salesman, SalesOutlet} from "../../models/models";
 import {MessageService} from "primeng/api";
 
 @Injectable({
@@ -19,10 +19,6 @@ export class SalesService {
     createSale(saleForm: SaleForm): Observable<Sale> {
         return this.http.post<Sale>(`${this.apiUrl}/sales`, saleForm)
     }
-
-    /*updateSale(saleForm: SaleForm): Observable<Sale> {
-        return this.http.put<Sale>(`${this.apiUrl}/sales/${saleForm.id}`, saleForm)
-    }*/
 
     deleteSale(id: string): Observable<void> {
         return this.http.delete<void>(`${this.apiUrl}/sales/${id}`)
@@ -517,4 +513,15 @@ export class SalesService {
         }
     }
 
+    findSalesByQuery(params: Map<string, any>): Observable<SalesDataDto[]> {
+        let httpParams = new HttpParams();
+        params.forEach((value, key, map) => {
+            if (value && key) httpParams = httpParams.set(key, value);
+        });
+        return this.http.get<SalesDataDto[]>(`${this.apiUrl}`, { params: httpParams });
+    }
+
+    registerSalesOutlet(request: SalesOutlet): Observable<boolean> {
+        return this.http.put<boolean>(`${this.apiUrl}`, request);
+    }
 }

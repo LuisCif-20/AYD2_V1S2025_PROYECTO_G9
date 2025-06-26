@@ -9,13 +9,15 @@ import { EntradaInventarioComponent } from './inventario/entrada-inventario/entr
 import { PagosComponent } from './payments/pagos/pagos.component';
 import { SalesOutletComponent } from './sales-outlet/sales-outlet/sales-outlet.component';
 import { SalesOutletDetailComponent } from './sales-outlet/sales-outlet-detail/sales-outlet-detail.component';
+import {Users} from "./user/users";
 
 export default [
-    {path: 'products', component: ProductListComponent},
-    {path: 'vendors', component: VendorsListComponent},
-    {path: 'sales', component: Sales},
-    {path: 'empty', component: Empty},
-    {path: 'client', component: ClientesComponent},
+    { path: 'user', component: Users},
+    { path: 'products', component: ProductListComponent},
+    { path: 'vendors', component: VendorsListComponent},
+    { path: 'sales', component: Sales},
+    { path: 'empty', component: Empty},
+    { path: 'client', component: ClientesComponent},
     { path: 'stock', component: StockComponent },
     { path: 'entrada-inventario', component: EntradaInventarioComponent },
     { path: 'pay', component: PagosComponent },

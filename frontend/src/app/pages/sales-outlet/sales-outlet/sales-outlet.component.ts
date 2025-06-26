@@ -18,9 +18,8 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { CommonModule } from '@angular/common';
 import { Column, SalesDataDto, SalesSearch } from '../../../models/models';
 import { MessageService } from 'primeng/api';
-import { SalesOutletService } from '../../../services/sales/sales-outlet.service';
-import { SalesService } from '../../../services/sales/sales.services';
 import { SalesOutletDetailComponent } from "../sales-outlet-detail/sales-outlet-detail.component";
+import {SalesService} from "../../../services/sales/sales.service";
 
 @Component({
   selector: 'app-sales-outlet',
@@ -45,7 +44,7 @@ import { SalesOutletDetailComponent } from "../sales-outlet-detail/sales-outlet-
     IconFieldModule,
     SalesOutletDetailComponent
 ],
-  providers: [MessageService, SalesOutletService],
+  providers: [MessageService, SalesService],
   templateUrl: './sales-outlet.component.html',
   styleUrl: './sales-outlet.component.scss'
 })

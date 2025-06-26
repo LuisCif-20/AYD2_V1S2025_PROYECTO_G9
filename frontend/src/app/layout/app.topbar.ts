@@ -39,9 +39,15 @@ import {LayoutService} from '../services/layout/layout.service';
                         >
                             <i class="pi pi-palette"></i>
                         </button>
-                        <app-configurator/>
+                        <app-configurator />
                     </div>
                 </div>
+
+                <button type="button" class="layout-topbar-action" routerLink="/pages/user">
+                    <i class="pi pi-user"></i>
+                    <span>Profile</span>
+                </button>
+                
             </div>
         </div>`
 })
@@ -54,4 +60,5 @@ export class AppTopbar {
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({...state, darkTheme: !state.darkTheme}));
     }
+
 }

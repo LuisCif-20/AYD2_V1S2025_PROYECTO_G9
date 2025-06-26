@@ -361,3 +361,35 @@ export class SalesOutlet {
     saleId!: string;
     exitDate!: Date;
 }
+
+export interface Rol {
+    id: number;
+    name: string;
+    description?: string;
+    permissions: string[];
+    isActive: boolean;
+}
+
+export interface User {
+    id?: number
+    usuario: string
+    nombre: string
+    apellido: string
+    email: string
+    contraseña: string
+    rol: "ADMIN" | "USER" | "MODERATOR"
+    fechaCreacion?: Date
+    activo: boolean
+}
+
+export interface UserForm {
+    id: number,
+    usuario: string
+    nombre: string
+    apellido: string
+    email: string
+    contrasena: string
+    rol: "ADMIN" | "USER" | "MODERATOR"
+    activo: boolean
+}
+
