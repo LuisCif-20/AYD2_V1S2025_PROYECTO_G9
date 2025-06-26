@@ -7,12 +7,13 @@ public record ClientResponseDTO(
     Long id,
     String code,
     String contactName,
-    String businessName,
+    BusinessResponseDTO business,
     MunicipalityResponseDTO municipality,
     String address,
     String nit,
     String warehouseManager,
     String phone,
     SaleType saleType,
-    String notes
+    String notes,
+    Boolean isActive
 ) { }

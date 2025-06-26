@@ -32,8 +32,9 @@ public class Client {
     @Column
     private String contactName;
 
-    @Column
-    private String businessName;
+    @ManyToOne
+    @JoinColumn(name = "business_id")
+    private Business business;
 
     @ManyToOne
     @JoinColumn(name = "municipality_code")

@@ -10,11 +10,16 @@ CREATE TABLE municipality (
     FOREIGN KEY (department_code) REFERENCES department(code)
 );
 
+CREATE TABLE business (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(100) NOT NULL
+);
+
 CREATE TABLE client (
     id SERIAL PRIMARY KEY,
     code VARCHAR(10),
     contact_name VARCHAR(100) NOT NULL,
-    business_name VARCHAR(100),
+    business_id UUID,
     municipality_code CHAR(4) NOT NULL,
     address VARCHAR(255),
     nit CHAR(9),
@@ -23,6 +28,7 @@ CREATE TABLE client (
     sale_type VARCHAR(7) NOT NULL CHECK (sale_type IN ('CREDITO', 'CONTADO', 'AMBAS')),
     notes TEXT,
     is_active BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (business_id) REFERENCES business(id),
     FOREIGN KEY (municipality_code) REFERENCES municipality(code)
 );
 
@@ -69,6 +75,7 @@ CREATE TABLE sale (
     invoice_name VARCHAR(100),
     invoice_nit VARCHAR(9),
     total DECIMAL(10,2) NOT NULL CHECK (total >= 0),
+    remaining_balance DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (remaining_balance >= 0),
     
     payment_status VARCHAR(10) NOT NULL DEFAULT 'PENDIENTE'
         CHECK (payment_status IN ('PAGADO', 'PARCIAL', 'PENDIENTE')),
@@ -133,4 +140,20 @@ CREATE TABLE product_warehouse_entry (
     notes TEXT,
 
     FOREIGN KEY (product_code) REFERENCES product(code)
+);
+
+CREATE TABLE role (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    name VARCHAR(75) NOT NULL
+);
+
+CREATE TABLE user_account (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    email VARCHAR UNIQUE NOT NULL,
+    password VARCHAR(25) NOT NULL,
+    is_active BOOLEAN DEFAULT TRUE,
+    role_id UUID NOT NULL,
+    FOREIGN KEY (role_id) REFERENCES role (id)
 );

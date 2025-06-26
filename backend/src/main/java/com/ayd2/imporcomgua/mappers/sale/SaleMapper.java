@@ -19,5 +19,6 @@ public interface SaleMapper {
     @Mapping(target = "shipmentNumber", ignore = true)
     @Mapping(target = "total", ignore = true)
     @Mapping(target = "warehouseExitDate", ignore = true)
+    @Mapping(target = "remainingBalance", ignore = true)
     Sale toSale(NewSaleRequestDTO saleRequestDTO);
 }
