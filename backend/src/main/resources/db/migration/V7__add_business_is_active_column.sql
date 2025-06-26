@@ -1,0 +1,2 @@
+ALTER TABLE business
+ADD COLUMN is_active BOOLEAN DEFAULT TRUE;

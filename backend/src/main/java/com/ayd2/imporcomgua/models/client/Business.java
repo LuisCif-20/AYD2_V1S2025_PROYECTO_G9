@@ -23,5 +23,7 @@ public class Business {
 
     @Column
     private String name;
-    
+
+    @Column
+    private Boolean isActive = true;
 }
