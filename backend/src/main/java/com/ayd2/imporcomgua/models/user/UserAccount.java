@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class User {
+public class UserAccount {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

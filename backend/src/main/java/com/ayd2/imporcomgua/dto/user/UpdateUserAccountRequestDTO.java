@@ -4,7 +4,7 @@ import java.util.UUID;
 
 import jakarta.validation.constraints.Size;
 
-public record UpdateUserRequestDTO(
+public record UpdateUserAccountRequestDTO(
 
     @Size(max = 30, message = "El nombre de debe ser menor a 31 caracteres")
     String firstName,
