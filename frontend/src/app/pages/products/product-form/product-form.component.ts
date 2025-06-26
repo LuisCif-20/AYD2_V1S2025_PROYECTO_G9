@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
-import { Vendor } from '../../../models/models';
+import {Vendor, Venta} from '../../../models/models';
 import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { RatingModule } from 'primeng/rating';
@@ -23,6 +23,7 @@ import { VendorService } from '../../../services/vendor/vendor.service';
 import { ProductService } from '../../../services/products/product.service';
 import { Dropdown, DropdownModule } from 'primeng/dropdown';
 import { Presentation, Product } from '../../../models/product.interface';
+import {UtilsService} from "../../../services/utils/utils.service";
 
 @Component({
   selector: 'app-product-form',
@@ -54,8 +55,7 @@ import { Presentation, Product } from '../../../models/product.interface';
     InputMaskModule,
     DropdownModule
   ],
-  templateUrl: './product-form.component.html',
-  styles: ``
+  templateUrl: 'product-form.component.html'
 })
 export class ProductFormComponent implements OnInit {
 
@@ -69,13 +69,18 @@ export class ProductFormComponent implements OnInit {
   @Output() cerrado = new EventEmitter<boolean>();
 
   constructor(
-    private messageService: MessageService,
+    private utilsService: UtilsService,
     private productService: ProductService,
   ) { }
 
   ngOnInit(): void {
-    this.productService.getAllPresentations().subscribe((presentations) => {
-      this.presentaciones = presentations;
+
+    this.productService.getAllPresentations().subscribe({
+      next: (presentations) => (this.presentaciones = presentations),
+      error: (err) => {
+        const detalle = err?.error?.detail || 'No se pudieron cargar las presentaciones.'
+        this.utilsService.error(detalle);
+      }
     });
   }
 
@@ -93,11 +98,7 @@ export class ProductFormComponent implements OnInit {
     const { code, name, presentation, unitsPerPresentation, pricePerPresentation } = this.product;
 
     if (!this.validarCodigo(this.product.code)) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Código inválido. Debe tener 4 letras y 4 números.',
-      });
+      this.utilsService.error('Código inválido. Debe tener 4 letras y 4 números.');
       return;
     }
 
@@ -121,27 +122,16 @@ export class ProductFormComponent implements OnInit {
         next: () => {
           this.visible = false;
           this.cerrado.emit(true);
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Éxito',
-            detail: 'Producto guardado correctamente',
-          });
+          this.utilsService.success('Producto guardado correctamente');
         },
         error: (err) => {
           console.error('Error al guardar producto:', err);
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Error al intentar registrar el producto. Intente más tarde.',
-          });
+          const detalle = err?.error?.detail || 'Error al intentar registrar el producto. Intente más tarde.'
+          this.utilsService.error(detalle);
         },
       });
     } else {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Campos incompletos',
-        detail: 'Debes ingresar un código, nombre, presentación, unidades y precio válidos.',
-      });
+      this.utilsService.error('Campos incompletos, debes ingresar un código, nombre, presentación, unidades y precio válidos.');
     }
   }
 

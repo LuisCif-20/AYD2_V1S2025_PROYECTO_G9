@@ -23,6 +23,7 @@ import {ClienteService} from "../../services/cliente/cliente.service";
 import {SalesService} from "../../services/sales/sales.service";
 import {DatePickerModule} from "primeng/datepicker";
 import {Client, ItemProduct, Sale, SaleDetailForm, SaleForm, Salesman} from "../../models/models";
+import {UtilsService} from "../../services/utils/utils.service";
 
 @Component({
     selector: 'app-sales',
@@ -49,7 +50,7 @@ import {Client, ItemProduct, Sale, SaleDetailForm, SaleForm, Salesman} from "../
         ConfirmDialogModule,
         DatePickerModule,
     ],
-    providers: [MessageService, ProductService, ConfirmationService, ClienteService]
+    providers: [ProductService, ConfirmationService, ClienteService]
 })
 export class Sales implements OnInit {
     sales = signal<Sale[]>([])
@@ -78,7 +79,7 @@ export class Sales implements OnInit {
     selectedClientNit: any = '';
 
     constructor(
-        private messageService: MessageService,
+        private utilsService: UtilsService,
         private confirmationService: ConfirmationService,
         private clientService: ClienteService,
         private salesService: SalesService
@@ -101,28 +102,49 @@ export class Sales implements OnInit {
     }
 
     loadSales() {
-        // Llamada al servicio para obtener ventas
-        this.salesService.getSales().subscribe(sales => this.sales.set(sales))
+        this.salesService.getSales().subscribe({
+            next: (sales) => this.sales.set(sales),
+            error: (err) => {
+                const detalle = err?.error?.detail || 'Error al cargar las ventas.';
+                this.utilsService.error(detalle);
+            }
+        });
     }
 
+
     loadClients() {
-        // Llamada al servicio para obtener clientes
-        this.salesService.getClients().subscribe(clients => this.clients = clients)
+        this.salesService.getClients().subscribe({
+            next: (clients) => this.clients = clients,
+            error: (err) => {
+                const detalle = err?.error?.detail || 'Error al cargar los clientes.';
+                this.utilsService.error(detalle);
+            }
+        });
     }
 
     loadSalesmen() {
-        // Llamada al servicio para obtener vendedores
-        this.salesService.getSalesmen().subscribe(salesmen => {
-           this.salesmen = salesmen.map(s => ({
-             ...s,
-             fullName: `${s.firstName} ${s.lastName}`
-           }));
-        })
+        this.salesService.getSalesmen().subscribe({
+            next: (salesmen) => {
+                this.salesmen = salesmen.map(s => ({
+                    ...s,
+                    fullName: `${s.firstName} ${s.lastName}`
+                }));
+            },
+            error: (err) => {
+                const detalle = err?.error?.detail || 'Error al cargar los vendedores.';
+                this.utilsService.error(detalle);
+            }
+        });
     }
 
     loadProducts() {
-        // Llamada al servicio para obtener productos
-        this.salesService.getProducts().subscribe(products => this.products = products)
+        this.salesService.getProducts().subscribe({
+            next: (products) => this.products = products,
+            error: (err) => {
+                const detalle = err?.error?.detail || 'Error al cargar los productos.';
+                this.utilsService.error(detalle);
+            }
+        });
     }
 
     openNew() {
@@ -179,29 +201,20 @@ export class Sales implements OnInit {
             icon: "pi pi-times-circle",
             accept: () => {
                 // Llamada al servicio para eliminar
-                this.salesService.deleteSale(sale.id).subscribe(() => {
-                   this.loadSales()
-                   this.messageService.add({
-                     severity: "success",
-                     summary: "Exitoso",
-                     detail: "Venta eliminada",
-                     life: 3000,
-                   })
-                })
+                this.salesService.deleteSale(sale.id).subscribe({
+                    next: () => {
+                        this.loadSales();
+                        this.utilsService.success('Venta eliminada');
+                    },
+                    error: (err) => {
+                        const detalle = err?.error?.detail || 'Error al eliminar la venta.';
+                        this.utilsService.error(detalle);
+                    }
+                });
             },
         })
     }
 
-    deleteSelectedSales() {
-        this.confirmationService.confirm({
-            message: "¿Está seguro de que desea eliminar las ventas seleccionadas?",
-            header: "Confirmar",
-            icon: "pi pi-exclamation-triangle",
-            accept: () => {
-                // Implementar eliminación múltiple
-            },
-        })
-    }
 
     saveSale() {
         this.submitted = true
@@ -220,35 +233,24 @@ export class Sales implements OnInit {
                    }
                 })*/
             } else {
-                // Crear nueva venta
-                 this.salesService.createSale(this.saleForm).subscribe({
-                   next: () => {
-                     this.handleSaveSuccess("Venta creada")
-                   },
-                   error: () => {
-                     this.saving = false
-                   }
-                 })
-            }
+                this.salesService.createSale(this.saleForm).subscribe({
+                    next: () => {
+                        this.saving = false;
+                        this.saleDialog = false;
+                        this.loadSales();
+                        this.utilsService.success('Venta creada');
+                    },
+                    error: (err) => {
+                        this.saving = false;
+                        const detalle = err?.error?.detail || 'Error al crear la venta.';
+                        this.utilsService.error(detalle);
+                    }
+                });
 
-            // Simulación para el ejemplo
-            setTimeout(() => {
-                this.handleSaveSuccess(this.isEditMode ? "Venta actualizada" : "Venta creada")
-            }, 1000)
+            }
         }
     }
 
-    private handleSaveSuccess(message: string) {
-        this.saving = false
-        this.saleDialog = false
-        this.loadSales()
-        this.messageService.add({
-            severity: "success",
-            summary: "Exitoso",
-            detail: message,
-            life: 3000,
-        })
-    }
 
     private isValidSaleForm(): boolean {
         return !!(
@@ -391,7 +393,7 @@ export class Sales implements OnInit {
 
     printSale(sale: any) {
        const resp = this.salesService.printSale(sale);
-       this.messageService.add(resp)
-
+       if (resp.status === 'success') this.utilsService.success(resp.message);
+       else this.utilsService.error(resp.message);
     }
 }

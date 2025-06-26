@@ -8,13 +8,14 @@ import { PasswordModule } from 'primeng/password';
 import { RippleModule } from 'primeng/ripple';
 import { AppFloatingConfigurator } from '../../layout/app.floatingconfigurator';
 import {AuthService} from "../../services/auth/auth.service";
+import {UtilsService} from "../../services/utils/utils.service";
+import {Toast, ToastModule} from "primeng/toast";
 
 @Component({
     selector: 'app-login',
     standalone: true,
-    imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule, AppFloatingConfigurator],
+    imports: [ButtonModule, CheckboxModule, InputTextModule, PasswordModule, FormsModule, RouterModule, RippleModule, ToastModule],
     template: `
-        <app-floating-configurator />
         <div class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen min-w-[100vw] overflow-hidden">
             <div class="flex flex-col items-center justify-center">
                 <div style="border-radius: 56px; padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%)">
@@ -61,6 +62,7 @@ import {AuthService} from "../../services/auth/auth.service";
                 </div>
             </div>
         </div>
+        <p-toast></p-toast>
     `
 })
 export class Login {
@@ -71,10 +73,14 @@ export class Login {
 
 
     constructor(private router: Router,
-                private authService: AuthService) {}
+                private authService: AuthService,
+                private utilsService: UtilsService) {}
 
     async login() {
-        this.authService.login('ok');
-        await this.router.navigateByUrl('/');
+        this.utilsService.success('Bienvenido al sistema');
+        setTimeout(async () => {
+            this.authService.login('ok');
+            await this.router.navigateByUrl('/');
+        }, 500)
     }
 }

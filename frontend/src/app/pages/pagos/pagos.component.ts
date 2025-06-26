@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 //import { VentaService } from 'src/app/services/venta/venta.service';
 import { MessageService } from 'primeng/api';
-import { Banco, Pago, Venta } from '../../../models/models';
-import { PaymentService } from '../../../services/payments/payment.service';
+import { Banco, Pago, Venta } from '../../models/models';
+import { PaymentService } from '../../services/payments/payment.service';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
@@ -15,6 +15,7 @@ import { FormsModule } from '@angular/forms';
 
 import { Table } from 'primeng/table';
 import {DatePickerModule} from "primeng/datepicker";
+import {UtilsService} from "../../services/utils/utils.service";
 
 
 
@@ -22,7 +23,6 @@ import {DatePickerModule} from "primeng/datepicker";
   selector: 'app-pagos',
   standalone: true,
   templateUrl: './pagos.component.html',
-  styleUrls: ['./pagos.component.scss'],
   imports: [
     CommonModule,
     TableModule,
@@ -33,7 +33,7 @@ import {DatePickerModule} from "primeng/datepicker";
     ButtonModule,
     ToastModule,
     FormsModule,
-    DatePickerModule
+    DatePickerModule,
   ],
   providers: [MessageService]
 })
@@ -58,7 +58,7 @@ export class PagosComponent implements OnInit {
 
   constructor(
     private paymentService: PaymentService,
-    private messageService: MessageService
+    private utilsService: UtilsService
   ) {}
 
   ngOnInit(): void {
@@ -72,15 +72,10 @@ export class PagosComponent implements OnInit {
   obtenerBancos() {
     this.paymentService.obtenerBancos().subscribe({
       next: (data) => (this.bancos = data as Banco[]),
-      
-      
-      error: () =>
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'No se pudieron cargar los bancos',
-        }),
-
+      error: (err) => {
+        const detalle = err?.error?.detail || 'No se pudieron cargar los bancos';
+        this.utilsService.error(detalle);
+      }
     });
     console.log(this.bancos);
     
@@ -89,12 +84,10 @@ export class PagosComponent implements OnInit {
   obtenerVentas() {
     this.paymentService.obtenerVentasPendientes().subscribe({
       next: (data) => (this.ventas = data as Venta[]),
-      error: () =>
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'No se pudieron cargar las ventas',
-        }),
+      error: (err) => {
+        const detalle = err?.error?.detail || 'No se pudieron cargar las ventas'
+        this.utilsService.error(detalle);
+      }
     });
     
     
@@ -136,21 +129,13 @@ export class PagosComponent implements OnInit {
 
   this.paymentService.registrarPago(this.pago).subscribe({
     next: () => {
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Pago registrado',
-        detail: 'El pago se ha guardado exitosamente',
-      });
+      this.utilsService.success('El pago se ha guardado exitosamente'),
       this.pagoDialog = false;
       this.obtenerVentas();
     },
     error: (err) => {
       const detalle = err?.error?.detail || 'Error desconocido al registrar el pago';
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: detalle,
-      });
+      this.utilsService.error(detalle);
     },
   });
 }

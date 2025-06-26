@@ -21,6 +21,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Product } from '../../../models/product.interface';
 import { ProductService } from '../../../services/products/product.service';
 import { ProductFormComponent } from "../product-form/product-form.component";
+import {UtilsService} from "../../../services/utils/utils.service";
 
 
 interface Column {
@@ -31,7 +32,7 @@ interface Column {
 
 @Component({
   selector: 'app-product-list',
-  providers: [MessageService, ProductService, ConfirmationService],
+  providers: [ProductService, ConfirmationService],
   imports: [
     CommonModule,
     TableModule,
@@ -67,7 +68,7 @@ export class ProductListComponent implements OnInit {
   cols!: Column[];
 
   constructor(
-    private messageService: MessageService,
+    private utilsService: UtilsService,
     private confirmationService: ConfirmationService,
     private productService: ProductService,
   ) {
@@ -77,23 +78,22 @@ export class ProductListComponent implements OnInit {
     this.loadIniData();
   }
 
-  loadIniData() {
-
+  loadProducts() {
     this.productService.getAllProducts()
-      .subscribe(
-        {
-          next: (data) => {
-            this.products.set(data);
-          },
-          error: (err) => {
-            console.error('Error al cargar vendedor:', err);
-          },
-          complete: () => {
-            console.log('Carga de proveedores completada');
-          }
+        .subscribe(
+            {
+              next: (data) => {
+                this.products.set(data);
+              },
+              error: (err) => {
+                const detalle = err?.error?.detail || 'Error al cargar los productos.'
+                this.utilsService.error(detalle);
+              },
+            });
+  }
 
-        });
-
+  loadIniData() {
+    this.loadProducts();
     this.cols = [
       { field: 'code', header: 'Codigo', customExportHeader: 'Code' },
       { field: 'name', header: 'Nombre' },
@@ -125,38 +125,13 @@ export class ProductListComponent implements OnInit {
           .subscribe(
             {
               next: () => {
-                this.messageService.add({
-                  severity: 'success',
-                  summary: 'Éxito',
-                  detail: 'Producto eliminado',
-                  life: 3000
-                });
-                this.productService.getAllProducts()
-                  .subscribe(
-                    {
-                      next: (data) => {
-                        this.products.set(data);
-                      },
-                      error: (err) => {
-                        console.error('Error al cargar vendedor:', err);
-                      },
-                      complete: () => {
-                        console.log('Carga de proveedores completada');
-                      }
-
-                    });
+                this.utilsService.success('Producto eliminado');
+                this.loadProducts();
               },
               error: (err) => {
-                this.messageService.add({
-                  severity: 'error',
-                  summary: 'Error',
-                  detail: 'Error al intentar eliminar un producto, por favor, intente mas tarde',
-                });
+                const detalle = err?.error?.detail || 'Error al eliminar el producto.'
+                this.utilsService.error(detalle);
               },
-              complete: () => {
-                console.log('Carga de proveedores completada');
-              }
-
             });
 
       }

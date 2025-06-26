@@ -20,12 +20,13 @@ import { CommonModule } from '@angular/common';
 import { InputMaskModule } from 'primeng/inputmask';
 import { MessageService } from 'primeng/api';
 import { VendorService } from '../../../services/vendor/vendor.service';
+import {UtilsService} from "../../../services/utils/utils.service";
 
 
 @Component({
   selector: 'app-form-vendor',
   standalone: true,
-  providers: [MessageService, VendorService],
+  providers: [VendorService],
   imports: [
     DialogModule,
     InputTextModule,
@@ -66,7 +67,7 @@ export class FormVendorComponent implements OnInit {
   @Output() cerrado = new EventEmitter<boolean>();
 
   constructor(
-    private messageService: MessageService,
+    private utilsService: UtilsService,
     private vendorService: VendorService,
   ) { }
 
@@ -91,38 +92,21 @@ export class FormVendorComponent implements OnInit {
 
     if ((firstName?.trim() ?? '') && (lastName?.trim() ?? '') && commissionPercent >= 0) {
       console.log('Vendedor guardado:', this.vendedor);
-      this.vendorService.save(this.vendedor)
-        .subscribe(
-          {
-            next: (data) => {
-              this.visible = false;
-              this.messageService.add({
-                severity: 'success',
-                summary: 'Éxito',
-                detail: 'Vendedor guardado correctamente',
-              });
-            },
-            error: (err) => {
-              console.error('Error al cargar vendedor:', err);
-              this.messageService.add({
-                severity: 'error',
-                summary: 'Error',
-                detail: 'Error al intentar registrar un vendedor, por favor, intente mas tarde',
-              });
-            },
-            complete: () => {
-              console.log('Carga de proveedores completada');
-            }
-
-          });
-
+      this.vendorService.save(this.vendedor).subscribe({
+        next: (data) => {
+          this.visible = false;
+          this.utilsService.success('Vendedor guardado correctamente');
+        },
+        error: (err) => {
+          this.visible = false;
+          console.error('Error al guardar vendedor:', err);
+          const detalle = err?.error?.detail || 'Error al intentar registrar un vendedor, por favor, intente más tarde';
+          this.utilsService.error(detalle);
+        }
+      });
 
     } else {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Campos incompletos',
-        detail: 'Debes ingresar nombres, apellidos y una comisión es igual o mayor a 0%',
-      });
+      this.utilsService.error('Campos incompletos, debes ingresar nombres, apellidos y una comisión es igual o mayor a 0%');
     }
   }
 

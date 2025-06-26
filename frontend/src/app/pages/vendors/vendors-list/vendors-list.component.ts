@@ -22,6 +22,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { Column, Product, Vendor } from '../../../models/models';
 import { ProductService } from '../../../services/product/product.service';
 import { VendorService } from '../../../services/vendor/vendor.service';
+import {UtilsService} from "../../../services/utils/utils.service";
 
 @Component({
     selector: 'app-vendors-list',
@@ -62,7 +63,7 @@ export class VendorsListComponent implements OnInit {
     cols!: Column[];
 
     constructor(
-        private messageService: MessageService,
+        private utilsService: UtilsService,
         private confirmationService: ConfirmationService,
         private vendorService: VendorService,
     ) {
@@ -74,20 +75,17 @@ export class VendorsListComponent implements OnInit {
 
     loadIniData() {
 
-        this.vendorService.getAll()
-            .subscribe(
-                {
-                    next: (data) => {
-                        this.vendors.set(data);
-                    },
-                    error: (err) => {
-                        console.error('Error al cargar vendedor:', err);
-                    },
-                    complete: () => {
-                        console.log('Carga de proveedores completada');
-                    }
+        this.vendorService.getAll().subscribe({
+            next: (data) => {
+                this.vendors.set(data);
+            },
+            error: (err) => {
+                console.error('Error al cargar vendedores:', err);
+                const detalle = err?.error?.detail || 'Error al cargar los proveedores. Por favor, intente más tarde.';
+                this.utilsService.error(detalle);
+            }
+        });
 
-                });
 
         this.cols = [
             { field: 'code', header: 'Code', customExportHeader: 'Code' },
@@ -117,40 +115,22 @@ export class VendorsListComponent implements OnInit {
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 //logica para eliminar
-                this.vendorService.deleteSoftVendor(vendor.code)
-                    .subscribe(
-                        {
-                            next: (data) => {
-                                console.log(data)
-                                if (data) {
-                                    this.messageService.add({
-                                        severity: 'success',
-                                        summary: 'Éxito',
-                                        detail: 'Vendedor eliminado',
-                                        life: 3000
-                                    });
-                                    this.loadIniData();
-                                } else {
-                                    this.messageService.add({
-                                        severity: 'error',
-                                        summary: 'Error',
-                                        detail: 'Error al intentar eliminar un vendedor, por favor, intente mas tarde',
-                                    });
-                                }
-                            },
-                            error: (err) => {
-                                console.error('Error al cargar vendedor:', err);
-                                this.messageService.add({
-                                    severity: 'error',
-                                    summary: 'Error',
-                                    detail: 'Error al intentar eliminar un vendedor, por favor, intente mas tarde',
-                                });
-                            },
-                            complete: () => {
-                                console.log('Carga de proveedores completada');
-                            }
+                this.vendorService.deleteSoftVendor(vendor.code).subscribe({
+                    next: (data) => {
+                        console.log(data);
+                        if (data) {
+                            this.utilsService.success('Vendedor eliminado correctamente');
+                            this.loadIniData();
+                        } else {
+                            this.utilsService.error('Error al intentar eliminar un vendedor, por favor, intente más tarde');
+                        }
+                    },
+                    error: (err) => {
+                        const errorDetail = err?.error?.detail || 'Error al intentar eliminar un vendedor, por favor, intente más tarde';
+                        this.utilsService.error(errorDetail);
+                    }
+                });
 
-                        });
 
             }
         });

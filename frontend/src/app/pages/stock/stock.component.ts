@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { Table, TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
-import { StockService } from '../../../services/inventario/stock.service';
-import { Column, StockProducto } from '../../../models/models';
+import { StockService } from '../../services/inventario/stock.service';
+import { Column, StockProducto } from '../../models/models';
 
 
 @Component({

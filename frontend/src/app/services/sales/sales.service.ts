@@ -40,10 +40,8 @@ export class SalesService {
     printSale(sale: Sale) {
         if (!sale) {
             return {
-                severity: "error",
-                summary: "Error",
-                detail: "No se puede imprimir: venta no válida",
-                life: 3000,
+                status: "error",
+                message: "No se puede imprimir: venta no válida"
             };
         }
 
@@ -67,17 +65,13 @@ export class SalesService {
             }
 
             return {
-                severity: "success",
-                summary: "Éxito",
-                detail: "Documento de venta preparado para imprimir",
-                life: 3000,
+                status: "success",
+                message: "Documento de venta preparado para imprimir"
             };
         } else {
             return {
-                severity: "error",
-                summary: "Error",
-                detail: "No se pudo abrir la ventana de impresión. Verifique que no esté bloqueada por el navegador.",
-                life: 5000,
+                status: "error",
+                message: "No se pudo abrir la ventana de impresión. Verifique que no esté bloqueada por el navegador."
             };
         }
     }

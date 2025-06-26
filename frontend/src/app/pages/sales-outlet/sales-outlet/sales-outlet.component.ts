@@ -20,6 +20,7 @@ import { Column, SalesDataDto, SalesSearch } from '../../../models/models';
 import { MessageService } from 'primeng/api';
 import { SalesOutletDetailComponent } from "../sales-outlet-detail/sales-outlet-detail.component";
 import {SalesService} from "../../../services/sales/sales.service";
+import {UtilsService} from "../../../services/utils/utils.service";
 
 @Component({
   selector: 'app-sales-outlet',
@@ -44,9 +45,8 @@ import {SalesService} from "../../../services/sales/sales.service";
     IconFieldModule,
     SalesOutletDetailComponent
 ],
-  providers: [MessageService, SalesService],
-  templateUrl: './sales-outlet.component.html',
-  styleUrl: './sales-outlet.component.scss'
+  providers: [SalesService],
+  templateUrl: './sales-outlet.component.html'
 })
 export class SalesOutletComponent implements OnInit {
 
@@ -57,7 +57,7 @@ export class SalesOutletComponent implements OnInit {
 
 
   constructor(
-    private messageService: MessageService,
+    private utilsService: UtilsService,
     private salesService: SalesService,
   ) { }
 
@@ -78,48 +78,23 @@ export class SalesOutletComponent implements OnInit {
       paramsCreated.set("shipmentNumber", this.salesSearch.shipmentNumber);
       paramsCreated.set("status", "VIGENTE");
 
-      this.salesService.findSalesByQuery(paramsCreated)
-        .subscribe(
-          {
-            next: (data) => {
-              this.searchPerformed = true;
-              if (data) {
-                this.messageService.add({
-                  severity: 'success',
-                  summary: 'Éxito',
-                  detail: 'Consulta éxitosa',
-                  life: 3000
-                });
-                this.salesDataList.set(data);
-              } 
-            },
-            error: (err) => {
-              console.error('Error al cargar vendedor:', err);
-              this.messageService.add({
-                severity: 'error',
-                summary: 'Error',
-                detail: 'Error en el servidor, por favor, intente mas tarde',
-              });
-            },
-            complete: () => {
-              console.log('consulta completada');
-            }
-
+      this.salesService.findSalesByQuery(paramsCreated).subscribe({
+        next: (data) => {
+          this.searchPerformed = true;
+          if (data) {
+            this.utilsService.success('Consulta exitosa');
+            this.salesDataList.set(data);
           }
-        )
-
-    } else {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Campos incompletos',
-        detail: 'Debes escribir el nombre del cliente ó el codigo de envio para poder realizar la búsqueda',
+        },
+        error: (err) => {
+          console.error('Error al cargar ventas:', err);
+          const detalle = err?.error?.detail || 'Error al obtener ventas.';
+          this.utilsService.error(detalle);
+        }
       });
+    } else {
+      this.utilsService.error('Campos incompletos, debes escribir el nombre del cliente ó el codigo de envio para poder realizar la búsqueda');
     }
-
-  }
-
-  recordOutput(venta: SalesDataDto): void {
-
   }
 
 }

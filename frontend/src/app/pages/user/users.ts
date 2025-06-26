@@ -26,6 +26,7 @@ import {Client, ItemProduct, Sale, SaleDetailForm, SaleForm, Salesman, User, Use
 import {UserService} from "../../services/users/user.service";
 import {Checkbox} from "primeng/checkbox";
 import {Password} from "primeng/password";
+import {UtilsService} from "../../services/utils/utils.service";
 
 @Component({
     selector: 'app-users',
@@ -52,9 +53,9 @@ import {Password} from "primeng/password";
         ConfirmDialogModule,
         DatePickerModule,
         Checkbox,
-        Password,
+        Password
     ],
-    providers: [MessageService, ProductService, ConfirmationService, ClienteService]
+    providers: [ProductService, ConfirmationService, ClienteService]
 })
 export class Users  implements OnInit {
     users: User[] = []
@@ -90,8 +91,7 @@ export class Users  implements OnInit {
 
     constructor(
         private userService: UserService,
-        private messageService: MessageService,
-        private confirmationService: ConfirmationService,
+        private utilsService: UtilsService
     ) {}
 
     ngOnInit() {
@@ -100,9 +100,16 @@ export class Users  implements OnInit {
     }
 
     loadUsers() {
-        this.userService.getUsers().subscribe((users) => {
-            this.users = users
-        })
+        this.userService.getUsers().subscribe({
+            next: (users) => {
+                this.users = users;
+            },
+            error: (err) => {
+                console.error('Error al cargar los usuarios:', err);
+                const detalle = err?.error?.detail || 'Error al cargar los usuarios. Por favor, intente más tarde.';
+                this.utilsService.error(detalle);
+            }
+        });
     }
 
     initializeColumns() {
@@ -158,11 +165,7 @@ export class Users  implements OnInit {
     confirmDelete() {
         if (this.userToDelete) {
             this.userService.deleteUser(this.userToDelete.id!).subscribe(() => {
-                this.messageService.add({
-                    severity: "success",
-                    summary: "Exitoso",
-                    detail: "Usuario eliminado correctamente",
-                })
+                this.utilsService.success("Usuario eliminado correctamente")
                 this.loadUsers()
             })
             this.deleteUserDialog = false
@@ -216,27 +219,34 @@ export class Users  implements OnInit {
 
             if (this.isEditMode && !!this.selectedUserForView) {
 
-                this.userService.updateUser(userData).subscribe(() => {
-                    this.messageService.add({
-                        severity: "success",
-                        summary: "Exitoso",
-                        detail: "Usuario actualizado correctamente",
-                    })
-                    this.loadUsers()
-                    this.hideDialog()
-                    this.saving = false
-                })
+                this.userService.updateUser(userData).subscribe({
+                    next: () => {
+                        this.utilsService.success('Usuario actualizado correctamente');
+                        this.loadUsers();
+                        this.hideDialog();
+                        this.saving = false;
+                    },
+                    error: (err) => {
+                        this.saving = false;
+                        const detalle = err?.error?.detail || 'Error al actualizar el usuario. Por favor, intente más tarde.';
+                        this.utilsService.error(detalle);
+                    }
+                });
             } else {
-                this.userService.createUser(userData).subscribe(() => {
-                    this.messageService.add({
-                        severity: "success",
-                        summary: "Exitoso",
-                        detail: "Usuario creado correctamente",
-                    })
-                    this.loadUsers()
-                    this.hideDialog()
-                    this.saving = false
-                })
+                this.userService.createUser(userData).subscribe({
+                    next: () => {
+                        this.utilsService.success('Usuario creado correctamente');
+                        this.loadUsers();
+                        this.hideDialog();
+                        this.saving = false;
+                    },
+                    error: (err) => {
+                        this.saving = false;
+                        const detalle = err?.error?.detail || 'Error al crear el usuario. Por favor, intente más tarde.';
+                        this.utilsService.error(detalle);
+                    }
+                });
+
             }
         }
     }
@@ -268,7 +278,6 @@ export class Users  implements OnInit {
     }
 
     exportCSV() {
-        // Implementar exportación CSV
         const csvData = this.users.map((user) => ({
             ID: user.id,
             Usuario: user.usuario,
@@ -279,13 +288,8 @@ export class Users  implements OnInit {
             Estado: user.activo ? "Activo" : "Inactivo"
         }))
 
-        // Aquí puedes usar una librería como Papa Parse o implementar tu propia lógica de CSV
         console.log("Exportando CSV:", csvData)
-        this.messageService.add({
-            severity: "info",
-            summary: "Exportación",
-            detail: "Funcionalidad de exportación CSV lista para implementar",
-        })
+        this.utilsService.success("Funcionalidad de exportación CSV lista para implementar")
     }
 
     editFromView() {

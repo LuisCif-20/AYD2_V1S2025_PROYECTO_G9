@@ -22,11 +22,12 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { TableModule } from 'primeng/table';
 import { CalendarModule } from 'primeng/calendar';
 import {SalesService} from "../../../services/sales/sales.service";
+import {UtilsService} from "../../../services/utils/utils.service";
 
 @Component({
   selector: 'app-sales-outlet-detail',
   standalone: true,
-  providers: [MessageService, SalesService],
+  providers: [SalesService],
   imports: [
     DialogModule,
     InputTextModule,
@@ -56,8 +57,7 @@ import {SalesService} from "../../../services/sales/sales.service";
     TableModule,
     CalendarModule
   ],
-  templateUrl: './sales-outlet-detail.component.html',
-  styleUrl: './sales-outlet-detail.component.scss'
+  templateUrl: './sales-outlet-detail.component.html'
 })
 export class SalesOutletDetailComponent {
 
@@ -69,7 +69,7 @@ export class SalesOutletDetailComponent {
 
   constructor(
     private salesOutletService: SalesService,
-    private messageService: MessageService,
+    private utilsService: UtilsService,
   ) { }
 
   viewDetail(salesData: SalesDataDto): void {
@@ -87,11 +87,7 @@ export class SalesOutletDetailComponent {
     console.log(this.venta)
 
     if (!this.wareHouseExitDate) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Error',
-        detail: 'Escribe la fecha de salida de bodega para continuar',
-      });
+      this.utilsService.success('Escribe la fecha de salida de bodega para continuar');
       return;
     }
 
@@ -99,30 +95,16 @@ export class SalesOutletDetailComponent {
     this.salesOutlet.saleId = this.venta.id;
     this.salesOutlet.exitDate = this.wareHouseExitDate;
 
-    this.salesOutletService.registerSalesOutlet(this.salesOutlet)
-      .subscribe(
-        {
-          next: (data: any) => {
-            this.visible = false;
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Éxito',
-              detail: 'Se registro la salida de productos a bodega correctamente',
-            });
-          },
-          error: (err: any) => {
-            console.error('Error en registro de salida:', err);
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: err.error.detail,
-            });
-          },
-          complete: () => {
-            console.log('Carga de proveedores completada');
-          }
-        }
-      );
+    this.salesOutletService.registerSalesOutlet(this.salesOutlet).subscribe({
+      next: (data: any) => {
+        this.visible = false;
+        this.utilsService.success('Se registró la salida de productos a bodega correctamente');
+      },
+      error: (err: any) => {
+        const detalle = err?.error?.detail || 'Error al obtener ventas';
+        this.utilsService.error(detalle);
+      }
+    });
 
   }
 
