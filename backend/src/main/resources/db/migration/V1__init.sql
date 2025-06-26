@@ -12,7 +12,7 @@ CREATE TABLE municipality (
 
 CREATE TABLE business (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    name VARCHAR(100)
+    name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE client (
@@ -154,5 +154,5 @@ CREATE TABLE user_account (
     password VARCHAR(25) NOT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     role_id UUID NOT NULL,
-    FOREING KEY (role_id) REFERENCES role (id)
+    FOREIGN KEY (role_id) REFERENCES role (id)
 );
