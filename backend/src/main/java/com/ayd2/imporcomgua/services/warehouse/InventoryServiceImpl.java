@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepository inventoryRepository;
 
-    // TODO Implement mappers
     @Override
     public List<Inventory> getAllInventories() {
         List<Inventory> inventories = inventoryRepository.findAll();

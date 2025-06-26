@@ -1,6 +1,5 @@
 package com.ayd2.imporcomgua.models.client;
 
-import com.ayd2.imporcomgua.models.business.Business;
 import com.ayd2.imporcomgua.models.location.Municipality;
 
 import jakarta.persistence.Column;

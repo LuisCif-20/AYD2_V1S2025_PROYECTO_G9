@@ -1,4 +1,4 @@
-package com.ayd2.imporcomgua.models.business;
+package com.ayd2.imporcomgua.models.user;
 
 import java.util.UUID;
 
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-public class Business {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

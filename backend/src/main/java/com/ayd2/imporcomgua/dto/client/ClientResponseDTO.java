@@ -1,6 +1,5 @@
 package com.ayd2.imporcomgua.dto.client;
 
-import com.ayd2.imporcomgua.dto.business.BusinessResponseDTO;
 import com.ayd2.imporcomgua.dto.location.MunicipalityResponseDTO;
 import com.ayd2.imporcomgua.models.client.SaleType;
 
