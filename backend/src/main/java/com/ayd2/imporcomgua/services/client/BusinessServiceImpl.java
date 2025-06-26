@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ayd2.imporcomgua.dto.client.BusinessResponseDTO;
 import com.ayd2.imporcomgua.dto.client.NewBusinessRequestDTO;
 import com.ayd2.imporcomgua.dto.client.UpdateBusinessRequestDTO;
+import com.ayd2.imporcomgua.exceptions.DuplicatedEntityException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.mappers.client.BusinessMapper;
 import com.ayd2.imporcomgua.models.client.Business;
@@ -34,7 +35,12 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    public BusinessResponseDTO createBusiness(NewBusinessRequestDTO newBusinessRequestDTO) {
+    public BusinessResponseDTO createBusiness(NewBusinessRequestDTO newBusinessRequestDTO)
+            throws DuplicatedEntityException {
+        final String name = newBusinessRequestDTO.name();
+        if (businessRepository.existsByName(name)) {
+            throw new DuplicatedEntityException("Ya existe un negocio con el nombre: " + name);
+        }
         final Business business = businessMapper.toBusiness(newBusinessRequestDTO);
         final Business newBusiness = businessRepository.save(business);
         return businessMapper.toBusinessResponseDTO(newBusiness);
@@ -42,7 +48,11 @@ public class BusinessServiceImpl implements BusinessService {
 
     @Override
     public BusinessResponseDTO updateBusiness(UUID id, UpdateBusinessRequestDTO updateBusinessRequestDTO)
-            throws NotFoundException {
+            throws NotFoundException, DuplicatedEntityException {
+        final String name = updateBusinessRequestDTO.name();
+        if (name != null && businessRepository.existsByNameAndIdNot(name, id)) {
+            throw new DuplicatedEntityException("Ya existe un negocio con el nombre: " + name);
+        }
         final Business business = businessRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("No existe el negocio con id: " + id));
         businessMapper.UpdateBusinessFromDTO(updateBusinessRequestDTO, business);

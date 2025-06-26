@@ -5,6 +5,7 @@ import java.util.UUID;
 public record BusinessResponseDTO(
 
     UUID id,
-    String name
+    String name,
+    Boolean isActive
 
 ) {}

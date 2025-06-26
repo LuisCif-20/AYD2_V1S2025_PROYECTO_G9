@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ayd2.imporcomgua.dto.client.BusinessResponseDTO;
 import com.ayd2.imporcomgua.dto.client.NewBusinessRequestDTO;
 import com.ayd2.imporcomgua.dto.client.UpdateBusinessRequestDTO;
+import com.ayd2.imporcomgua.exceptions.DuplicatedEntityException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.services.client.BusinessService;
 
@@ -38,7 +39,7 @@ public class BusinessController {
 
     @PostMapping
     public ResponseEntity<BusinessResponseDTO> createBusiness(
-            @RequestBody @Valid NewBusinessRequestDTO newBusinessRequestDTO) {
+            @RequestBody @Valid NewBusinessRequestDTO newBusinessRequestDTO) throws DuplicatedEntityException {
         final BusinessResponseDTO business = businessService.createBusiness(newBusinessRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(business);
     }
@@ -47,7 +48,7 @@ public class BusinessController {
     public ResponseEntity<BusinessResponseDTO> updateBusiness(
             @PathVariable UUID id,
             @RequestBody @Valid UpdateBusinessRequestDTO updateBusinessRequestDTO)
-            throws NotFoundException {
+            throws NotFoundException, DuplicatedEntityException {
         final BusinessResponseDTO business = businessService.updateBusiness(id, updateBusinessRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(business);
     }
