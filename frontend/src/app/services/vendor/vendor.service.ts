@@ -4,7 +4,7 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { Vendor } from '../../models/models';
 
-const baseUrl = environment.IMPORCOMGUA + '/api/v1.0/salesmen';
+const baseUrl = environment.IMPORCOMGUA + '/salesmen';
 
 @Injectable({
     providedIn: 'root'

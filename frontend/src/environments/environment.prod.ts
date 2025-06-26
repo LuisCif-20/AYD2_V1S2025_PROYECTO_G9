@@ -1,4 +1,4 @@
 export const environment = {
     production: true,
-    codeNBugs: '/api',
+    IMPORCOMGUA: '/api/api/v1.0',
 };
