@@ -1,0 +1,43 @@
+<p-dialog
+  [(visible)]="visible"
+  [modal]="true"
+  [closable]="true"
+  header="{{ business.id ? 'Editar Negocio' : 'Nuevo Negocio' }}"
+  [style]="{ width: '500px' }"
+  styleClass="custom-dialog"
+  (onHide)="cerrarFormulario()"
+>
+  <ng-template pTemplate="content">
+    <div class="p-fluid">
+      <div class="mb-4">
+        <label for="nombreNegocio" class="block font-bold mb-2">Nombre del Negocio *</label>
+        <input
+          id="nombreNegocio"
+          pInputText
+          placeholder="Ej: Supermercado La Económica"
+          [(ngModel)]="business.name"
+          class="w-full"
+          required
+        />
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template pTemplate="footer">
+    <div class="flex justify-end gap-2">
+      <p-button
+        label="Cancelar"
+        icon="pi pi-times"
+        severity="secondary"
+        (onClick)="cerrarFormulario()"
+      ></p-button>
+      <p-button
+        [label]="business.id ? 'Actualizar Negocio' : 'Guardar Negocio'"
+        icon="pi pi-save"
+        (onClick)="guardar()"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-toast></p-toast>

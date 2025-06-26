@@ -36,6 +36,11 @@ export class AppMenu {
                         routerLink: ['/pages/vendors']
                     },
                     {
+                        label: 'Negocios',
+                        icon: 'pi pi-fw pi-shop',
+                        routerLink: ['/pages/business']
+                    },
+                    {
                         label: 'Clientes',
                         icon: 'pi pi-fw pi-users',
                         routerLink: ['/pages/client']
