@@ -14,46 +14,49 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ayd2.imporcomgua.dto.user.NewUserRequestDTO;
-import com.ayd2.imporcomgua.dto.user.UpdateUserRequestDTO;
-import com.ayd2.imporcomgua.dto.user.UserResponseDTO;
+import com.ayd2.imporcomgua.dto.user.NewUserAccountRequestDTO;
+import com.ayd2.imporcomgua.dto.user.UpdateUserAccountRequestDTO;
+import com.ayd2.imporcomgua.dto.user.UserAccountResponseDTO;
+import com.ayd2.imporcomgua.exceptions.DuplicatedEntityException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
-import com.ayd2.imporcomgua.services.user.UserService;
+import com.ayd2.imporcomgua.services.user.UserAccountService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/v1.0/users")
+@RequestMapping("/v1.0/user-accounts")
 @RequiredArgsConstructor
-public class UserController {
+public class UserAccountController {
 
-    private final UserService userService;
+    private final UserAccountService userAccountService;
 
     @GetMapping
-    public ResponseEntity<List<UserResponseDTO>> getAllUsers() {
-        final List<UserResponseDTO> users = userService.getAllUsers();
+    public ResponseEntity<List<UserAccountResponseDTO>> getAllUsers() {
+        final List<UserAccountResponseDTO> users = userAccountService.getAllUserAccounts();
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> createUser(
-            @RequestBody @Valid NewUserRequestDTO newUserRequestDTO) throws NotFoundException {
-        final UserResponseDTO user = userService.createUser(newUserRequestDTO);
+    public ResponseEntity<UserAccountResponseDTO> createUser(
+            @RequestBody @Valid NewUserAccountRequestDTO newUserRequestDTO)
+            throws NotFoundException, DuplicatedEntityException {
+        final UserAccountResponseDTO user = userAccountService.createUserAccount(newUserRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<UserResponseDTO> updateUser(
+    public ResponseEntity<UserAccountResponseDTO> updateUser(
             @PathVariable UUID id,
-            @RequestBody @Valid UpdateUserRequestDTO updateUserRequestDTO) throws NotFoundException {
-        final UserResponseDTO user = userService.updateUser(id, updateUserRequestDTO);
+            @RequestBody @Valid UpdateUserAccountRequestDTO updateUserRequestDTO)
+            throws NotFoundException, DuplicatedEntityException {
+        final UserAccountResponseDTO user = userAccountService.updateUserAccount(id, updateUserRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable UUID id) throws NotFoundException {
-        userService.deleteUser(id);
+        userAccountService.deleteUserAccount(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
     

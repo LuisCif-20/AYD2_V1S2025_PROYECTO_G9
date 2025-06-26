@@ -2,7 +2,7 @@ package com.ayd2.imporcomgua.dto.user;
 
 import java.util.UUID;
 
-public record UserResponseDTO(
+public record UserAccountResponseDTO(
 
     UUID id,
     String firstName,
