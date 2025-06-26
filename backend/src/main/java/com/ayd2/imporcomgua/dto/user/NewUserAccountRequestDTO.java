@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
-public record NewUserRequestDTO(
+public record NewUserAccountRequestDTO(
 
     @NotBlank(message = "El nombre es obligatorio")
     @Size(max = 30, message = "El nombre de debe ser menor a 31 caracteres")
