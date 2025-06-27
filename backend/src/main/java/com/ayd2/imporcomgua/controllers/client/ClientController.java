@@ -18,6 +18,7 @@ import com.ayd2.imporcomgua.dto.client.ClientResponseDTO;
 import com.ayd2.imporcomgua.dto.client.ClientSearchRequestDTO;
 import com.ayd2.imporcomgua.dto.client.NewClientRequestDTO;
 import com.ayd2.imporcomgua.dto.client.UpdateClientRequestDTO;
+import com.ayd2.imporcomgua.exceptions.NotActivatedEntityException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.services.client.ClientService;
 
@@ -48,7 +49,7 @@ public class ClientController {
     @PostMapping
     // @PreAuthorize("hasAnyAuthority('GERENTE_GENERAL', 'GERENTE_VENTAS_FINANZAS')")
     public ResponseEntity<ClientResponseDTO> createClient(@RequestBody @Valid NewClientRequestDTO newClientRequestDTO)
-            throws NotFoundException {
+            throws NotFoundException, NotActivatedEntityException {
         final ClientResponseDTO clientResponseDTO = clientService.createClient(newClientRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(clientResponseDTO);
     }
@@ -56,7 +57,8 @@ public class ClientController {
     @PatchMapping("/{id}")
     public ResponseEntity<ClientResponseDTO> updateClient(
             @PathVariable Long id,
-            @RequestBody @Valid UpdateClientRequestDTO updateClientRequestDTO) throws NotFoundException {
+            @RequestBody @Valid UpdateClientRequestDTO updateClientRequestDTO)
+                throws NotFoundException, NotActivatedEntityException {
         final ClientResponseDTO clientResponseDTO = clientService.updateClient(id, updateClientRequestDTO);
         return ResponseEntity.status(HttpStatus.OK).body(clientResponseDTO);
     }
