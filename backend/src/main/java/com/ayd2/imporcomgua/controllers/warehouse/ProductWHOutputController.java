@@ -1,6 +1,7 @@
 package com.ayd2.imporcomgua.controllers.warehouse;
 
 import org.springframework.http.ResponseEntity;
+// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,10 +19,12 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/v1.0/warehouse-outputs")
 @RequiredArgsConstructor
+// @PreAuthorize("hasAuthority('GERENTE_GENERAL')")
 public class ProductWHOutputController {
     private final ProductWHOutputService productWHOutputService;
     
     @PutMapping
+    // @PreAuthorize("hasAnyAuthority('GERENTE_GENERAL', 'GERENTE_INVENTARIO')")
     public ResponseEntity<SaleResponseDTO> updateProductWHOutput(
             @RequestBody @Valid ProductWHOutputRequestDTO dtoRequest) throws NotFoundException, DuplicatedEntityException {
         SaleResponseDTO response = productWHOutputService.processProductWHOutput(dtoRequest);

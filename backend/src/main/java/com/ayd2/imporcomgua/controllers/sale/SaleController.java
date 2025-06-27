@@ -12,6 +12,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +21,13 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/v1.0/sales")
 @RequiredArgsConstructor
+// @PreAuthorize("hasAuthority('GERENTE_GENERAL')")
 public class SaleController {
 
     private final SaleService saleService;
 
     @PostMapping
+    // @PreAuthorize("hasAnyAuthority('GERENTE_GENERAL', 'GERENTE_VENTAS_FINANZAS')")
     public ResponseEntity<SaleResponseDTO> createSale(
             @RequestBody @Valid NewSaleRequestDTO saleRequestDTO) throws DuplicatedEntityException, NotFoundException, InvalidPaymentTypeException, NoStockException {
         SaleResponseDTO response = saleService.createSale(saleRequestDTO);
