@@ -34,6 +34,7 @@ import com.ayd2.imporcomgua.repositories.product.ProductRepository;
 import com.ayd2.imporcomgua.repositories.sale.SaleRepository;
 import com.ayd2.imporcomgua.repositories.salesman.SalesmanRepository;
 import com.ayd2.imporcomgua.repositories.warehouse.InventoryRepository;
+import com.ayd2.imporcomgua.services.mail.MailService;
 import com.ayd2.imporcomgua.specifications.sale.SaleSpecs;
 
 import lombok.RequiredArgsConstructor;
@@ -49,6 +50,7 @@ public class SaleServiceImpl implements SaleService {
     private final InventoryRepository inventoryRepository;
     private final SaleMapper saleMapper;
     private final SaleDetailMapper saleDetailMapper;
+    private final MailService mailService;
 
     @Override
     public SaleResponseDTO getSale(UUID id) throws NotFoundException {
@@ -96,6 +98,10 @@ public class SaleServiceImpl implements SaleService {
             // Revertir: quitar de reservado y sumar a disponible
             inventory.setReservedQuantity(inventory.getReservedQuantity() - detail.getQuantity());
             inventory.setAvailableQuantity(inventory.getAvailableQuantity() + detail.getQuantity());
+
+            if (inventory.getAvailableQuantity() > inventory.getLowStockThreshold()) {
+                inventory.setIsLowStockAlertSent(false);
+            }
 
             inventoryRepository.save(inventory);
         }
@@ -208,6 +214,8 @@ public class SaleServiceImpl implements SaleService {
             inventory.setLastUpdated(LocalDate.now());
 
             inventoryRepository.save(inventory);
+            // Enviar notificación de inventario si es necesario
+            mailService.sendInventoryNotification(inventory);
 
             SaleDetail detail = saleDetailMapper.toSaleDetail(dto);
             detail.setProduct(product);
