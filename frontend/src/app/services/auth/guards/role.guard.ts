@@ -1,15 +1,21 @@
 import { inject } from '@angular/core';
-import { CanMatchFn } from '@angular/router';
-import {AuthService} from "../auth.service";
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
-export const roleGuard: CanMatchFn = (route, segments) => {
-
+export const roleGuard: CanActivateFn = (route, state) => {
     const authService = inject(AuthService);
-    const user: any = authService.user();
-    if (!user) return false;
-    const allowedRole: string = route.data?.["role"];
-    if (user.role.name === allowedRole) {
+    const router = inject(Router);
+
+    const user = authService.user();
+    if (!user) {
+        return router.createUrlTree(['/login']);
+    }
+
+    const allowedRoles: string[] = route.data?.['roles'] || [];
+
+    if (allowedRoles.includes(<string>user.role?.name)) {
         return true;
     }
-    return true;
+
+    return router.createUrlTree(['/auth/access']);
 };

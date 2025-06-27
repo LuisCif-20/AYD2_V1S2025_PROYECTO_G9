@@ -1,15 +1,16 @@
 import {Component} from '@angular/core';
 import {MenuItem} from 'primeng/api';
-import {RouterModule} from '@angular/router';
+import {Router, RouterModule} from '@angular/router';
 import {CommonModule} from '@angular/common';
 import {StyleClassModule} from 'primeng/styleclass';
-import {AppConfigurator} from './app.configurator';
 import {LayoutService} from '../services/layout/layout.service';
+import {AuthService} from "../services/auth/auth.service";
+import {UtilsService} from "../services/utils/utils.service";
 
 @Component({
     selector: 'app-topbar',
     standalone: true,
-    imports: [RouterModule, CommonModule, StyleClassModule, AppConfigurator],
+    imports: [RouterModule, CommonModule, StyleClassModule],
     template: `
         <div class="layout-topbar">
             <div class="layout-topbar-logo-container">
@@ -27,7 +28,7 @@ import {LayoutService} from '../services/layout/layout.service';
                     <button type="button" class="layout-topbar-action" (click)="toggleDarkMode()">
                         <i [ngClass]="{ 'pi ': true, 'pi-moon': layoutService.isDarkTheme(), 'pi-sun': !layoutService.isDarkTheme() }"></i>
                     </button>
-                    <div class="relative">
+                    <!--<div class="relative">
                         <button
                                 class="layout-topbar-action layout-topbar-action-highlight"
                                 pStyleClass="@next"
@@ -40,12 +41,12 @@ import {LayoutService} from '../services/layout/layout.service';
                             <i class="pi pi-palette"></i>
                         </button>
                         <app-configurator />
-                    </div>
+                    </div>-->
                 </div>
 
-                <button type="button" class="layout-topbar-action" routerLink="/pages/user">
-                    <i class="pi pi-user"></i>
-                    <span>Profile</span>
+                <button type="button" class="layout-topbar-action" (click)="logout()">
+                    <i class="pi pi-power-off"></i>
+                    <span>Logout</span>
                 </button>
                 
             </div>
@@ -54,11 +55,25 @@ import {LayoutService} from '../services/layout/layout.service';
 export class AppTopbar {
     items!: MenuItem[];
 
-    constructor(public layoutService: LayoutService) {
+    constructor(public layoutService: LayoutService,
+                private authService: AuthService,
+                private router: Router,
+                private utilsService: UtilsService) {
     }
 
     toggleDarkMode() {
         this.layoutService.layoutConfig.update((state) => ({...state, darkTheme: !state.darkTheme}));
     }
 
+    logout() {
+        this.authService.logout().subscribe({
+            next: () => {
+                this.utilsService.success('Hasta pronto!');
+                setTimeout(async () => {
+                    await this.router.navigateByUrl('/auth/login');
+                }, 500)
+            },
+            error: () => this.utilsService.error('No es posible cerrar su sesión en este momento!')
+        });
+    }
 }

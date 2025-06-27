@@ -17,6 +17,7 @@ import {mapResponse} from "@ngrx/operators";
 export class AuthService {
 
     private readonly AUTH_URL = `${environment.IMPORCOMGUA}/auth`;
+    private readonly USER_URL = `${environment.IMPORCOMGUA}`;
     private readonly TOKEN = 'token';
     private token = signal<string>('');
     private _authStatus = signal<AuthStatus>(AuthStatus.NOT_AUTHENTICATED);
@@ -68,7 +69,7 @@ export class AuthService {
     }
 
     public getUserInfo(token: string): Observable<boolean> {
-        return this.httpClient.get<User>(`${this.AUTH_URL}/user-accounts/me`).pipe(
+        return this.httpClient.get<User>(`${this.USER_URL}/user-accounts/me`).pipe(
             map(authUser => {
                 this._authStatus.set(AuthStatus.AUTHENTICATED);
                 this._authUser.set(authUser);

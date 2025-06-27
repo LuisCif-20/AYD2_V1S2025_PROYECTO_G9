@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 import {MenuItem} from 'primeng/api';
 import {AppMenuitem} from './app.menuitem';
+import {AuthService} from "../services/auth/auth.service";
 
 @Component({
     selector: 'app-menu',
@@ -19,111 +20,81 @@ import {AppMenuitem} from './app.menuitem';
 export class AppMenu {
     model: MenuItem[] = [];
 
+    constructor(private authService: AuthService) {}
+
     ngOnInit() {
+        const role = this.authService.user()?.role?.name || 'ANONYMOUS';
+
         this.model = [
             {
                 label: 'Inicio',
-                items: [{label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/']}]
+                items: [{ label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }]
             },
             {
-                label: 'Módulos',
+                label: 'Negocio',
                 icon: 'pi pi-fw pi-briefcase',
                 routerLink: ['/pages'],
                 items: [
-                    {
-                        label: 'Vendedores',
-                        icon: 'pi pi-fw pi-user',
-                        routerLink: ['/pages/vendors']
-                    },
-                    {
-                        label: 'Negocios',
-                        icon: 'pi pi-fw pi-shop',
-                        routerLink: ['/pages/business']
-                    },
-                    {
-                        label: 'Clientes',
-                        icon: 'pi pi-fw pi-users',
-                        routerLink: ['/pages/client']
-                    },
-                    {
-                        label: 'Productos',
-                        icon: 'pi pi-fw pi-list-check',
-                        routerLink: ['/pages/products']
-                    },
-                    {
+                    ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_INVENTARIO']) ? [{
                         label: 'Inventario',
                         icon: 'pi pi-fw pi-warehouse',
                         routerLink: ['/pages/entrada-inventario']
-                    },
-                    {
-                        label: 'Ventas',
-                        icon: 'pi pi-fw pi-truck',
-                        routerLink: ['/pages/sales']
-                    },
-                    {
-                        label: 'Pagos',
-                        icon: 'pi pi-fw pi-wallet',
-                        routerLink: ['/pages/pay']
-                    },
-                    {
+                    }] : []),
+                    ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_INVENTARIO']) ? [{
                         label: 'Salidas',
                         icon: 'pi pi-fw pi-arrow-circle-right',
                         routerLink: ['/pages/sales-outlet']
-                    },
-                    /*{
-                        label: 'Auth',
-                        icon: 'pi pi-fw pi-user',
-                        items: [
-                            {
-                                label: 'Login',
-                                icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/auth/login']
-                            },
-                            {
-                                label: 'Error',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error']
-                            },
-                            {
-                                label: 'Access Denied',
-                                icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/auth/access']
-                            }
-                        ]
-                    },*/
+                    }] : []),
+                    ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_VENTAS_FINANZAS']) ? [{
+                        label: 'Ventas',
+                        icon: 'pi pi-fw pi-truck',
+                        routerLink: ['/pages/sales']
+                    }] : []),
+                    ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_VENTAS_FINANZAS']) ? [{
+                        label: 'Pagos',
+                        icon: 'pi pi-fw pi-wallet',
+                        routerLink: ['/pages/pay']
+                    }] : [])
 
                 ]
             },
-            /*{
-                label: 'Ayuda',
+            {
+                label: 'Mantenimientos',
+                icon: 'pi pi-fw pi-briefcase',
+                routerLink: ['/pages'],
                 items: [
-                    {
-                        label: 'UI Components',
-                        items: [
-                            {label: 'Form Layout', icon: 'pi pi-fw pi-id-card', routerLink: ['/uikit/formlayout']},
-                            {label: 'Input', icon: 'pi pi-fw pi-check-square', routerLink: ['/uikit/input']},
-                            {
-                                label: 'Button',
-                                icon: 'pi pi-fw pi-mobile',
-                                class: 'rotated-icon',
-                                routerLink: ['/uikit/button']
-                            },
-                            {label: 'Table', icon: 'pi pi-fw pi-table', routerLink: ['/uikit/table']},
-                            {label: 'List', icon: 'pi pi-fw pi-list', routerLink: ['/uikit/list']},
-                            {label: 'Tree', icon: 'pi pi-fw pi-share-alt', routerLink: ['/uikit/tree']},
-                            {label: 'Panel', icon: 'pi pi-fw pi-tablet', routerLink: ['/uikit/panel']},
-                            {label: 'Overlay', icon: 'pi pi-fw pi-clone', routerLink: ['/uikit/overlay']},
-                            {label: 'Media', icon: 'pi pi-fw pi-image', routerLink: ['/uikit/media']},
-                            {label: 'Menu', icon: 'pi pi-fw pi-bars', routerLink: ['/uikit/menu']},
-                            {label: 'Message', icon: 'pi pi-fw pi-comment', routerLink: ['/uikit/message']},
-                            {label: 'File', icon: 'pi pi-fw pi-file', routerLink: ['/uikit/file']},
-                            {label: 'Chart', icon: 'pi pi-fw pi-chart-bar', routerLink: ['/uikit/charts']},
-                            {label: 'Timeline', icon: 'pi pi-fw pi-calendar', routerLink: ['/uikit/timeline']},
-                            {label: 'Misc', icon: 'pi pi-fw pi-circle', routerLink: ['/uikit/misc']}
-                        ]
-                    }
+                    ...(this.hasRole(role, ['GERENTE_GENERAL']) ? [{
+                        label: 'Usuarios',
+                        icon: 'pi pi-fw pi-user',
+                        routerLink: ['/pages/users']
+                    }] : []),
+                    ...(this.hasRole(role, ['GERENTE_GENERAL']) ? [{
+                        label: 'Vendedores',
+                        icon: 'pi pi-fw pi-face-smile',
+                        routerLink: ['/pages/vendors']
+                    }] : []),
+                    ...(this.hasRole(role, ['GERENTE_GENERAL']) ? [{
+                        label: 'Negocios',
+                        icon: 'pi pi-fw pi-shop',
+                        routerLink: ['/pages/business']
+                    }] : []),
+                    ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_VENTAS_FINANZAS']) ? [{
+                        label: 'Clientes',
+                        icon: 'pi pi-fw pi-users',
+                        routerLink: ['/pages/client']
+                    }] : []),
+                    ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_INVENTARIO']) ? [{
+                        label: 'Productos',
+                        icon: 'pi pi-fw pi-list-check',
+                        routerLink: ['/pages/products']
+                    }] : [])
                 ]
-            }*/
+            }
         ];
     }
+
+    private hasRole(role: string, allowedRoles: string[]): boolean {
+        return allowedRoles.includes(role);
+    }
+
 }

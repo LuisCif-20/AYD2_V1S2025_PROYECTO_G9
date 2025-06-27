@@ -7,7 +7,8 @@ import {MenuModule} from 'primeng/menu';
     standalone: true,
     selector: 'app-best-selling-widget',
     imports: [CommonModule, ButtonModule, MenuModule],
-    templateUrl: 'bestsellingwidget.html'
+    templateUrl: 'bestsellingwidget.html',
+    styleUrls: ['bestsellingwidget.css']
 })
 export class BestSellingWidget {
     menu = null;
