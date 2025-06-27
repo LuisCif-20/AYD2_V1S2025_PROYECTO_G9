@@ -39,6 +39,12 @@ public class UserAccountController {
         return ResponseEntity.status(HttpStatus.OK).body(users);
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<UserAccountResponseDTO> getUserInfo() throws NotFoundException {
+        final UserAccountResponseDTO user = userAccountService.getUserInfo();
+        return ResponseEntity.status(HttpStatus.OK).body(user);
+    }
+
     @PostMapping
     public ResponseEntity<UserAccountResponseDTO> createUser(
             @RequestBody @Valid NewUserAccountRequestDTO newUserRequestDTO)

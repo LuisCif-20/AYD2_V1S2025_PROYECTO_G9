@@ -11,6 +11,7 @@ import com.ayd2.imporcomgua.exceptions.NotFoundException;
 
 public interface UserAccountService {
     
+	UserAccountResponseDTO getUserInfo() throws NotFoundException;
     List<UserAccountResponseDTO> getAllUserAccounts();
     UserAccountResponseDTO createUserAccount(NewUserAccountRequestDTO newUserAccountRequestDTO)
             throws NotFoundException, DuplicatedEntityException;
