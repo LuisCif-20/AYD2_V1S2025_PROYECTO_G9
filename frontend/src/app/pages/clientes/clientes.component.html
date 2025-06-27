@@ -69,7 +69,7 @@
     </td>
     <td>{{ cliente.code }}</td>
     <td>{{ cliente.contactName }}</td>
-    <td>{{ cliente.businessName }}</td>
+    <td>{{ cliente.business?.name || '-' }}</td>
     <td>{{ cliente.municipality?.name || '-' }}</td>
     <td>{{ cliente.phone }}</td>
     <td>{{ cliente.saleType }}</td>
@@ -108,17 +108,20 @@
       </div>
 
       <div>
-        <label class="block font-bold mb-3" for="businessName"
-          >Nombre Negocio</label
-        >
-        <input
-          [(ngModel)]="cliente.businessName"
-          id="businessName"
-          pInputText
-          type="text"
-          class="w-full"
-        />
-      </div>
+  <label class="block font-bold mb-3" for="business">Nombre Negocio*</label>
+  <p-dropdown [(ngModel)]="cliente.businessId"
+              [options]="negocios"
+              optionLabel="name"
+              optionValue="id"
+              placeholder="Seleccione un negocio"
+              class="w-full"
+              [filter]="true">
+  </p-dropdown>
+  <small *ngIf="submitted && !cliente.businessId" class="text-red-500">
+    Este campo es obligatorio.
+  </small>
+</div>
+
 
       <div>
         <label class="block font-bold mb-3" for="departamento"

@@ -79,6 +79,12 @@ export interface Cliente {
   code?: string;
   contactName?: string;
   businessName?: string;
+  businessId?: number;
+  business?: {
+    id?: number,
+    name?: string,
+    isActive?: boolean
+  }
   municipalityCode?: string;
     municipality?: {
     code?:number,
