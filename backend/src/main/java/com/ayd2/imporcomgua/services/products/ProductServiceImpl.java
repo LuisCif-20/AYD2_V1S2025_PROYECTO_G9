@@ -104,6 +104,13 @@ public class ProductServiceImpl implements ProductService{
          Product product = productRepository.findById(code)
                 .orElseThrow(() -> new NotFoundException("Producto no encotrado con el código: " + code));
         
+        Inventory inventory = inventoryRepository.findByProduct(product)
+                .orElseThrow(() -> new NotFoundException("Inventario no encontrado para el producto: " + product.getCode()));
+        // Verificar si el inventario tiene productos
+        if (inventory.getReservedQuantity() > 0) {
+            throw new IllegalStateException("No se puede eliminar el producto porque tiene inventario reservado en ventas efectuadas.");
+        }
+
         product.setIsActive(false);
-    }    
+    }
 }

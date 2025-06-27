@@ -6,6 +6,7 @@ import com.ayd2.imporcomgua.dto.sales.SaleSearchRequestDTO;
 import com.ayd2.imporcomgua.exceptions.DuplicatedEntityException;
 import com.ayd2.imporcomgua.exceptions.InvalidPaymentTypeException;
 import com.ayd2.imporcomgua.exceptions.NoStockException;
+import com.ayd2.imporcomgua.exceptions.NotActivatedEntityException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.services.sales.SaleService;
 import jakarta.validation.Valid;
@@ -29,7 +30,7 @@ public class SaleController {
     @PostMapping
     // @PreAuthorize("hasAnyAuthority('GERENTE_GENERAL', 'GERENTE_VENTAS_FINANZAS')")
     public ResponseEntity<SaleResponseDTO> createSale(
-            @RequestBody @Valid NewSaleRequestDTO saleRequestDTO) throws DuplicatedEntityException, NotFoundException, InvalidPaymentTypeException, NoStockException {
+            @RequestBody @Valid NewSaleRequestDTO saleRequestDTO) throws DuplicatedEntityException, NotFoundException, InvalidPaymentTypeException, NoStockException, NotActivatedEntityException {
         SaleResponseDTO response = saleService.createSale(saleRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

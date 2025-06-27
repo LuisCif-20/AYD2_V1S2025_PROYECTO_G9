@@ -2,6 +2,7 @@ package com.ayd2.imporcomgua.controllers.warehouse;
 
 import com.ayd2.imporcomgua.dto.warehouse.NewProductWHEntryRequestDTO;
 import com.ayd2.imporcomgua.dto.warehouse.ProductWHEntryResponseDTO;
+import com.ayd2.imporcomgua.exceptions.NotActivatedEntityException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.services.warehouse.ProductWHEntryService;
 import jakarta.validation.Valid;
@@ -22,7 +23,7 @@ public class ProductWHEntryController {
     @PostMapping
     // @PreAuthorize("hasAnyAuthority('GERENTE_GENERAL', 'GERENTE_INVENTARIO')")
     public ResponseEntity<ProductWHEntryResponseDTO> createProductWHEntry(
-            @RequestBody @Valid NewProductWHEntryRequestDTO dtoRequest) throws NotFoundException {
+            @RequestBody @Valid NewProductWHEntryRequestDTO dtoRequest) throws NotFoundException, NotActivatedEntityException {
         ProductWHEntryResponseDTO response = productWHEntryService.createProductWHEntry(dtoRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }

@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.ayd2.imporcomgua.dto.warehouse.NewProductWHEntryRequestDTO;
 import com.ayd2.imporcomgua.dto.warehouse.ProductWHEntryResponseDTO;
+import com.ayd2.imporcomgua.exceptions.NotActivatedEntityException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.mappers.warehouse.ProductWHEntryMapper;
 import com.ayd2.imporcomgua.models.product.Product;
@@ -29,11 +30,19 @@ public class ProductWHEntryServiceImpl implements ProductWHEntryService {
     
     @Override
     public ProductWHEntryResponseDTO createProductWHEntry(NewProductWHEntryRequestDTO dtoRequest)
-            throws NotFoundException {
+            throws NotFoundException, NotActivatedEntityException {
 
         Product product = productRepository.findById(dtoRequest.productCode())
                 .orElseThrow(
                         () -> new NotFoundException("Producto no encontrado con código: " + dtoRequest.productCode()));
+
+        // Verificar si el producto está activo
+        if (product.getIsActive() == null || !product.getIsActive()) {
+                throw new NotActivatedEntityException(
+                                String.format("El producto %s (Código: %s) se encuentra descontinuado.",
+                                                product.getName(),
+                                                product.getCode()));
+        }
 
         ProductWarehouseEntry entry = productWHEntryMapper.toProductWarehouseEntry(dtoRequest);
 
