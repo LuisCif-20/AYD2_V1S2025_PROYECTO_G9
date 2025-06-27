@@ -11,7 +11,6 @@ import { Column, StockProducto } from '../../models/models';
   selector: 'app-stock',
   standalone: true,
   templateUrl: './stock.component.html',
-  styleUrls: ['./stock.component.scss'],
   imports: [
     CommonModule,
     FormsModule,
