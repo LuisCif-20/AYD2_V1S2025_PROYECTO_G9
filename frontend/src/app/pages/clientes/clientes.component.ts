@@ -26,7 +26,6 @@ interface Column {
     selector: "app-clientes",
     standalone: true,
     templateUrl: "./clientes.component.html",
-    styleUrls: ["./clientes.component.scss"],
     imports: [
         CommonModule,
         FormsModule,
