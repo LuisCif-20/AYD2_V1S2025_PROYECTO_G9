@@ -1,8 +1,10 @@
 package com.ayd2.imporcomgua.mappers.client;
 
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 
 import com.ayd2.imporcomgua.dto.client.ClientResponseDTO;
 import com.ayd2.imporcomgua.dto.client.NewClientRequestDTO;
@@ -22,6 +24,7 @@ public interface ClientMapper {
     @Mapping(target = "business", ignore = true)
     Client toClient(NewClientRequestDTO newClientRequestDTO);
 
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "code", ignore = true)
     @Mapping(target = "municipality", ignore = true)
