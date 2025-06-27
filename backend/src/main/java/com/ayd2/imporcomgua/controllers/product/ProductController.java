@@ -11,16 +11,19 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1.0/products")
 @RequiredArgsConstructor
+// @PreAuthorize("hasAuthority('GERENTE_GENERAL')")
 public class ProductController {
 
     private final ProductService productService;
 
     @PostMapping
+    // @PreAuthorize("hasAnyAuthority('GERENTE_GENERAL', 'GERENTE_INVENTARIO')")
     public ResponseEntity<ProductResponseDTO> createProduct(@RequestBody @Valid NewProductRequestDTO productRequestDTO) 
             throws NotFoundException, DuplicatedEntityException {
         ProductResponseDTO responseDTO = productService.createProduct(productRequestDTO);

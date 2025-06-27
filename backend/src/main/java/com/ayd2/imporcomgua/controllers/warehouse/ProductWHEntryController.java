@@ -8,16 +8,19 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/v1.0/warehouse-entries")
 @RequiredArgsConstructor
+// @PreAuthorize("hasAuthority('GERENTE_GENERAL')")
 public class ProductWHEntryController {
 
     private final ProductWHEntryService productWHEntryService;
 
     @PostMapping
+    // @PreAuthorize("hasAnyAuthority('GERENTE_GENERAL', 'GERENTE_INVENTARIO')")
     public ResponseEntity<ProductWHEntryResponseDTO> createProductWHEntry(
             @RequestBody @Valid NewProductWHEntryRequestDTO dtoRequest) throws NotFoundException {
         ProductWHEntryResponseDTO response = productWHEntryService.createProductWHEntry(dtoRequest);
