@@ -11,6 +11,7 @@ import com.ayd2.imporcomgua.dto.client.ClientResponseDTO;
 import com.ayd2.imporcomgua.dto.client.ClientSearchRequestDTO;
 import com.ayd2.imporcomgua.dto.client.NewClientRequestDTO;
 import com.ayd2.imporcomgua.dto.client.UpdateClientRequestDTO;
+import com.ayd2.imporcomgua.exceptions.NotActivatedEntityException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.mappers.client.ClientMapper;
 import com.ayd2.imporcomgua.models.client.Business;
@@ -55,7 +56,8 @@ public class ClientServiceImpl implements ClientService {
 	}
 
 	@Override
-	public ClientResponseDTO createClient(NewClientRequestDTO newClientRequestDTO) throws NotFoundException {
+	public ClientResponseDTO createClient(NewClientRequestDTO newClientRequestDTO)
+			throws NotFoundException, NotActivatedEntityException {
 		final String municipalityCode = newClientRequestDTO.municipalityCode();
 		final Municipality municipality = municipalityRepository.findById(municipalityCode)
 				.orElseThrow(() -> new NotFoundException(
@@ -69,7 +71,7 @@ public class ClientServiceImpl implements ClientService {
 
 	@Override
 	public ClientResponseDTO updateClient(Long id, UpdateClientRequestDTO updateClientRequestDTO)
-			throws NotFoundException {
+			throws NotFoundException, NotActivatedEntityException {
 		final Client client = clientRepository.findById(id)
 				.orElseThrow(() -> new NotFoundException(
 						"No existe el cliente con el id: " + id.toString()));
@@ -88,10 +90,13 @@ public class ClientServiceImpl implements ClientService {
 		clientRepository.save(client);
 	}
 
-	private void assignBusinessIfPresent(UUID id, Client client) throws NotFoundException {
+	private void assignBusinessIfPresent(UUID id, Client client) throws NotFoundException, NotActivatedEntityException {
 		if (id != null) {
 			Business business = businessRepository.findById(id)
 					.orElseThrow(() -> new NotFoundException("No existe el negocio con id: " + id));
+			if (!business.getIsActive()) {
+				throw new NotActivatedEntityException("El negocio no se encuentra activo");
+			}
 			client.setBusiness(business);
 		}
 	}
