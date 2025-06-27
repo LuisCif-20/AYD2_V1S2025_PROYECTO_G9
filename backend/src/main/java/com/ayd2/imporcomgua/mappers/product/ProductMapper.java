@@ -5,7 +5,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.mapstruct.factory.Mappers;
 
 import com.ayd2.imporcomgua.dto.products.NewProductRequestDTO;
 import com.ayd2.imporcomgua.dto.products.ProductResponseDTO;
@@ -14,7 +13,6 @@ import com.ayd2.imporcomgua.models.product.Product;
 
 @Mapper(componentModel = "spring")
 public interface ProductMapper {
-    ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
 
     ProductResponseDTO toProductResponseDTO(Product product);
 
