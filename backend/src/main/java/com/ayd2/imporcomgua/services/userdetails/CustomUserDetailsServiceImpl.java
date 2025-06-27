@@ -3,6 +3,7 @@ package com.ayd2.imporcomgua.services.userdetails;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -26,6 +27,9 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         final UserAccount userAccount = userAccountRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("No existe el usuario con el email: " + email));
+        if (!userAccount.getIsActive()) {
+            throw new DisabledException("El usuario está desactivado");
+        }
         return new User(
             userAccount.getEmail(),
             userAccount.getPassword(),

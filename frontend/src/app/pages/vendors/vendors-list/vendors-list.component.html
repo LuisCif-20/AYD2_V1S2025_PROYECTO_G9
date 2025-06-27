@@ -97,7 +97,7 @@
       <td>{{ vendedor.code }}</td>
       <td>{{ vendedor.firstName }}</td>
       <td>{{ vendedor.lastName }}</td>
-      <td>{{ vendedor.commissionPercent | currency: "%" }}</td>
+      <td>{{ (vendedor.commissionPercent * 100) | number:'1.0-2' }}%</td>
       <td>{{ vendedor.phone }}</td>
       <td>{{vendedor.address}}</td>
       <td>

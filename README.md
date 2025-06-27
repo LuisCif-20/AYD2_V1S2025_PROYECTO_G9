@@ -17,4 +17,5 @@ Proyecto realizado por:
 | Manuel Antonio Rojas Paxtor              | 202030799 |
 
 ## Documentación
-Para ver la documentación, referirse [aquí](./docs/)
+- [`Desarrollo de la arquitectura del sistema`](./docs/)
+- [`SCRUM`](./scrum/)
