@@ -3,6 +3,8 @@ package com.ayd2.imporcomgua.services.user;
 import java.util.List;
 import java.util.UUID;
 
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +31,18 @@ public class UserAccountServiceImpl implements UserAccountService {
     private final UserAccountRepository userAccountRepository;
     private final RoleRepository roleRepository;
     private final UserAccountMapper userAccountMapper;
+
+    @Override
+    public UserAccountResponseDTO getUserInfo() throws NotFoundException {
+        final User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        final String email = user.getUsername();
+        final UserAccount userAccount = userAccountRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("No existe el usuario con email: " + email));
+        return userAccountMapper.toUserAccountResponseDTO(userAccount);
+    }
 
     @Override
     public List<UserAccountResponseDTO> getAllUserAccounts() {

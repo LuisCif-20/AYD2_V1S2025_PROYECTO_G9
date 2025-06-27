@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -27,6 +28,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequestMapping("/v1.0/user-accounts")
 @RequiredArgsConstructor
+// @PreAuthorize("hasAuthority('GERENTE_GENERAL')")
 public class UserAccountController {
 
     private final UserAccountService userAccountService;
@@ -35,6 +37,12 @@ public class UserAccountController {
     public ResponseEntity<List<UserAccountResponseDTO>> getAllUsers() {
         final List<UserAccountResponseDTO> users = userAccountService.getAllUserAccounts();
         return ResponseEntity.status(HttpStatus.OK).body(users);
+    }
+
+    @GetMapping("/me")
+    public ResponseEntity<UserAccountResponseDTO> getUserInfo() throws NotFoundException {
+        final UserAccountResponseDTO user = userAccountService.getUserInfo();
+        return ResponseEntity.status(HttpStatus.OK).body(user);
     }
 
     @PostMapping

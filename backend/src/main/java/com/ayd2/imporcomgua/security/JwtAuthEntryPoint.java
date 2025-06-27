@@ -16,7 +16,22 @@ public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
             AuthenticationException authException) throws IOException, ServletException {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, authException.getMessage());
+        response.setContentType("application/json");
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        String json = """
+                {
+                    "status": 401,
+                    "title": "Authentication Error",
+                    "detail": "%s",
+                    "error_category": "Auth",
+                    "timestamp": "%s"
+                }
+                """.formatted(
+                authException.getMessage() != null ? authException.getMessage()
+                        : "Necesitas autenticarte para acceder a este recurso",
+                java.time.Instant.now().toString());
+
+        response.getWriter().write(json);
     }
 
 }

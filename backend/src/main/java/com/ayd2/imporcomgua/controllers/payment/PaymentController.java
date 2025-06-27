@@ -2,6 +2,7 @@ package com.ayd2.imporcomgua.controllers.payment;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+// import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,6 +25,7 @@ public class PaymentController {
     private final PaymentService paymentService;
 
     @PostMapping
+    // @PreAuthorize("hasAnyAuthority('GERENTE_GENERAL', 'GERENTE_VENTAS_FINANZAS')")
     public ResponseEntity<PaymentResponseDTO> createPayment(
             @RequestBody @Valid NewPaymentRequestDTO paymentRequestDTO)
             throws NotFoundException, PaymentExceedsSaleBalanceException, DuplicatedEntityException {

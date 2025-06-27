@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingRequestCookieException;
@@ -48,6 +49,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, e.getMessage());
         problemDetail.setTitle("Resource Not Found");
         problemDetail.setProperty("error_category", "Generic");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
+    @ExceptionHandler(AuthenticationException.class)
+    ProblemDetail handleAuthenticationException(AuthenticationException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
+        problemDetail.setTitle("Authentication Error");
+        problemDetail.setProperty("error_category", "Auth");
         problemDetail.setProperty("timestamp", Instant.now());
         return problemDetail;
     }

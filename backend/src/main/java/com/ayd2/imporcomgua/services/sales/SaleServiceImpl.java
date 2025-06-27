@@ -15,6 +15,7 @@ import com.ayd2.imporcomgua.dto.sales.SaleResponseDTO;
 import com.ayd2.imporcomgua.dto.sales.SaleSearchRequestDTO;
 import com.ayd2.imporcomgua.exceptions.InvalidPaymentTypeException;
 import com.ayd2.imporcomgua.exceptions.NoStockException;
+import com.ayd2.imporcomgua.exceptions.NotActivatedEntityException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.mappers.sale.SaleDetailMapper;
 import com.ayd2.imporcomgua.mappers.sale.SaleMapper;
@@ -106,7 +107,7 @@ public class SaleServiceImpl implements SaleService {
 
     @Override
     public SaleResponseDTO createSale(NewSaleRequestDTO saleRequestDTO)
-            throws NotFoundException, InvalidPaymentTypeException, NoStockException {
+            throws NotFoundException, InvalidPaymentTypeException, NoStockException, NotActivatedEntityException {
 
         // 1. Validar y obtener entidades relacionadas
         Client client = clientRepository.findById(saleRequestDTO.clientId())
@@ -114,6 +115,20 @@ public class SaleServiceImpl implements SaleService {
 
         Salesman salesman = salesmanRepository.findById(saleRequestDTO.salesmanCode())
                 .orElseThrow(() -> new NotFoundException("Vendedor no encontrado"));
+
+        if (client.getIsActive() == null || !client.getIsActive()) {
+            throw new NotActivatedEntityException(
+                    String.format("El cliente %s (Código: %s) se encuentra suspendido.",
+                            client.getContactName(),
+                            client.getCode()));
+        }
+
+        if (salesman.getIsActive() == null || !salesman.getIsActive()) {
+            throw new NotActivatedEntityException(
+                    String.format("El vendedor %s %s se encuentra suspendido.",
+                            salesman.getFirstName(),
+                            salesman.getLastName()));
+        }
 
         // 2. Validar tipo de pago
         validatePaymentType(client, saleRequestDTO);
@@ -161,7 +176,7 @@ public class SaleServiceImpl implements SaleService {
     }
 
     private List<SaleDetail> processSaleDetails(List<NewSaleDetailRequestDTO> detailDTOs, Sale sale)
-            throws NoStockException, NotFoundException {
+            throws NoStockException, NotFoundException, NotActivatedEntityException {
 
         List<SaleDetail> details = new ArrayList<>();
 
@@ -173,6 +188,15 @@ public class SaleServiceImpl implements SaleService {
                     .orElseThrow(() -> new NotFoundException(
                             "Inventario no encontrado para producto: " + dto.productCode()));
 
+
+            // Validar que el producto esté activo
+            if (product.getIsActive() == null || !product.getIsActive()) {
+                throw new NotActivatedEntityException(
+                        String.format("El producto %s (Código: %s) se encuentra descontinuado.",
+                                product.getName(),
+                                product.getCode()));
+            }
+            
             int requestedQuantity = dto.quantity();
 
             if (inventory.getAvailableQuantity() < requestedQuantity) {
