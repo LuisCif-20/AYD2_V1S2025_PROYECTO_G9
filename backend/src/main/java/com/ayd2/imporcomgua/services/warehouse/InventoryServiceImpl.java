@@ -10,6 +10,7 @@ import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.mappers.warehouse.InventoryMapper;
 import com.ayd2.imporcomgua.models.warehouse.Inventory;
 import com.ayd2.imporcomgua.repositories.warehouse.InventoryRepository;
+import com.ayd2.imporcomgua.services.mail.MailService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class InventoryServiceImpl implements InventoryService {
     private final InventoryRepository inventoryRepository;
     private final InventoryMapper inventoryMapper;
+    private final MailService mailService;
 
     @Override
     public List<Inventory> getAllInventories() {
@@ -39,6 +41,7 @@ public class InventoryServiceImpl implements InventoryService {
 
         inventoryMapper.updateInventoryFromDTO(updateRequest, inventory);
         Inventory updatedInventory = inventoryRepository.save(inventory);
+        mailService.sendInventoryNotification(updatedInventory);
         return updatedInventory;
     }
 }

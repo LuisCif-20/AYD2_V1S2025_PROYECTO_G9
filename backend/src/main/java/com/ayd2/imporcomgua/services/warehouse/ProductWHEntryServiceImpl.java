@@ -57,6 +57,10 @@ public class ProductWHEntryServiceImpl implements ProductWHEntryService {
         inventory.setAvailableQuantity(inventory.getAvailableQuantity() + dtoRequest.quantityPresentation());
         inventory.setLastUpdated(LocalDate.now());
 
+        if (inventory.getAvailableQuantity() > inventory.getLowStockThreshold()) {
+                inventory.setIsLowStockAlertSent(false);
+        }
+
         inventoryRepository.save(inventory);
         ProductWarehouseEntry savedEntry = productWHEntryRepository.save(entry);
 

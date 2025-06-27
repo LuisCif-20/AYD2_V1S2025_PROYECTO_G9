@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Alerta de Bajo Inventario</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fbfd;
+            color: #2e2e2e;
+        }
+
+        .header {
+            background-color: #1f8a70;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .header img {
+            height: 100px;
+            max-width: 100%;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .content {
+            padding: 30px 20px;
+        }
+
+        .alert-box {
+            background-color: #e6f4ea;
+            border-left: 6px solid #4caf50;
+            padding: 16px;
+            margin-bottom: 24px;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f1f1;
+            color: #555;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+            color: #888;
+            background-color: #f1f1f1;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="https://library-dev-ayd2.s3.us-east-2.amazonaws.com/logo-imporcomgua.png" alt="IMPORCOMGUA Logo">
+        <p>Notificación Automática de Inventario</p>
+    </div>
+
+    <div class="content">
+        <p>Hola <strong th:text="${userFullName}">[Nombre completo]</strong>,</p>
+
+        <div class="alert-box">
+            <p>El sistema ha detectado que un producto ha alcanzado un nivel crítico de inventario.</p>
+        </div>
+
+        <table>
+            <tr>
+                <th>Código del Producto</th>
+                <td th:text="${product.code}">[Código]</td>
+            </tr>
+            <tr>
+                <th>Nombre del Producto</th>
+                <td th:text="${product.name}">[Nombre]</td>
+            </tr>
+            <tr>
+                <th>Cantidad Actual en Inventario</th>
+                <td th:text="${inventory.availableQuantity}">[Disponible]</td>
+            </tr>
+            <tr>
+                <th>Reposición Sugerida</th>
+                <td th:text="${suggestedAmount}">[Reposición]</td>
+            </tr>
+        </table>
+
+        <p style="margin-top: 20px;">
+            Por favor, toma las acciones necesarias para reabastecer el producto lo antes posible.
+        </p>
+    </div>
+
+    <div class="footer">
+        <p>Este es un mensaje automático de IMPORCOMGUA. No respondas a este correo.</p>
+    </div>
+</body>
+</html>
