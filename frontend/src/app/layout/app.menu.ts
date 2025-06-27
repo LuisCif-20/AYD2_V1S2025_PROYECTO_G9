@@ -70,7 +70,7 @@ export class AppMenu {
                         icon: 'pi pi-fw pi-arrow-circle-right',
                         routerLink: ['/pages/sales-outlet']
                     },
-                    {
+                    /*{
                         label: 'Auth',
                         icon: 'pi pi-fw pi-user',
                         items: [
@@ -90,7 +90,7 @@ export class AppMenu {
                                 routerLink: ['/auth/access']
                             }
                         ]
-                    },
+                    },*/
 
                 ]
             },

@@ -22,7 +22,7 @@ import {ProductService} from "../../services/product/product.service";
 import {ClienteService} from "../../services/cliente/cliente.service";
 import {SalesService} from "../../services/sales/sales.service";
 import {DatePickerModule} from "primeng/datepicker";
-import {Client, ItemProduct, Sale, SaleDetailForm, SaleForm, Salesman, User, UserForm} from "../../models/models";
+import {Client, ItemProduct, Rol, Sale, SaleDetailForm, SaleForm, Salesman, User} from "../../models/models";
 import {UserService} from "../../services/users/user.service";
 import {Checkbox} from "primeng/checkbox";
 import {Password} from "primeng/password";
@@ -67,16 +67,7 @@ export class Users  implements OnInit {
     saving = false
     isEditMode = false
 
-    userForm: UserForm = {
-        id: 0,
-        usuario: "",
-        nombre: "",
-        apellido: "",
-        email: "",
-        contrasena: "",
-        rol: "USER",
-        activo: true,
-    }
+    userForm: User = this.newUser();
 
     selectedUserForView: User | null = null
     userToDelete: User | null = null
@@ -125,32 +116,14 @@ export class Users  implements OnInit {
     }
 
     openNew() {
-        this.userForm = {
-            id: 0,
-            usuario: "",
-            nombre: "",
-            apellido: "",
-            email: "",
-            contrasena: "",
-            rol: "USER",
-            activo: true,
-        }
+        this.userForm = this.newUser();
         this.submitted = false
         this.isEditMode = false
         this.userDialog = true
     }
 
     editUser(user: User) {
-        this.userForm = {
-            id: 0,
-            usuario: user.usuario,
-            nombre: user.nombre,
-            apellido: user.apellido,
-            email: user.email,
-            contrasena: "",
-            rol: user.rol,
-            activo: user.activo,
-        }
+        this.userForm = this.getValuesForm();
         this.selectedUserForView = user
         this.submitted = false
         this.isEditMode = true
@@ -198,23 +171,21 @@ export class Users  implements OnInit {
         this.submitted = true
 
         if (
-            this.userForm.usuario?.trim() &&
-            this.userForm.nombre?.trim() &&
-            this.userForm.apellido?.trim() &&
+            this.userForm.firstname?.trim() &&
+            this.userForm.lastname?.trim() &&
             this.userForm.email?.trim() &&
-            (this.isEditMode || this.userForm.contrasena?.trim())
+            (this.isEditMode || this.userForm.password?.trim())
         ) {
             this.saving = true
 
-            let userData: UserForm = {
+            let userData: User = {
                 id: 0,
-                usuario: this.userForm.usuario,
-                nombre: this.userForm.nombre,
-                apellido: this.userForm.apellido,
+                firstname: this.userForm.firstname,
+                lastname: this.userForm.lastname,
                 email: this.userForm.email,
-                contrasena: this.userForm.contrasena || "********",
-                rol: this.userForm.rol,
-                activo: this.userForm.activo,
+                password: this.userForm.password || "********",
+                role: { id: this.userForm.role.id, name: '' },
+                isActive: this.userForm.isActive
             }
 
             if (this.isEditMode && !!this.selectedUserForView) {
@@ -280,12 +251,11 @@ export class Users  implements OnInit {
     exportCSV() {
         const csvData = this.users.map((user) => ({
             ID: user.id,
-            Usuario: user.usuario,
-            Nombre: user.nombre,
-            Apellido: user.apellido,
+            Nombre: user.firstname,
+            Apellido: user.lastname,
             Email: user.email,
-            Rol: this.getRoleLabel(user.rol),
-            Estado: user.activo ? "Activo" : "Inactivo"
+            Rol: this.getRoleLabel(user.role.name),
+            Estado: user.isActive ? "Activo" : "Inactivo"
         }))
 
         console.log("Exportando CSV:", csvData)
@@ -296,6 +266,29 @@ export class Users  implements OnInit {
         if (this.selectedUserForView) {
             this.hideViewDialog()
             this.editUser(this.selectedUserForView)
+        }
+    }
+
+    newUser() {
+        return {
+            id: 0,
+            firstname: '',
+            lastname: '',
+            email: '',
+            role: { id: 0, name: '' },
+            isActive: false
+        };
+    }
+
+    getValuesForm(): User {
+        return  {
+            id: 0,
+            firstname: this.userForm.firstname,
+            lastname: this.userForm.lastname,
+            email: this.userForm.email,
+            password: this.userForm.password || "********",
+            role: { id: this.userForm.role.id, name: '' },
+            isActive: this.userForm.isActive
         }
     }
 }

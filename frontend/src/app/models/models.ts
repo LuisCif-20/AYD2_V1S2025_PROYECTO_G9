@@ -371,31 +371,36 @@ export class SalesOutlet {
 export interface Rol {
     id: number;
     name: string;
-    description?: string;
-    permissions: string[];
-    isActive: boolean;
 }
 
 export interface User {
-    id?: number
-    usuario: string
-    nombre: string
-    apellido: string
+    password?: any;
+    id: number
+    firstname: string
+    lastname: string
     email: string
-    contraseña: string
-    rol: "ADMIN" | "USER" | "MODERATOR"
-    fechaCreacion?: Date
-    activo: boolean
+    role: Rol,
+    isActive: boolean
 }
 
-export interface UserForm {
-    id: number,
-    usuario: string
-    nombre: string
-    apellido: string
-    email: string
-    contrasena: string
-    rol: "ADMIN" | "USER" | "MODERATOR"
-    activo: boolean
+export interface Login {
+    email:    string;
+    password: string;
 }
 
+
+export interface AuthResponse {
+    token:  string;
+}
+
+export enum AuthStatus {
+    CHECKING,
+    AUTHENTICATED,
+    NOT_AUTHENTICATED
+}
+
+export interface AuthState {
+    accessToken:  string | null;
+    authStatus:   AuthStatus;
+    user:         User | null;
+}

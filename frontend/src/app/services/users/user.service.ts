@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core"
 import { HttpClient } from "@angular/common/http"
 import { Observable } from "rxjs"
-import {Client, ItemProduct, Rol, Sale, SaleForm, Salesman, User, UserForm} from "../../models/models";
-import {MessageService} from "primeng/api";
+import { Rol, Sale, User} from "../../models/models";
+
 
 @Injectable({
     providedIn: "root",
@@ -16,11 +16,11 @@ export class UserService {
         return this.http.get<User[]>(`${this.apiUrl}/users`)
     }
 
-    createUser(userForm: UserForm): Observable<Sale> {
+    createUser(userForm: User): Observable<Sale> {
         return this.http.post<Sale>(`${this.apiUrl}/users`, userForm)
     }
 
-    updateUser(userForm: UserForm): Observable<Sale> {
+    updateUser(userForm: User): Observable<Sale> {
         return this.http.patch<Sale>(`${this.apiUrl}/users/${userForm.id}`, userForm)
     }
 
@@ -31,5 +31,5 @@ export class UserService {
     getRoles(): Observable<Rol[]> {
         return this.http.get<Rol[]>(`${this.apiUrl}/roles`)
     }
-
 }
+

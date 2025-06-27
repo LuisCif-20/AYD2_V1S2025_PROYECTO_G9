@@ -1,53 +1,80 @@
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {inject, Injectable, signal} from '@angular/core';
+import {catchError, map, Observable, of, switchMap, throwError} from 'rxjs';
+
+import {AuthResponse, AuthStatus, Login, User} from '../../models/models';
+import {environment} from "../../../environments/environment";
+import {tap} from "rxjs/operators";
+import {Router} from "@angular/router";
+import {sign} from "chart.js/helpers";
+import {patchState} from "@ngrx/signals";
+import {mapResponse} from "@ngrx/operators";
 
 @Injectable({
     providedIn: 'root'
 })
+
 export class AuthService {
 
-    private tokenKey = 'authToken';
+    private readonly AUTH_URL = `${environment.IMPORCOMGUA}/auth`;
+    private readonly TOKEN = 'token';
+    private token = signal<string>('');
+    private _authStatus = signal<AuthStatus>(AuthStatus.NOT_AUTHENTICATED);
+    private _authUser = signal<User | null>(null);
 
-    constructor(private router: Router) {}
+    constructor(private httpClient: HttpClient) { }
 
-    login(token: string): void {
-        localStorage.setItem(this.tokenKey, token);
+    login(body: Login): Observable<boolean> {
+        const url = `${this.AUTH_URL}/login`;
+        return this.httpClient.post<AuthResponse>(url, body).pipe(
+            switchMap(({ token }) => {
+                if (token) {
+                    this.token.set(token);
+                    return this.getUserInfo(token);
+                }
+                return of(false);
+            }),
+            catchError((error: HttpErrorResponse) => throwError(() => error))
+        );
     }
 
-    logout(): void {
-        localStorage.removeItem(this.tokenKey);
-        this.router.navigate(['/auth/login']);
+
+    public logout(): Observable<void> {
+        const url: string = `${this.AUTH_URL}/logout`;
+        return this.httpClient.post<AuthResponse>(url, null).pipe(
+            map(() => {
+                this._authStatus.set(AuthStatus.NOT_AUTHENTICATED);
+                this._authUser.set(null);
+                this.token.set('');
+            })
+        );
     }
 
-    getToken(): string | null {
-        return localStorage.getItem(this.tokenKey);
+    refreshToken(): Observable<AuthResponse> {
+        const url = `${this.AUTH_URL}/refresh`;
+        return this.httpClient.post<AuthResponse>(url, null);
     }
 
-    isAuthenticated(): boolean {
-        /*const token = this.getToken();
-        if (!token) return false;
-
-        const payload = this.decodeToken(token);
-        if (!payload) return false;
-
-        const expiration = payload.exp;
-        const now = Math.floor(Date.now() / 1000);
-        return expiration > now;*/
-        return !!this.getToken();
+    accessToken() {
+        return this.token();
     }
 
-    getUserPayload(): any | null {
-        const token = this.getToken();
-        if (!token) return null;
-        return this.decodeToken(token);
+    authStatus() {
+        return this._authStatus();
     }
 
-    private decodeToken(token: string): any | null {
-        try {
-            const payload = token.split('.')[1];
-            return JSON.parse(atob(payload));
-        } catch (e) {
-            return null;
-        }
+    user() {
+        return this._authUser();
+    }
+
+    public getUserInfo(token: string): Observable<boolean> {
+        return this.httpClient.get<User>(`${this.AUTH_URL}/user-accounts/me`).pipe(
+            map(authUser => {
+                this._authStatus.set(AuthStatus.AUTHENTICATED);
+                this._authUser.set(authUser);
+                return true;
+            }),
+            catchError((error: HttpErrorResponse) => throwError(() => error))
+        )
     }
 }
