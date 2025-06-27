@@ -34,6 +34,12 @@ public class Inventory {
     @Column
     private Integer reservedQuantity;
 
+    @Column
+    private Integer lowStockThreshold = 5;
+    
+    @Column
+    private Boolean isLowStockAlertSent = false;
+
     @PrePersist
     @PreUpdate
     private void preSave() {
