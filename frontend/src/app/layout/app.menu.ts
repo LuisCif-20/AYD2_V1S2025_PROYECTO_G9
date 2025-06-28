@@ -41,6 +41,11 @@ export class AppMenu {
                         routerLink: ['/pages/entrada-inventario']
                     }] : []),
                     ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_INVENTARIO']) ? [{
+                        label: 'Stock',
+                        icon: 'pi pi-fw pi pi-box',
+                        routerLink: ['/pages/stock']
+                    }] : []),
+                    ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_INVENTARIO']) ? [{
                         label: 'Salidas',
                         icon: 'pi pi-fw pi-arrow-circle-right',
                         routerLink: ['/pages/sales-outlet']

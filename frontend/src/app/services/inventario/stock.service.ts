@@ -16,4 +16,11 @@ export class StockService {
   getInventario(): Observable<StockProducto[]> {
     return this.http.get<StockProducto[]>(baseUrl);
   }
+
+  updateLowStockThreshold(id: number, threshold: number): Observable<any> {
+  return this.http.patch(`${baseUrl}/${id}`, {
+    lowStockThreshold: threshold
+  });
+}
+
 }

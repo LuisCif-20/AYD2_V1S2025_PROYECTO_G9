@@ -136,6 +136,7 @@ export interface StockProducto {
     pricePerPresentation: number;
     isActive: boolean;
   };
+  lowStockThreshold: number;
   lastUpdated: string;
   totalQuantity: number;
   availableQuantity: number;
