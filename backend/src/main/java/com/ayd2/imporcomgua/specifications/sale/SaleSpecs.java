@@ -1,13 +1,13 @@
 package com.ayd2.imporcomgua.specifications.sale;
 
-import com.ayd2.imporcomgua.models.sale.PaymentStatus;
-import com.ayd2.imporcomgua.models.sale.Sale;
-import com.ayd2.imporcomgua.models.sale.SaleStatus;
-
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.data.jpa.domain.Specification;
+
+import com.ayd2.imporcomgua.models.sale.PaymentStatus;
+import com.ayd2.imporcomgua.models.sale.Sale;
+import com.ayd2.imporcomgua.models.sale.SaleStatus;
 
 public class SaleSpecs {
 
@@ -31,8 +31,8 @@ public class SaleSpecs {
     }
 
     public static Specification<Sale> hasSaleStatus(SaleStatus saleStatus) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder
-                .equal(root.get("saleStatus"), saleStatus == null ? SaleStatus.VIGENTE : saleStatus);
+        return (root, query, criteriaBuilder) -> saleStatus == null ? null
+                : criteriaBuilder.equal(root.get("saleStatus"), saleStatus);
     }
 
     public static Specification<Sale> hasPaymentStatusIn(List<PaymentStatus> paymentStatuses) {
