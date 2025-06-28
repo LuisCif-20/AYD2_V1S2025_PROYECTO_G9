@@ -80,6 +80,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         return problemDetail;
     }
 
+    @ExceptionHandler(InvalidActionException.class)
+    ProblemDetail handleInvalidActionException(InvalidActionException e) {
+        ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.FORBIDDEN, e.getMessage());
+        problemDetail.setTitle("Entity Not Activated");
+        problemDetail.setProperty("error_category", "Business Rule");
+        problemDetail.setProperty("timestamp", Instant.now());
+        return problemDetail;
+    }
+
     @ExceptionHandler(PaymentExceedsSaleBalanceException.class)
     ProblemDetail handlePaymentExceedsSaleBalanceException(PaymentExceedsSaleBalanceException e) {
         ProblemDetail problemDetail = ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, e.getMessage());
