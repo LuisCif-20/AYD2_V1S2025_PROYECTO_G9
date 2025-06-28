@@ -1,14 +1,9 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import {inject, Injectable, signal} from '@angular/core';
-import {catchError, map, Observable, of, switchMap, throwError} from 'rxjs';
+import { Injectable, signal } from '@angular/core';
+import { catchError, map, Observable, of, switchMap, throwError } from 'rxjs';
 
-import {AuthResponse, AuthStatus, Login, User} from '../../models/models';
-import {environment} from "../../../environments/environment";
-import {tap} from "rxjs/operators";
-import {Router} from "@angular/router";
-import {sign} from "chart.js/helpers";
-import {patchState} from "@ngrx/signals";
-import {mapResponse} from "@ngrx/operators";
+import { AuthResponse, AuthStatus, Login, User } from '../../models/models';
+import { environment } from "../../../environments/environment";
 
 @Injectable({
     providedIn: 'root'
@@ -18,9 +13,8 @@ export class AuthService {
 
     private readonly AUTH_URL = `${environment.IMPORCOMGUA}/auth`;
     private readonly USER_URL = `${environment.IMPORCOMGUA}`;
-    private readonly TOKEN = 'token';
-    private token = signal<string>('');
-    private _authStatus = signal<AuthStatus>(AuthStatus.NOT_AUTHENTICATED);
+    private token = signal<string|null>(null);
+    private _authStatus = signal<AuthStatus>(AuthStatus.CHECKING);
     private _authUser = signal<User | null>(null);
 
     constructor(private httpClient: HttpClient) { }
@@ -31,7 +25,7 @@ export class AuthService {
             switchMap(({ token }) => {
                 if (token) {
                     this.token.set(token);
-                    return this.getUserInfo(token);
+                    return this.getUserInfo();
                 }
                 return of(false);
             }),
@@ -46,14 +40,20 @@ export class AuthService {
             map(() => {
                 this._authStatus.set(AuthStatus.NOT_AUTHENTICATED);
                 this._authUser.set(null);
-                this.token.set('');
+                this.token.set(null);
             })
         );
     }
 
-    refreshToken(): Observable<AuthResponse> {
-        const url = `${this.AUTH_URL}/refresh`;
-        return this.httpClient.post<AuthResponse>(url, null);
+    public refreshToken(): Observable<boolean> {
+        const url: string = `${ this.AUTH_URL }/refresh`;
+        return this.httpClient.post<AuthResponse>(url, null).pipe(
+            switchMap(({ token }) => {
+                this.token.set(token!);
+                return this.getUserInfo();
+            }),
+            catchError((error: HttpErrorResponse) => throwError(() => error))
+        );
     }
 
     accessToken() {
@@ -68,7 +68,7 @@ export class AuthService {
         return this._authUser();
     }
 
-    public getUserInfo(token: string): Observable<boolean> {
+    public getUserInfo(): Observable<boolean> {
         return this.httpClient.get<User>(`${this.USER_URL}/user-accounts/me`).pipe(
             map(authUser => {
                 this._authStatus.set(AuthStatus.AUTHENTICATED);
@@ -78,4 +78,21 @@ export class AuthService {
             catchError((error: HttpErrorResponse) => throwError(() => error))
         )
     }
+
+    public checkAuthStatus(): Observable<boolean> {
+    return this.refreshToken().pipe(
+        map(() => {
+            console.log(AuthStatus.AUTHENTICATED, this.authStatus());
+            return true;
+        }),
+        catchError((error: HttpErrorResponse) => {
+            console.error('checkAuthStatus: refresh failed', error);
+            this._authStatus.set(AuthStatus.NOT_AUTHENTICATED);
+            this._authUser.set(null);
+            this.token.set(null);
+            return of(false);
+        })
+    );
+}
+
 }
