@@ -1,14 +1,8 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import {inject, Injectable, signal} from '@angular/core';
 import {catchError, map, Observable, of, switchMap, throwError} from 'rxjs';
-
 import {AuthResponse, AuthStatus, Login, User} from '../../models/models';
 import {environment} from "../../../environments/environment";
-import {tap} from "rxjs/operators";
-import {Router} from "@angular/router";
-import {sign} from "chart.js/helpers";
-import {patchState} from "@ngrx/signals";
-import {mapResponse} from "@ngrx/operators";
 
 @Injectable({
     providedIn: 'root'
