@@ -208,21 +208,21 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ## 4. Matrices de Trazabilidad
 ### Stakeholders vs Requerimientos
-|Stakeholders\Requerimientos|RF01 Registro Cliente|RF02 Edición Cliente|RF03 Eliminación Cliente|RF04 Busqueda Cliente|RF05 Registro Cliente|RF06 Edición Cliente|RF07 Eliminación Cliente|RF08 Busqueda Cliente|RF09 Registro Producto|RF10 Edición Producto|RF11 Eliminación Producto|RF12 Busqueda Producto|RF13 Establecer Salida|RF14 Ingreso Inventario|RF15 Registro Venta|RF16 Anulación Venta|RF17 Busqueda Venta|RF18 Notificar Bajo Stock|RF19 Registro Vendedor|RF20 Edición Vendedor|RF21 Eliminación Vendedor|RF22 Busqueda Vendedor|RF23 Registro Pago|RF24 Registrar Usuario|RF25 Edición Usuario|RF26 Eliminación Usuario|RF27 Buscar Usuario|
+|Stakeholders\Requerimientos|RF01 Registro Cliente|RF02 Edición Cliente|RF03 Eliminación Cliente|RF04 Busqueda Cliente|RF05 Registro Negocio|RF06 Edición Negocio|RF07 Eliminación Negocio|RF08 Busqueda Negocio|RF09 Registro Producto|RF10 Edición Producto|RF11 Eliminación Producto|RF12 Busqueda Producto|RF13 Establecer Salida|RF14 Ingreso Inventario|RF15 Registro Venta|RF16 Anulación Venta|RF17 Busqueda Venta|RF18 Notificar Bajo Stock|RF19 Registro Vendedor|RF20 Edición Vendedor|RF21 Eliminación Vendedor|RF22 Busqueda Vendedor|RF23 Registro Pago|RF24 Registrar Usuario|RF25 Edición Usuario|RF26 Eliminación Usuario|RF27 Buscar Usuario|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |Gerentes|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|
-|Vendedor|||||||||||||||X||X||||X|||||||||
-|Cliente|X|X|X|X|X|X|X|X||||||||X|X|X|||||X|||||
-|Aduana|||||||||||||||X|||||||||||||
-|Proveedor|||||||||X||||||||||||||||||
+|Vendedor| | | | | | | | | | | | | | |X| | | |X|X| | | | | | | | | |
+|Cliente|X|X| | | | | | | | | | | | |X| | | |  | | | |X| | | | |
+|Aduana| | | | | | | | | | | | | |X| | | | | | | | | | | | | |
+|Proveedor| | | | | | | | | | | | | |X| | | | | | | | | | | | |
 ### Stakeholders vs CDU
 |Stakeholders\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU600 - Gestionar Usuarios|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
 |Gerentes|X|X|X|X|X|X|
-|Vendedor||X||X|||
-|Cliente|X|X|||X||
-|Aduana|||X|||
-|Proveedor|||X|||
+|Vendedor| |X| |X| | |
+|Cliente|X|X| | |X| |
+|Aduana| | |X| | |
+|Proveedor| | |X| | |
 ### Requerimientos vs CDU
 |Requerimientos\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU600 - Gestionar Usuarios|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
