@@ -19,6 +19,7 @@ import com.ayd2.imporcomgua.dto.user.NewUserAccountRequestDTO;
 import com.ayd2.imporcomgua.dto.user.UpdateUserAccountRequestDTO;
 import com.ayd2.imporcomgua.dto.user.UserAccountResponseDTO;
 import com.ayd2.imporcomgua.exceptions.DuplicatedEntityException;
+import com.ayd2.imporcomgua.exceptions.InvalidActionException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.services.user.UserAccountService;
 
@@ -63,7 +64,7 @@ public class UserAccountController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable UUID id) throws NotFoundException {
+    public ResponseEntity<Void> deleteUser(@PathVariable UUID id) throws NotFoundException, InvalidActionException {
         userAccountService.deleteUserAccount(id);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

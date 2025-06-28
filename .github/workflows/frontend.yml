@@ -1,0 +1,54 @@
+name: CI/CD Frontend Angular
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/**'
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v2
+
+      - name: Usar carpeta del frontend
+        working-directory: frontend
+        run: echo "Entrando a carpeta frontend"
+
+      - name: Configurar Node.js 18.20.5
+        uses: actions/setup-node@v2
+        with:
+          node-version: '18.20.5'
+
+      - name: Instalar dependencias
+        working-directory: frontend
+        run: npm install
+
+      - name: Compilar aplicación Angular
+        working-directory: frontend
+        run: npm run build -- --configuration=production
+
+      - name: Verificar contenido generado
+        working-directory: frontend
+        run: ls -la dist/sakai-ng
+
+      - name: Configurar clave privada SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY_OR }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SSH_HOST_OR }} >> ~/.ssh/known_hosts
+
+      - name: Crear directorio en el servidor si no existe
+        run: ssh ${{ secrets.SSH_USER_OR }}@${{ secrets.SSH_HOST_OR }} "sudo mkdir -p /var/www/html && sudo chown ${{ secrets.SSH_USER_OR }} /var/www/html"
+
+      - name: Subir archivos al servidor
+        working-directory: frontend
+        run: scp -r dist/sakai-ng/browser/* ${{ secrets.SSH_USER_OR }}@${{ secrets.SSH_HOST_OR }}:/var/www/html
+
+      - name: Reiniciar NGINX en el servidor
+        run: ssh ${{ secrets.SSH_USER_OR }}@${{ secrets.SSH_HOST_OR }} "sudo systemctl restart nginx"
