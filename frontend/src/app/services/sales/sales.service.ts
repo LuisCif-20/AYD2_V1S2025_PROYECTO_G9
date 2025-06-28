@@ -518,6 +518,6 @@ export class SalesService {
     }
 
     registerSalesOutlet(request: SalesOutlet): Observable<boolean> {
-        return this.http.put<boolean>(`${this.BASE_URL}/sales`, request);
+        return this.http.put<boolean>(`${this.BASE_URL}/warehouse-outputs`, request);
     }
 }

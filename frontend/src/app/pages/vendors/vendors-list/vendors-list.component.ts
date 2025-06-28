@@ -110,7 +110,7 @@ export class VendorsListComponent implements OnInit {
 
     deleteProduct(vendor: Vendor) {
         this.confirmationService.confirm({
-            message: 'Estas seguro en eliminar el vendedor ' + vendor.firstName + '?',
+            message: 'Estas seguro en anular el vendedor ' + vendor.firstName + '?',
             header: 'Confirmación',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
@@ -122,11 +122,11 @@ export class VendorsListComponent implements OnInit {
                             this.utilsService.success('Vendedor eliminado correctamente');
                             this.loadIniData();
                         } else {
-                            this.utilsService.error('Error al intentar eliminar un vendedor, por favor, intente más tarde');
+                            this.utilsService.error('Error al intentar anular un vendedor, por favor, intente más tarde');
                         }
                     },
                     error: (err) => {
-                        const errorDetail = err?.error?.detail || 'Error al intentar eliminar un vendedor, por favor, intente más tarde';
+                        const errorDetail = err?.error?.detail || 'Error al intentar anular un vendedor, por favor, intente más tarde';
                         this.utilsService.error(errorDetail);
                     }
                 });

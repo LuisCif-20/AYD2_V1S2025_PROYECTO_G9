@@ -245,7 +245,7 @@
                                 <span class="font-semibold">{{ getDetailSubtotal(detail) | currency: 'USD' }}</span>
                             </td>
                             <td>
-                                <p-button (click)="removeProductDetail(i)" icon="pi pi-trash"
+                                <p-button (click)="removeProductDetail(i)" icon="pi pi-times-circle"
                                           [outlined]="true" [rounded]="true" severity="danger" size="small"/>
                             </td>
                         </tr>
@@ -461,5 +461,5 @@
         <p-button (click)="editFromView()" icon="pi pi-pencil" label="Editar Venta"/>
     </ng-template>
 </p-dialog>
-
+<p-toast></p-toast>
 <p-confirmdialog [style]="{ width: '450px' }"/>

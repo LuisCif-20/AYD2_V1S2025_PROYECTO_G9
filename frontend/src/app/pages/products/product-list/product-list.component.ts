@@ -117,7 +117,7 @@ export class ProductListComponent implements OnInit {
 
   deleteProduct(product: Product) {
     this.confirmationService.confirm({
-      message: 'Estas seguro en eliminar el producto ' + product.name + '?',
+      message: 'Estas seguro en anular el producto ' + product.name + '?',
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -129,7 +129,7 @@ export class ProductListComponent implements OnInit {
                 this.loadProducts();
               },
               error: (err) => {
-                const detalle = err?.error?.detail || 'Error al eliminar el producto.'
+                const detalle = err?.error?.detail || 'Error al anular el producto.'
                 this.utilsService.error(detalle);
               },
             });

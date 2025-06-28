@@ -204,10 +204,10 @@ export class Sales implements OnInit {
                 this.salesService.deleteSale(sale.id).subscribe({
                     next: () => {
                         this.loadSales();
-                        this.utilsService.success('Venta eliminada');
+                        this.utilsService.success('Venta anulada');
                     },
                     error: (err) => {
-                        const detalle = err?.error?.detail || 'Error al eliminar la venta.';
+                        const detalle = err?.error?.detail || 'Error al anular la venta.';
                         this.utilsService.error(detalle);
                     }
                 });

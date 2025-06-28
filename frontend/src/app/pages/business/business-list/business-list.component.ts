@@ -87,7 +87,7 @@ export class BusinessListComponent implements OnInit {
 
   deleteBusiness(business: Business) {
     this.confirmationService.confirm({
-      message: `¿Estás seguro de inactivar el negocio "${business.name}"?`,
+      message: `¿Estás seguro de anular el negocio "${business.name}"?`,
       header: 'Confirmación',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
@@ -95,7 +95,7 @@ export class BusinessListComponent implements OnInit {
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
-            detail: 'Negocio inválido, no se puede inactivar',
+            detail: 'Negocio inválido, no se puede anular',
           });
           return;
         }
@@ -111,11 +111,11 @@ export class BusinessListComponent implements OnInit {
             this.loadIniData();
           },
           error: (err) => {
-            console.error('Error al inactivar negocio:', err);
+            console.error('Error al anular negocio:', err);
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
-              detail: 'No se pudo eliminar el negocio. Intenta nuevamente.',
+              detail: 'No se pudo anular el negocio. Intenta nuevamente.',
             });
           }
         });
