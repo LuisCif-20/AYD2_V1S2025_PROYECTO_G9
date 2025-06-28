@@ -13,6 +13,7 @@ import com.ayd2.imporcomgua.dto.user.NewUserAccountRequestDTO;
 import com.ayd2.imporcomgua.dto.user.UpdateUserAccountRequestDTO;
 import com.ayd2.imporcomgua.dto.user.UserAccountResponseDTO;
 import com.ayd2.imporcomgua.exceptions.DuplicatedEntityException;
+import com.ayd2.imporcomgua.exceptions.InvalidActionException;
 import com.ayd2.imporcomgua.exceptions.NotFoundException;
 import com.ayd2.imporcomgua.mappers.user.UserAccountMapper;
 import com.ayd2.imporcomgua.models.user.Role;
@@ -96,9 +97,19 @@ public class UserAccountServiceImpl implements UserAccountService {
     }
 
     @Override
-    public void deleteUserAccount(UUID id) throws NotFoundException {
+    public void deleteUserAccount(UUID id) throws NotFoundException, InvalidActionException {
         final UserAccount userAccount = userAccountRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("No existe el usuario con id: " + id));
+        final User user = (User) SecurityContextHolder
+                .getContext()
+                .getAuthentication()
+                .getPrincipal();
+        final String email = user.getUsername();
+        final UserAccount authUserAccount = userAccountRepository.findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("No existe el usuario con email: " + email));
+        if (userAccount.equals(authUserAccount)) {
+            throw new InvalidActionException("No te puedes dar de baja a ti mismo");
+        }
         userAccount.setIsActive(false);
         userAccountRepository.save(userAccount);
     }
