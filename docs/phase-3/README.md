@@ -226,33 +226,33 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 ### Requerimientos vs CDU
 |Requerimientos\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU600 - Gestionar Usuarios|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
-|RF01 Registro Cliente|X||||||
-|RF02 Edición Cliente|X||||||
-|RF03 Eliminación Cliente|X||||||
-|RF04 Busqueda Cliente|X||||||
-|RF05 Registro Cliente|X||||||
-|RF06 Edición Cliente|X||||||
-|RF07 Eliminación Cliente|X||||||
-|RF08 Busqueda Cliente|X||||||
-|RF09 Registro Producto|||X|||
-|RF10 Edición Producto|||X|||
-|RF11 Eliminación Producto|||X|||
-|RF12 Busqueda Producto|||X|||
-|RF13 Establecer Salida|||X|||
-|RF14 Ingreso Inventario|||X|||
-|RF15 Registro Venta||X||||
-|RF16 Anulación Venta||X||||
-|RF17 Busqueda Venta||X||||
-|RF18 Notificar Bajo Stock||X|X|||
-|RF19 Registro Vendedor||||X||
-|RF20 Edición Vendedor||||X||
-|RF21 Eliminación Vendedor||||X||
-|RF22 Busqueda Vendedor||X||X||
-|RF23 Registro Pago|||||X|
-|RF24 Registrar Usuario||||||X|
-|RF25 Edición Usuario||||||X|
-|RF26 Eliminación Usuario||||||X|
-|RF27 Buscar Usuario||||||X|
+|RF01 Registro Cliente|X| | | | | |
+|RF02 Edición Cliente|X| | | | | |
+|RF03 Eliminación Cliente|X| | | | | |
+|RF04 Busqueda Cliente|X| | | | | |
+|RF05 Registro Negocio|X| | | | | |
+|RF06 Edición Negocio|X| | | | | |
+|RF07 Eliminación Negocio|X| | | | | |
+|RF08 Busqueda Negocio|X| | | | | |
+|RF09 Registro Producto| | |X| | | |
+|RF10 Edición Producto| | |X| | | |
+|RF11 Eliminación Producto| | |X| | | |
+|RF12 Busqueda Producto| | |X| | | |
+|RF13 Establecer Salida| | |X| | | |
+|RF14 Ingreso Inventario| | |X| | | |
+|RF15 Registro Venta| |X| | | | |
+|RF16 Anulación Venta| |X| | | | |
+|RF17 Busqueda Venta| |X| | | | |
+|RF18 Notificar Bajo Stock| |X|X| | | |
+|RF19 Registro Vendedor| | | |X| | |
+|RF20 Edición Vendedor| | | |X| | | 
+|RF21 Eliminación Vendedor| | | |X| | |
+|RF22 Busqueda Vendedor| |X| |X| | |
+|RF23 Registro Pago| | | | |X| |
+|RF24 Registrar Usuario| | | | | |X|
+|RF25 Edición Usuario| | | | | |X|
+|RF26 Eliminación Usuario| | | | | |X|
+|RF27 Buscar Usuario| | | | | |X|
 
 ## 5. Estructuras Arquitectonicas y estilos arquitectonicos
 ### Identificación de estructuras arquitectónicas
