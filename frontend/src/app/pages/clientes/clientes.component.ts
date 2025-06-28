@@ -322,6 +322,7 @@ export class ClientesComponent implements OnInit {
 }
 
 
+
 isTelefonoInvalido(): boolean {
   return this.submitted && (!this.cliente.phone || !/^\d{4}-\d{4}$/.test(this.cliente.phone));
 }

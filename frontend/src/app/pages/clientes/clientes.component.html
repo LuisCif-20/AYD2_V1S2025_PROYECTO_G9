@@ -195,19 +195,13 @@
       </div>
 
       <div>
-        <label class="block font-bold mb-3" for="nit">NIT*</label>
-        <input
-          [(ngModel)]="cliente.nit"
-          id="nit"
-          pInputText
-          type="text"
-          class="w-full"
-          required
-        />
-        <small *ngIf="isNitInvalido()" class="text-red-500">
-          El NIT debe tener exactamente 9 dígitos numéricos.
-        </small>
-      </div>
+  <label class="block font-bold mb-3" for="nit">NIT*</label>
+  <input [(ngModel)]="cliente.nit" id="nit" pInputText type="text" class="w-full" required />
+  <small *ngIf="isNitInvalido()" class="text-red-500">
+    El NIT debe tener exactamente 9 dígitos numéricos.
+  </small>
+</div>
+
 
       <div>
         <label class="block font-bold mb-3" for="warehouseManager"
@@ -267,14 +261,12 @@
   <ng-template #footer>
     <p-button (click)="hideDialog()" icon="pi pi-times" label="Cancelar" text />
     <p-button
-      (click)="saveCliente()"
-      icon="pi pi-check"
-      label="Guardar"
-      [disabled]="
-        isNitInvalido() || isTelefonoInvalido() || !cliente.contactName
-      "
-    >
-    </p-button>
+    (click)="saveCliente()"
+     icon="pi pi-check"
+    label="Guardar"
+    [disabled]="isNitInvalido() && isTelefonoInvalido() && !cliente.contactName">
+</p-button>
+
   </ng-template>
 </p-dialog>
 
