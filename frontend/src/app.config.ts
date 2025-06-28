@@ -1,5 +1,5 @@
 import {HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptors} from '@angular/common/http';
-import {ApplicationConfig} from '@angular/core';
+import {ApplicationConfig, provideAppInitializer} from '@angular/core';
 import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling} from '@angular/router';
 import Aura from '@primeng/themes/aura';
@@ -9,6 +9,7 @@ import {MessageService} from "primeng/api";
 import {addWithCredentialsInterceptor} from "./app/services/auth/interceptors/add-with-credentials.interceptor";
 import {addAccessTokenInterceptor} from "./app/services/auth/interceptors/add-access-token.interceptor";
 import {refreshTokenInterceptor} from "./app/services/auth/interceptors/refresh-token.interceptor";
+import { combinedInitializer } from './app/core/initializers/app-initializer';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -16,7 +17,7 @@ export const appConfig: ApplicationConfig = {
         provideRouter(appRoutes, withInMemoryScrolling({
             anchorScrolling: 'enabled',
             scrollPositionRestoration: 'enabled'
-        }), withEnabledBlockingInitialNavigation()),
+        })),
         provideHttpClient(withFetch()),
         provideAnimationsAsync(),
         providePrimeNG({theme: {preset: Aura, options: {darkModeSelector: '.app-dark'}}}),
@@ -28,5 +29,6 @@ export const appConfig: ApplicationConfig = {
                 refreshTokenInterceptor
             ])
         ),
+        provideAppInitializer(combinedInitializer)
     ]
 };
