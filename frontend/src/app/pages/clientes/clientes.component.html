@@ -29,7 +29,7 @@
     'businessName',
     'code',
     'municipality.name',
-    'phone'
+    'phone',
   ]"
   [resizableColumns]="true"
   [scrollable]="true"
@@ -70,22 +70,38 @@
       </td>
       <td>{{ cliente.code }}</td>
       <td>{{ cliente.contactName }}</td>
-      <td>{{ cliente.business?.name || '-' }}</td>
-      <td>{{ cliente.municipality?.name || '-' }}</td>
+      <td>{{ cliente.business?.name || "-" }}</td>
+      <td>{{ cliente.municipality?.name || "-" }}</td>
       <td>{{ cliente.phone }}</td>
       <td>{{ cliente.saleType }}</td>
       <td>
-        <span class="font-semibold" [ngClass]="cliente.isActive ? 'text-green-600' : 'text-red-500'">
-          {{ cliente.isActive ? 'Activo' : 'Inactivo' }}
+        <span
+          class="font-semibold"
+          [ngClass]="cliente.isActive ? 'text-green-600' : 'text-red-500'"
+        >
+          {{ cliente.isActive ? "Activo" : "Inactivo" }}
         </span>
       </td>
       <td>
-        <p-button icon="pi pi-pencil" (click)="editCliente(cliente)" styleClass="p-button-rounded p-button-text mr-2"></p-button>
+        <p-button
+          icon="pi pi-pencil"
+          (click)="editCliente(cliente)"
+          styleClass="p-button-rounded p-button-text mr-2"
+        ></p-button>
         <ng-container *ngIf="cliente.isActive; else activarBoton">
-          <p-button icon="pi pi-trash" (click)="deleteCliente(cliente)" styleClass="p-button-rounded p-button-danger p-button-text"></p-button>
+          <p-button
+            icon="pi pi-trash"
+            (click)="deleteCliente(cliente)"
+            styleClass="p-button-rounded p-button-danger p-button-text"
+          ></p-button>
         </ng-container>
         <ng-template #activarBoton>
-          <p-button icon="pi pi-check" label="Activar" (click)="activarCliente(cliente)" styleClass="p-button-success p-button-sm"></p-button>
+          <p-button
+            icon="pi pi-check"
+            label="Activar"
+            (click)="activarCliente(cliente)"
+            styleClass="p-button-success p-button-sm"
+          ></p-button>
         </ng-template>
       </td>
     </tr>
@@ -98,151 +114,168 @@
   [style]="{ width: '450px' }"
   header="Detalles del Cliente"
 >
-    <ng-template #content>
-        <div class="flex flex-col gap-6">
-            <div>
-                <label class="block font-bold mb-3" for="contactName"
-                >Nombre Contacto*</label
-                >
-                <input
-                        [(ngModel)]="cliente.contactName"
-                        id="contactName"
-                        pInputText
-                        type="text"
-                        class="w-full"
-                        required
-                />
-                <small *ngIf="submitted && !cliente.contactName" class="text-red-500"
-                >Este campo es obligatorio.</small
-                >
-            </div>
+  <ng-template #content>
+    <div class="flex flex-col gap-6">
+      <div>
+        <label class="block font-bold mb-3" for="contactName"
+          >Nombre Contacto*</label
+        >
+        <input
+          [(ngModel)]="cliente.contactName"
+          id="contactName"
+          pInputText
+          type="text"
+          class="w-full"
+          required
+        />
+        <small *ngIf="submitted && !cliente.contactName" class="text-red-500"
+          >Este campo es obligatorio.</small
+        >
+      </div>
 
-            <div>
-                <label class="block font-bold mb-3" for="business">Nombre Negocio*</label>
-                <p-dropdown [(ngModel)]="cliente.businessId"
-                            [options]="negocios"
-                            optionLabel="name"
-                            optionValue="id"
-                            placeholder="Seleccione un negocio"
-                            class="w-full"
-                            [filter]="true">
-                </p-dropdown>
-                <small *ngIf="submitted && !cliente.businessId" class="text-red-500">
-                    Este campo es obligatorio.
-                </small>
-            </div>
+      <div>
+        <label class="block font-bold mb-3" for="business"
+          >Nombre Negocio*</label
+        >
+        <p-dropdown
+          [(ngModel)]="cliente.businessId"
+          [options]="negocios"
+          optionLabel="name"
+          optionValue="id"
+          placeholder="Seleccione un negocio"
+          class="w-full"
+          [filter]="true"
+        >
+        </p-dropdown>
+        <small *ngIf="submitted && !cliente.businessId" class="text-red-500">
+          Este campo es obligatorio.
+        </small>
+      </div>
 
+      <div>
+        <label class="block font-bold mb-3" for="departamento"
+          >Departamento*</label
+        >
+        <p-dropdown
+          [(ngModel)]="cliente.municipalityCode"
+          [options]="departamentos"
+          optionLabel="name"
+          optionValue="code"
+          (onChange)="onDepartamentoSeleccionado($event.value)"
+          placeholder="Seleccione"
+          class="w-full"
+          [disabled]="modoEdicion"
+        >
+        </p-dropdown>
+      </div>
 
-            <div>
-                <label class="block font-bold mb-3" for="departamento"
-                >Departamento*</label
-                >
-                <p-dropdown
-                        [(ngModel)]="cliente.municipalityCode"
-                        [options]="departamentos"
-                        optionLabel="name"
-                        optionValue="code"
-                        (onChange)="onDepartamentoSeleccionado($event.value)"
-                        placeholder="Seleccione"
-                        class="w-full"
-                        [disabled]="modoEdicion"
-                >
-                </p-dropdown>
-            </div>
+      <div>
+        <label class="block font-bold mb-3" for="municipio">Municipio*</label>
+        <p-dropdown
+          [(ngModel)]="cliente.municipalityCode"
+          [options]="municipios"
+          optionLabel="name"
+          optionValue="code"
+          placeholder="Seleccione"
+          class="w-full"
+          [disabled]="modoEdicion"
+        >
+        </p-dropdown>
+      </div>
 
-            <div>
-                <label class="block font-bold mb-3" for="municipio">Municipio*</label>
-                <p-dropdown
-                        [(ngModel)]="cliente.municipalityCode"
-                        [options]="municipios"
-                        optionLabel="name"
-                        optionValue="code"
-                        placeholder="Seleccione"
-                        class="w-full"
-                        [disabled]="modoEdicion"
-                >
-                </p-dropdown>
-            </div>
+      <div>
+        <label class="block font-bold mb-3" for="address">Dirección</label>
+        <textarea
+          [(ngModel)]="cliente.address"
+          id="address"
+          pTextarea
+          rows="2"
+          class="w-full"
+        ></textarea>
+      </div>
 
-            <div>
-                <label class="block font-bold mb-3" for="address">Dirección</label>
-                <textarea
-                        [(ngModel)]="cliente.address"
-                        id="address"
-                        pTextarea
-                        rows="2"
-                        class="w-full"
-                ></textarea>
-            </div>
+      <div>
+        <label class="block font-bold mb-3" for="nit">NIT*</label>
+        <input
+          [(ngModel)]="cliente.nit"
+          id="nit"
+          pInputText
+          type="text"
+          class="w-full"
+          required
+        />
+        <small *ngIf="isNitInvalido()" class="text-red-500">
+          El NIT debe tener exactamente 9 dígitos numéricos.
+        </small>
+      </div>
 
-           <div>
-  <label class="block font-bold mb-3" for="nit">NIT*</label>
-  <input [(ngModel)]="cliente.nit" id="nit" pInputText type="text" class="w-full" required />
-  <small *ngIf="isNitInvalido()" class="text-red-500">
-    El NIT debe tener exactamente 9 dígitos numéricos.
-  </small>
-</div>
+      <div>
+        <label class="block font-bold mb-3" for="warehouseManager"
+          >Encargado Bodega</label
+        >
+        <input
+          [(ngModel)]="cliente.warehouseManager"
+          id="warehouseManager"
+          pInputText
+          type="text"
+          class="w-full"
+        />
+      </div>
 
+      <div>
+        <label class="block font-bold mb-3" for="phone">Teléfono*</label>
+        <input
+          [(ngModel)]="cliente.phone"
+          id="phone"
+          pInputText
+          type="text"
+          class="w-full"
+          required
+        />
+        <small *ngIf="isTelefonoInvalido()" class="text-red-500">
+          El teléfono debe tener el formato 0000-0000.
+        </small>
+      </div>
 
-            <div>
-                <label class="block font-bold mb-3" for="warehouseManager"
-                >Encargado Bodega</label
-                >
-                <input
-                        [(ngModel)]="cliente.warehouseManager"
-                        id="warehouseManager"
-                        pInputText
-                        type="text"
-                        class="w-full"
-                />
-            </div>
+      <div>
+        <label class="block font-bold mb-3" for="saleType"
+          >Tipo de Venta*</label
+        >
+        <p-dropdown
+          [(ngModel)]="cliente.saleType"
+          [options]="tiposVenta"
+          inputId="saleType"
+          class="w-full"
+          placeholder="Seleccione"
+        >
+        </p-dropdown>
+      </div>
 
-            <div>
-  <label class="block font-bold mb-3" for="phone">Teléfono*</label>
-  <input [(ngModel)]="cliente.phone" id="phone" pInputText type="text" class="w-full" required />
-  <small *ngIf="isTelefonoInvalido()" class="text-red-500">
-    El teléfono debe tener el formato 0000-0000.
-  </small>
-</div>
+      <div>
+        <label class="block font-bold mb-3" for="notes">Observaciones</label>
+        <textarea
+          [(ngModel)]="cliente.notes"
+          id="notes"
+          pTextarea
+          rows="2"
+          class="w-full"
+        ></textarea>
+      </div>
+    </div>
+  </ng-template>
 
-
-            <div>
-                <label class="block font-bold mb-3" for="saleType"
-                >Tipo de Venta*</label
-                >
-                <p-dropdown
-                        [(ngModel)]="cliente.saleType"
-                        [options]="tiposVenta"
-                        inputId="saleType"
-                        class="w-full"
-                        placeholder="Seleccione"
-                >
-                </p-dropdown>
-            </div>
-
-            <div>
-                <label class="block font-bold mb-3" for="notes">Observaciones</label>
-                <textarea
-                        [(ngModel)]="cliente.notes"
-                        id="notes"
-                        pTextarea
-                        rows="2"
-                        class="w-full"
-                ></textarea>
-            </div>
-        </div>
-    </ng-template>
-
-    <ng-template #footer>
-        <p-button (click)="hideDialog()" icon="pi pi-times" label="Cancelar" text/>
-        <p-button
-  (click)="saveCliente()"
-  icon="pi pi-check"
-  label="Guardar"
-  [disabled]="isNitInvalido() || isTelefonoInvalido() || !cliente.contactName">
-</p-button>
-
-    </ng-template>
+  <ng-template #footer>
+    <p-button (click)="hideDialog()" icon="pi pi-times" label="Cancelar" text />
+    <p-button
+      (click)="saveCliente()"
+      icon="pi pi-check"
+      label="Guardar"
+      [disabled]="
+        isNitInvalido() || isTelefonoInvalido() || !cliente.contactName
+      "
+    >
+    </p-button>
+  </ng-template>
 </p-dialog>
 
 <p-confirmDialog></p-confirmDialog>
