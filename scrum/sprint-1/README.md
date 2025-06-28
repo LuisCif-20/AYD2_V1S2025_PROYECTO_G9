@@ -133,4 +133,4 @@ Sería ideal realizar sesiones breves de revisión técnica antes de comenzar la
 | US06 | Como administrador deseo gestionar productos                                         | Alta       | ✅ Completado |
 | US07 | Como administrador deseo gestionar vendedores                                        | Media-Alta | ✅ Completado |
 
-El proceso de validación y testeo quedó incompleto debido a que el tiempo designado para todas las tareas no fue suficiente.
+El proceso de validación y testeo quedó incompleto debido a que el tiempo designado para las tareas no fue suficiente.

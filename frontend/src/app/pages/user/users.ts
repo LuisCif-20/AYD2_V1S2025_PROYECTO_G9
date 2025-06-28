@@ -178,7 +178,7 @@ export class Users implements OnInit {
                 },
                 error: (err) => {
                     this.saving = false;
-                    const detalle = err?.error?.detail || 'Error al eliminar el usuario.';
+                    const detalle = err?.error?.detail || 'Error al anular el usuario.';
                     this.utilsService.error(detalle);
                 }
             });

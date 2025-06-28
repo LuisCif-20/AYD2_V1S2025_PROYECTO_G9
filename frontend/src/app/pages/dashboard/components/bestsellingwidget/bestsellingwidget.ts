@@ -15,6 +15,6 @@ export class BestSellingWidget {
 
     items = [
         {label: 'Add New', icon: 'pi pi-fw pi-plus'},
-        {label: 'Remove', icon: 'pi pi-fw pi-trash'}
+        {label: 'Remove', icon: 'pi pi-fw pi-times-circle'}
     ];
 }

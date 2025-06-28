@@ -145,6 +145,28 @@ export class ClientesComponent implements OnInit {
     });
   }
 
+  activarCliente(cliente: Cliente) {
+  this.confirmationService.confirm({
+    message: `¿Desea activar al cliente ${cliente.contactName}?`,
+    header: 'Confirmar Activación',
+    icon: 'pi pi-check',
+    accept: () => {
+      const body = { isActive: true };
+      this.clienteService.updateClienteParcial(cliente.id!, body).subscribe({
+        next: () => {
+          this.utilsService.success('Cliente activado correctamente');
+          this.loadClientes();
+        },
+        error: (err) => {
+          const detalle = err?.error?.detail || 'No se pudo activar el cliente';
+          this.utilsService.error(detalle);
+        },
+      });
+    }
+  });
+}
+
+
   onDepartamentoSeleccionado(code: string) {
     this.ubicacionService.getMunicipiosByDepartamento(code).subscribe({
       next: (data) => (this.municipios = data),
@@ -194,36 +216,38 @@ export class ClientesComponent implements OnInit {
   }
 
   saveCliente() {
-    this.submitted = true;
-    console.log(this.cliente);
-    if (
-      !this.cliente.contactName ||
-      !this.cliente.municipalityCode ||
-      !this.cliente.saleType
-    )
-      return;
+  this.submitted = true;
 
-    const esEdicion = !!this.cliente.id;
-    const request$ = esEdicion
-      ? this.clienteService.updateCliente(this.cliente)
-      : this.clienteService.createCliente(this.cliente);
-    console.log(this.cliente);
-    request$.subscribe({
-      next: () => {
-        this.utilsService.success(
-          esEdicion ? "Cliente actualizado" : "Cliente creado"
-        );
-        this.loadClientes();
-      },
-      error: (err) => {
-        const detalle = err?.error?.detail || "No se pudo guardar el cliente";
-        this.utilsService.error(detalle);
-      },
-    });
-
-    this.clienteDialog = false;
-    this.cliente = {};
+  if (
+    !this.cliente.contactName ||
+    !this.cliente.municipalityCode ||
+    !this.cliente.saleType ||
+    this.isNitInvalido() ||
+    this.isTelefonoInvalido()
+  ) {
+    return;
   }
+
+  const esEdicion = !!this.cliente.id;
+  const request$ = esEdicion
+    ? this.clienteService.updateCliente(this.cliente)
+    : this.clienteService.createCliente(this.cliente);
+
+  request$.subscribe({
+    next: () => {
+      this.utilsService.success(esEdicion ? "Cliente actualizado" : "Cliente creado");
+      this.loadClientes();
+    },
+    error: (err) => {
+      const detalle = err?.error?.detail || "No se pudo guardar el cliente";
+      this.utilsService.error(detalle);
+    },
+  });
+
+  this.clienteDialog = false;
+  this.cliente = {};
+}
+
 
   editCliente(cliente: Cliente) {
   this.cliente = { ...cliente };
@@ -242,18 +266,18 @@ export class ClientesComponent implements OnInit {
 
   deleteCliente(cliente: Cliente) {
     this.confirmationService.confirm({
-      message: "¿Está seguro que desea inactivar a " + cliente.contactName + "?",
+      message: "¿Está seguro que desea anular a " + cliente.contactName + "?",
       header: "Confirmar",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.clienteService.deleteCliente(cliente.id!.toString()).subscribe({
           next: () => {
-            this.utilsService.success("Cliente inactivado");
+            this.utilsService.success("Cliente anulado");
             this.loadClientes();
           },
           error: (err) => {
             const detalle =
-              err?.error?.detail || "No se pudo inactivar el cliente";
+              err?.error?.detail || "No se pudo anular el cliente";
             this.utilsService.error(detalle);
           },
         });
@@ -265,7 +289,7 @@ export class ClientesComponent implements OnInit {
     if (!this.selectedClientes || !this.selectedClientes.length) return;
 
     this.confirmationService.confirm({
-      message: "¿Está seguro que desea inactivar los clientes seleccionados?",
+      message: "¿Está seguro que desea anular los clientes seleccionados?",
       header: "Confirmar",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
@@ -275,14 +299,14 @@ export class ClientesComponent implements OnInit {
 
         Promise.all(eliminaciones.map((obs) => obs.toPromise()))
           .then(() => {
-            this.utilsService.success("Clientes inactivar");
+            this.utilsService.success("Clientes anulados");
             this.selectedClientes = null;
             this.loadClientes();
           })
           .catch((err) => {
             const detalle =
               err?.error?.detail ||
-              "No se pudieron inactivar uno o mas clientes";
+              "No se pudieron anular uno o mas clientes";
             this.utilsService.error(detalle);
           });
       },
@@ -294,4 +318,17 @@ export class ClientesComponent implements OnInit {
     const correlativo = String(this.clientes.length + 1).padStart(2, "0");
     return `${depCode}${correlativo}`;
   }
+
+ isNitInvalido(): boolean {
+  return this.submitted && (!this.cliente.nit || !/^\d{9}$/.test(this.cliente.nit));
+}
+
+
+
+isTelefonoInvalido(): boolean {
+  return this.submitted && (!this.cliente.phone || !/^\d{4}-\d{4}$/.test(this.cliente.phone));
+}
+
+
+
 }

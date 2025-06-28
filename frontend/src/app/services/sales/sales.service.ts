@@ -3,37 +3,39 @@ import {HttpClient, HttpParams} from "@angular/common/http"
 import { Observable } from "rxjs"
 import {Client, ItemProduct, Sale, SaleForm, SalesDataDto, Salesman, SalesOutlet} from "../../models/models";
 import {MessageService} from "primeng/api";
+import {environment} from "../../../environments/environment";
 
 @Injectable({
     providedIn: "root",
 })
 export class SalesService {
-    private apiUrl = "http://localhost:3000/api/v1.0"
+
+    private readonly BASE_URL = `${environment.IMPORCOMGUA}`;
 
     constructor(private http: HttpClient) {}
 
     getSales(): Observable<Sale[]> {
-        return this.http.get<Sale[]>(`${this.apiUrl}/sales`)
+        return this.http.get<Sale[]>(`${this.BASE_URL}/sales`)
     }
 
     createSale(saleForm: SaleForm): Observable<Sale> {
-        return this.http.post<Sale>(`${this.apiUrl}/sales`, saleForm)
+        return this.http.post<Sale>(`${this.BASE_URL}/sales`, saleForm)
     }
 
     deleteSale(id: string): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/sales/${id}`)
+        return this.http.delete<void>(`${this.BASE_URL}/sales/${id}`)
     }
 
     getClients(): Observable<Client[]> {
-        return this.http.get<Client[]>(`${this.apiUrl}/clients`)
+        return this.http.get<Client[]>(`${this.BASE_URL}/clients`)
     }
 
     getSalesmen(): Observable<Salesman[]> {
-        return this.http.get<Salesman[]>(`${this.apiUrl}/salesmen`)
+        return this.http.get<Salesman[]>(`${this.BASE_URL}/salesmen`)
     }
 
     getProducts(): Observable<ItemProduct[]> {
-        return this.http.get<ItemProduct[]>(`${this.apiUrl}/products`)
+        return this.http.get<ItemProduct[]>(`${this.BASE_URL}/products`)
     }
 
 
@@ -512,10 +514,10 @@ export class SalesService {
         params.forEach((value, key, map) => {
             if (value && key) httpParams = httpParams.set(key, value);
         });
-        return this.http.get<SalesDataDto[]>(`${this.apiUrl}`, { params: httpParams });
+        return this.http.get<SalesDataDto[]>(`${this.BASE_URL}/sales`, { params: httpParams });
     }
 
     registerSalesOutlet(request: SalesOutlet): Observable<boolean> {
-        return this.http.put<boolean>(`${this.apiUrl}`, request);
+        return this.http.put<boolean>(`${this.BASE_URL}/warehouse-outputs`, request);
     }
 }
