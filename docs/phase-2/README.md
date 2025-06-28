@@ -1,4 +1,4 @@
-# Fase 1 - Documentacion Sistema de Automatización IMPORCOMGUA
+# Fase 2 - Documentacion Sistema de Automatización IMPORCOMGUA
 ## Tabla de contenido
 1. [Core del Negocio](#1-core-del-negocio)
 2. [Casos de Uso Expandidos](#2-casos-de-uso-expandidos)

@@ -17,5 +17,8 @@ Proyecto realizado por:
 | Manuel Antonio Rojas Paxtor              | 202030799 |
 
 ## Documentación
-- [`Desarrollo de la arquitectura del sistema`](./docs/)
+- `Desarrollo de la arquitectura del sistema`
+    - [`Fase 1`](./docs/phase-1/) 
+    - [`Fase 2`](./docs/phase-2/) 
+    - [`Fase 3`](./docs/phase-3/) 
 - [`SCRUM`](./scrum/)
