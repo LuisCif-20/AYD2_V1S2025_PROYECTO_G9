@@ -42,7 +42,7 @@ export class AppMenu {
                     }] : []),
                     ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_INVENTARIO']) ? [{
                         label: 'Stock',
-                        icon: 'pi pi-fw pi-warehouse',
+                        icon: 'pi pi-fw pi pi-box',
                         routerLink: ['/pages/stock']
                     }] : []),
                     ...(this.hasRole(role, ['GERENTE_GENERAL', 'GERENTE_INVENTARIO']) ? [{
