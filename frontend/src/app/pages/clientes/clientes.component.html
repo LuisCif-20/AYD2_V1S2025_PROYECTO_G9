@@ -271,10 +271,13 @@
       icon="pi pi-check"
       label="Guardar"
       [disabled]="
-        isNitInvalido() || isTelefonoInvalido() || !cliente.contactName
+        !cliente.contactName ||
+        !cliente.municipalityCode ||
+        !cliente.saleType ||
+        isNitInvalido() ||
+        isTelefonoInvalido()
       "
-    >
-    </p-button>
+    ></p-button>
   </ng-template>
 </p-dialog>
 

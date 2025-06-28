@@ -117,7 +117,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Mejoras**          | 1. Integrar métodos de pago digitales.<br>2. Automatizar notificaciones y recordatorios.                                   |
 | **Otras secciones**  | Registro y Consulta de pagos (RF23)
 
-| **ID**               | CDU501 - Gestionar Usuarios                                                                                                       |
+| **ID**               | CDU600 - Gestionar Usuarios                                                                                                       |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | **Nombre**           | Gestionar Usuarios                                                                                                                |
 | **Actores**          | Administrador                                                                                                                     |
@@ -137,10 +137,10 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 * **RF02 - Edición de Cliente**: El sistema debe permitir modificar los datos de un cliente existente.
 * **RF03 - Eliminación de Cliente**: El sistema debe permitir eliminar un cliente registrado.
 * **RF04 - Busqueda de Cliente**: El sistema debe permitir buscar clientes por distintos criterios.
-* **RF05 - Registro de Cliente**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
-* **RF06 - Edición de Cliente**: El sistema debe permitir modificar los datos de un cliente existente.
-* **RF07 - Eliminación de Cliente**: El sistema debe permitir eliminar un cliente registrado.
-* **RF08 - Busqueda de Cliente**: El sistema debe permitir buscar clientes por distintos criterios.
+* **RF05 - Registro de Negocio**: El sistema debe permitir registrar un nuevo negocios con sus datos personales.
+* **RF06 - Edición de Negocio**: El sistema debe permitir modificar los datos de un negocios existente.
+* **RF07 - Eliminación de Negocio**: El sistema debe permitir eliminar un negocios registrado.
+* **RF08 - Busqueda de Negocio**: El sistema debe permitir buscar cnegocios por distintos criterios.
 
 #### Gestión de Bodega
 * **RF09 - Registro de Producto**: El sistema debe permitir registrar un nuevo producto en el inventario.
@@ -208,51 +208,51 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 
 ## 4. Matrices de Trazabilidad
 ### Stakeholders vs Requerimientos
-|Stakeholders\Requerimientos|RF01 Registro Cliente|RF02 Edición Cliente|RF03 Eliminación Cliente|RF04 Busqueda Cliente|RF05 Registro Cliente|RF06 Edición Cliente|RF07 Eliminación Cliente|RF08 Busqueda Cliente|RF09 Registro Producto|RF10 Edición Producto|RF11 Eliminación Producto|RF12 Busqueda Producto|RF13 Establecer Salida|RF14 Ingreso Inventario|RF15 Registro Venta|RF16 Anulación Venta|RF17 Busqueda Venta|RF18 Notificar Bajo Stock|RF19 Registro Vendedor|RF20 Edición Vendedor|RF21 Eliminación Vendedor|RF22 Busqueda Vendedor|RF23 Registro Pago|RF24 Registrar Usuario|RF25 Edición Usuario|RF26 Eliminación Usuario|RF27 Buscar Usuario|
+|Stakeholders\Requerimientos|RF01 Registro Cliente|RF02 Edición Cliente|RF03 Eliminación Cliente|RF04 Busqueda Cliente|RF05 Registro Negocio|RF06 Edición Negocio|RF07 Eliminación Negocio|RF08 Busqueda Negocio|RF09 Registro Producto|RF10 Edición Producto|RF11 Eliminación Producto|RF12 Busqueda Producto|RF13 Establecer Salida|RF14 Ingreso Inventario|RF15 Registro Venta|RF16 Anulación Venta|RF17 Busqueda Venta|RF18 Notificar Bajo Stock|RF19 Registro Vendedor|RF20 Edición Vendedor|RF21 Eliminación Vendedor|RF22 Busqueda Vendedor|RF23 Registro Pago|RF24 Registrar Usuario|RF25 Edición Usuario|RF26 Eliminación Usuario|RF27 Buscar Usuario|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 |Gerentes|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|X|
-|Vendedor|||||||||||||||X||X||||X|||||||||
-|Cliente|X|X|X|X|X|X|X|X||||||||X|X|X|||||X|||||
-|Aduana|||||||||||||||X|||||||||||||
-|Proveedor|||||||||X||||||||||||||||||
+|Vendedor| | | | | | | | | | | | | | |X| | | |X|X| | | | | | | | | |
+|Cliente|X|X| | | | | | | | | | | | |X| | | |  | | | |X| | | | |
+|Aduana| | | | | | | | | | | | | |X| | | | | | | | | | | | | |
+|Proveedor| | | | | | | | | | | | | |X| | | | | | | | | | | | |
 ### Stakeholders vs CDU
-|Stakeholders\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU500 - Gestionar Usuarios|
+|Stakeholders\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU600 - Gestionar Usuarios|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
 |Gerentes|X|X|X|X|X|X|
-|Vendedor||X||X|||
-|Cliente|X|X|||X||
-|Aduana|||X|||
-|Proveedor|||X|||
+|Vendedor| |X| |X| | |
+|Cliente|X|X| | |X| |
+|Aduana| | |X| | |
+|Proveedor| | |X| | |
 ### Requerimientos vs CDU
-|Requerimientos\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU500 - Gestionar Usuarios|
+|Requerimientos\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU600 - Gestionar Usuarios|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
-|RF01 Registro Cliente|X||||||
-|RF02 Edición Cliente|X||||||
-|RF03 Eliminación Cliente|X||||||
-|RF04 Busqueda Cliente|X||||||
-|RF05 Registro Cliente|X||||||
-|RF06 Edición Cliente|X||||||
-|RF07 Eliminación Cliente|X||||||
-|RF08 Busqueda Cliente|X||||||
-|RF09 Registro Producto|||X|||
-|RF10 Edición Producto|||X|||
-|RF11 Eliminación Producto|||X|||
-|RF12 Busqueda Producto|||X|||
-|RF13 Establecer Salida|||X|||
-|RF14 Ingreso Inventario|||X|||
-|RF15 Registro Venta||X||||
-|RF16 Anulación Venta||X||||
-|RF17 Busqueda Venta||X||||
-|RF18 Notificar Bajo Stock||X|X|||
-|RF19 Registro Vendedor||||X||
-|RF20 Edición Vendedor||||X||
-|RF21 Eliminación Vendedor||||X||
-|RF22 Busqueda Vendedor||X||X||
-|RF23 Registro Pago|||||X|
-|RF24 Registrar Usuario||||||X|
-|RF25 Edición Usuario||||||X|
-|RF26 Eliminación Usuario||||||X|
-|RF27 Buscar Usuario||||||X|
+|RF01 Registro Cliente|X| | | | | |
+|RF02 Edición Cliente|X| | | | | |
+|RF03 Eliminación Cliente|X| | | | | |
+|RF04 Busqueda Cliente|X| | | | | |
+|RF05 Registro Negocio|X| | | | | |
+|RF06 Edición Negocio|X| | | | | |
+|RF07 Eliminación Negocio|X| | | | | |
+|RF08 Busqueda Negocio|X| | | | | |
+|RF09 Registro Producto| | |X| | | |
+|RF10 Edición Producto| | |X| | | |
+|RF11 Eliminación Producto| | |X| | | |
+|RF12 Busqueda Producto| | |X| | | |
+|RF13 Establecer Salida| | |X| | | |
+|RF14 Ingreso Inventario| | |X| | | |
+|RF15 Registro Venta| |X| | | | |
+|RF16 Anulación Venta| |X| | | | |
+|RF17 Busqueda Venta| |X| | | | |
+|RF18 Notificar Bajo Stock| |X|X| | | |
+|RF19 Registro Vendedor| | | |X| | |
+|RF20 Edición Vendedor| | | |X| | | 
+|RF21 Eliminación Vendedor| | | |X| | |
+|RF22 Busqueda Vendedor| |X| |X| | |
+|RF23 Registro Pago| | | | |X| |
+|RF24 Registrar Usuario| | | | | |X|
+|RF25 Edición Usuario| | | | | |X|
+|RF26 Eliminación Usuario| | | | | |X|
+|RF27 Buscar Usuario| | | | | |X|
 
 ## 5. Estructuras Arquitectonicas y estilos arquitectonicos
 ### Identificación de estructuras arquitectónicas

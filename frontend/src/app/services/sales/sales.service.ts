@@ -19,6 +19,10 @@ export class SalesService {
     }
 
     createSale(saleForm: SaleForm): Observable<Sale> {
+        if(!saleForm.invoiceNit)  saleForm['invoiceNit'] = undefined;
+        if(!saleForm.dteInvoiceNumber)  saleForm['dteInvoiceNumber']  = undefined;
+        if(!saleForm.invoiceName)  saleForm['invoiceName']  = undefined;
+        if(!saleForm.notes)  saleForm['notes']  = undefined;
         return this.http.post<Sale>(`${this.BASE_URL}/sales`, saleForm)
     }
 
@@ -27,15 +31,15 @@ export class SalesService {
     }
 
     getClients(): Observable<Client[]> {
-        return this.http.get<Client[]>(`${this.BASE_URL}/clients`)
+        return this.http.get<Client[]>(`${this.BASE_URL}/clients?active=true`)
     }
 
     getSalesmen(): Observable<Salesman[]> {
-        return this.http.get<Salesman[]>(`${this.BASE_URL}/salesmen`)
+        return this.http.get<Salesman[]>(`${this.BASE_URL}/salesmen?active=true`)
     }
 
     getProducts(): Observable<ItemProduct[]> {
-        return this.http.get<ItemProduct[]>(`${this.BASE_URL}/products`)
+        return this.http.get<ItemProduct[]>(`${this.BASE_URL}/products?isActive=true`)
     }
 
 

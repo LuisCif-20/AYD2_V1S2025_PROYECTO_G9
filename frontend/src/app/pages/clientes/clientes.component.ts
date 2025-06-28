@@ -216,36 +216,38 @@ export class ClientesComponent implements OnInit {
   }
 
   saveCliente() {
-    this.submitted = true;
-    console.log(this.cliente);
-    if (
-      !this.cliente.contactName ||
-      !this.cliente.municipalityCode ||
-      !this.cliente.saleType
-    )
-      return;
+  this.submitted = true;
 
-    const esEdicion = !!this.cliente.id;
-    const request$ = esEdicion
-      ? this.clienteService.updateCliente(this.cliente)
-      : this.clienteService.createCliente(this.cliente);
-    console.log(this.cliente);
-    request$.subscribe({
-      next: () => {
-        this.utilsService.success(
-          esEdicion ? "Cliente actualizado" : "Cliente creado"
-        );
-        this.loadClientes();
-      },
-      error: (err) => {
-        const detalle = err?.error?.detail || "No se pudo guardar el cliente";
-        this.utilsService.error(detalle);
-      },
-    });
-
-    this.clienteDialog = false;
-    this.cliente = {};
+  if (
+    !this.cliente.contactName ||
+    !this.cliente.municipalityCode ||
+    !this.cliente.saleType ||
+    this.isNitInvalido() ||
+    this.isTelefonoInvalido()
+  ) {
+    return;
   }
+
+  const esEdicion = !!this.cliente.id;
+  const request$ = esEdicion
+    ? this.clienteService.updateCliente(this.cliente)
+    : this.clienteService.createCliente(this.cliente);
+
+  request$.subscribe({
+    next: () => {
+      this.utilsService.success(esEdicion ? "Cliente actualizado" : "Cliente creado");
+      this.loadClientes();
+    },
+    error: (err) => {
+      const detalle = err?.error?.detail || "No se pudo guardar el cliente";
+      this.utilsService.error(detalle);
+    },
+  });
+
+  this.clienteDialog = false;
+  this.cliente = {};
+}
+
 
   editCliente(cliente: Cliente) {
   this.cliente = { ...cliente };
@@ -320,6 +322,7 @@ export class ClientesComponent implements OnInit {
  isNitInvalido(): boolean {
   return this.submitted && (!this.cliente.nit || !/^\d{9}$/.test(this.cliente.nit));
 }
+
 
 
 isTelefonoInvalido(): boolean {
