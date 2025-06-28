@@ -100,7 +100,7 @@
                           icon="pi pi-pencil" pTooltip="Editar"/>-->
 
                 <p-button (click)="deleteSale(sale)" *ngIf="sale.paymentStatus !== 'PAGADO'" [outlined]="true" [rounded]="true" icon="pi pi-times-circle"
-                          severity="danger" pTooltip="Eliminar"/>
+                          severity="danger" pTooltip="Anular"/>
                 <p-button (click)="printSale(sale)" [outlined]="true" [rounded]="true" class="mr-2"
                           icon="pi pi-print" pTooltip="Imprimir venta" severity="secondary"/>
             </td>
