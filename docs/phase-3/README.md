@@ -6,9 +6,12 @@
 3. [Drivers Arquitectónicos](#3-drivers-arquitectónicos)
 4. [Matrices de Trazabilidad](#4-matrices-de-trazabilidad)
 5. [Estructuras Arquitectonicas y estilos arquitectonicos](#5-estructuras-arquitectonicas-y-estilos-arquitectonicos)
-6. [Diagrama de despliegue](#7-diagrama-de-despliegue)
-7. [Diagrama Entidad Relación](#8-diagrama-entidad-relación)
-8. [Gestión del Proyecto](#10-gestión-del-proyecto)
+6. [Diagrama de despliegue](#6-diagrama-de-despliegue-componentes-y-distribucion)
+7. [Diagrama Entidad Relación](#7-diagrama-entidad-relación)
+8. [Gestión del Proyecto](#8-gestión-del-proyecto)
+9. [Video de deploy](#9-video-de-deployment)
+10. [Video de prueba de aceptacion](#10video-de-prueba-de-aceptacion)
+
 
 ## 1. Core del Negocio
 ### Descripcion
@@ -391,3 +394,9 @@ Utilizamos [Trello](https://trello.com) para planificar, asignar y seguir el ava
 
 Puedes ver el tablero completo aquí:  
 🔗 [Tablero Trello de IMPORCOMGUA](https://trello.com/invite/b/6847ba5b69dfcd9af1c397e7/ATTIb7e79dd9e84a644089e6ced6e8777d17530D11B0/ayd2v1s2025proyectog9)
+
+## 9. Video de deployment
+Consultar el video [aqui](https://drive.google.com/file/d/1ENzumCRc8JD6hJtYiex5kMOnNB17Kuj6/view?usp=sharing)
+
+## 10.Video de prueba de aceptacion
+Consultar el video [aqui](https://drive.google.com/file/d/11RJe9mw4owvlq53RHmwys3K6W2aH0UgH/view?usp=sharing)
