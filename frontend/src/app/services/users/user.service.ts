@@ -25,8 +25,12 @@ export class UserService {
         return this.http.patch<any>(`${this.BASE_URL}/user-accounts/${id}`, userForm)
     }
 
-    deleteUser(isActive: boolean, id: string): Observable<void> {
-        return this.http.patch<any>(`${this.BASE_URL}/user-accounts/${id}`, { isActive })
+    activateUser(id: string): Observable<void> {
+        return this.http.patch<any>(`${this.BASE_URL}/user-accounts/${id}`, { isActive: true })
+    }
+
+    deleteUser(id: string): Observable<void> {
+        return this.http.delete<any>(`${this.BASE_URL}/user-accounts/${id}`)
     }
 
     getRoles(): Observable<Rol[]> {

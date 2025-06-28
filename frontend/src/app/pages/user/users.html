@@ -80,7 +80,7 @@
 
                             <ng-container *ngIf="user.isActive; else botonActivar">
                                 <p-button
-                                        (click)="deleteUser(user, false)"
+                                        (click)="deleteUser(user)"
                                         [outlined]="true"
                                         [rounded]="true"
                                         icon="pi pi-times-circle"
@@ -90,7 +90,7 @@
 
                             <ng-template #botonActivar>
                                 <p-button
-                                        (click)="deleteUser(user, true)"
+                                        (click)="activateUser(user)"
                                         [outlined]="true"
                                         [rounded]="true"
                                         icon="pi pi-check"

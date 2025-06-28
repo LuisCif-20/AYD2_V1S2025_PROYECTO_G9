@@ -161,30 +161,25 @@ export class Users implements OnInit {
         }
     }
 
-    deleteUser(user: User, isActive: boolean) {
+    deleteUser(user: User) {
         this.userToDelete = user;
-        this.userToDelete.isActive = isActive;
-        if (isActive) {
-            this.confirmDelete();
-            return;
-        }
         this.deleteUserDialog = true;
     }
 
     confirmDelete() {
         this.saving = true;
         if (this.userToDelete) {
-            this.userService.deleteUser(this.userToDelete.isActive, this.userToDelete.id).subscribe({
+            this.userService.deleteUser(this.userToDelete.id).subscribe({
                 next: () => {
                     this.saving = false;
-                    this.utilsService.success(`Usuario ${ this.userToDelete?.isActive ? 'activado' : 'desactivado' } correctamente`);
+                    this.utilsService.success(`Usuario anulado correctamente`);
                     this.deleteUserDialog = false;
                     this.userToDelete = undefined;
                     this.getUsers();
                 },
                 error: (err) => {
                     this.saving = false;
-                    const detalle = err?.error?.detail || `No se pudo ${ this.userToDelete?.isActive ? 'activar' : 'desactivar' } el usuario.`;
+                    const detalle = err?.error?.detail || `No se pudo anular el usuario.`;
                     this.utilsService.error(detalle);
                 }
             });
@@ -277,5 +272,20 @@ export class Users implements OnInit {
             password: '',
             role: {id: 0, name: ''}
         };
+    }
+
+    activateUser(user: User) {
+        this.userService.activateUser(user.id).subscribe({
+            next: () => {
+                this.saving = false;
+                this.utilsService.success(`Usuario activado correctamente`);
+                this.getUsers();
+            },
+            error: (err) => {
+                this.saving = false;
+                const detalle = err?.error?.detail || `No se pudo anular el usuario.`;
+                this.utilsService.error(detalle);
+            }
+        });
     }
 }

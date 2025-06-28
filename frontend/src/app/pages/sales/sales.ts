@@ -332,7 +332,7 @@ export class Sales implements OnInit {
                 return "success"
             case "COMPLETADA":
                 return "info"
-            case "CANCELADA":
+            case "ANULADA":
                 return "danger"
             default:
                 return "warning"
