@@ -145,6 +145,28 @@ export class ClientesComponent implements OnInit {
     });
   }
 
+  activarCliente(cliente: Cliente) {
+  this.confirmationService.confirm({
+    message: `¿Desea activar al cliente ${cliente.contactName}?`,
+    header: 'Confirmar Activación',
+    icon: 'pi pi-check',
+    accept: () => {
+      const body = { isActive: true };
+      this.clienteService.updateClienteParcial(cliente.id!, body).subscribe({
+        next: () => {
+          this.utilsService.success('Cliente activado correctamente');
+          this.loadClientes();
+        },
+        error: (err) => {
+          const detalle = err?.error?.detail || 'No se pudo activar el cliente';
+          this.utilsService.error(detalle);
+        },
+      });
+    }
+  });
+}
+
+
   onDepartamentoSeleccionado(code: string) {
     this.ubicacionService.getMunicipiosByDepartamento(code).subscribe({
       next: (data) => (this.municipios = data),
@@ -294,4 +316,16 @@ export class ClientesComponent implements OnInit {
     const correlativo = String(this.clientes.length + 1).padStart(2, "0");
     return `${depCode}${correlativo}`;
   }
+
+ isNitInvalido(): boolean {
+  return this.submitted && (!this.cliente.nit || !/^\d{9}$/.test(this.cliente.nit));
+}
+
+
+isTelefonoInvalido(): boolean {
+  return this.submitted && (!this.cliente.phone || !/^\d{4}-\d{4}$/.test(this.cliente.phone));
+}
+
+
+
 }
