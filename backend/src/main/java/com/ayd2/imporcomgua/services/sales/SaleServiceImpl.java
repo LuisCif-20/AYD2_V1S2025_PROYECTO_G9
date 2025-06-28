@@ -63,8 +63,7 @@ public class SaleServiceImpl implements SaleService {
     public List<SaleResponseDTO> getAllSales(SaleSearchRequestDTO saleSearchRequestDTO) {
         Specification<Sale> spec = Specification.anyOf(
                 SaleSpecs.hasShipmentNumber(saleSearchRequestDTO.shipmentNumber()),
-                SaleSpecs.clientContactNameContains(saleSearchRequestDTO.clientName()),
-                SaleSpecs.clientBusinessNameContains(saleSearchRequestDTO.clientName())).and(
+                SaleSpecs.clientContactNameContains(saleSearchRequestDTO.clientName())).and(
                         SaleSpecs.hasSaleStatus(saleSearchRequestDTO.status()))
                 .and(
                         SaleSpecs.hasPaymentStatusIn(saleSearchRequestDTO.paymentStatus()));
