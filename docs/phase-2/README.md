@@ -8,8 +8,7 @@
 6. [Diagrama de bloques](#6-diagrama-de-bloques)
 7. [Diagrama de despliegue](#7-diagrama-de-despliegue)
 8. [Diagrama Entidad Relación](#8-diagrama-entidad-relación)
-9. [Prototipo de interfaces](#9-mockups)
-10. [Gestión del Proyecto](#10-gestión-del-proyecto)
+9. [Gestión del Proyecto](#10-gestión-del-proyecto)
 
 ## 1. Core del Negocio
 ### Descripcion
@@ -351,98 +350,7 @@ La combinación de Spring Boot + PostgreSQL + Angular, empaquetados en contenedo
 Se puede observar el diagrama con mas detalle en el siguiente [enlace](https://drive.google.com/file/d/1PPOJJGdaRHBWIRjnqh1tqRXfl900WQL-/view?usp=sharing)
 ![ER_IMPERCOMGUA](./assets/architecture/DIAGRAMA-ER.png)
 
-## 9. Mockups
-
-### 9.1 Clientes
-
-#### 9.1.1 Listar clientes
-![ER_IMPERCOMGUA](./assets/mockups/clientes/listar.png)
-
-#### 9.1.2 Agregar clientes
-![ER_IMPERCOMGUA](./assets/mockups/clientes/agregar.png)
-
-
-#### 9.1.3 Editar clientes
-![ER_IMPERCOMGUA](./assets/mockups/clientes/editar.png)
-
-#### 9.1.4 Eliminar clientes
-![ER_IMPERCOMGUA](./assets/mockups/clientes/eliminar.png)
-
-### 9.2 Empleados
-
-#### 9.2.1 Listar empleados
-![ER_IMPERCOMGUA](./assets/mockups/empleados/listar.jpeg)
-
-#### 9.2.2 Agregar empleados
-![ER_IMPERCOMGUA](./assets/mockups/empleados/agregar.png)
-
-#### 9.2.3 Editar empleados
-![ER_IMPERCOMGUA](./assets/mockups/empleados/editar.png)
-
-#### 9.2.4 Eliminar empleados
-![ER_IMPERCOMGUA](./assets/mockups/empleados/eliminar.png)
-
-### 9.3 Productos
-
-#### 9.3.1 Listar productos
-![ER_IMPERCOMGUA](./assets/mockups/productos/listar.png)
-
-#### 9.3.2 Agregar productos
-![ER_IMPERCOMGUA](./assets/mockups/productos/agregar.png)
-
-#### 9.3.3 Editar productos
-![ER_IMPERCOMGUA](./assets/mockups/productos/editar.png)
-
-#### 9.3.4 Eliminar productos
-![ER_IMPERCOMGUA](./assets/mockups/productos/eliminar.png)
-
-### 9.4 Inventario
-
-#### 9.4.1 Listar inventario
-![ER_IMPERCOMGUA](./assets/mockups/inventario/listar.png)
-
-#### 9.4.2 Agregar inventario
-![ER_IMPERCOMGUA](./assets/mockups/inventario/agregar.png)
-
-#### 9.4.3 Editar inventario
-![ER_IMPERCOMGUA](./assets/mockups/inventario/editar.png)
-
-#### 9.4.4 Eliminar inventario
-![ER_IMPERCOMGUA](./assets/mockups/inventario/eliminar.png)
-
-#### 9.4.5 Stock
-![ER_IMPERCOMGUA](./assets/mockups/inventario/stock.jpeg)
-
-
-### 9.5 Pagos
-
-#### 9.5.1 Registrar
-![ER_IMPERCOMGUA](./assets/mockups/pagos/registrar.png)
-
-### 9.6 Salidas
-
-#### 9.6.1 Registrar salida
-![ER_IMPERCOMGUA](./assets/mockups/salidas/registrar.png)
-
-#### 9.6.2 Buscar salidas
-![ER_IMPERCOMGUA](./assets/mockups/salidas/buscar.png)
-
-### 9.7 Ventas
-
-#### 9.7.1 Listar ventas
-![ER_IMPERCOMGUA](./assets/mockups/ventas/listar.png)
-
-#### 9.7.2 Agregar ventas
-![ER_IMPERCOMGUA](./assets/mockups/ventas/agregar.png)
-
-#### 9.7.3 Editar ventas
-![ER_IMPERCOMGUA](./assets/mockups/ventas/editar.png)
-
-#### 9.7.4 Eliminar ventas
-![ER_IMPERCOMGUA](./assets/mockups/ventas/eliminar.png)
-
-
-## 10. Gestión del Proyecto
+## 9. Gestión del Proyecto
 
 Utilizamos [Trello](https://trello.com) para planificar, asignar y seguir el avance de tareas del proyecto. A continuación, algunas capturas:
 
