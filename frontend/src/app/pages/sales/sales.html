@@ -127,8 +127,8 @@
                 <div class="col-span-4">
                     <label class="block font-bold mb-3" for="client">Cliente *</label>
                     <p-select [(ngModel)]="saleForm.clientId" [options]="clients" fluid
-                              optionLabel="businessName" optionValue="id" placeholder="Seleccionar cliente"
-                              [filter]="true" filterBy="businessName,contactName"
+                              optionLabel="contactName" optionValue="id" placeholder="Seleccionar cliente"
+                              [filter]="true" filterBy="contactName"
                               (onChange)="onClientChange($event)"/>
                     <small *ngIf="submitted && !saleForm.clientId" class="text-red-500">Cliente es requerido.</small>
                 </div>
