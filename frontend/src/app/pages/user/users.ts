@@ -161,24 +161,30 @@ export class Users implements OnInit {
         }
     }
 
-    deleteUser(user: User) {
+    deleteUser(user: User, isActive: boolean) {
         this.userToDelete = user;
+        this.userToDelete.isActive = isActive;
+        if (isActive) {
+            this.confirmDelete();
+            return;
+        }
         this.deleteUserDialog = true;
     }
 
     confirmDelete() {
         this.saving = true;
         if (this.userToDelete) {
-            this.userService.deleteUser(this.userToDelete.id).subscribe({
+            this.userService.deleteUser(this.userToDelete.isActive, this.userToDelete.id).subscribe({
                 next: () => {
-                    this.utilsService.success('Usuario eliminado correctamente');
+                    this.saving = false;
+                    this.utilsService.success(`Usuario ${ this.userToDelete?.isActive ? 'activado' : 'desactivado' } correctamente`);
                     this.deleteUserDialog = false;
                     this.userToDelete = undefined;
                     this.getUsers();
                 },
                 error: (err) => {
                     this.saving = false;
-                    const detalle = err?.error?.detail || 'Error al anular el usuario.';
+                    const detalle = err?.error?.detail || `No se pudo ${ this.userToDelete?.isActive ? 'activar' : 'desactivar' } el usuario.`;
                     this.utilsService.error(detalle);
                 }
             });
