@@ -137,10 +137,10 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 * **RF02 - Edición de Cliente**: El sistema debe permitir modificar los datos de un cliente existente.
 * **RF03 - Eliminación de Cliente**: El sistema debe permitir eliminar un cliente registrado.
 * **RF04 - Busqueda de Cliente**: El sistema debe permitir buscar clientes por distintos criterios.
-* **RF05 - Registro de Cliente**: El sistema debe permitir registrar un nuevo cliente con sus datos personales.
-* **RF06 - Edición de Cliente**: El sistema debe permitir modificar los datos de un cliente existente.
-* **RF07 - Eliminación de Cliente**: El sistema debe permitir eliminar un cliente registrado.
-* **RF08 - Busqueda de Cliente**: El sistema debe permitir buscar clientes por distintos criterios.
+* **RF05 - Registro de Negocio**: El sistema debe permitir registrar un nuevo negocios con sus datos personales.
+* **RF06 - Edición de Negocio**: El sistema debe permitir modificar los datos de un negocios existente.
+* **RF07 - Eliminación de Negocio**: El sistema debe permitir eliminar un negocios registrado.
+* **RF08 - Busqueda de Negocio**: El sistema debe permitir buscar cnegocios por distintos criterios.
 
 #### Gestión de Bodega
 * **RF09 - Registro de Producto**: El sistema debe permitir registrar un nuevo producto en el inventario.
