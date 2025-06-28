@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Departamento, Municipio } from '../../models/models';
+import {environment} from "../../../environments/environment";
 
 
 @Injectable({
     providedIn: 'root'
 })
 export class UbicacionService {
-    private baseUrl = 'http://localhost:3000/api/v1.0';
+    private readonly baseUrl = environment.IMPORCOMGUA;
 
     constructor(private http: HttpClient) {}
 

@@ -232,10 +232,10 @@ export interface SaleForm {
     paymentType: string
     creditDays: number
     salesmanCode: string
-    dteInvoiceNumber: number
-    invoiceName: string
-    invoiceNit: string
-    notes: string
+    dteInvoiceNumber?: number
+    invoiceName?: string
+    invoiceNit?: string
+    notes?: string
     details: SaleDetailForm[]
 }
 

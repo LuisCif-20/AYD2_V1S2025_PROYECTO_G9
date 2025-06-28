@@ -201,12 +201,15 @@ export class Sales implements OnInit {
             icon: "pi pi-times-circle",
             accept: () => {
                 // Llamada al servicio para eliminar
+                this.saving = true;
                 this.salesService.deleteSale(sale.id).subscribe({
                     next: () => {
+                        this.saving = false;
                         this.loadSales();
                         this.utilsService.success('Venta anulada');
                     },
                     error: (err) => {
+                        this.saving = false;
                         const detalle = err?.error?.detail || 'Error al anular la venta.';
                         this.utilsService.error(detalle);
                     }

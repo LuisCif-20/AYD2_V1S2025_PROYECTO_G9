@@ -77,7 +77,26 @@
                         <td>
                             <p-button (click)="viewUser(user)" [outlined]="true" [rounded]="true" icon="pi pi-eye" class="mr-2" pTooltip="Ver detalles" severity="info"/>
                             <p-button (click)="editUser(user)" [outlined]="true" [rounded]="true" icon="pi pi-pencil" class="mr-2" pTooltip="Editar"/>
-                            <p-button (click)="deleteUser(user)" [outlined]="true" [rounded]="true" icon="pi pi-times-circle" pTooltip="Anular" severity="danger"/>
+
+                            <ng-container *ngIf="user.isActive; else botonActivar">
+                                <p-button
+                                        (click)="deleteUser(user, false)"
+                                        [outlined]="true"
+                                        [rounded]="true"
+                                        icon="pi pi-times-circle"
+                                        severity="danger"
+                                ></p-button>
+                            </ng-container>
+
+                            <ng-template #botonActivar>
+                                <p-button
+                                        (click)="deleteUser(user, true)"
+                                        [outlined]="true"
+                                        [rounded]="true"
+                                        icon="pi pi-check"
+                                        severity="success"
+                                ></p-button>
+                            </ng-template>
                         </td>
                     </tr>
                 </ng-template>
@@ -113,11 +132,6 @@
                             <label class="block font-bold mb-2">Rol *</label>
                             <p-dropdown [(ngModel)]="userForm.role" [options]="roles" optionLabel="name" [filter]="true" placeholder="Seleccionar rol"/>
                             <small *ngIf="submitted && !userForm.role" class="text-red-500">Rol requerido.</small>
-                        </div>
-
-                        <div *ngIf="isEditMode" class="col-span-6">
-                            <label class="block font-bold mb-2">Activo</label>
-                            <p-checkbox [(ngModel)]="userForm.isActive" binary="true"/>
                         </div>
                     </div>
                 </ng-template>

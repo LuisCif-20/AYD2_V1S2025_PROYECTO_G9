@@ -6,6 +6,7 @@ import {StyleClassModule} from 'primeng/styleclass';
 import {LayoutService} from '../services/layout/layout.service';
 import {AuthService} from "../services/auth/auth.service";
 import {UtilsService} from "../services/utils/utils.service";
+import {User} from "../models/models";
 
 @Component({
     selector: 'app-topbar',
@@ -18,8 +19,7 @@ import {UtilsService} from "../services/utils/utils.service";
                     <i class="pi pi-bars"></i>
                 </button>
                 <a class="layout-topbar-logo" routerLink="/">
-                    <img src="assets/logo.png" style="width: 35px; height: 45px; margin-right: 10px;"/>
-                    <span>IMPORCOMGUA</span>
+                    <span>Hola {{user?.firstName}} {{user?.lastName}}</span>
                 </a>
             </div>
 
@@ -55,10 +55,17 @@ import {UtilsService} from "../services/utils/utils.service";
 export class AppTopbar {
     items!: MenuItem[];
 
+    user: User | null = null
+
     constructor(public layoutService: LayoutService,
                 private authService: AuthService,
                 private router: Router,
                 private utilsService: UtilsService) {
+        this.getUser();
+    }
+
+    getUser() {
+        this.user = this.authService.user()
     }
 
     toggleDarkMode() {

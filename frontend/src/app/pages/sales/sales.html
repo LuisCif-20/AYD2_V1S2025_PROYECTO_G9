@@ -162,7 +162,7 @@
                     <small *ngIf="submitted && !saleForm.paymentType" class="text-red-500">Tipo de pago es requerido.</small>
                 </div>
                 <div class="col-span-4">
-                    <label class="block font-bold mb-3" for="creditDays">Días de Crédito</label>
+                    <label class="block font-bold mb-3" for="creditDays">Días de Crédito *</label>
                     <p-inputnumber [(ngModel)]="saleForm.creditDays" fluid id="creditDays"
                                    [disabled]="saleForm.paymentType !== 'CREDITO'"/>
                 </div>
