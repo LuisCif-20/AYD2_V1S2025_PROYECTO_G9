@@ -13,7 +13,7 @@ jobs:
 
     steps:
       # Paso 1: Checkout del código
-      - name: 🚀 Checkout del Código
+      - name: Checkout del Código
         uses: actions/checkout@v4
 
       # Paso 2: Configurar Java 21 (usando la distribución Temurin)
@@ -35,13 +35,13 @@ jobs:
           docker-compose --version
 
       # Paso 5: Ejecutar pruebas automatizadas
-      - name: 🧪 Ejecutar pruebas automatizadas
+      - name: Ejecutar pruebas automatizadas
         working-directory: backend
         run: |
           ./mvnw test
 
       # Paso 6: Construir el backend y empaquetar
-      - name: 📦 Construir el Backend con Docker Compose
+      - name: Construir el Backend con Docker Compose
         working-directory: backend
         run: |
           ./mvnw clean package
