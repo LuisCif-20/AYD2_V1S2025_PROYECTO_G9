@@ -242,18 +242,18 @@ export class ClientesComponent implements OnInit {
 
   deleteCliente(cliente: Cliente) {
     this.confirmationService.confirm({
-      message: "¿Está seguro que desea eliminar a " + cliente.contactName + "?",
+      message: "¿Está seguro que desea inactivar a " + cliente.contactName + "?",
       header: "Confirmar",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
         this.clienteService.deleteCliente(cliente.id!.toString()).subscribe({
           next: () => {
-            this.utilsService.success("Cliente eliminado");
+            this.utilsService.success("Cliente inactivado");
             this.loadClientes();
           },
           error: (err) => {
             const detalle =
-              err?.error?.detail || "No se pudo eliminar el cliente";
+              err?.error?.detail || "No se pudo inactivar el cliente";
             this.utilsService.error(detalle);
           },
         });
@@ -265,7 +265,7 @@ export class ClientesComponent implements OnInit {
     if (!this.selectedClientes || !this.selectedClientes.length) return;
 
     this.confirmationService.confirm({
-      message: "¿Está seguro que desea eliminar los clientes seleccionados?",
+      message: "¿Está seguro que desea inactivar los clientes seleccionados?",
       header: "Confirmar",
       icon: "pi pi-exclamation-triangle",
       accept: () => {
@@ -275,14 +275,14 @@ export class ClientesComponent implements OnInit {
 
         Promise.all(eliminaciones.map((obs) => obs.toPromise()))
           .then(() => {
-            this.utilsService.success("Clientes eliminados");
+            this.utilsService.success("Clientes inactivar");
             this.selectedClientes = null;
             this.loadClientes();
           })
           .catch((err) => {
             const detalle =
               err?.error?.detail ||
-              "No se pudieron eliminar uno o mas clientes";
+              "No se pudieron inactivar uno o mas clientes";
             this.utilsService.error(detalle);
           });
       },
