@@ -34,4 +34,9 @@ export class ClienteService {
     deleteCliente(id: string): Observable<void> {
         return this.http.delete<void>(`${baseUrl}/${id}`);
     }
+
+    updateClienteParcial(id: number, data: any): Observable<any> {
+  return this.http.patch(`${baseUrl}/${id}`, data);
+}
+
 }
