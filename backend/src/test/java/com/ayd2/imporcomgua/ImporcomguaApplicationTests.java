@@ -8,6 +8,7 @@ class ImporcomguaApplicationTests {
 
 	@Test
 	void contextLoads() {
+		fail("Fallo forzado para validar ejecución de pruebas");
 	}
 
 }
