@@ -78,7 +78,7 @@ public class UserAccountServiceImpl implements UserAccountService {
                 .orElseThrow(() -> new NotFoundException("No existe el usuario con id: " + id));
         userAccountMapper.UpdateUserAccountFromDTO(updateUserRequestDTO, userAccount);
         final String email = updateUserRequestDTO.email();
-        if (email != null && userAccountRepository.existsByEmail(email)) {
+        if (email != null && userAccountRepository.existsByEmailAndIdNot(email, id)) {
             throw new DuplicatedEntityException("Ya existe una usuario con el email: " + email);
         }
         final UUID roleId = updateUserRequestDTO.roleId();
