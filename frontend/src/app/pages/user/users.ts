@@ -21,21 +21,10 @@ import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DatePickerModule} from "primeng/datepicker";
 import {PasswordModule} from "primeng/password";
 import {DropdownModule} from "primeng/dropdown";
-
-interface Role {
-    id: string;
-    name: string;
-}
-
-interface User {
-    id: string;
-    firstname: string;
-    lastname: string;
-    email: string;
-    isActive: boolean;
-    role: Role;
-    password?: string
-}
+import {CheckboxModule} from "primeng/checkbox";
+import {UserService} from "../../services/users/user.service";
+import {UtilsService} from "../../services/utils/utils.service";
+import {Rol, User} from "../../models/models";
 
 @Component({
     selector: 'app-users',
@@ -61,15 +50,16 @@ interface User {
         ConfirmDialogModule,
         DatePickerModule,
         PasswordModule,
-        DropdownModule
+        DropdownModule,
+        CheckboxModule
     ],
-    providers: [MessageService, ConfirmationService],
+    providers: [ConfirmationService],
 })
 export class Users implements OnInit {
     users: User[] = [];
     selectedUsers: User[] = [];
 
-    userForm: Partial<User> = {};
+    userForm: User = this.newUser();
     userDialog = false;
     viewUserDialog = false;
     deleteUserDialog = false;
@@ -80,48 +70,33 @@ export class Users implements OnInit {
     saving = false;
     isEditMode = false;
 
-    roles = [
-        { label: 'Gerente General', value: { id: '1', name: 'GERENTE_GENERAL' } },
-        { label: 'Gerente Inventario', value: { id: '2', name: 'GERENTE_INVENTARIO' } },
-        { label: 'Gerente Ventas Finanzas', value: { id: '3', name: 'GERENTE_VENTAS_FINANZAS' } }
-    ];
+    roles: Rol[] = [];
+
+    mode: 'view' | 'edit' | 'create' = 'view';
 
     constructor(
-        private messageService: MessageService,
-        private confirmationService: ConfirmationService
+        private utilsService: UtilsService,
+        private confirmationService: ConfirmationService,
+        private userService: UserService
     ) {}
 
     ngOnInit(): void {
-        this.users = [
-            {
-                id: '9f88381c-b809-4792-a5c9-0175cf026c66',
-                firstname: 'Grupo',
-                lastname: '9',
-                email: 'gg@example.com',
-                isActive: true,
-                role: { id: '1', name: 'GERENTE_GENERAL' }
-            },
-            {
-                id: 'c278faac-f2d4-4635-83be-11578cee39cd',
-                firstname: 'Bilhan',
-                lastname: 'Lopez',
-                email: 'jehiel.lopez@example.com',
-                isActive: true,
-                role: { id: '2', name: 'GERENTE_INVENTARIO' }
-            },
-            {
-                id: '66bce5d0-1e2d-4617-85f8-c7e1ef862ca7',
-                firstname: 'Juan',
-                lastname: 'Pérez',
-                email: 'juan.perez@example.com',
-                isActive: true,
-                role: { id: '3', name: 'GERENTE_VENTAS_FINANZAS' }
+        this.getRoles()
+        this.getUsers();
+    }
+
+    getUsers(){
+        this.userService.getUsers().subscribe({
+            next: (data) => this.users = data,
+            error: (err) => {
+                const detalle = err?.error?.detail || 'Error al cargar las ventas.';
+                this.utilsService.error(detalle);
             }
-        ];
+        });
     }
 
     openNew() {
-        this.userForm = { isActive: true };
+        this.userForm = this.newUser();
         this.submitted = false;
         this.userDialog = true;
         this.isEditMode = false;
@@ -137,35 +112,53 @@ export class Users implements OnInit {
         this.submitted = true;
         const form = this.userForm;
 
-        if (!form.firstname || !form.lastname || !form.email || !form.role) return;
+        if (!form.firstName || !form.lastName || !form.email || !form.role) return;
 
         this.saving = true;
-
+        let newUser: any = {
+            firstName: form.firstName!,
+            lastName: form.lastName!,
+            email: form.email!,
+            password: form.password!,
+            isActive: form.isActive!,
+            roleId: form.role.id!,
+        };
         if (this.isEditMode && form.id) {
-            const index = this.users.findIndex(u => u.id === form.id);
-            if (index !== -1) {
-                this.users[index] = form as User;
-            }
+            this.userService.updateUser(newUser, form.id)
+                .subscribe({
+                    next: (data) => {
+                        console.log('data:', data);
+                        this.userDialog = false;
+                        this.saving = false;
+                        this.userForm = this.newUser();
+                        this.utilsService.success('Usuario editado correctamente');
+                        this.getUsers();
+                    },
+                    error: (err) => {
+                        this.saving = false;
+                        const detalle = err?.error?.detail || 'Error al editar los usuarios.';
+                        this.utilsService.error(detalle);
+                    }
+                });
         } else {
-            const newUser: User = {
-                id: crypto.randomUUID(),
-                firstname: form.firstname!,
-                lastname: form.lastname!,
-                email: form.email!,
-                isActive: form.isActive ?? true,
-                role: form.role!
-            };
-            this.users.push(newUser);
-        }
 
-        this.userDialog = false;
-        this.saving = false;
-        this.userForm = {};
-        this.messageService.add({
-            severity: 'success',
-            summary: 'Éxito',
-            detail: 'Usuario guardado correctamente'
-        });
+            this.userService.createUser(newUser)
+                .subscribe({
+                    next: (data) => {
+                        console.log('data:', data);
+                        this.userDialog = false;
+                        this.saving = false;
+                        this.userForm = this.newUser();
+                        this.utilsService.success('Usuario guardado correctamente');
+                        this.getUsers();
+                    },
+                    error: (err) => {
+                        this.saving = false;
+                        const detalle = err?.error?.detail || 'Error al cargar los usuarios.';
+                        this.utilsService.error(detalle);
+                    }
+                });
+        }
     }
 
     deleteUser(user: User) {
@@ -174,29 +167,29 @@ export class Users implements OnInit {
     }
 
     confirmDelete() {
+        this.saving = true;
         if (this.userToDelete) {
-            this.users = this.users.filter(u => u.id !== this.userToDelete!.id);
-            this.messageService.add({
-                severity: 'success',
-                summary: 'Eliminado',
-                detail: 'Usuario eliminado correctamente'
+            this.userService.deleteUser(this.userToDelete.id).subscribe({
+                next: () => {
+                    this.utilsService.success('Usuario eliminado correctamente');
+                    this.deleteUserDialog = false;
+                    this.userToDelete = undefined;
+                    this.getUsers();
+                },
+                error: (err) => {
+                    this.saving = false;
+                    const detalle = err?.error?.detail || 'Error al eliminar el usuario.';
+                    this.utilsService.error(detalle);
+                }
             });
         }
-        this.deleteUserDialog = false;
-        this.userToDelete = undefined;
     }
 
     viewUser(user: User) {
-        this.selectedUserForView = user;
+        this.userForm = { ...user };
         this.viewUserDialog = true;
     }
 
-    editFromView() {
-        if (this.selectedUserForView) {
-            this.editUser(this.selectedUserForView);
-            this.viewUserDialog = false;
-        }
-    }
 
     hideDialog() {
         this.userDialog = false;
@@ -207,9 +200,6 @@ export class Users implements OnInit {
         this.deleteUserDialog = false;
     }
 
-    hideViewDialog() {
-        this.viewUserDialog = false;
-    }
 
     getRoleLabel(roleName: string): string {
         switch (roleName) {
@@ -241,8 +231,8 @@ export class Users implements OnInit {
     exportCSV() {
         const headers = ['Nombre', 'Apellido', 'Email', 'Rol', 'Estado'];
         const rows = this.users.map(u => [
-            u.firstname,
-            u.lastname,
+            u.firstName,
+            u.lastName,
             u.email,
             this.getRoleLabel(u.role.name),
             u.isActive ? 'Activo' : 'Inactivo'
@@ -258,5 +248,28 @@ export class Users implements OnInit {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+    }
+
+
+    getRoles() {
+        this.userService.getRoles().subscribe({
+            next: (data) => this.roles = data,
+            error: (err) => {
+                const detalle = err?.error?.detail || 'Error al cargar los roles.';
+                this.utilsService.error(detalle);
+            }
+        });
+    }
+
+    newUser() {
+        return {
+            email: "",
+            firstName: "",
+            id: "",
+            isActive: false,
+            lastName: "",
+            password: '',
+            role: {id: 0, name: ''}
+        };
     }
 }

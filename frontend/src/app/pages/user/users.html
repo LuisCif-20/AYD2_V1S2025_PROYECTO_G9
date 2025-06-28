@@ -58,8 +58,8 @@
 
                 <ng-template pTemplate="body" let-user>
                     <tr>
-                        <td>{{ user.firstname }}</td>
-                        <td>{{ user.lastname }}</td>
+                        <td>{{ user.firstName }}</td>
+                        <td>{{ user.lastName }}</td>
                         <td>
                             <div class="flex align-items-center gap-2">
                                 <i class="pi pi-envelope text-400"></i>
@@ -77,25 +77,25 @@
                         <td>
                             <p-button (click)="viewUser(user)" [outlined]="true" [rounded]="true" icon="pi pi-eye" class="mr-2" pTooltip="Ver detalles" severity="info"/>
                             <p-button (click)="editUser(user)" [outlined]="true" [rounded]="true" icon="pi pi-pencil" class="mr-2" pTooltip="Editar"/>
-                            <p-button (click)="deleteUser(user)" [outlined]="true" [rounded]="true" icon="pi pi-trash" pTooltip="Eliminar" severity="danger"/>
+                            <p-button (click)="deleteUser(user)" [outlined]="true" [rounded]="true" icon="pi pi-times-circle" pTooltip="Eliminar" severity="danger"/>
                         </td>
                     </tr>
                 </ng-template>
             </p-table>
 
             <!-- Diálogo de crear/editar -->
-            <p-dialog [(visible)]="userDialog" [modal]="true" [style]="{ width: '900px' }" [header]="isEditMode ? 'Editar Usuario' : 'Nuevo Usuario'">
+            <p-dialog [(visible)]="userDialog" [modal]="true" [style]="{ width: '900px', height: '500px' }" [header]="isEditMode ? 'Editar Usuario' : 'Nuevo Usuario'">
                 <ng-template pTemplate="content">
                     <div class="grid grid-cols-12 gap-4">
                         <div class="col-span-6">
                             <label class="block font-bold mb-2">Nombre *</label>
-                            <input pInputText [(ngModel)]="userForm.firstname" type="text" placeholder="Nombre"/>
-                            <small *ngIf="submitted && !userForm.firstname" class="text-red-500">Requerido.</small>
+                            <input pInputText [(ngModel)]="userForm.firstName" type="text" placeholder="Nombre"/>
+                            <small *ngIf="submitted && !userForm.firstName" class="text-red-500">Requerido.</small>
                         </div>
                         <div class="col-span-6">
                             <label class="block font-bold mb-2">Apellido *</label>
-                            <input pInputText [(ngModel)]="userForm.lastname" type="text" placeholder="Apellido"/>
-                            <small *ngIf="submitted && !userForm.lastname" class="text-red-500">Requerido.</small>
+                            <input pInputText [(ngModel)]="userForm.lastName" type="text" placeholder="Apellido"/>
+                            <small *ngIf="submitted && !userForm.lastName" class="text-red-500">Requerido.</small>
                         </div>
 
                         <div class="col-span-6">
@@ -111,11 +111,11 @@
 
                         <div class="col-span-6">
                             <label class="block font-bold mb-2">Rol *</label>
-                            <p-dropdown [(ngModel)]="userForm.role" [options]="roles" optionLabel="label" [filter]="true" placeholder="Seleccionar rol"/>
+                            <p-dropdown [(ngModel)]="userForm.role" [options]="roles" optionLabel="name" [filter]="true" placeholder="Seleccionar rol"/>
                             <small *ngIf="submitted && !userForm.role" class="text-red-500">Rol requerido.</small>
                         </div>
 
-                        <div class="col-span-6">
+                        <div *ngIf="isEditMode" class="col-span-6">
                             <label class="block font-bold mb-2">Activo</label>
                             <p-checkbox [(ngModel)]="userForm.isActive" binary="true"/>
                         </div>
@@ -130,43 +130,39 @@
 
             <!-- Diálogo de detalles -->
             <p-dialog [(visible)]="viewUserDialog" [modal]="true" [style]="{ width: '900px' }" header="Detalles del Usuario">
-                <ng-template pTemplate="content" *ngIf="selectedUserForView">
+                <ng-template pTemplate="content">
                     <div class="grid grid-cols-12 gap-4">
                         <div class="col-span-6">
                             <label class="block font-bold mb-2">Nombre completo:</label>
-                            <p>{{ selectedUserForView.firstname }} {{ selectedUserForView.lastname }}</p>
+                            <p>{{ userForm.firstName }} {{ userForm.lastName }}</p>
                         </div>
                         <div class="col-span-6">
                             <label class="block font-bold mb-2">Email:</label>
-                            <p>{{ selectedUserForView.email }}</p>
+                            <p>{{ userForm.email }}</p>
                         </div>
                         <div class="col-span-6">
                             <label class="block font-bold mb-2">Rol:</label>
-                            <p-tag [value]="getRoleLabel(selectedUserForView.role.name)" [severity]="getRoleSeverity(selectedUserForView.role.name)"/>
+                            <p-tag [value]="getRoleLabel(userForm.role.name)" [severity]="getRoleSeverity(userForm.role.name)"/>
                         </div>
                         <div class="col-span-6">
                             <label class="block font-bold mb-2">Estado:</label>
-                            <p-tag [value]="selectedUserForView.isActive ? 'Activo' : 'Inactivo'" [severity]="getStatusSeverity(selectedUserForView.isActive)"/>
+                            <p-tag [value]="userForm.isActive ? 'Activo' : 'Inactivo'" [severity]="getStatusSeverity(userForm.isActive)"/>
                         </div>
                     </div>
-                </ng-template>
-                <ng-template pTemplate="footer">
-                    <p-button (click)="hideViewDialog()" icon="pi pi-times" label="Cerrar"/>
-                    <p-button (click)="editFromView()" icon="pi pi-pencil" label="Editar Usuario"/>
                 </ng-template>
             </p-dialog>
 
             <!-- Diálogo de confirmación eliminar -->
-            <p-dialog [(visible)]="deleteUserDialog" [modal]="true" [style]="{ width: '450px' }" header="Confirmar Eliminación">
+            <p-dialog [(visible)]="deleteUserDialog" [modal]="true" [style]="{ width: '450px' }" header="Confirmar Inactivación">
                 <ng-template pTemplate="content">
                     <div class="flex align-items-center gap-3" *ngIf="userToDelete">
                         <i class="pi pi-exclamation-triangle text-3xl text-red-500"></i>
-                        <span>¿Estás seguro de eliminar a <b>{{ userToDelete.firstname }} {{ userToDelete.lastname }}</b>?</span>
+                        <span>¿Estás seguro de inactivar a <b>{{ userToDelete.firstName }} {{ userToDelete.lastName }}</b>?</span>
                     </div>
                 </ng-template>
                 <ng-template pTemplate="footer">
                     <p-button (click)="hideDeleteDialog()" icon="pi pi-times" label="Cancelar" text/>
-                    <p-button (click)="confirmDelete()" icon="pi pi-check" label="Eliminar" severity="danger"/>
+                    <p-button (click)="confirmDelete()" icon="pi pi-check" label="Inactivar" severity="danger"/>
                 </ng-template>
             </p-dialog>
 

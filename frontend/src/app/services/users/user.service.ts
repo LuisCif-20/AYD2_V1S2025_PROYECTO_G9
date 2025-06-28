@@ -16,16 +16,16 @@ export class UserService {
         return this.http.get<User[]>(`${this.apiUrl}/user-accounts`)
     }
 
-    createUser(userForm: User): Observable<Sale> {
-        return this.http.post<Sale>(`${this.apiUrl}/users`, userForm)
+    createUser(userForm: User): Observable<any> {
+        return this.http.post<any>(`${this.apiUrl}/user-accounts`, userForm)
     }
 
-    updateUser(userForm: User): Observable<Sale> {
-        return this.http.patch<Sale>(`${this.apiUrl}/users/${userForm.id}`, userForm)
+    updateUser(userForm: User, id: string): Observable<any> {
+        return this.http.patch<any>(`${this.apiUrl}/user-accounts/${id}`, userForm)
     }
 
-    deleteUser(id: number): Observable<void> {
-        return this.http.delete<void>(`${this.apiUrl}/users/${id}`)
+    deleteUser(id: string): Observable<void> {
+        return this.http.delete<void>(`${this.apiUrl}/user-accounts/${id}`)
     }
 
     getRoles(): Observable<Rol[]> {

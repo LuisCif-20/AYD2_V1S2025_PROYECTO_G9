@@ -375,9 +375,9 @@ export interface Rol {
 
 export interface User {
     password?: any;
-    id: number
-    firstname: string
-    lastname: string
+    id: string
+    firstName: string
+    lastName: string
     email: string
     role: Rol,
     isActive: boolean
