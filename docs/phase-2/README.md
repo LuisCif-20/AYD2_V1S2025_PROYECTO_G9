@@ -8,7 +8,7 @@
 6. [Diagrama de bloques](#6-diagrama-de-bloques)
 7. [Diagrama de despliegue](#7-diagrama-de-despliegue)
 8. [Diagrama Entidad Relación](#8-diagrama-entidad-relación)
-9. [Gestión del Proyecto](#10-gestión-del-proyecto)
+9. [Gestión del Proyecto](#9-gestión-del-proyecto)
 
 ## 1. Core del Negocio
 ### Descripcion
