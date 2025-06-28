@@ -117,7 +117,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 | **Mejoras**          | 1. Integrar métodos de pago digitales.<br>2. Automatizar notificaciones y recordatorios.                                   |
 | **Otras secciones**  | Registro y Consulta de pagos (RF23)
 
-| **ID**               | CDU501 - Gestionar Usuarios                                                                                                       |
+| **ID**               | CDU600 - Gestionar Usuarios                                                                                                       |
 |----------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | **Nombre**           | Gestionar Usuarios                                                                                                                |
 | **Actores**          | Administrador                                                                                                                     |
@@ -216,7 +216,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |Aduana|||||||||||||||X|||||||||||||
 |Proveedor|||||||||X||||||||||||||||||
 ### Stakeholders vs CDU
-|Stakeholders\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU500 - Gestionar Usuarios|
+|Stakeholders\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU600 - Gestionar Usuarios|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
 |Gerentes|X|X|X|X|X|X|
 |Vendedor||X||X|||
@@ -224,7 +224,7 @@ IMPORCOMGUA es una empresa guatemalteca dedicada al comercio de importaciones, e
 |Aduana|||X|||
 |Proveedor|||X|||
 ### Requerimientos vs CDU
-|Requerimientos\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU500 - Gestionar Usuarios|
+|Requerimientos\CDU|CDU100 - Gestionar Clientes|CDU200 - Gestionar Ventas|CDU300 - Gestionar Bodega|CDU400 - Gestionar Vendedores|CDU500 - Controlar Pagos|CDU600 - Gestionar Usuarios|
 |--|:--:|:--:|:--:|:--:|:--:|:--:|
 |RF01 Registro Cliente|X||||||
 |RF02 Edición Cliente|X||||||
