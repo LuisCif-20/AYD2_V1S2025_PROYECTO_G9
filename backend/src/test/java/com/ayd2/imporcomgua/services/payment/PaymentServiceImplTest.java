@@ -54,12 +54,6 @@ public class PaymentServiceImplTest {
     @InjectMocks
     private PaymentServiceImpl serviceToTest;
 
-    @Test
-    void failedTest() {
-        // This is a placeholder for a failed test case.
-        // You can implement a specific test case that is expected to fail.
-        fail("This test is intentionally failing");
-    }
 
     @Test
     void testCreatePaymentSuccessfully() throws Exception {
